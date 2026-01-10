@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta name="description" content="Harvest Realty LLC - Premier real estate services in Pennsylvania and New Jersey. Find your dream home today.">
+    <meta name="keywords" content="real estate, Pennsylvania, New Jersey, homes for sale, property rentals, house buying">
+    <title>Harvest Realty LLC - Premier Real Estate in PA & NJ</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Calendly widget -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <nav>
+            <div class="logo-container">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#properties">Properties</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#" class="cta-button" onclick="openModal('schedule-modal')">Schedule Viewing</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>Find Your Perfect Home</h2>
+            <p class="hero-subtitle">Premier real estate services in Pennsylvania and New Jersey</p>
+            <div class="hero-buttons">
+                <a href="#properties" class="btn-primary">Browse Properties</a>
+                <a href="#contact" class="btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services fade-in" id="services">
+        <div class="section-header">
+            <div class="section-tag">What We Offer</div>
+            <h2>Our Services</h2>
+            <p>Comprehensive real estate solutions tailored to your needs</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏡</div>
+                <h3>Home Buying</h3>
+                <p>Expert guidance through every step of your home purchase journey. We help you find the perfect property that matches your lifestyle and budget.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Home Selling</h3>
+                <p>Maximize your property's value with our strategic marketing and expert negotiation skills. We ensure a smooth, profitable sale.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔑</div>
+                <h3>Rental Properties</h3>
+                <p>Find quality rental homes or investment properties. We manage the entire process from listing to lease signing.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Property Management</h3>
+                <p>Comprehensive property management services to protect your investment and maximize returns.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <h3>Market Analysis</h3>
+                <p>In-depth market insights and property valuations to help you make informed real estate decisions.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🤝</div>
+                <h3>Consultation</h3>
+                <p>Personalized real estate advice for buyers, sellers, and investors looking to make smart property decisions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Search Section -->
+    <section class="property-search">
+        <div class="search-container">
+            <div class="section-header">
+                <div class="section-tag" style="color: var(--gold);">Find Your Dream Home</div>
+                <h2 style="color: var(--white);">Property Search</h2>
+                <p style="color: rgba(255,255,255,0.9);">Search our extensive database of properties in PA and NJ</p>
+            </div>
+            <div class="search-box">
+                <form class="search-form" id="propertySearchForm">
+                    <div class="form-group">
+                        <label>Property Type</label>
+                        <select name="type">
+                            <option value="">All Types</option>
+                            <option value="house">House</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="condo">Condo</option>
+                            <option value="commercial">Commercial</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <select name="location">
+                            <option value="">All Locations</option>
+                            <option value="philadelphia">Philadelphia, PA</option>
+                            <option value="pittsburgh">Pittsburgh, PA</option>
+                            <option value="newark">Newark, NJ</option>
+                            <option value="jersey-city">Jersey City, NJ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Min Price</label>
+                        <input type="number" name="minPrice" placeholder="$0">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Price</label>
+                        <input type="number" name="maxPrice" placeholder="No limit">
+                    </div>
+                    <div class="form-group">
+                        <label>Bedrooms</label>
+                        <select name="bedrooms">
+                            <option value="">Any</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bathrooms</label>
+                        <select name="bathrooms">
+                            <option value="">Any</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                        </select>
+                    </div>
+                </form>
+                <button class="search-button" onclick="searchProperties()">Search Properties</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section class="featured-properties fade-in" id="properties">
+        <div class="section-header">
+            <div class="section-tag">Available Now</div>
+            <h2>Featured Properties</h2>
+            <p>Handpicked selection of premium properties in prime locations</p>
+        </div>
+        <div class="properties-grid" id="propertiesGrid">
+            <!-- Properties will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about fade-in" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Harvest Realty LLC</h2>
+                <p>For over a decade, Harvest Realty LLC has been the trusted name in real estate across Pennsylvania and New Jersey. Our commitment to excellence and personalized service has helped thousands of families find their dream homes.</p>
+                <p>We combine local market expertise with innovative technology to provide unparalleled service to our clients. Whether you're buying, selling, or renting, our experienced team is dedicated to making your real estate journey smooth and successful.</p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Properties Sold</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Expert Agents</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973" alt="Harvest Realty Team">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact fade-in" id="contact">
+        <div class="section-header">
+            <div class="section-tag">Get In Touch</div>
+            <h2>Contact Us</h2>
+            <p>Ready to start your real estate journey? We're here to help</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Connect</h3>
+                <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📧</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            prasadabe@comcast.net<br>
+                            jacobabe99@gmail.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div>
+                            <strong>Service Areas</strong><br>
+                            Pennsylvania & New Jersey
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕐</div>
+                        <div>
+                            <strong>Office Hours</strong><br>
+                            Mon-Fri: 9am - 6pm<br>
+                            Sat-Sun: By Appointment
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <input type="tel" name="phone" placeholder="Phone Number">
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Harvest Realty LLC</h4>
+                <p>Your trusted partner in finding the perfect property. Serving Pennsylvania and New Jersey with excellence since 2009.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="#home">Home</a></p>
+                <p><a href="#services">Services</a></p>
+                <p><a href="#properties">Properties</a></p>
+                <p><a href="#about">About Us</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <p><a href="privacy.html">Privacy Policy</a></p>
+                <p><a href="terms.html">Terms of Use</a></p>
+                <p><a href="#contact">Contact Us</a></p>
+                <p><a href="#" onclick="openModal('schedule-modal')">Schedule Viewing</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>prasadabe@comcast.net</p>
+                <p>jacobabe99@gmail.com</p>
+                <p>Pennsylvania & New Jersey</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Schedule Modal -->
+    <div id="schedule-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('schedule-modal')">&times;</span>
+            <h2 style="color: var(--burgundy); margin-bottom: 1rem;">Schedule a Property Viewing</h2>
+            <p style="margin-bottom: 1.5rem;">Choose a convenient time to tour our properties. All appointments are confirmed to both Prasad and Jacob Abraham.</p>
+            <div class="calendly-inline-widget" data-url="https://calendly.com/YOUR_CALENDLY_USERNAME/property-showing"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
