@@ -146,7 +146,7 @@
         
         .cta-button {
             background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
-            color: var(--white);
+            color: var(--white) !important;
             padding: 0.8rem 1.8rem;
             border-radius: 50px;
             text-decoration: none;
@@ -159,7 +159,7 @@
         
         .cta-button:hover {
             background: var(--white);
-            color: var(--burgundy);
+            color: var(--burgundy) !important;
             border-color: var(--burgundy);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(139, 46, 46, 0.4);
@@ -481,6 +481,34 @@
             box-shadow: 0 5px 20px var(--shadow);
             transition: all 0.4s ease;
             cursor: pointer;
+            position: relative;
+        }
+        
+        .property-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+        
+        .status-active {
+            background: rgba(76, 175, 80, 0.9);
+            color: var(--white);
+        }
+        
+        .status-pending {
+            background: rgba(255, 193, 7, 0.9);
+            color: var(--charcoal);
+        }
+        
+        .status-sold {
+            background: rgba(139, 46, 46, 0.9);
+            color: var(--white);
         }
         
         .property-card:hover {
@@ -713,6 +741,83 @@
             gap: 3rem;
         }
         
+        .contact-card-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .contact-card h3 {
+            font-size: 2rem;
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-card > p {
+            color: var(--charcoal);
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-card-button {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 15px;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .contact-card-button:hover {
+            background: var(--white);
+            border-color: var(--burgundy);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .contact-card-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .contact-card-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        
+        .contact-card-text strong {
+            font-size: 1.2rem;
+            color: var(--burgundy);
+            font-weight: 600;
+        }
+        
+        .contact-card-text span {
+            font-size: 1rem;
+            color: var(--charcoal);
+            opacity: 0.8;
+        }
+        
         .contact-info h3 {
             font-size: 2.5rem;
             color: var(--burgundy);
@@ -762,56 +867,6 @@
             justify-content: center;
             font-size: 1.3rem;
             flex-shrink: 0;
-        }
-        
-        .contact-form {
-            background: var(--cream);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow);
-        }
-        
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            border: 2px solid var(--cream-dark);
-            border-radius: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--burgundy);
-        }
-        
-        .contact-form textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-button {
-            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.05rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
-            width: 100%;
-            box-shadow: 0 4px 15px rgba(139, 46, 46, 0.3);
-        }
-        
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(139, 46, 46, 0.5);
         }
         
         /* Footer */
@@ -948,6 +1003,20 @@
             .contact-container { 
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+            
+            .contact-card {
+                padding: 2rem;
+            }
+            
+            .contact-card-button {
+                padding: 1.2rem;
+            }
+            
+            .contact-card-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
             }
             .about-image img {
                 height: 400px;
@@ -1429,7 +1498,7 @@
                 </div>
                 <div class="about-stats">
                     <div class="stat">
-                        <span class="stat-number">100+</span>
+                        <span class="stat-number">10+</span>
                         <span class="stat-label">Properties Sold</span>
                     </div>
                     <div class="stat">
@@ -1442,7 +1511,7 @@
                     </div>
                     <div class="stat">
                         <span class="stat-number">3</span>
-                        <span class="stat-label">Expert Agents</span>
+                        <span class="stat-label">Active Listings</span>
                     </div>
                 </div>
             </div>
@@ -1465,20 +1534,6 @@
                 <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
                 <div class="contact-details">
                     <div class="contact-item">
-                        <div class="contact-item-icon">📧</div>
-                        <div>
-                            <strong>Email</strong><br>
-                            <a href="mailto:contact@harvestrealty.llc">contact@harvestrealty.llc</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-item-icon">💬</div>
-                        <div>
-                            <strong>Text Us</strong><br>
-                            <a href="sms:2155194096">215-519-4096</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
                         <div class="contact-item-icon">📍</div>
                         <div>
                             <strong>Service Areas</strong><br>
@@ -1495,14 +1550,37 @@
                     </div>
                 </div>
             </div>
-            <div class="contact-form">
-                <form id="contactForm">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <input type="tel" name="phone" placeholder="Phone Number">
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="submit-button">Send Message</button>
-                </form>
+            
+            <!-- Contact Card -->
+            <div class="contact-card-wrapper">
+                <div class="contact-card">
+                    <h3>Get In Touch</h3>
+                    <p>Reach out to us directly</p>
+                    
+                    <a href="mailto:contact@harvestrealty.llc" class="contact-card-button">
+                        <span class="contact-card-icon">📧</span>
+                        <div class="contact-card-text">
+                            <strong>Email Us</strong>
+                            <span>contact@harvestrealty.llc</span>
+                        </div>
+                    </a>
+                    
+                    <a href="sms:2155194096" class="contact-card-button">
+                        <span class="contact-card-icon">💬</span>
+                        <div class="contact-card-text">
+                            <strong>Text Us</strong>
+                            <span>215-519-4096</span>
+                        </div>
+                    </a>
+                    
+                    <a href="tel:2155194096" class="contact-card-button">
+                        <span class="contact-card-icon">📞</span>
+                        <div class="contact-card-text">
+                            <strong>Call Us</strong>
+                            <span>215-519-4096</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -1556,55 +1634,100 @@
     </div>
 
     <script>
-        // Sample property data
+        // Real property data from MLS
         const properties = [
+            // Active Listings
             {
-                title: "Luxury Modern Home",
-                price: "$585,000",
-                location: "Philadelphia County, PA",
-                beds: 4,
-                baths: 3,
-                image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075"
+                title: "Land on N 5th St",
+                price: "$125,000",
+                location: "2456 N 5th St, Philadelphia, PA",
+                beds: null,
+                baths: null,
+                type: "Land",
+                status: "Active",
+                image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2032"
+            },
+            // Under Contract
+            {
+                title: "Duplex on E Tabor Rd",
+                price: "$244,900",
+                location: "565 E Tabor Rd, Philadelphia, PA",
+                beds: null,
+                baths: null,
+                type: "Duplex",
+                status: "Under Contract",
+                image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2073"
             },
             {
-                title: "Contemporary Condo",
-                price: "$425,000",
-                location: "Montgomery County, PA",
-                beds: 2,
+                title: "Home on Whitaker Ave",
+                price: "$259,900",
+                location: "7524 Whitaker Ave, Philadelphia, PA",
+                beds: 3,
+                baths: 1,
+                type: "Residential",
+                status: "Under Contract",
+                image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075"
+            },
+            // Recently Sold
+            {
+                title: "Home on Frontenac St",
+                price: "$310,000",
+                location: "8604 Frontenac St, Philadelphia, PA",
+                beds: 3,
                 baths: 2,
+                type: "Residential",
+                status: "Sold",
                 image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053"
             },
             {
-                title: "Suburban Family Home",
-                price: "$495,000",
-                location: "Bucks County, PA",
-                beds: 5,
-                baths: 3,
+                title: "Townhouse on Lindsay St",
+                price: "$317,500",
+                location: "11011 Lindsay St, Philadelphia, PA",
+                beds: 4,
+                baths: 1,
+                type: "Residential",
+                status: "Sold",
                 image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070"
             },
             {
-                title: "Downtown Apartment",
-                price: "$1,800/mo",
-                location: "Philadelphia County, PA",
-                beds: 2,
+                title: "Home on Hendrix St",
+                price: "$325,000",
+                location: "664 Hendrix St, Philadelphia, PA",
+                beds: 3,
                 baths: 1,
+                type: "Residential",
+                status: "Sold",
                 image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070"
             },
             {
-                title: "Waterfront Property",
-                price: "$725,000",
-                location: "New Jersey",
-                beds: 3,
-                baths: 2,
+                title: "Duplex on Langdon St",
+                price: "$462,500",
+                location: "8016 Langdon St, Philadelphia, PA",
+                beds: null,
+                baths: null,
+                type: "Duplex",
+                status: "Sold",
                 image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2084"
             },
             {
-                title: "Charming Townhouse",
-                price: "$385,000",
-                location: "Montgomery County, PA",
-                beds: 3,
+                title: "Home on Lockart Rd",
+                price: "$514,000",
+                location: "11991 Lockart Rd, Philadelphia, PA",
+                beds: 4,
                 baths: 2,
+                type: "Residential",
+                status: "Sold",
                 image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2087"
+            },
+            {
+                title: "Home on Kismet Rd",
+                price: "$569,000",
+                location: "586 Kismet Rd, Philadelphia, PA",
+                beds: 5,
+                baths: 3,
+                type: "Residential",
+                status: "Sold",
+                image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=2070"
             }
         ];
 
@@ -1618,16 +1741,42 @@
             properties.forEach(property => {
                 const card = document.createElement('div');
                 card.className = 'property-card';
+                
+                // Status badge HTML
+                let statusBadge = '';
+                if (property.status === 'Active') {
+                    statusBadge = '<span class="property-status status-active">Active</span>';
+                } else if (property.status === 'Under Contract') {
+                    statusBadge = '<span class="property-status status-pending">Under Contract</span>';
+                } else if (property.status === 'Sold') {
+                    statusBadge = '<span class="property-status status-sold">Sold</span>';
+                }
+                
+                // Features HTML (only show if beds/baths exist)
+                let featuresHTML = '';
+                if (property.beds || property.baths) {
+                    featuresHTML = `
+                        <div class="property-features">
+                            ${property.beds ? `<span>🛏️ ${property.beds} Beds</span>` : ''}
+                            ${property.baths ? `<span>🚿 ${property.baths} Baths</span>` : ''}
+                        </div>
+                    `;
+                } else if (property.type) {
+                    featuresHTML = `
+                        <div class="property-features">
+                            <span>📋 ${property.type}</span>
+                        </div>
+                    `;
+                }
+                
                 card.innerHTML = `
+                    ${statusBadge}
                     <img src="${property.image}" alt="${property.title}" class="property-image" loading="lazy">
                     <div class="property-info">
                         <div class="property-price">${property.price}</div>
                         <h3 class="property-title">${property.title}</h3>
                         <div class="property-location">📍 ${property.location}</div>
-                        <div class="property-features">
-                            <span>🛏️ ${property.beds} Beds</span>
-                            <span>🚿 ${property.baths} Baths</span>
-                        </div>
+                        ${featuresHTML}
                     </div>
                 `;
                 card.onclick = () => openModal('schedule-modal');
@@ -1802,7 +1951,6 @@
         // Initialize all functions when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             loadProperties();
-            initContactForm();
             initScrollAnimations();
             initHeaderScroll();
             initSmoothScroll();
