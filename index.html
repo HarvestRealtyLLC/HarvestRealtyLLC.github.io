@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    <meta name="description" content="Harvest Realty LLC - Premier real estate services in Pennsylvania and New Jersey. Find your dream home today.">
-    <meta name="keywords" content="real estate, Pennsylvania, New Jersey, homes for sale, property rentals, house buying">
+    <meta name="description" content="Harvest Realty LLC - Premier real estate services in Pennsylvania and New Jersey. Specializing in Philadelphia, Bucks, and Montgomery Counties.">
+    <meta name="keywords" content="real estate, Pennsylvania, New Jersey, Philadelphia, Bucks County, Montgomery County, homes for sale, property rentals, house buying">
     <title>Harvest Realty LLC - Premier Real Estate in PA & NJ</title>
     
     <!-- Google Fonts -->
@@ -18,8 +18,956 @@
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --burgundy-light: #A84040;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,241,232,0.95) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 2px 30px var(--shadow);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-container img {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 0.2rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--burgundy);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 46, 46, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .cta-button:hover {
+            background: var(--white);
+            color: var(--burgundy);
+            border-color: var(--burgundy);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 46, 46, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 100px;
+            height: 85vh;
+            background: linear-gradient(135deg, rgba(139, 46, 46, 0.95) 0%, rgba(107, 30, 30, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2073') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h2 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            text-shadow: 2px 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+        
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: var(--gold);
+            color: var(--charcoal);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border-color: var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--burgundy);
+            transform: translateY(-3px);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 3rem;
+            background: var(--white);
+            position: relative;
+        }
+        
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-tag {
+            font-size: 0.9rem;
+            color: var(--gold-dark);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-size: 3.5rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.15rem;
+            color: var(--charcoal);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.85;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background: var(--cream);
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--burgundy) 0%, var(--gold) 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+            border-color: var(--gold);
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .service-card h3 {
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            font-size: 1rem;
+            color: var(--charcoal);
+            opacity: 0.85;
+            line-height: 1.8;
+        }
+        
+        /* Property Search */
+        .property-search {
+            padding: 6rem 3rem;
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+            color: var(--white);
+        }
+        
+        .search-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .search-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin-top: 3rem;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            color: var(--charcoal);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .form-group select,
+        .form-group input {
+            padding: 1rem;
+            border: 2px solid var(--cream-dark);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+        
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--burgundy);
+        }
+        
+        .search-button {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 46, 46, 0.4);
+        }
+        
+        .search-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 46, 46, 0.6);
+        }
+        
+        /* Featured Properties */
+        .featured-properties {
+            padding: 6rem 3rem;
+            background: var(--cream);
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 3rem auto 0;
+        }
+        
+        .property-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+        
+        .property-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .property-card:hover .property-image {
+            transform: scale(1.1);
+        }
+        
+        .property-info {
+            padding: 2rem;
+        }
+        
+        .property-price {
+            font-size: 2rem;
+            color: var(--burgundy);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .property-title {
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            margin-bottom: 0.8rem;
+        }
+        
+        .property-location {
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .property-features {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--cream);
+            color: var(--charcoal);
+            font-size: 0.95rem;
+        }
+        
+        .property-features span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Team Section */
+        .team {
+            padding: 6rem 3rem;
+            background: var(--white);
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+        
+        .agent-card {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+        
+        .agent-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+            border-color: var(--gold);
+        }
+        
+        .agent-role {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .agent-card h3 {
+            font-size: 2rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .agent-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+        
+        .agent-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+        
+        .agent-contact-item span:first-child {
+            color: var(--burgundy);
+            font-size: 1.2rem;
+        }
+        
+        .agent-contact-item a {
+            color: var(--charcoal);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .agent-contact-item a:hover {
+            color: var(--burgundy);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 6rem 3rem;
+            background: var(--cream);
+        }
+        
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 3rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: var(--charcoal);
+            opacity: 0.9;
+        }
+        
+        .about-address {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--burgundy);
+        }
+        
+        .about-address strong {
+            color: var(--burgundy);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 15px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            color: var(--burgundy);
+            font-weight: 700;
+            font-family: 'Cormorant Garamond', serif;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--charcoal);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 3rem;
+            background: var(--white);
+        }
+        
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 2.5rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
+            opacity: 0.85;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        .contact-item-icon {
+            background: var(--burgundy);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-form {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--cream-dark);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--burgundy);
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(139, 46, 46, 0.3);
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 46, 46, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 3rem 3rem 1.5rem;
+        }
+        
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 2;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 3% auto;
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1000px;
+            animation: slideDown 0.4s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close {
+            color: var(--charcoal);
+            float: right;
+            font-size: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: var(--burgundy);
+        }
+        
+        .calendly-inline-widget {
+            min-height: 700px;
+            height: 700px;
+            margin-top: 1rem;
+        }
+        
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h2 { font-size: 3.5rem; }
+            .section-header h2 { font-size: 2.8rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .contact-container { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .hero {
+                height: auto;
+                padding: 4rem 1rem;
+                margin-top: 120px;
+            }
+            
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid,
+            .properties-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header & Navigation -->
@@ -36,6 +984,7 @@
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
                 <a href="#properties">Properties</a>
+                <a href="#team">Our Team</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
                 <a href="#" class="cta-button" onclick="openModal('schedule-modal')">Schedule Viewing</a>
@@ -47,7 +996,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h2>Find Your Perfect Home</h2>
-            <p class="hero-subtitle">Premier real estate services in Pennsylvania and New Jersey</p>
+            <p class="hero-subtitle">Serving Philadelphia, Bucks, and Montgomery Counties</p>
             <div class="hero-buttons">
                 <a href="#properties" class="btn-primary">Browse Properties</a>
                 <a href="#contact" class="btn-secondary">Get In Touch</a>
@@ -102,7 +1051,7 @@
             <div class="section-header">
                 <div class="section-tag" style="color: var(--gold);">Find Your Dream Home</div>
                 <h2 style="color: var(--white);">Property Search</h2>
-                <p style="color: rgba(255,255,255,0.9);">Search our extensive database of properties in PA and NJ</p>
+                <p style="color: rgba(255,255,255,0.9);">Search properties in Philadelphia, Bucks, and Montgomery Counties</p>
             </div>
             <div class="search-box">
                 <form class="search-form" id="propertySearchForm">
@@ -120,10 +1069,10 @@
                         <label>Location</label>
                         <select name="location">
                             <option value="">All Locations</option>
-                            <option value="philadelphia">Philadelphia, PA</option>
-                            <option value="pittsburgh">Pittsburgh, PA</option>
-                            <option value="newark">Newark, NJ</option>
-                            <option value="jersey-city">Jersey City, NJ</option>
+                            <option value="philadelphia">Philadelphia County, PA</option>
+                            <option value="bucks">Bucks County, PA</option>
+                            <option value="montgomery">Montgomery County, PA</option>
+                            <option value="new-jersey">New Jersey</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -171,13 +1120,86 @@
         </div>
     </section>
 
+    <!-- Team Section -->
+    <section class="team fade-in" id="team">
+        <div class="section-header">
+            <div class="section-tag">Meet Our Team</div>
+            <h2>Expert Real Estate Professionals</h2>
+            <p>Dedicated agents ready to help you find your perfect property</p>
+        </div>
+        <div class="team-grid">
+            <div class="agent-card">
+                <span class="agent-role">BROKER/OWNER</span>
+                <h3>Prasad Abraham</h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:215-519-4096">215-519-4096</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:Prasadabe@comcast.net">Prasadabe@comcast.net</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card">
+                <span class="agent-role">SALES AGENT - PA</span>
+                <h3>Jacob Abraham</h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:215-519-8916">215-519-8916</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:Jacobabe99@gmail.com">Jacobabe99@gmail.com</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card">
+                <span class="agent-role">SALES AGENT - PA</span>
+                <h3>Dyson Daniel</h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:267-290-0963">(267) 290-0963</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:dysondanielpa@gmail.com">dysondanielpa@gmail.com</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section class="about fade-in" id="about">
         <div class="about-content">
             <div class="about-text">
                 <h2>About Harvest Realty LLC</h2>
-                <p>For over a decade, Harvest Realty LLC has been the trusted name in real estate across Pennsylvania and New Jersey. Our commitment to excellence and personalized service has helped thousands of families find their dream homes.</p>
-                <p>We combine local market expertise with innovative technology to provide unparalleled service to our clients. Whether you're buying, selling, or renting, our experienced team is dedicated to making your real estate journey smooth and successful.</p>
+                <p>Harvest Realty LLC is your trusted real estate partner serving Philadelphia, Bucks, and Montgomery Counties in Pennsylvania, as well as select areas in New Jersey. Our commitment to excellence and personalized service has helped countless families find their dream homes.</p>
+                <p>We combine deep local market knowledge with innovative marketing strategies to provide unparalleled service to our clients. Whether you're buying, selling, or renting, our experienced team is dedicated to making your real estate journey smooth and successful.</p>
+                <div class="about-address">
+                    <strong>📍 Office Location</strong>
+                    2481 Napfle Ave<br>
+                    Philadelphia, PA 19152<br>
+                    <br>
+                    <strong>📞 Main Office</strong>
+                    267-900-8011
+                </div>
                 <div class="about-stats">
                     <div class="stat">
                         <span class="stat-number">500+</span>
@@ -192,7 +1214,7 @@
                         <span class="stat-label">Years Experience</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">50+</span>
+                        <span class="stat-number">3</span>
                         <span class="stat-label">Expert Agents</span>
                     </div>
                 </div>
@@ -216,18 +1238,31 @@
                 <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
                 <div class="contact-details">
                     <div class="contact-item">
+                        <div class="contact-item-icon">🏢</div>
+                        <div>
+                            <strong>Main Office</strong><br>
+                            Phone: 267-900-8011<br>
+                            2481 Napfle Ave<br>
+                            Philadelphia, PA 19152
+                        </div>
+                    </div>
+                    <div class="contact-item">
                         <div class="contact-item-icon">📧</div>
                         <div>
-                            <strong>Email</strong><br>
-                            prasadabe@comcast.net<br>
-                            jacobabe99@gmail.com
+                            <strong>Email Us</strong><br>
+                            Prasadabe@comcast.net<br>
+                            Jacobabe99@gmail.com<br>
+                            dysondanielpa@gmail.com
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-item-icon">📍</div>
                         <div>
                             <strong>Service Areas</strong><br>
-                            Pennsylvania & New Jersey
+                            Philadelphia County, PA<br>
+                            Bucks County, PA<br>
+                            Montgomery County, PA<br>
+                            Select areas in New Jersey
                         </div>
                     </div>
                     <div class="contact-item">
@@ -257,31 +1292,36 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Harvest Realty LLC</h4>
-                <p>Your trusted partner in finding the perfect property. Serving Pennsylvania and New Jersey with excellence since 2009.</p>
+                <p>Your trusted partner in finding the perfect property. Serving Pennsylvania and New Jersey with excellence.</p>
+                <p style="margin-top: 1rem;">
+                    <strong>Main Office:</strong> 267-900-8011<br>
+                    2481 Napfle Ave, Philadelphia, PA 19152
+                </p>
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <p><a href="#home">Home</a></p>
                 <p><a href="#services">Services</a></p>
                 <p><a href="#properties">Properties</a></p>
+                <p><a href="#team">Our Team</a></p>
                 <p><a href="#about">About Us</a></p>
             </div>
             <div class="footer-section">
-                <h4>Resources</h4>
-                <p><a href="privacy.html">Privacy Policy</a></p>
-                <p><a href="terms.html">Terms of Use</a></p>
-                <p><a href="#contact">Contact Us</a></p>
-                <p><a href="#" onclick="openModal('schedule-modal')">Schedule Viewing</a></p>
+                <h4>Our Agents</h4>
+                <p><strong>Prasad Abraham</strong> - Broker/Owner<br>215-519-4096</p>
+                <p><strong>Jacob Abraham</strong> - Sales Agent<br>215-519-8916</p>
+                <p><strong>Dyson Daniel</strong> - Sales Agent<br>(267) 290-0963</p>
             </div>
             <div class="footer-section">
-                <h4>Contact</h4>
-                <p>prasadabe@comcast.net</p>
-                <p>jacobabe99@gmail.com</p>
-                <p>Pennsylvania & New Jersey</p>
+                <h4>Service Areas</h4>
+                <p>Philadelphia County, PA</p>
+                <p>Bucks County, PA</p>
+                <p>Montgomery County, PA</p>
+                <p>New Jersey</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+            <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
         </div>
     </footer>
 
@@ -290,12 +1330,236 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('schedule-modal')">&times;</span>
             <h2 style="color: var(--burgundy); margin-bottom: 1rem;">Schedule a Property Viewing</h2>
-            <p style="margin-bottom: 1.5rem;">Choose a convenient time to tour our properties. All appointments are confirmed to both Prasad and Jacob Abraham.</p>
+            <p style="margin-bottom: 1.5rem;">Choose a convenient time to tour our properties. Confirmations will be sent to our team.</p>
             <div class="calendly-inline-widget" data-url="https://calendly.com/YOUR_CALENDLY_USERNAME/property-showing"></div>
         </div>
     </div>
 
-    <!-- JavaScript -->
-    <script src="js/main.js"></script>
+    <script>
+        // Sample property data
+        const properties = [
+            {
+                title: "Luxury Modern Home",
+                price: "$585,000",
+                location: "Philadelphia County, PA",
+                beds: 4,
+                baths: 3,
+                image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075"
+            },
+            {
+                title: "Contemporary Condo",
+                price: "$425,000",
+                location: "Montgomery County, PA",
+                beds: 2,
+                baths: 2,
+                image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053"
+            },
+            {
+                title: "Suburban Family Home",
+                price: "$495,000",
+                location: "Bucks County, PA",
+                beds: 5,
+                baths: 3,
+                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070"
+            },
+            {
+                title: "Downtown Apartment",
+                price: "$1,800/mo",
+                location: "Philadelphia County, PA",
+                beds: 2,
+                baths: 1,
+                image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070"
+            },
+            {
+                title: "Waterfront Property",
+                price: "$725,000",
+                location: "New Jersey",
+                beds: 3,
+                baths: 2,
+                image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2084"
+            },
+            {
+                title: "Charming Townhouse",
+                price: "$385,000",
+                location: "Montgomery County, PA",
+                beds: 3,
+                baths: 2,
+                image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2087"
+            }
+        ];
+
+        // Load properties
+        function loadProperties() {
+            const grid = document.getElementById('propertiesGrid');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            
+            properties.forEach(property => {
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                card.innerHTML = `
+                    <img src="${property.image}" alt="${property.title}" class="property-image" loading="lazy">
+                    <div class="property-info">
+                        <div class="property-price">${property.price}</div>
+                        <h3 class="property-title">${property.title}</h3>
+                        <div class="property-location">📍 ${property.location}</div>
+                        <div class="property-features">
+                            <span>🛏️ ${property.beds} Beds</span>
+                            <span>🚿 ${property.baths} Baths</span>
+                        </div>
+                    </div>
+                `;
+                card.onclick = () => openModal('schedule-modal');
+                grid.appendChild(card);
+            });
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Search properties
+        function searchProperties() {
+            const form = document.getElementById('propertySearchForm');
+            if (!form) return;
+            
+            const formData = new FormData(form);
+            const filters = Object.fromEntries(formData);
+            
+            console.log('Searching with filters:', filters);
+            
+            // In a real implementation, this would filter the properties or make an API call
+            alert('Search functionality will connect to your property database. Showing all featured properties for now.');
+            
+            // Scroll to properties section
+            const propertiesSection = document.getElementById('properties');
+            if (propertiesSection) {
+                propertiesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Contact form submission
+        function initContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            if (!contactForm) return;
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                console.log('Contact form submitted:', data);
+                
+                // In a real implementation, this would send the data to a server
+                alert('Thank you for your message! We will get back to you within 24 hours.');
+                
+                // Reset form
+                this.reset();
+            });
+        }
+
+        // Scroll animations
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeIn = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(element => {
+                fadeIn.observe(element);
+            });
+        }
+
+        // Header scroll effect
+        function initHeaderScroll() {
+            const header = document.getElementById('header');
+            if (!header) return;
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // Smooth scroll for anchor links
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Skip if it's just "#" or if it's opening a modal
+                    if (href === '#' || this.onclick) {
+                        return;
+                    }
+                    
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Calendly event listener
+        function initCalendlyListener() {
+            window.addEventListener('message', function(e) {
+                if(e.data.event && e.data.event.indexOf('calendly.') === 0) {
+                    if(e.data.event === 'calendly.event_scheduled') {
+                        alert('Appointment scheduled successfully! Our team has been notified.');
+                        closeModal('schedule-modal');
+                    }
+                }
+            });
+        }
+
+        // Initialize all functions when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProperties();
+            initContactForm();
+            initScrollAnimations();
+            initHeaderScroll();
+            initSmoothScroll();
+            initCalendlyListener();
+            
+            console.log('Harvest Realty LLC website initialized successfully!');
+        });
+    </script>
 </body>
 </html>
