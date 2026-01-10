@@ -1496,6 +1496,24 @@
                     </div>
                 </div>
             </div>
+            <div class="agent-card">
+                <span class="agent-role">SALES AGENT</span>
+                <h3>Thomas Thomas</h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:215-519-3101">215-519-3101</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:thomas@harvestrealty.llc">thomas@harvestrealty.llc</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1627,6 +1645,7 @@
                 <p><strong>Prasad Abraham</strong> - Broker/Owner<br>215-519-4096</p>
                 <p><strong>Jacob Abraham</strong> - Sales Agent<br>215-519-8916</p>
                 <p><strong>Dyson Daniel</strong> - Sales Agent<br>(267) 290-0963</p>
+                <p><strong>Thomas Thomas</strong> - Sales Agent<br>215-519-3101</p>
             </div>
             <div class="footer-section">
                 <h4>Service Areas</h4>
@@ -1955,28 +1974,4 @@
                         mobileMenuToggle.textContent = '☰';
                     });
                 });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!event.target.closest('nav')) {
-                        navLinks.classList.remove('active');
-                        mobileMenuToggle.textContent = '☰';
-                    }
-                });
-            }
-        }
-
-        // Initialize all functions when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            loadProperties();
-            initScrollAnimations();
-            initHeaderScroll();
-            initSmoothScroll();
-            initCalendlyListener();
-            initMobileMenu();
-            
-            console.log('Harvest Realty LLC website initialized successfully!');
-        });
-    </script>
-</body>
-</html>
+  
