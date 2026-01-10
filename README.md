@@ -10,21 +10,28 @@ Professional website for Harvest Realty LLC - Real Estate Services in PA & NJ
 
 **Prasad Abraham** - Broker/Owner
 - Phone: 215-519-4096
-- Email: Prasadabe@comcast.net
+- Email: prasad@harvestrealty.llc
 
 **Jacob Abraham** - Sales Agent (PA)
 - Phone: 215-519-8916
-- Email: Jacobabe99@gmail.com
+- Email: jacob@harvestrealty.llc
 
 **Dyson Daniel** - Sales Agent (PA)
 - Phone: (267) 290-0963
-- Email: dysondanielpa@gmail.com
+- Email: dyson@harvestrealty.llc
+
+**General Contact:**
+- Email: contact@harvestrealty.llc
 
 ## Service Areas
 - Philadelphia County, PA
 - Bucks County, PA
 - Montgomery County, PA
-- Select areas in New Jersey
+- New Jersey
+
+## Office Hours
+- Monday-Saturday: By Appointment
+- Sunday: By Appointment (Available after 1pm)
 
 ## Files Included
 - `index.html` - Complete website (all CSS/JS embedded)
@@ -35,42 +42,32 @@ Professional website for Harvest Realty LLC - Real Estate Services in PA & NJ
 
 1. Extract the zip file
 2. Upload `index.html` and `hrg-logo.png` to your web server
-3. Update Calendly URL (line 1661 in index.html):
-   - Replace `YOUR_CALENDLY_USERNAME` with your Calendly username
+3. Update Calendly URL (search for `YOUR_CALENDLY_USERNAME` in index.html)
+4. Replace with your actual Calendly username
 
 ## Features
 
 ✅ Fully responsive design
+✅ Six service cards including:
+   - Home Buying
+   - Home Selling
+   - Rental Homes
+   - Vacation Homes
+   - Property Management
+   - Consultation
 ✅ Agent profile section with all 3 agents
 ✅ Property search form
 ✅ Contact form with all agent emails
-✅ Office address and phone numbers
+✅ Updated office hours
+✅ Faith-based service mention
 ✅ Calendly scheduling integration
 ✅ Mobile-friendly navigation
 
-## Customization
-
-### Add More Properties
-Edit the `properties` array in the `<script>` section (around line 1563):
-
-```javascript
-{
-    title: "Property Name",
-    price: "$XXX,XXX",
-    location: "County, State",
-    beds: X,
-    baths: X,
-    image: "image-url"
-}
-```
-
-### Update Colors
-Edit CSS variables (around line 25):
-```css
---burgundy: #8B2E2E;
---gold: #D4AF37;
---cream: #F5F1E8;
-```
+## About Section Highlights
+- 100+ Properties Sold
+- 98% Client Satisfaction
+- 15+ Years Experience
+- Faith-based service commitment
 
 ## Browser Support
 Chrome, Firefox, Safari, Edge (latest versions)

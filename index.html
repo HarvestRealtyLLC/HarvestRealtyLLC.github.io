@@ -914,57 +914,269 @@
             transform: translateY(0);
         }
         
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
         /* Responsive Design */
         @media (max-width: 1024px) {
             .hero h2 { font-size: 3.5rem; }
             .section-header h2 { font-size: 2.8rem; }
-            .about-content { grid-template-columns: 1fr; }
-            .contact-container { grid-template-columns: 1fr; }
+            .about-content { 
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .contact-container { 
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .about-image img {
+                height: 400px;
+            }
         }
         
         @media (max-width: 768px) {
             nav {
-                flex-direction: column;
-                padding: 1.5rem;
-                gap: 1rem;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 1rem 1.5rem;
+            }
+            
+            .logo-container img {
+                height: 50px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
             }
             
             .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px var(--shadow);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                text-align: center;
             }
             
             .hero {
                 height: auto;
-                padding: 4rem 1rem;
-                margin-top: 120px;
+                padding: 4rem 1.5rem;
+                margin-top: 80px;
+                min-height: 60vh;
             }
             
             .hero h2 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                margin-bottom: 2rem;
             }
             
             .hero-buttons {
                 flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .services,
+            .featured-properties,
+            .team,
+            .about,
+            .contact {
+                padding: 4rem 1.5rem;
             }
             
             .section-header h2 {
-                font-size: 2.2rem;
+                font-size: 2rem;
+            }
+            
+            .section-header p {
+                font-size: 1rem;
             }
             
             .services-grid,
             .properties-grid,
             .team-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .service-card,
+            .agent-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .property-search {
+                padding: 4rem 1.5rem;
+            }
+            
+            .search-box {
+                padding: 1.5rem;
             }
             
             .search-form {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .about-text h2 {
+                font-size: 2.2rem;
+            }
+            
+            .about-text p {
+                font-size: 1rem;
+            }
+            
+            .about-image img {
+                height: 300px;
+            }
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .stat {
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .contact-info h3 {
+                font-size: 2rem;
+            }
+            
+            .contact-item {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .modal-content {
+                margin: 10% auto;
+                padding: 1.5rem;
+                width: 95%;
+            }
+            
+            .calendly-inline-widget {
+                min-height: 600px;
+                height: 600px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.65rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .service-card h3,
+            .agent-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .property-card {
+                min-width: 280px;
+            }
+            
+            .property-image {
+                height: 200px;
+            }
+            
+            .property-info {
+                padding: 1.5rem;
+            }
+            
+            .property-price {
+                font-size: 1.6rem;
+            }
+            
+            .property-title {
+                font-size: 1.1rem;
+            }
+            
+            .about-stats {
+                gap: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .contact-item-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -980,7 +1192,10 @@
                     <p>PA & NJ Experts</p>
                 </div>
             </div>
-            <div class="nav-links">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                ☰
+            </button>
+            <div class="nav-links" id="navLinks">
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
                 <a href="#properties">Properties</a>
@@ -1020,27 +1235,27 @@
             <div class="service-card">
                 <div class="service-icon">💼</div>
                 <h3>Home Selling</h3>
-                <p>Maximize your property's value with our strategic marketing and expert negotiation skills. We ensure a smooth, profitable sale.</p>
+                <p>We provide expert guidance in maximizing your home's value with strategic marketing and skilled negotiation. We guide you through a smooth, stress-free process—receiving a strong offer with a profitable closing.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🔑</div>
-                <h3>Rental Properties</h3>
-                <p>Find quality rental homes or investment properties. We manage the entire process from listing to lease signing.</p>
+                <h3>Rental Homes</h3>
+                <p>Find excellent and well maintained rental homes among our available properties. We manage the entire process from listing to lease signing, we will be with you all the way to the end of your stay.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏖️</div>
+                <h3>Vacation Homes</h3>
+                <p>Find excellent and well maintained vacation homes among our available properties. We manage the entire process from lease signing all the way to end of your stay.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">📊</div>
                 <h3>Property Management</h3>
-                <p>Comprehensive property management services to protect your investment and maximize returns.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">📈</div>
-                <h3>Market Analysis</h3>
-                <p>In-depth market insights and property valuations to help you make informed real estate decisions.</p>
+                <p>Thorough property management services to safeguard your assets and enhance returns. We protect your investment and maximize returns.</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">🤝</div>
                 <h3>Consultation</h3>
-                <p>Personalized real estate advice for buyers, sellers, and investors looking to make smart property decisions.</p>
+                <p>Extensive real estate guidance to ensure informed investment decisions. Detailed market analysis and property appraisals to assist in making wise real estate choices. Personalized real estate advice for investors aiming for intelligent property investments.</p>
             </div>
         </div>
     </section>
@@ -1113,7 +1328,7 @@
         <div class="section-header">
             <div class="section-tag">Available Now</div>
             <h2>Featured Properties</h2>
-            <p>Handpicked selection of premium properties in prime locations</p>
+            <p>Check out our premium properties throughout Pennsylvania and New Jersey</p>
         </div>
         <div class="properties-grid" id="propertiesGrid">
             <!-- Properties will be loaded dynamically -->
@@ -1138,7 +1353,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="mailto:Prasadabe@comcast.net">Prasadabe@comcast.net</a>
+                        <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1156,7 +1371,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="mailto:Jacobabe99@gmail.com">Jacobabe99@gmail.com</a>
+                        <a href="mailto:jacob@harvestrealty.llc">jacob@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1174,7 +1389,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="mailto:dysondanielpa@gmail.com">dysondanielpa@gmail.com</a>
+                        <a href="mailto:dyson@harvestrealty.llc">dyson@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1190,8 +1405,8 @@
         <div class="about-content">
             <div class="about-text">
                 <h2>About Harvest Realty LLC</h2>
-                <p>Harvest Realty LLC is your trusted real estate partner serving Philadelphia, Bucks, and Montgomery Counties in Pennsylvania, as well as select areas in New Jersey. Our commitment to excellence and personalized service has helped countless families find their dream homes.</p>
-                <p>We combine deep local market knowledge with innovative marketing strategies to provide unparalleled service to our clients. Whether you're buying, selling, or renting, our experienced team is dedicated to making your real estate journey smooth and successful.</p>
+                <p>For over a decade, Harvest Realty LLC has been the trusted name in real estate across Pennsylvania and New Jersey. Our commitment to excellence and faith-based service has helped thousands of families find their dream homes.</p>
+                <p>We combine local market expertise with innovative technology to provide unparalleled service to our clients. Whether you're buying, selling, or renting, our experienced team is dedicated to making your real estate journey smooth and successful.</p>
                 <div class="about-address">
                     <strong>📍 Office Location</strong>
                     2481 Napfle Ave<br>
@@ -1202,7 +1417,7 @@
                 </div>
                 <div class="about-stats">
                     <div class="stat">
-                        <span class="stat-number">500+</span>
+                        <span class="stat-number">100+</span>
                         <span class="stat-label">Properties Sold</span>
                     </div>
                     <div class="stat">
@@ -1238,39 +1453,28 @@
                 <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
                 <div class="contact-details">
                     <div class="contact-item">
-                        <div class="contact-item-icon">🏢</div>
-                        <div>
-                            <strong>Main Office</strong><br>
-                            Phone: 267-900-8011<br>
-                            2481 Napfle Ave<br>
-                            Philadelphia, PA 19152
-                        </div>
-                    </div>
-                    <div class="contact-item">
                         <div class="contact-item-icon">📧</div>
                         <div>
-                            <strong>Email Us</strong><br>
-                            Prasadabe@comcast.net<br>
-                            Jacobabe99@gmail.com<br>
-                            dysondanielpa@gmail.com
+                            <strong>Email</strong><br>
+                            prasad@harvestrealty.llc<br>
+                            jacob@harvestrealty.llc<br>
+                            dyson@harvestrealty.llc<br>
+                            contact@harvestrealty.llc
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-item-icon">📍</div>
                         <div>
                             <strong>Service Areas</strong><br>
-                            Philadelphia County, PA<br>
-                            Bucks County, PA<br>
-                            Montgomery County, PA<br>
-                            Select areas in New Jersey
+                            Pennsylvania & New Jersey
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-item-icon">🕐</div>
                         <div>
                             <strong>Office Hours</strong><br>
-                            Mon-Fri: 9am - 6pm<br>
-                            Sat-Sun: By Appointment
+                            Monday-Saturday: By Appointment<br>
+                            Sunday: By Appointment (Available after 1pm)
                         </div>
                     </div>
                 </div>
@@ -1321,7 +1525,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
+            <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1549,6 +1753,36 @@
             });
         }
 
+        // Mobile menu toggle
+        function initMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                });
+                
+                // Close menu when clicking on a link
+                const links = navLinks.querySelectorAll('a');
+                links.forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        mobileMenuToggle.textContent = '☰';
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!event.target.closest('nav')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuToggle.textContent = '☰';
+                    }
+                });
+            }
+        }
+
         // Initialize all functions when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             loadProperties();
@@ -1557,6 +1791,7 @@
             initHeaderScroll();
             initSmoothScroll();
             initCalendlyListener();
+            initMobileMenu();
             
             console.log('Harvest Realty LLC website initialized successfully!');
         });
