@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Thomas - Sales Agent | Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --burgundy: #8B2E2E; --burgundy-dark: #6B1E1E; --gold: #D4AF37; --cream: #F5F1E8; --charcoal: #2C2C2C; --white: #FFFFFF; --shadow: rgba(139, 46, 46, 0.15); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.6; }
+        header { background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%); color: var(--white); padding: 1rem 2rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px var(--shadow); }
+        nav { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--white); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--gold); }
+        .agent-hero { background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%); color: var(--white); padding: 4rem 2rem; text-align: center; }
+        .agent-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; margin-bottom: 0.5rem; }
+        .agent-role-badge { display: inline-block; background: var(--gold); color: var(--charcoal); padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; }
+        .agent-contact-hero { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-top: 1.5rem; }
+        .agent-contact-hero a { color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s ease; }
+        .agent-contact-hero a:hover { color: var(--gold); }
+        main { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+        .section { background: var(--white); border-radius: 20px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 10px 40px var(--shadow); }
+        .section h2 { font-family: 'Cormorant Garamond', serif; color: var(--burgundy); font-size: 2rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--gold); }
+        .section p { margin-bottom: 1rem; color: var(--charcoal); }
+        .specialties { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+        .specialty-tag { background: var(--cream); color: var(--burgundy); padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.9rem; font-weight: 500; border: 1px solid var(--burgundy); }
+        .cta-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+        .btn-primary { display: inline-block; background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%); color: var(--white); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px var(--shadow); }
+        .btn-secondary { display: inline-block; background: var(--gold); color: var(--charcoal); padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; }
+        .btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px var(--shadow); }
+        .license-info { background: var(--cream); padding: 1rem 1.5rem; border-radius: 10px; margin-top: 1rem; font-size: 0.9rem; }
+        footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 2rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+        @media (max-width: 768px) { .nav-links { display: none; } .agent-hero h1 { font-size: 2rem; } .agent-contact-hero { flex-direction: column; gap: 1rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Harvest <span>Realty</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#properties">Properties</a></li>
+                <li><a href="index.html#team">Our Team</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="agent-hero">
+        <span class="agent-role-badge">SALES AGENT</span>
+        <h1>Thomas Thomas</h1>
+        <div class="agent-contact-hero">
+            <a href="tel:215-519-3101">📞 215-519-3101</a>
+            <a href="mailto:thomas@harvestrealty.llc">📧 thomas@harvestrealty.llc</a>
+        </div>
+    </section>
+
+    <main>
+        <div class="section">
+            <h2>About Me</h2>
+            <p>Hi, I'm Thomas Thomas, a dedicated Sales Agent at Harvest Realty LLC.</p>
+            <p><em>Add your personal story, background, and what drives your passion for real estate here...</em></p>
+        </div>
+        
+        <div class="section">
+            <h2>Areas of Expertise</h2>
+            <div class="specialties">
+                <span class="specialty-tag">Residential Sales</span>
+                <span class="specialty-tag">Buyer Representation</span>
+            </div>
+            <p style="margin-top: 1.5rem;"><em>Customize your specialties and areas of expertise...</em></p>
+        </div>
+        
+        <div class="section">
+            <h2>Service Areas</h2>
+            <p>I proudly serve clients in:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                <li>Philadelphia Area</li>
+            </ul>
+            <p style="margin-top: 1rem;"><em>Add or modify your service areas...</em></p>
+        </div>
+        
+        <div class="section">
+            <h2>Licenses & Credentials</h2>
+            <div class="license-info">
+                <p><strong>Real Estate License</strong></p>
+                <p>License #: <em>[Add your license number]</em></p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Let's Connect</h2>
+            <p>Ready to start your real estate journey? I'm here to help!</p>
+            <div class="cta-buttons">
+                <a href="tel:215-519-3101" class="btn-primary">📞 Call Me</a>
+                <a href="mailto:thomas@harvestrealty.llc" class="btn-secondary">📧 Email Me</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
+    </footer>
+</body>
+</html>
