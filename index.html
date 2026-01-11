@@ -575,15 +575,15 @@
         
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1300px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
             margin: 3rem auto 0;
         }
         
         .agent-card {
             background: var(--cream);
-            padding: 2.5rem;
+            padding: 1.5rem;
             border-radius: 20px;
             text-align: center;
             transition: all 0.4s ease;
@@ -600,37 +600,37 @@
             display: inline-block;
             background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
             color: var(--white);
-            padding: 0.5rem 1.5rem;
+            padding: 0.4rem 1rem;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 1px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .agent-card h3 {
-            font-size: 2rem;
+            font-size: 1.3rem;
             color: var(--burgundy);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .agent-contact {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.6rem;
             text-align: left;
         }
         
         .agent-contact-item {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            font-size: 0.95rem;
+            gap: 0.5rem;
+            font-size: 0.8rem;
         }
         
         .agent-contact-item span:first-child {
             color: var(--burgundy);
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
         
         .agent-contact-item a {
@@ -1496,6 +1496,24 @@
                     </div>
                 </div>
             </div>
+            <div class="agent-card">
+                <span class="agent-role">SALES AGENT</span>
+                <h3>Thomas Thomas</h3>
+                <div class="agent-contact">
+                    <div class="agent-contact-item">
+                        <span>📞</span>
+                        <a href="tel:215-519-3101">215-519-3101</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📧</span>
+                        <a href="mailto:thomas@harvestrealty.llc">thomas@harvestrealty.llc</a>
+                    </div>
+                    <div class="agent-contact-item">
+                        <span>📍</span>
+                        <span>2481 Napfle Ave, Philadelphia, PA</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1575,7 +1593,7 @@
                     <h3>Get In Touch</h3>
                     <p>Reach out to us directly</p>
                     
-                    <a href="mailto:contact@harvestrealty.llc" class="contact-card-button">
+                    <a href="mailto:contact@harvestrealty.llc?subject=Real%20Estate%20Inquiry&body=Hello%20Harvest%20Realty%20Team%2C%0A%0AI%20am%20interested%20in%3A%0A%0A%5B%20%5D%20Buying%20a%20Home%0A%5B%20%5D%20Selling%20a%20Home%0A%5B%20%5D%20Rental%20Properties%0A%5B%20%5D%20Property%20Management%0A%5B%20%5D%20Other%20Services%0A%0APlease%20contact%20me%20at%20your%20earliest%20convenience.%0A%0AName%3A%20%0APhone%3A%20%0APreferred%20Contact%20Method%3A%20%0A%0AAdditional%20Details%3A%0A%0A%0AThank%20you!" class="contact-card-button">
                         <span class="contact-card-icon">📧</span>
                         <div class="contact-card-text">
                             <strong>Email Us</strong>
@@ -1583,19 +1601,19 @@
                         </div>
                     </a>
                     
-                    <a href="sms:2679008011" class="contact-card-button">
+                    <a href="sms:2155194096" class="contact-card-button">
                         <span class="contact-card-icon">💬</span>
                         <div class="contact-card-text">
                             <strong>Text Us</strong>
-                            <span>267-900-8011</span>
+                            <span>215-519-4096</span>
                         </div>
                     </a>
                     
-                    <a href="tel:2679008011" class="contact-card-button">
+                    <a href="tel:2155194096" class="contact-card-button">
                         <span class="contact-card-icon">📞</span>
                         <div class="contact-card-text">
                             <strong>Call Us</strong>
-                            <span>267-900-8011</span>
+                            <span>215-519-4096</span>
                         </div>
                     </a>
                 </div>
@@ -1627,6 +1645,8 @@
                 <p><strong>Prasad Abraham</strong> - Broker/Owner<br>215-519-4096</p>
                 <p><strong>Jacob Abraham</strong> - Sales Agent<br>215-519-8916</p>
                 <p><strong>Dyson Daniel</strong> - Sales Agent<br>(267) 290-0963</p>
+                <p><strong>Abdullah Khan</strong> - Sales Agent<br>857-226-3031</p>
+                <p><strong>Thomas Thomas</strong> - Sales Agent<br>215-519-3101</p>
             </div>
             <div class="footer-section">
                 <h4>Service Areas</h4>
@@ -1652,100 +1672,165 @@
     </div>
 
     <script>
-        // Real property data from MLS
+        // Real property data from MLS with actual listing photos
         const properties = [
             // Active Listings
             {
                 title: "Land on N 5th St",
                 price: "$125,000",
                 location: "2456 N 5th St, Philadelphia, PA",
+                mls: "PAPH2527048",
                 beds: null,
                 baths: null,
                 type: "Land",
                 status: "Active",
-                image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000"
+                image: "photos/2456-n-5th-st.jpg"
             },
             // Under Contract
             {
                 title: "Duplex on E Tabor Rd",
                 price: "$244,900",
                 location: "565 E Tabor Rd, Philadelphia, PA",
+                mls: "PAPH2514428",
                 beds: null,
                 baths: null,
                 type: "Duplex",
                 status: "Under Contract",
-                image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2000"
+                image: "photos/565-e-tabor-rd.jpg"
             },
             {
                 title: "Home on Whitaker Ave",
                 price: "$259,900",
                 location: "7524 Whitaker Ave, Philadelphia, PA",
+                mls: "PAPH2518910",
                 beds: 3,
                 baths: 1,
                 type: "Residential",
                 status: "Under Contract",
-                image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=2000"
+                image: "photos/7524-whitaker-ave.jpg"
             },
             // Recently Sold
+            {
+                title: "Duplex on Foster St",
+                price: "$256,000",
+                location: "515 Foster St, Philadelphia, PA",
+                mls: "PAPH2315284",
+                beds: null,
+                baths: null,
+                type: "Duplex",
+                status: "Sold",
+                image: "photos/515-foster-st.jpg"
+            },
             {
                 title: "Home on Frontenac St",
                 price: "$310,000",
                 location: "8604 Frontenac St, Philadelphia, PA",
+                mls: "PAPH2348768",
                 beds: 3,
                 baths: 2,
                 type: "Residential",
                 status: "Sold",
-                image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2000"
+                image: "photos/8604-frontenac-st.jpg"
             },
             {
-                title: "Townhouse on Lindsay St",
+                title: "Home on Lindsay St",
                 price: "$317,500",
                 location: "11011 Lindsay St, Philadelphia, PA",
+                mls: "PAPH2306862",
                 beds: 4,
                 baths: 1,
                 type: "Residential",
                 status: "Sold",
-                image: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2000"
+                image: "photos/11011-lindsay-st.jpg"
             },
             {
                 title: "Home on Hendrix St",
                 price: "$325,000",
                 location: "664 Hendrix St, Philadelphia, PA",
+                mls: "PAPH2381180",
                 beds: 3,
                 baths: 1,
                 type: "Residential",
                 status: "Sold",
-                image: "https://images.unsplash.com/photo-1576941089067-2de3c901e126?q=80&w=2000"
+                image: "photos/664-hendrix-st.jpg"
             },
             {
                 title: "Duplex on Langdon St",
                 price: "$462,500",
                 location: "8016 Langdon St, Philadelphia, PA",
+                mls: "PAPH2362214",
                 beds: null,
                 baths: null,
                 type: "Duplex",
                 status: "Sold",
-                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000"
+                image: "photos/8016-langdon-st.jpg"
             },
             {
                 title: "Home on Lockart Rd",
                 price: "$514,000",
                 location: "11991 Lockart Rd, Philadelphia, PA",
+                mls: "PAPH2375898",
                 beds: 4,
                 baths: 2,
                 type: "Residential",
                 status: "Sold",
-                image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?q=80&w=2000"
+                image: "photos/11991-lockart-rd.jpg"
             },
             {
                 title: "Home on Kismet Rd",
                 price: "$569,000",
                 location: "586 Kismet Rd, Philadelphia, PA",
+                mls: "PAPH2465970",
                 beds: 5,
                 baths: 3,
                 type: "Residential",
                 status: "Sold",
-                image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000"
+                image: "photos/586-kismet-rd.jpg"
+            },
+            {
+                title: "Home on Myrtle Ave",
+                price: "$605,000",
+                location: "315 Myrtle Ave, Morton, PA",
+                mls: "PADE2069112",
+                beds: 4,
+                baths: 3,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/315-myrtle-ave.jpg"
+            },
+            // Rentals
+            {
+                title: "Office on Napfle St",
+                price: "$895/mo",
+                location: "2485 Napfle St, Philadelphia, PA",
+                mls: "PAPH2520522",
+                beds: null,
+                baths: null,
+                type: "Office",
+                status: "Sold",
+                image: "photos/2485-napfle-st.jpg"
+            },
+            {
+                title: "Home on Densmore Rd",
+                price: "$2,300/mo",
+                location: "419 Densmore Rd, Philadelphia, PA",
+                mls: "PAPH2533022",
+                beds: 3,
+                baths: 2,
+                type: "Rental",
+                status: "Sold",
+                image: "photos/419-densmore-rd.jpg"
+            },
+            {
+                title: "Home on Bustleton Ave",
+                price: "$3,000/mo",
+                location: "11059 Bustleton Ave, Philadelphia, PA",
+                mls: "PAPH2534602",
+                beds: 3,
+                baths: 3,
+                type: "Rental",
+                status: "Sold",
+                image: "photos/11059-bustleton-ave.jpg"
             }
         ];
 
@@ -1955,27 +2040,18 @@
                         mobileMenuToggle.textContent = '☰';
                     });
                 });
-                
-                // Close menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!event.target.closest('nav')) {
-                        navLinks.classList.remove('active');
-                        mobileMenuToggle.textContent = '☰';
-                    }
-                });
-            }
+              }
         }
 
-        // Initialize all functions when DOM is loaded
+        // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             loadProperties();
+            initContactForm();
             initScrollAnimations();
             initHeaderScroll();
             initSmoothScroll();
             initCalendlyListener();
             initMobileMenu();
-            
-            console.log('Harvest Realty LLC website initialized successfully!');
         });
     </script>
 </body>
