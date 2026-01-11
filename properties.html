@@ -637,7 +637,8 @@
                 baths: null,
                 type: "Land",
                 status: "Active",
-                image: "photos/2456-n-5th-st.jpg"
+                image: "photos/2456-n-5th-st.jpg",
+                url: "property/2456-n-5th-st.html"
             },
             // Under Contract
             {
@@ -650,7 +651,8 @@
                 baths: null,
                 type: "Duplex",
                 status: "Under Contract",
-                image: "photos/565-e-tabor-rd.jpg"
+                image: "photos/565-e-tabor-rd.jpg",
+                url: "property/565-e-tabor-rd.html"
             },
             {
                 title: "Home on Whitaker Ave",
@@ -662,7 +664,8 @@
                 baths: 1,
                 type: "Residential",
                 status: "Under Contract",
-                image: "photos/7524-whitaker-ave.jpg"
+                image: "photos/7524-whitaker-ave.jpg",
+                url: "property/7524-whitaker-ave.html"
             },
             // Recently Sold
             {
@@ -675,7 +678,8 @@
                 baths: null,
                 type: "Duplex",
                 status: "Sold",
-                image: "photos/515-foster-st.jpg"
+                image: "photos/515-foster-st.jpg",
+                url: "property/515-foster-st.html"
             },
             {
                 title: "Home on Frontenac St",
@@ -687,7 +691,8 @@
                 baths: 2,
                 type: "Residential",
                 status: "Sold",
-                image: "photos/8604-frontenac-st.jpg"
+                image: "photos/8604-frontenac-st.jpg",
+                url: "property/8604-frontenac-st.html"
             },
             {
                 title: "Home on Lindsay St",
@@ -699,7 +704,8 @@
                 baths: 1,
                 type: "Residential",
                 status: "Sold",
-                image: "photos/11011-lindsay-st.jpg"
+                image: "photos/11011-lindsay-st.jpg",
+                url: "property/11011-lindsay-st.html"
             },
             {
                 title: "Home on Hendrix St",
@@ -711,7 +717,8 @@
                 baths: 1,
                 type: "Residential",
                 status: "Sold",
-                image: "photos/664-hendrix-st.jpg"
+                image: "photos/664-hendrix-st.jpg",
+                url: "property/664-hendrix-st.html"
             },
             {
                 title: "Duplex on Langdon St",
@@ -723,7 +730,8 @@
                 baths: null,
                 type: "Duplex",
                 status: "Sold",
-                image: "photos/8016-langdon-st.jpg"
+                image: "photos/8016-langdon-st.jpg",
+                url: "property/8016-langdon-st.html"
             },
             {
                 title: "Home on Lockart Rd",
@@ -735,7 +743,8 @@
                 baths: 2,
                 type: "Residential",
                 status: "Sold",
-                image: "photos/11991-lockart-rd.jpg"
+                image: "photos/11991-lockart-rd.jpg",
+                url: "property/11991-lockart-rd.html"
             },
             {
                 title: "Home on Kismet Rd",
@@ -747,7 +756,8 @@
                 baths: 3,
                 type: "Residential",
                 status: "Sold",
-                image: "photos/586-kismet-rd.jpg"
+                image: "photos/586-kismet-rd.jpg",
+                url: "property/586-kismet-rd.html"
             },
             {
                 title: "Home on Myrtle Ave",
@@ -759,7 +769,8 @@
                 baths: 3,
                 type: "Residential",
                 status: "Sold",
-                image: "photos/315-myrtle-ave.jpg"
+                image: "photos/315-myrtle-ave.jpg",
+                url: "property/315-myrtle-ave.html"
             },
             // Rentals
             {
@@ -772,7 +783,8 @@
                 baths: null,
                 type: "Office",
                 status: "Sold",
-                image: "photos/2485-napfle-st.jpg"
+                image: "photos/2485-napfle-st.jpg",
+                url: "property/2485-napfle-st.html"
             },
             {
                 title: "Home on Densmore Rd",
@@ -784,7 +796,8 @@
                 baths: 2,
                 type: "Rental",
                 status: "Sold",
-                image: "photos/419-densmore-rd.jpg"
+                image: "photos/419-densmore-rd.jpg",
+                url: "property/419-densmore-rd.html"
             },
             {
                 title: "Home on Bustleton Ave",
@@ -796,7 +809,8 @@
                 baths: 3,
                 type: "Rental",
                 status: "Sold",
-                image: "photos/11059-bustleton-ave.jpg"
+                image: "photos/11059-bustleton-ave.jpg",
+                url: "property/11059-bustleton-ave.html"
             }
         ];
 
@@ -867,7 +881,7 @@
                         ${featuresHTML}
                     </div>
                 `;
-                card.onclick = () => openPropertyModal(property);
+                card.onclick = () => window.location.href = property.url;
                 grid.appendChild(card);
             });
         }
