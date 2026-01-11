@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Resources | Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --burgundy-light: #A84040;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--burgundy);
+        }
+        
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--burgundy);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: var(--burgundy-dark);
+            transform: translateX(-5px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 5% 80px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--burgundy);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        /* Resource Cards */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        @media (max-width: 992px) {
+            .resource-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .resource-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px var(--shadow);
+        }
+        
+        .resource-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .resource-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+        
+        .resource-card p {
+            color: var(--charcoal);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .resource-card a {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--cream);
+            color: var(--burgundy);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card a:hover {
+            background: var(--burgundy);
+            color: var(--white);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .contact-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-section p {
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn.primary {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+        }
+        
+        .contact-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .contact-btn.secondary {
+            background: var(--cream);
+            color: var(--burgundy);
+        }
+        
+        .contact-btn.secondary:hover {
+            background: var(--cream-dark);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 4rem;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .faq-item h4 {
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .faq-item p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: var(--cream);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-text p {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </a>
+            <a href="index.html" class="back-btn">← Back to Home</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>🏠 Tenant Resources</h1>
+        <p>Welcome to your tenant portal. Find everything you need to manage your rental experience with Harvest Realty.</p>
+    </section>
+
+    <main class="main-content">
+        <h2 class="section-title">How Can We Help You?</h2>
+        
+        <div class="resource-grid">
+            <div class="resource-card">
+                <div class="icon">💳</div>
+                <h3>Pay Rent Online</h3>
+                <p>Convenient and secure online rent payment. Pay with Venmo or Zelle.</p>
+                <a href="pay.html">Pay Now →</a>
+            </div>
+            
+            <div class="resource-card">
+                <div class="icon">🔧</div>
+                <h3>Maintenance Request</h3>
+                <p>Submit a maintenance request and our team will address it promptly.</p>
+                <a href="mailto:prasad@harvestrealty.llc?subject=Maintenance Request&body=MAINTENANCE REQUEST FORM%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0ABest Contact Number: %0D%0A%0D%0APreferred Contact Time: %0D%0A%0D%0A------ ISSUE DETAILS ------%0D%0A%0D%0ALocation of Issue (e.g., kitchen, bathroom, bedroom): %0D%0A%0D%0ADescription of Problem:%0D%0A%0D%0A%0D%0AHow long has this been an issue?: %0D%0A%0D%0AIs this an emergency? (Yes/No): %0D%0A%0D%0APermission to enter if not home? (Yes/No): %0D%0A%0D%0AAdditional Notes:%0D%0A%0D%0A">Submit Request →</a>
+            </div>
+            
+            <div class="resource-card">
+                <div class="icon">📄</div>
+                <h3>Request Documents</h3>
+                <p>Request copies of your lease agreement, move-in checklist, or other documents.</p>
+                <a href="mailto:prasad@harvestrealty.llc?subject=Document Request&body=DOCUMENT REQUEST FORM%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0AContact Email: %0D%0A%0D%0AContact Phone: %0D%0A%0D%0A------ DOCUMENTS REQUESTED ------%0D%0A(Please mark X next to documents needed)%0D%0A%0D%0A[ ] Copy of Lease Agreement%0D%0A[ ] Move-In Checklist%0D%0A[ ] Move-In Inspection Report%0D%0A[ ] Rent Payment History%0D%0A[ ] Proof of Residency Letter%0D%0A[ ] Other (please specify below)%0D%0A%0D%0AOther Documents Needed:%0D%0A%0D%0A%0D%0AReason for Request (optional):%0D%0A%0D%0A%0D%0APreferred Delivery Method:%0D%0A[ ] Email%0D%0A[ ] Mail to property address%0D%0A[ ] Mail to different address (specify below)%0D%0A%0D%0AAlternate Mailing Address (if applicable):%0D%0A%0D%0A">Request Documents →</a>
+            </div>
+            
+            <div class="resource-card">
+                <div class="icon">📋</div>
+                <h3>Renew Your Lease</h3>
+                <p>Interested in renewing your lease? Let us know and we'll send you renewal options.</p>
+                <a href="mailto:prasad@harvestrealty.llc?subject=Lease Renewal Inquiry&body=LEASE RENEWAL INQUIRY%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0ACurrent Lease End Date: %0D%0A%0D%0AContact Email: %0D%0A%0D%0AContact Phone: %0D%0A%0D%0A------ RENEWAL PREFERENCES ------%0D%0A%0D%0ADesired Lease Term:%0D%0A[ ] 12 months%0D%0A[ ] 6 months%0D%0A[ ] Month-to-month%0D%0A[ ] Other (specify): %0D%0A%0D%0AAre there any concerns or issues with the property we should address?%0D%0A%0D%0A%0D%0AWould you like to discuss rent terms? (Yes/No): %0D%0A%0D%0AAdditional Comments or Requests:%0D%0A%0D%0A%0D%0ABest time to contact you:%0D%0A">Inquire Now →</a>
+            </div>
+            
+            <div class="resource-card">
+                <div class="icon">🚚</div>
+                <h3>Move-Out Process</h3>
+                <p>Planning to move out? Review the move-out procedures, checklist, and submit your notice.</p>
+                <a href="moveout.html">View Process →</a>
+            </div>
+            
+            <div class="resource-card">
+                <div class="icon">❓</div>
+                <h3>General Inquiry</h3>
+                <p>Have a question? We're here to help with any concerns or inquiries you may have.</p>
+                <a href="mailto:prasad@harvestrealty.llc?subject=Tenant Inquiry&body=GENERAL INQUIRY%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0AContact Email: %0D%0A%0D%0AContact Phone: %0D%0A%0D%0ABest Time to Contact: %0D%0A%0D%0A------ YOUR INQUIRY ------%0D%0A%0D%0APlease describe your question or concern:%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AIs this urgent? (Yes/No): %0D%0A%0D%0APreferred method of response:%0D%0A[ ] Email%0D%0A[ ] Phone Call%0D%0A[ ] Text Message%0D%0A">Contact Us →</a>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h4>When is rent due?</h4>
+                <p>Rent due day is listed in the lease agreement. A grace period may apply as specified in your lease.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>How do I report an emergency maintenance issue?</h4>
+                <p>For emergencies (flooding, no heat, gas leak), call us immediately at <strong>215-519-4096</strong>. For non-emergencies, submit a maintenance request online.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>Can I have pets in my rental?</h4>
+                <p>Pet policies vary by property. Please refer to your lease agreement or contact us for specific pet policy information.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>How much notice do I need to give before moving out?</h4>
+                <p>Typically, 30-60 days written notice is required. Please refer to your lease agreement for specific terms.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <h2>Need More Help?</h2>
+            <p>Our property management team is here to assist you with any questions or concerns.</p>
+            <div class="contact-buttons">
+                <a href="tel:215-519-4096" class="contact-btn primary">📞 Call 215-519-4096</a>
+                <a href="mailto:prasad@harvestrealty.llc" class="contact-btn secondary">📧 Email Us</a>
+                <a href="https://cal.com/harvestrealtyllc/tenant" target="_blank" class="contact-btn secondary">📅 Schedule a Call</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="index.html">Back to Home</a></p>
+    </footer>
+</body>
+</html>

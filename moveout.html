@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move-Out Process | Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --burgundy-light: #A84040;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--burgundy);
+        }
+        
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--burgundy);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: var(--burgundy-dark);
+            transform: translateX(-5px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 5% 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--burgundy), var(--burgundy-dark));
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 1.5rem;
+            width: 20px;
+            height: 20px;
+            background: var(--burgundy);
+            border-radius: 50%;
+            border: 4px solid var(--cream);
+            transform: translateX(50%);
+        }
+        
+        .timeline-item .step {
+            display: inline-block;
+            background: var(--burgundy);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-item h3 {
+            color: var(--burgundy);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-item p {
+            opacity: 0.8;
+        }
+        
+        /* Checklist */
+        .checklist {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .checklist h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+        
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        
+        .checklist-item .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--burgundy);
+            border-radius: 5px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checklist-item .checkbox:hover {
+            background: var(--cream);
+        }
+        
+        .checklist-item .checkbox.checked {
+            background: var(--burgundy);
+            color: var(--white);
+        }
+        
+        /* Notice Form */
+        .notice-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            text-align: center;
+        }
+        
+        .notice-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .notice-section p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .submit-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .info-box {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border-left: 4px solid var(--burgundy);
+            text-align: left;
+        }
+        
+        .info-box h4 {
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+        
+        footer a {
+            color: var(--cream);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .timeline {
+                padding-left: 2rem;
+            }
+            
+            .timeline-item::before {
+                left: -2rem;
+                width: 16px;
+                height: 16px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-text p {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </a>
+            <div style="display: flex; gap: 1rem;">
+                <a href="tenants.html" class="back-btn">← Tenant Portal</a>
+                <a href="index.html" class="back-btn" style="background: var(--gold);">🏠 Home</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>🚚 Move-Out Process</h1>
+        <p>Everything you need to know for a smooth move-out experience.</p>
+    </section>
+
+    <main class="main-content">
+        <h2 class="section-title">Move-Out Timeline</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="step">Step 1</span>
+                <h3>Submit Written Notice (30-60 Days Before)</h3>
+                <p>Provide written notice of your intent to vacate. Check your lease for the required notice period (typically 30-60 days).</p>
+            </div>
+            
+            <div class="timeline-item">
+                <span class="step">Step 2</span>
+                <h3>Schedule Move-Out Inspection (2 Weeks Before)</h3>
+                <p>Contact us to schedule a pre-move-out inspection. This helps identify any items that need attention before your final walkthrough.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <span class="step">Step 3</span>
+                <h3>Clean & Repair (1 Week Before)</h3>
+                <p>Deep clean the property and address any damages beyond normal wear and tear. Refer to the checklist below.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <span class="step">Step 4</span>
+                <h3>Final Walkthrough (Move-Out Day)</h3>
+                <p>Complete the final inspection with our team. Return all keys, garage remotes, and access devices.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <span class="step">Step 5</span>
+                <h3>Security Deposit Return (Within 30 Days)</h3>
+                <p>Your security deposit will be returned within 30 days, minus any deductions for damages or unpaid rent.</p>
+            </div>
+        </div>
+        
+        <div class="checklist">
+            <h3>✅ Move-Out Checklist</h3>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Remove all personal belongings and trash</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Clean all rooms, including closets and storage areas</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Clean kitchen appliances (oven, refrigerator, dishwasher)</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Clean bathrooms thoroughly (toilet, tub, sink, mirrors)</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Vacuum carpets and mop hard floors</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Wipe down all surfaces, cabinets, and countertops</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Remove all nails/hooks and fill holes in walls</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Replace any burnt-out light bulbs</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Clean windows inside and out (if accessible)</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Clean garage/basement/outdoor areas</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Return all keys, remotes, and access devices</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Provide forwarding address for security deposit</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Cancel or transfer utilities</span>
+            </div>
+            
+            <div class="checklist-item">
+                <div class="checkbox" onclick="this.classList.toggle('checked')">✓</div>
+                <span>Update your mailing address with USPS</span>
+            </div>
+        </div>
+        
+        <div class="notice-section">
+            <h3>📝 Submit Your Move-Out Notice</h3>
+            <p>Ready to submit your official move-out notice? Click the button below to send us your notice via email.</p>
+            <a href="mailto:prasad@harvestrealty.llc?subject=Move-Out Notice&body=MOVE-OUT NOTICE%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0ALease End Date: %0D%0A%0D%0AIntended Move-Out Date: %0D%0A%0D%0AReason for Moving (optional): %0D%0A%0D%0AForwarding Address for Security Deposit:%0D%0AStreet: %0D%0ACity: %0D%0AState: %0D%0AZip: %0D%0A%0D%0APreferred Contact Number: %0D%0A%0D%0APreferred Date/Time for Final Walkthrough: %0D%0A%0D%0AAdditional Notes: %0D%0A%0D%0A%0D%0AI understand that I am responsible for leaving the property in clean condition and returning all keys and access devices. I acknowledge that my security deposit will be returned within 30 days of move-out, minus any deductions for damages or unpaid rent.%0D%0A%0D%0ATenant Signature: _________________________%0D%0ADate: _____________" class="submit-btn">📧 Submit Move-Out Notice</a>
+            
+            <div class="info-box">
+                <h4>📞 Questions?</h4>
+                <p>If you have any questions about the move-out process, contact us at <strong>215-519-4096</strong> or email <strong>prasad@harvestrealty.llc</strong></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="tenants.html">Tenant Portal</a> | <a href="index.html">Home</a></p>
+    </footer>
+</body>
+</html>
