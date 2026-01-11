@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties | Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --burgundy-light: #A84040;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        /* Header - Homepage Style */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,241,232,0.95) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo-container img {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 0.2rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--burgundy);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Property Search Section */
+        .property-search {
+            padding: 8rem 3rem 4rem;
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+            color: var(--white);
+            margin-top: 80px;
+        }
+        
+        .search-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .section-tag {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .search-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin-top: 2rem;
+        }
+        
+        .search-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            color: var(--charcoal);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .form-group select,
+        .form-group input {
+            padding: 1rem;
+            border: 2px solid var(--cream-dark);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+        
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--burgundy);
+        }
+        
+        .search-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .search-button {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 46, 46, 0.4);
+        }
+        
+        .search-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 46, 46, 0.6);
+        }
+        
+        .reset-button {
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .reset-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        /* Featured Properties */
+        .featured-properties {
+            padding: 4rem 3rem;
+            background: var(--cream);
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 3rem auto 0;
+        }
+        
+        .property-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .property-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+        
+        .status-active {
+            background: rgba(76, 175, 80, 0.9);
+            color: var(--white);
+        }
+        
+        .status-pending {
+            background: rgba(255, 193, 7, 0.9);
+            color: var(--charcoal);
+        }
+        
+        .status-sold {
+            background: rgba(139, 46, 46, 0.9);
+            color: var(--white);
+        }
+        
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px var(--shadow);
+        }
+        
+        .property-image-container {
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .property-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .property-card:hover .property-image {
+            transform: scale(1.1);
+        }
+        
+        .property-info {
+            padding: 2rem;
+        }
+        
+        .property-price {
+            font-size: 2rem;
+            color: var(--burgundy);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        .property-title {
+            font-size: 1.3rem;
+            color: var(--charcoal);
+            margin-bottom: 0.8rem;
+        }
+        
+        .property-location {
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .property-features {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--cream);
+            color: var(--charcoal);
+            font-size: 0.95rem;
+        }
+        
+        .property-features span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Results Count */
+        .results-count {
+            text-align: center;
+            padding: 1rem;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            animation: slideDown 0.4s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close {
+            color: var(--charcoal);
+            float: right;
+            font-size: 2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: var(--burgundy);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .properties-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .property-search {
+                padding: 6rem 1.5rem 3rem;
+                margin-top: 70px;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .search-box {
+                padding: 1.5rem;
+            }
+            
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-properties {
+                padding: 2rem 1rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-container">
+                <img src="photos/hrg-logo-email.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="properties.html">Properties</a>
+                <a href="index.html#team">Our Team</a>
+                <a href="partners.html">Partners</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Property Search Section -->
+    <section class="property-search">
+        <div class="search-container">
+            <div class="section-header">
+                <div class="section-tag">Find Your Dream Home</div>
+                <h2 style="color: var(--white);">Property Search</h2>
+                <p style="color: rgba(255,255,255,0.9);">Search properties in Philadelphia, Bucks, and Montgomery Counties</p>
+            </div>
+            <div class="search-box">
+                <form class="search-form" id="propertySearchForm">
+                    <div class="form-group">
+                        <label>Property Type</label>
+                        <select name="type">
+                            <option value="">All Types</option>
+                            <option value="house">House</option>
+                            <option value="apartment">Apartment/Duplex</option>
+                            <option value="condo">Condo</option>
+                            <option value="commercial">Commercial/Land</option>
+                            <option value="rental">Rentals</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <select name="location">
+                            <option value="">All Locations</option>
+                            <option value="philadelphia">Philadelphia, PA</option>
+                            <option value="delaware">Delaware County, PA</option>
+                            <option value="bucks">Bucks County, PA</option>
+                            <option value="montgomery">Montgomery County, PA</option>
+                            <option value="new-jersey">New Jersey</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select name="status">
+                            <option value="">All Statuses</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Under Contract</option>
+                            <option value="sold">Sold/Rented</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Min Price</label>
+                        <input type="number" name="minPrice" placeholder="$0">
+                    </div>
+                    <div class="form-group">
+                        <label>Max Price</label>
+                        <input type="number" name="maxPrice" placeholder="No limit">
+                    </div>
+                    <div class="form-group">
+                        <label>Bedrooms</label>
+                        <select name="bedrooms">
+                            <option value="">Any</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                            <option value="4">4+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bathrooms</label>
+                        <select name="bathrooms">
+                            <option value="">Any</option>
+                            <option value="1">1+</option>
+                            <option value="2">2+</option>
+                            <option value="3">3+</option>
+                        </select>
+                    </div>
+                </form>
+                <div class="search-buttons">
+                    <button class="search-button" onclick="searchProperties()">🔍 Search Properties</button>
+                    <button class="reset-button" onclick="resetSearch()">↺ Reset Filters</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section class="featured-properties" id="properties">
+        <div class="section-header">
+            <div class="section-tag">Our Portfolio</div>
+            <h2>All Properties</h2>
+            <p>Explore our current listings and recently sold properties</p>
+        </div>
+        <div class="results-count" id="resultsCount"></div>
+        <div class="properties-grid" id="propertiesGrid">
+            <!-- Properties will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Property Detail Modal -->
+    <div id="property-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('property-modal')">&times;</span>
+            <div id="property-modal-content">
+                <!-- Property details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="index.html">Home</a> | <a href="index.html#team">Our Team</a> | <a href="partners.html">Partners</a> | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Property data
+        const properties = [
+            // Active Listings
+            {
+                title: "Land on N 5th St",
+                price: "$125,000",
+                priceNum: 125000,
+                location: "2456 N 5th St, Philadelphia, PA",
+                mls: "PAPH2527048",
+                beds: null,
+                baths: null,
+                type: "Land",
+                status: "Active",
+                image: "photos/2456-n-5th-st.jpg"
+            },
+            // Under Contract
+            {
+                title: "Duplex on E Tabor Rd",
+                price: "$244,900",
+                priceNum: 244900,
+                location: "565 E Tabor Rd, Philadelphia, PA",
+                mls: "PAPH2514428",
+                beds: null,
+                baths: null,
+                type: "Duplex",
+                status: "Under Contract",
+                image: "photos/565-e-tabor-rd.jpg"
+            },
+            {
+                title: "Home on Whitaker Ave",
+                price: "$259,900",
+                priceNum: 259900,
+                location: "7524 Whitaker Ave, Philadelphia, PA",
+                mls: "PAPH2518910",
+                beds: 3,
+                baths: 1,
+                type: "Residential",
+                status: "Under Contract",
+                image: "photos/7524-whitaker-ave.jpg"
+            },
+            // Recently Sold
+            {
+                title: "Duplex on Foster St",
+                price: "$256,000",
+                priceNum: 256000,
+                location: "515 Foster St, Philadelphia, PA",
+                mls: "PAPH2315284",
+                beds: null,
+                baths: null,
+                type: "Duplex",
+                status: "Sold",
+                image: "photos/515-foster-st.jpg"
+            },
+            {
+                title: "Home on Frontenac St",
+                price: "$310,000",
+                priceNum: 310000,
+                location: "8604 Frontenac St, Philadelphia, PA",
+                mls: "PAPH2348768",
+                beds: 3,
+                baths: 2,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/8604-frontenac-st.jpg"
+            },
+            {
+                title: "Home on Lindsay St",
+                price: "$317,500",
+                priceNum: 317500,
+                location: "11011 Lindsay St, Philadelphia, PA",
+                mls: "PAPH2306862",
+                beds: 4,
+                baths: 1,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/11011-lindsay-st.jpg"
+            },
+            {
+                title: "Home on Hendrix St",
+                price: "$325,000",
+                priceNum: 325000,
+                location: "664 Hendrix St, Philadelphia, PA",
+                mls: "PAPH2381180",
+                beds: 3,
+                baths: 1,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/664-hendrix-st.jpg"
+            },
+            {
+                title: "Duplex on Langdon St",
+                price: "$462,500",
+                priceNum: 462500,
+                location: "8016 Langdon St, Philadelphia, PA",
+                mls: "PAPH2362214",
+                beds: null,
+                baths: null,
+                type: "Duplex",
+                status: "Sold",
+                image: "photos/8016-langdon-st.jpg"
+            },
+            {
+                title: "Home on Lockart Rd",
+                price: "$514,000",
+                priceNum: 514000,
+                location: "11991 Lockart Rd, Philadelphia, PA",
+                mls: "PAPH2375898",
+                beds: 4,
+                baths: 2,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/11991-lockart-rd.jpg"
+            },
+            {
+                title: "Home on Kismet Rd",
+                price: "$569,000",
+                priceNum: 569000,
+                location: "586 Kismet Rd, Philadelphia, PA",
+                mls: "PAPH2465970",
+                beds: 5,
+                baths: 3,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/586-kismet-rd.jpg"
+            },
+            {
+                title: "Home on Myrtle Ave",
+                price: "$605,000",
+                priceNum: 605000,
+                location: "315 Myrtle Ave, Morton, PA",
+                mls: "PADE2069112",
+                beds: 4,
+                baths: 3,
+                type: "Residential",
+                status: "Sold",
+                image: "photos/315-myrtle-ave.jpg"
+            },
+            // Rentals
+            {
+                title: "Office on Napfle St",
+                price: "$895/mo",
+                priceNum: 895,
+                location: "2485 Napfle St, Philadelphia, PA",
+                mls: "PAPH2520522",
+                beds: null,
+                baths: null,
+                type: "Office",
+                status: "Sold",
+                image: "photos/2485-napfle-st.jpg"
+            },
+            {
+                title: "Home on Densmore Rd",
+                price: "$2,300/mo",
+                priceNum: 2300,
+                location: "419 Densmore Rd, Philadelphia, PA",
+                mls: "PAPH2533022",
+                beds: 3,
+                baths: 2,
+                type: "Rental",
+                status: "Sold",
+                image: "photos/419-densmore-rd.jpg"
+            },
+            {
+                title: "Home on Bustleton Ave",
+                price: "$3,000/mo",
+                priceNum: 3000,
+                location: "11059 Bustleton Ave, Philadelphia, PA",
+                mls: "PAPH2534602",
+                beds: 3,
+                baths: 3,
+                type: "Rental",
+                status: "Sold",
+                image: "photos/11059-bustleton-ave.jpg"
+            }
+        ];
+
+        // Load properties on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProperties(properties);
+        });
+
+        // Load properties into grid
+        function loadProperties(propertyList) {
+            const grid = document.getElementById('propertiesGrid');
+            const countEl = document.getElementById('resultsCount');
+            if (!grid) return;
+            
+            grid.innerHTML = '';
+            countEl.textContent = `Showing ${propertyList.length} properties`;
+            
+            if (propertyList.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                        <h3 style="color: var(--burgundy); margin-bottom: 1rem;">No properties found</h3>
+                        <p style="color: var(--charcoal); opacity: 0.7;">Try adjusting your search criteria</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            propertyList.forEach(property => {
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                
+                // Status badge HTML
+                let statusBadge = '';
+                if (property.status === 'Active') {
+                    statusBadge = '<span class="property-status status-active">Active</span>';
+                } else if (property.status === 'Under Contract') {
+                    statusBadge = '<span class="property-status status-pending">Under Contract</span>';
+                } else if (property.status === 'Sold') {
+                    statusBadge = '<span class="property-status status-sold">Sold</span>';
+                }
+                
+                // Features HTML
+                let featuresHTML = '';
+                if (property.beds || property.baths) {
+                    featuresHTML = `
+                        <div class="property-features">
+                            ${property.beds ? `<span>🛏️ ${property.beds} Beds</span>` : ''}
+                            ${property.baths ? `<span>🚿 ${property.baths} Baths</span>` : ''}
+                        </div>
+                    `;
+                } else if (property.type) {
+                    featuresHTML = `
+                        <div class="property-features">
+                            <span>📋 ${property.type}</span>
+                        </div>
+                    `;
+                }
+                
+                card.innerHTML = `
+                    ${statusBadge}
+                    <div class="property-image-container">
+                        <img src="${property.image}" alt="${property.title}" class="property-image" loading="lazy">
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">${property.price}</div>
+                        <h3 class="property-title">${property.title}</h3>
+                        <div class="property-location">📍 ${property.location}</div>
+                        ${featuresHTML}
+                    </div>
+                `;
+                card.onclick = () => openPropertyModal(property);
+                grid.appendChild(card);
+            });
+        }
+
+        // Open property detail modal
+        function openPropertyModal(property) {
+            const addressForSearch = encodeURIComponent(property.location);
+            const modalContent = document.getElementById('property-modal-content');
+            
+            let featuresText = '';
+            if (property.beds && property.baths) {
+                featuresText = `<p style="color: var(--charcoal); margin: 0.5rem 0;">🛏️ ${property.beds} Beds &nbsp; 🚿 ${property.baths} Baths</p>`;
+            } else if (property.type) {
+                featuresText = `<p style="color: var(--charcoal); margin: 0.5rem 0;">📋 ${property.type}</p>`;
+            }
+            
+            modalContent.innerHTML = `
+                <img src="${property.image}" alt="${property.title}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 15px; margin-bottom: 1rem;">
+                <h2 style="color: var(--burgundy); margin-bottom: 0.5rem; font-size: 1.5rem;">${property.title}</h2>
+                <p style="color: var(--burgundy); font-size: 1.5rem; font-weight: 700; margin: 0.5rem 0;">${property.price}</p>
+                <p style="color: var(--charcoal); margin: 0.5rem 0;">📍 ${property.location}</p>
+                ${featuresText}
+                <p style="color: var(--charcoal); opacity: 0.7; font-size: 0.85rem; margin: 0.5rem 0;">MLS# ${property.mls}</p>
+                
+                <hr style="border: none; border-top: 1px solid var(--cream-dark); margin: 1.5rem 0;">
+                
+                <p style="color: var(--charcoal); font-weight: 600; margin-bottom: 1rem;">View this listing on:</p>
+                <div style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
+                    <a href="https://www.zillow.com/homes/${addressForSearch}_rb/" target="_blank" title="Zillow" style="display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 50%; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.15); overflow: hidden;">
+                        <img src="photos/zillow-logo.png" alt="Zillow" style="width: 100%; height: 100%; object-fit: cover;">
+                    </a>
+                </div>
+                
+                <a href="https://cal.com/harvestrealtyllc/propertyshowing" target="_blank" style="display: block; width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%); color: white; text-align: center; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease;">
+                    📅 Schedule a Showing
+                </a>
+            `;
+            
+            openModal('property-modal');
+        }
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Search properties
+        function searchProperties() {
+            const form = document.getElementById('propertySearchForm');
+            if (!form) return;
+            
+            const formData = new FormData(form);
+            const propertyType = formData.get('type') || '';
+            const location = formData.get('location') || '';
+            const status = formData.get('status') || '';
+            const minPrice = parseFloat(formData.get('minPrice')) || 0;
+            const maxPrice = parseFloat(formData.get('maxPrice')) || Infinity;
+            const bedrooms = parseInt(formData.get('bedrooms')) || 0;
+            const bathrooms = parseInt(formData.get('bathrooms')) || 0;
+            
+            // Filter properties based on search criteria
+            let filteredProperties = properties.filter(property => {
+                // Property type filter
+                if (propertyType) {
+                    const typeMap = {
+                        'house': ['Residential'],
+                        'apartment': ['Duplex', 'Multi-Family'],
+                        'condo': ['Condo'],
+                        'commercial': ['Office', 'Commercial', 'Land'],
+                        'rental': ['Rental', 'Office']
+                    };
+                    const matchingTypes = typeMap[propertyType] || [];
+                    if (!matchingTypes.some(t => property.type?.includes(t))) {
+                        return false;
+                    }
+                }
+                
+                // Status filter
+                if (status) {
+                    if (status === 'active' && property.status !== 'Active') return false;
+                    if (status === 'pending' && property.status !== 'Under Contract') return false;
+                    if (status === 'sold' && property.status !== 'Sold') return false;
+                }
+                
+                // Location filter
+                if (location) {
+                    const locationLower = property.location.toLowerCase();
+                    if (location === 'philadelphia' && !locationLower.includes('philadelphia')) return false;
+                    if (location === 'delaware' && !locationLower.includes('morton') && !locationLower.includes('delaware')) return false;
+                    if (location === 'bucks' && !locationLower.includes('bucks')) return false;
+                    if (location === 'montgomery' && !locationLower.includes('montgomery')) return false;
+                    if (location === 'new-jersey' && !locationLower.includes('nj') && !locationLower.includes('new jersey')) return false;
+                }
+                
+                // Price filter
+                if (minPrice > 0 && property.priceNum < minPrice) return false;
+                if (maxPrice < Infinity && property.priceNum > maxPrice) return false;
+                
+                // Bedrooms filter
+                if (bedrooms > 0 && (!property.beds || property.beds < bedrooms)) return false;
+                
+                // Bathrooms filter
+                if (bathrooms > 0 && (!property.baths || property.baths < bathrooms)) return false;
+                
+                return true;
+            });
+            
+            // Update the properties grid with filtered results
+            loadProperties(filteredProperties);
+            
+            // Scroll to properties section
+            const propertiesSection = document.getElementById('properties');
+            if (propertiesSection) {
+                propertiesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Reset search and show all properties
+        function resetSearch() {
+            const form = document.getElementById('propertySearchForm');
+            if (form) form.reset();
+            loadProperties(properties);
+        }
+    </script>
+</body>
+</html>
