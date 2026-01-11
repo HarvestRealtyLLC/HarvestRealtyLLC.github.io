@@ -49,6 +49,65 @@
         footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 2rem; }
         footer a { color: var(--gold); text-decoration: none; }
         @media (max-width: 768px) { nav { padding: 1rem; } .nav-links { display: none; } .logo-container img { height: 45px; } .logo-text h1 { font-size: 1.4rem; } .agent-hero { margin-top: 75px; } .agent-hero h1 { font-size: 2rem; } .agent-contact-hero { flex-direction: column; gap: 1rem; } }
+    
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px var(--shadow);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+            
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -61,7 +120,10 @@
                     <p>PA & NJ Experts</p>
                 </div>
             </a>
-            <div class="nav-links">
+                        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                ☰
+            </button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="properties.html">Properties</a>
                 <a href="index.html#team">Our Team</a>
@@ -132,8 +194,29 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;"><a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
-    </footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (mobileMenuToggle && navLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                });
+                
+                // Close menu when clicking a link
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        mobileMenuToggle.textContent = '☰';
+                    });
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>

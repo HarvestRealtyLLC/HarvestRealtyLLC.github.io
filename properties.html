@@ -27,11 +27,41 @@
             box-sizing: border-box;
         }
         
+        /* Page Transition Animation */
         body {
             font-family: 'Montserrat', sans-serif;
             background: var(--cream);
             color: var(--charcoal);
             line-height: 1.6;
+            opacity: 0;
+            animation: fadeInPage 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Page exit animation */
+        body.page-exit {
+            animation: fadeOutPage 0.4s ease forwards;
+        }
+        
+        @keyframes fadeOutPage {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -40,7 +70,7 @@
             line-height: 1.2;
         }
         
-        /* Header - Homepage Style */
+        /* Header - Matching Homepage Style */
         header {
             position: fixed;
             width: 100%;
@@ -50,6 +80,11 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 2px 20px var(--shadow);
             transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            background: rgba(255,255,255,0.98);
+            box-shadow: 0 2px 30px var(--shadow);
         }
         
         nav {
@@ -97,6 +132,99 @@
             gap: 2rem;
             list-style: none;
             align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--burgundy);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--burgundy);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .tenant-link {
+            background: var(--cream-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--burgundy) !important;
+        }
+        
+        .tenant-link:hover {
+            background: var(--burgundy) !important;
+            color: var(--white) !important;
+        }
+        
+        .tenant-link::after {
+            display: none !important;
+        }
+        
+        .agent-login-link {
+            background: var(--charcoal);
+            color: var(--white) !important;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        
+        .agent-login-link:hover {
+            background: var(--burgundy) !important;
+        }
+        
+        .agent-login-link::after {
+            display: none !important;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white) !important;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 46, 46, 0.3);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .cta-button:hover {
+            background: var(--white);
+            color: var(--burgundy) !important;
+            border-color: var(--burgundy);
+            transform: translateY(-2px);
+        }
+        
+        .cta-button::after {
+            display: none !important;
         }
         
         .nav-links a {
@@ -558,24 +686,81 @@
     </style>
 </head>
 <body>
-    <header>
+    <!-- Agent Portal Banner -->
+    <div id="agentBanner" style="display: none; position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%); color: white; padding: 0.5rem 1rem; z-index: 9999; text-align: center; font-size: 0.9rem;">
+        <span>👤 Logged in as <strong id="agentBannerName">Agent</strong></span>
+        <a href="portal.html" style="color: #D4AF37; margin-left: 1rem; text-decoration: none; font-weight: 600;">Go to Portal →</a>
+        <button onclick="agentLogout()" style="background: #8B2E2E; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 20px; margin-left: 1rem; cursor: pointer; font-size: 0.85rem;">Logout</button>
+    </div>
+    
+    <script>
+        // Check if agent is logged in
+        (function() {
+            const loggedIn = sessionStorage.getItem('agentLoggedIn');
+            const email = sessionStorage.getItem('agentEmail');
+            if (loggedIn === 'true' && email) {
+                document.getElementById('agentBanner').style.display = 'block';
+                const names = {
+                    'prasad@harvestrealty.llc': 'Prasad Abraham',
+                    'jacob@harvestrealty.llc': 'Jacob Abraham',
+                    'dyson@harvestrealty.llc': 'Dyson Daniel',
+                    'abdullah@harvestrealty.llc': 'Abdullah Khan',
+                    'thomas@harvestrealty.llc': 'Thomas Thomas',
+                    'contact@harvestrealty.llc': 'Chronos Media'
+                };
+                document.getElementById('agentBannerName').textContent = names[email] || email;
+                document.body.style.paddingTop = '40px';
+            }
+        })();
+        
+        function agentLogout() {
+            sessionStorage.removeItem('agentLoggedIn');
+            sessionStorage.removeItem('agentEmail');
+            document.getElementById('agentBanner').style.display = 'none';
+            document.body.style.paddingTop = '0';
+        }
+        
+        // Page transition for links
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a').forEach(link => {
+                if (link.href && !link.href.includes('#') && !link.href.includes('mailto:') && !link.href.includes('tel:') && !link.target) {
+                    link.addEventListener('click', function(e) {
+                        if (this.hostname === window.location.hostname) {
+                            e.preventDefault();
+                            document.body.classList.add('page-exit');
+                            setTimeout(() => {
+                                window.location.href = this.href;
+                            }, 400);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <header id="header">
         <nav>
             <a href="index.html" class="logo-container">
-                <img src="photos/hrg-logo-email.png" alt="Harvest Realty LLC Logo">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
                 <div class="logo-text">
                     <h1>Harvest Realty LLC</h1>
                     <p>PA & NJ Experts</p>
                 </div>
             </a>
-                        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                 ☰
             </button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
-                <a href="properties.html">Properties</a>
+                <a href="index.html#services">Services</a>
+                <a href="properties.html" class="active">Properties</a>
                 <a href="index.html#team">Our Team</a>
                 <a href="partners.html">Partners</a>
+                <a href="index.html#about">About</a>
                 <a href="index.html#contact">Contact</a>
+                <a href="tenants.html" class="tenant-link">Are you a Tenant?</a>
+                <a href="portal.html" class="agent-login-link">🔐 Agent Login</a>
+                <a href="index.html#contact" class="cta-button">Schedule Consultation</a>
             </div>
         </nav>
     </header>
