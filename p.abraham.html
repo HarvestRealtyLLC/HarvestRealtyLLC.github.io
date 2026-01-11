@@ -294,6 +294,65 @@
                 gap: 1rem;
             }
         }
+    
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px var(--shadow);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+            
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -306,7 +365,10 @@
                     <p>PA & NJ Experts</p>
                 </div>
             </a>
-            <div class="nav-links">
+                        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                ☰
+            </button>
+            <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="properties.html">Properties</a>
                 <a href="index.html#team">Our Team</a>
@@ -322,7 +384,7 @@
         <h1>Prasad Abraham</h1>
         <div class="agent-contact-hero">
             <a href="tel:215-519-4096">📞 215-519-4096</a>
-            <a href="mailto:prasad@harvestrealty.llc">📧 prasad@harvestrealty.llc</a>
+            <a href="/cdn-cgi/l/email-protection#e5959784968481a58d84979380969197808489919ccb898986">📧 <span class="__cf_email__" data-cfemail="42323023312326022a2330342731363027232e363b6c2e2e21">[email&#160;protected]</span></a>
             <a href="https://cal.com/harvestrealtyllc" target="_blank">📅 Schedule a Meeting</a>
         </div>
     </section>
@@ -346,6 +408,21 @@
                 <span class="specialty-tag">New Jersey</span>
             </div>
             <p style="margin-top: 1.5rem;"><em>Customize your specialties and areas of expertise...</em></p>
+        </div>
+        
+        <div class="section">
+            <h2>Community Focus</h2>
+            <p>I'm passionate about serving diverse communities and building meaningful relationships beyond real estate transactions.</p>
+            <div style="display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                <a href="desi.html" style="flex: 1; min-width: 250px; background: linear-gradient(135deg, #FF9933 0%, #138808 100%); color: white; padding: 1.5rem; border-radius: 12px; text-decoration: none; display: block; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 0.5rem;">🇮🇳 Desi Heritage</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.95;">Proudly serving the South Asian community with culturally-aware real estate services.</p>
+                </a>
+                <a href="church.html" style="flex: 1; min-width: 250px; background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%); color: white; padding: 1.5rem; border-radius: 12px; text-decoration: none; display: block; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 0.5rem;">⛪ Faith & Church</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.95;">Supporting churches, ministries, and faith-based organizations with their property needs.</p>
+                </a>
+            </div>
         </div>
         
         <div class="section">
@@ -378,15 +455,36 @@
             <p>Ready to start your real estate journey? I'm here to help!</p>
             <div class="cta-buttons">
                 <a href="tel:215-519-4096" class="btn-primary">📞 Call Me</a>
-                <a href="mailto:prasad@harvestrealty.llc" class="btn-secondary">📧 Email Me</a>
+                <a href="/cdn-cgi/l/email-protection#87f7f5e6f4e6e3c7efe6f5f1e2f4f3f5e2e6ebf3fea9ebebe4" class="btn-secondary">📧 Email Me</a>
                 <a href="https://cal.com/harvestrealtyllc" target="_blank" class="btn-primary">📅 Schedule a Consultation</a>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;"><a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
-    </footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (mobileMenuToggle && navLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                });
+                
+                // Close menu when clicking a link
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                        mobileMenuToggle.textContent = '☰';
+                    });
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
