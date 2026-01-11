@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Portal | Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+            --green: #2E7D32;
+            --red: #C62828;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+        
+        /* Login Page Styles */
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            padding: 2rem;
+        }
+        
+        .login-container {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .login-logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .login-logo img {
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+        
+        .login-logo h1 {
+            color: var(--burgundy);
+            font-size: 1.8rem;
+        }
+        
+        .login-logo p {
+            color: var(--gold-dark);
+            font-size: 0.9rem;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .login-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--burgundy);
+        }
+        
+        .login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .login-error {
+            background: #FFEBEE;
+            color: var(--red);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .login-error.show {
+            display: block;
+        }
+        
+        .forgot-password {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .forgot-password a {
+            color: var(--burgundy);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+        }
+        
+        .dashboard.active {
+            display: block;
+        }
+        
+        /* Dashboard Header */
+        .dashboard-header {
+            background: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .dashboard-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .dashboard-logo img {
+            height: 50px;
+        }
+        
+        .dashboard-logo h1 {
+            color: var(--burgundy);
+            font-size: 1.5rem;
+        }
+        
+        .dashboard-user {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-info {
+            text-align: right;
+        }
+        
+        .user-info .name {
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+        
+        .user-info .role {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .logout-btn {
+            background: var(--cream);
+            color: var(--burgundy);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: var(--burgundy);
+            color: var(--white);
+        }
+        
+        /* Dashboard Layout */
+        .dashboard-container {
+            display: flex;
+            min-height: calc(100vh - 80px);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 2rem 0;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            border-left-color: var(--gold);
+        }
+        
+        .sidebar-menu .icon {
+            font-size: 1.2rem;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .page-title {
+            color: var(--burgundy);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+        
+        .card h3 {
+            color: var(--burgundy);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 20px var(--shadow);
+            text-align: center;
+        }
+        
+        .stat-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card .number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--burgundy);
+            font-weight: 700;
+        }
+        
+        .stat-card .label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .quick-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: var(--cream);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--charcoal);
+            transition: all 0.3s;
+        }
+        
+        .quick-link:hover {
+            background: var(--burgundy);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        
+        .quick-link .icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Forms */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--burgundy);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .btn-secondary {
+            background: var(--cream);
+            color: var(--burgundy);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+        
+        .btn-success {
+            background: var(--green);
+            color: var(--white);
+        }
+        
+        /* Table */
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: var(--cream);
+            font-weight: 600;
+            color: var(--burgundy);
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background: #E8F5E9;
+            color: var(--green);
+        }
+        
+        .status-pending {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+        
+        .status-sold {
+            background: #FFEBEE;
+            color: var(--red);
+        }
+        
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .action-btn.edit {
+            background: var(--cream);
+            color: var(--burgundy);
+        }
+        
+        .action-btn.edit:hover {
+            background: var(--burgundy);
+            color: var(--white);
+        }
+        
+        .action-btn.delete {
+            background: #FFEBEE;
+            color: var(--red);
+        }
+        
+        .action-btn.delete:hover {
+            background: var(--red);
+            color: var(--white);
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+        
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            border-radius: 10px 10px 0 0;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn.active {
+            background: var(--burgundy);
+            color: var(--white);
+        }
+        
+        .tab-btn:hover:not(.active) {
+            background: var(--cream);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Alert Messages */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        
+        .alert.show {
+            display: block;
+        }
+        
+        .alert-success {
+            background: #E8F5E9;
+            color: var(--green);
+            border: 1px solid var(--green);
+        }
+        
+        .alert-error {
+            background: #FFEBEE;
+            color: var(--red);
+            border: 1px solid var(--red);
+        }
+        
+        /* Password Strength */
+        .password-strength {
+            margin-top: 0.5rem;
+            height: 5px;
+            border-radius: 3px;
+            background: #eee;
+            overflow: hidden;
+        }
+        
+        .password-strength-bar {
+            height: 100%;
+            border-radius: 3px;
+            transition: all 0.3s;
+            width: 0%;
+        }
+        
+        .password-strength-bar.weak { width: 33%; background: var(--red); }
+        .password-strength-bar.medium { width: 66%; background: #FFA000; }
+        .password-strength-bar.strong { width: 100%; background: var(--green); }
+        
+        /* Hidden Pages */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .user-info {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-page" id="loginPage">
+        <div class="login-container">
+            <div class="login-logo">
+                <img src="photos/hrg-logo-email.png" alt="Harvest Realty LLC">
+                <h1>Agent Portal</h1>
+                <p>Harvest Realty LLC</p>
+            </div>
+            <div class="login-error" id="loginError">
+                Invalid email or password. Please try again.
+            </div>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="your.email@harvestrealty.llc" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="login-btn">Sign In</button>
+            </form>
+            <div class="forgot-password">
+                <a href="#" onclick="showForgotPassword()">Forgot your password?</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="dashboard-logo">
+                <img src="photos/hrg-logo-email.png" alt="Harvest Realty LLC">
+                <h1>Agent Portal</h1>
+            </div>
+            <div class="dashboard-user">
+                <div class="user-info">
+                    <div class="name" id="userName">Agent Name</div>
+                    <div class="role" id="userRole">Sales Agent</div>
+                </div>
+                <button class="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </header>
+
+        <div class="dashboard-container">
+            <!-- Sidebar -->
+            <nav class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" onclick="showPage('dashboard-home')"><span class="icon">🏠</span> Dashboard</a></li>
+                    <li><a href="#" onclick="showPage('my-profile')"><span class="icon">👤</span> My Profile</a></li>
+                    <li><a href="#" onclick="showPage('my-listings')"><span class="icon">🏡</span> My Listings</a></li>
+                    <li><a href="#" onclick="showPage('add-listing')"><span class="icon">➕</span> Add Listing</a></li>
+                    <li><a href="#" onclick="showPage('onboarding')"><span class="icon">📚</span> Onboarding</a></li>
+                    <li><a href="#" onclick="showPage('resources')"><span class="icon">📁</span> Resources</a></li>
+                    <li><a href="#" onclick="showPage('settings')"><span class="icon">⚙️</span> Settings</a></li>
+                    <li id="adminMenuItem" style="display: none;"><a href="#" onclick="showPage('admin-panel')" style="background: rgba(212, 175, 55, 0.2);"><span class="icon">👑</span> Admin Panel</a></li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Dashboard Home -->
+                <div class="page active" id="dashboard-home">
+                    <h1 class="page-title">Welcome back, <span id="welcomeName">Agent</span>!</h1>
+                    <p class="page-subtitle">Here's what's happening with your account today.</p>
+                    
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <div class="icon">🏡</div>
+                            <div class="number" id="activeListings">0</div>
+                            <div class="label">Active Listings</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon">👁️</div>
+                            <div class="number">156</div>
+                            <div class="label">Profile Views</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon">📞</div>
+                            <div class="number">24</div>
+                            <div class="label">Inquiries This Month</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="icon">✅</div>
+                            <div class="number" id="soldListings">0</div>
+                            <div class="label">Properties Sold</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-links">
+                            <a href="#" class="quick-link" onclick="showPage('my-profile')">
+                                <span class="icon">✏️</span>
+                                <span>Edit My Profile</span>
+                            </a>
+                            <a href="#" class="quick-link" onclick="showPage('add-listing')">
+                                <span class="icon">➕</span>
+                                <span>Add New Listing</span>
+                            </a>
+                            <a href="#" class="quick-link" onclick="showPage('onboarding')">
+                                <span class="icon">📖</span>
+                                <span>View Onboarding</span>
+                            </a>
+                            <a href="#" class="quick-link" onclick="showPage('settings')">
+                                <span class="icon">🔐</span>
+                                <span>Change Password</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Profile -->
+                <div class="page" id="my-profile">
+                    <h1 class="page-title">My Profile</h1>
+                    <p class="page-subtitle">Update your agent profile information that appears on the website.</p>
+                    
+                    <div class="alert alert-success" id="profileSuccess">Profile updated successfully!</div>
+                    
+                    <div class="card">
+                        <h3>Profile Information</h3>
+                        <form onsubmit="saveProfile(event)">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="profileName">Full Name</label>
+                                    <input type="text" id="profileName" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileTitle">Title</label>
+                                    <input type="text" id="profileTitle" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileEmail">Email</label>
+                                    <input type="email" id="profileEmail" value="" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profilePhone">Phone Number</label>
+                                    <input type="tel" id="profilePhone" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileLicense">License Number (PA)</label>
+                                    <input type="text" id="profileLicense" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileLicenseNJ">License Number (NJ)</label>
+                                    <input type="text" id="profileLicenseNJ" value="">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="profileBio">Biography</label>
+                                    <textarea id="profileBio" rows="5" placeholder="Tell clients about yourself..."></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="profileSpecialties">Specialties (comma-separated)</label>
+                                    <input type="text" id="profileSpecialties" placeholder="First-Time Buyers, Investment Properties, Luxury Homes">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Profile</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- My Listings -->
+                <div class="page" id="my-listings">
+                    <h1 class="page-title">My Listings</h1>
+                    <p class="page-subtitle">Manage your property listings.</p>
+                    
+                    <div class="card">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3 style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">Properties</h3>
+                            <button class="btn btn-primary" onclick="showPage('add-listing')">+ Add New Listing</button>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Address</th>
+                                        <th>Price</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="listingsTable">
+                                    <!-- Populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Listing -->
+                <div class="page" id="add-listing">
+                    <h1 class="page-title">Add New Listing</h1>
+                    <p class="page-subtitle">Create a new property listing.</p>
+                    
+                    <div class="alert alert-success" id="listingSuccess">Listing added successfully!</div>
+                    
+                    <div class="card">
+                        <h3>Property Details</h3>
+                        <form onsubmit="addListing(event)">
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label for="listingAddress">Property Address *</label>
+                                    <input type="text" id="listingAddress" required placeholder="123 Main St, Philadelphia, PA 19152">
+                                </div>
+                                <div class="form-group">
+                                    <label for="listingPrice">Price *</label>
+                                    <input type="text" id="listingPrice" required placeholder="$350,000">
+                                </div>
+                                <div class="form-group">
+                                    <label for="listingType">Property Type *</label>
+                                    <select id="listingType" required>
+                                        <option value="">Select type...</option>
+                                        <option value="Single Family">Single Family</option>
+                                        <option value="Duplex">Duplex</option>
+                                        <option value="Townhouse">Townhouse</option>
+                                        <option value="Condo">Condo</option>
+                                        <option value="Multi-Family">Multi-Family</option>
+                                        <option value="Land">Land</option>
+                                        <option value="Commercial">Commercial</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="listingStatus">Status *</label>
+                                    <select id="listingStatus" required>
+                                        <option value="Active">Active</option>
+                                        <option value="Under Contract">Under Contract</option>
+                                        <option value="Sold">Sold</option>
+                                        <option value="For Rent">For Rent</option>
+                                        <option value="Rented">Rented</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="listingBeds">Bedrooms</label>
+                                    <input type="number" id="listingBeds" placeholder="3">
+                                </div>
+                                <div class="form-group">
+                                    <label for="listingBaths">Bathrooms</label>
+                                    <input type="number" id="listingBaths" step="0.5" placeholder="2">
+                                </div>
+                                <div class="form-group">
+                                    <label for="listingSqft">Square Feet</label>
+                                    <input type="number" id="listingSqft" placeholder="1,800">
+                                </div>
+                                <div class="form-group">
+                                    <label for="listingMLS">MLS Number</label>
+                                    <input type="text" id="listingMLS" placeholder="PAPH1234567">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="listingDescription">Description</label>
+                                    <textarea id="listingDescription" rows="4" placeholder="Describe the property..."></textarea>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="listingFeatures">Features (comma-separated)</label>
+                                    <input type="text" id="listingFeatures" placeholder="Central Air, Hardwood Floors, Garage, New Roof">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Listing</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Onboarding -->
+                <div class="page" id="onboarding">
+                    <h1 class="page-title">Onboarding Resources</h1>
+                    <p class="page-subtitle">Everything you need to get started with Harvest Realty.</p>
+                    
+                    <div class="card">
+                        <h3>📧 Email Setup</h3>
+                        <p>Set up your professional @harvestrealty.llc email account.</p>
+                        <div style="margin-top: 1rem;">
+                            <a href="onboarding.html" target="_blank" class="btn btn-primary">View Email Setup Guide</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>✉️ Email Signature</h3>
+                        <p>Create your professional email signature with company branding.</p>
+                        <div style="margin-top: 1rem;">
+                            <a href="signature.html" target="_blank" class="btn btn-primary">Generate Email Signature</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📋 Getting Started Checklist</h3>
+                        <ul style="list-style: none; margin-top: 1rem;">
+                            <li style="padding: 0.5rem 0;"><input type="checkbox" id="check1"> <label for="check1">Set up your @harvestrealty.llc email</label></li>
+                            <li style="padding: 0.5rem 0;"><input type="checkbox" id="check2"> <label for="check2">Create your email signature</label></li>
+                            <li style="padding: 0.5rem 0;"><input type="checkbox" id="check3"> <label for="check3">Complete your agent profile</label></li>
+                            <li style="padding: 0.5rem 0;"><input type="checkbox" id="check4"> <label for="check4">Upload a professional headshot</label></li>
+                            <li style="padding: 0.5rem 0;"><input type="checkbox" id="check5"> <label for="check5">Review company policies</label></li>
+                            <li style="padding: 0.5rem 0;"><input type="checkbox" id="check6"> <label for="check6">Set up Cal.com for appointments</label></li>
+                            <li style="padding: 0.5rem 0;"><input type="checkbox" id="check7"> <label for="check7">Join team communication channels</label></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Resources -->
+                <div class="page" id="resources">
+                    <h1 class="page-title">Resources</h1>
+                    <p class="page-subtitle">Documents, forms, and helpful resources.</p>
+                    
+                    <div class="card">
+                        <h3>📄 Forms & Documents</h3>
+                        <div class="quick-links" style="margin-top: 1rem;">
+                            <a href="apply.html" target="_blank" class="quick-link">
+                                <span class="icon">📝</span>
+                                <span>Rental Application</span>
+                            </a>
+                            <a href="https://www.parealtors.org/standard-forms/" target="_blank" class="quick-link">
+                                <span class="icon">📋</span>
+                                <span>PA Realtors Forms</span>
+                            </a>
+                            <a href="privacy.html" target="_blank" class="quick-link">
+                                <span class="icon">🔒</span>
+                                <span>Privacy Policy</span>
+                            </a>
+                            <a href="terms.html" target="_blank" class="quick-link">
+                                <span class="icon">📜</span>
+                                <span>Terms of Use</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🔗 Quick Links</h3>
+                        <div class="quick-links" style="margin-top: 1rem;">
+                            <a href="https://bright.mlsmatrix.com/" target="_blank" class="quick-link">
+                                <span class="icon">🏠</span>
+                                <span>Bright MLS</span>
+                            </a>
+                            <a href="https://cal.com/harvestrealtyllc" target="_blank" class="quick-link">
+                                <span class="icon">📅</span>
+                                <span>Cal.com Dashboard</span>
+                            </a>
+                            <a href="social.html" target="_blank" class="quick-link">
+                                <span class="icon">📱</span>
+                                <span>Social Media</span>
+                            </a>
+                            <a href="partners.html" target="_blank" class="quick-link">
+                                <span class="icon">🤝</span>
+                                <span>Partners</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="page" id="settings">
+                    <h1 class="page-title">Settings</h1>
+                    <p class="page-subtitle">Manage your account settings and security.</p>
+                    
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="showTab('password-tab')">Change Password</button>
+                        <button class="tab-btn" onclick="showTab('notifications-tab')">Notifications</button>
+                    </div>
+                    
+                    <!-- Change Password Tab -->
+                    <div class="tab-content active" id="password-tab">
+                        <div class="alert alert-success" id="passwordSuccess">Password changed successfully!</div>
+                        <div class="alert alert-error" id="passwordError">Passwords do not match. Please try again.</div>
+                        
+                        <div class="card">
+                            <h3>Change Password</h3>
+                            <form onsubmit="changePassword(event)" style="max-width: 500px;">
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password</label>
+                                    <input type="password" id="currentPassword" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">New Password</label>
+                                    <input type="password" id="newPassword" required oninput="checkPasswordStrength()">
+                                    <div class="password-strength">
+                                        <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                                    </div>
+                                    <small style="color: #666;">Must be at least 8 characters with uppercase, lowercase, and number</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmPassword" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications Tab -->
+                    <div class="tab-content" id="notifications-tab">
+                        <div class="card">
+                            <h3>Notification Preferences</h3>
+                            <div style="margin-top: 1rem;">
+                                <div style="padding: 1rem 0; border-bottom: 1px solid #eee;">
+                                    <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                                        <input type="checkbox" checked>
+                                        <span>Email notifications for new inquiries</span>
+                                    </label>
+                                </div>
+                                <div style="padding: 1rem 0; border-bottom: 1px solid #eee;">
+                                    <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                                        <input type="checkbox" checked>
+                                        <span>Weekly performance summary</span>
+                                    </label>
+                                </div>
+                                <div style="padding: 1rem 0; border-bottom: 1px solid #eee;">
+                                    <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                                        <input type="checkbox">
+                                        <span>Marketing and promotional emails</span>
+                                    </label>
+                                </div>
+                                <div style="padding: 1rem 0;">
+                                    <label style="display: flex; align-items: center; gap: 1rem; cursor: pointer;">
+                                        <input type="checkbox" checked>
+                                        <span>System announcements</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" style="margin-top: 1rem;">Save Preferences</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Panel (Admin Only) -->
+                <div class="page" id="admin-panel">
+                    <h1 class="page-title">👑 Admin Panel</h1>
+                    <p class="page-subtitle">Manage users, permissions, and system settings.</p>
+                    
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="showTab('users-tab')">User Management</button>
+                        <button class="tab-btn" onclick="showTab('email-setup-tab')">Email Setup Guide</button>
+                        <button class="tab-btn" onclick="showTab('system-tab')">System Settings</button>
+                    </div>
+                    
+                    <!-- User Management Tab -->
+                    <div class="tab-content active" id="users-tab">
+                        <div class="alert alert-success" id="userSuccess">User action completed successfully!</div>
+                        
+                        <div class="card">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                                <h3 style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">All Users</h3>
+                                <button class="btn btn-primary" onclick="showAddUserModal()">+ Add New User</button>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Admin</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="usersTable">
+                                        <!-- Populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Email Setup Guide Tab -->
+                    <div class="tab-content" id="email-setup-tab">
+                        <div class="card">
+                            <h3>📧 PurelyMail Email Setup for New Agents</h3>
+                            <p style="margin-bottom: 1.5rem;">Follow these steps to create a new email account for an agent:</p>
+                            
+                            <div style="background: var(--cream); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 1: Login to PurelyMail Admin</h4>
+                                <ol style="margin-left: 1.5rem; color: #555;">
+                                    <li style="margin-bottom: 0.5rem;">Go to <a href="https://purelymail.com/manage/login" target="_blank" style="color: var(--burgundy);">https://purelymail.com/manage/login</a></li>
+                                    <li style="margin-bottom: 0.5rem;">Login with admin account: <strong>HarvestRealtyLLC@purelymail.com</strong></li>
+                                    <li style="margin-bottom: 0.5rem;">Enter the admin password</li>
+                                </ol>
+                            </div>
+                            
+                            <div style="background: var(--cream); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 2: Navigate to Users</h4>
+                                <ol style="margin-left: 1.5rem; color: #555;">
+                                    <li style="margin-bottom: 0.5rem;">Click on <strong>"Users"</strong> in the top navigation menu</li>
+                                    <li style="margin-bottom: 0.5rem;">You will see a list of all current email users</li>
+                                </ol>
+                            </div>
+                            
+                            <div style="background: var(--cream); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 3: Create New User</h4>
+                                <ol style="margin-left: 1.5rem; color: #555;">
+                                    <li style="margin-bottom: 0.5rem;">Click <strong>"Create new user"</strong> button</li>
+                                    <li style="margin-bottom: 0.5rem;">In the <strong>Name</strong> field, enter the agent's first name (lowercase)<br><em>Example: for "John Smith" enter "john"</em></li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>IMPORTANT:</strong> Select domain <strong>"harvestrealty.llc"</strong> from the dropdown</li>
+                                    <li style="margin-bottom: 0.5rem;">Generate a random password or create one (minimum 12 characters recommended)</li>
+                                    <li style="margin-bottom: 0.5rem;">Check <strong>"Enable search indexing"</strong> ✓</li>
+                                    <li style="margin-bottom: 0.5rem;">Check <strong>"Enable spam filtering"</strong> ✓</li>
+                                    <li style="margin-bottom: 0.5rem;">Check <strong>"Enable password reset"</strong> ✓</li>
+                                    <li style="margin-bottom: 0.5rem;">Click <strong>"Save"</strong></li>
+                                </ol>
+                            </div>
+                            
+                            <div style="background: var(--cream); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 4: Send Credentials to Agent</h4>
+                                <ol style="margin-left: 1.5rem; color: #555;">
+                                    <li style="margin-bottom: 0.5rem;">Send the new agent their login credentials:</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Email:</strong> firstname@harvestrealty.llc</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Password:</strong> (the generated password)</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Webmail:</strong> <a href="https://purelymail.com/webmail" target="_blank" style="color: var(--burgundy);">https://purelymail.com/webmail</a></li>
+                                    <li style="margin-bottom: 0.5rem;">Direct them to the <a href="onboarding.html" target="_blank" style="color: var(--burgundy);">Onboarding Page</a> for full setup instructions</li>
+                                </ol>
+                            </div>
+                            
+                            <div style="background: #E8F5E9; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--green);">
+                                <h4 style="color: var(--green); margin-bottom: 0.5rem;">✅ Quick Reference</h4>
+                                <p style="margin-bottom: 0.5rem;"><strong>Admin Login:</strong> HarvestRealtyLLC@purelymail.com</p>
+                                <p style="margin-bottom: 0.5rem;"><strong>Domain:</strong> harvestrealty.llc</p>
+                                <p style="margin-bottom: 0.5rem;"><strong>PurelyMail Admin:</strong> <a href="https://purelymail.com/manage/users" target="_blank" style="color: var(--green);">purelymail.com/manage/users</a></p>
+                                <p><strong>Webmail:</strong> <a href="https://purelymail.com/webmail" target="_blank" style="color: var(--green);">purelymail.com/webmail</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- System Settings Tab -->
+                    <div class="tab-content" id="system-tab">
+                        <div class="card">
+                            <h3>System Settings</h3>
+                            <div style="margin-top: 1.5rem;">
+                                <div style="padding: 1rem 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <strong>Maintenance Mode</strong>
+                                        <p style="font-size: 0.9rem; color: #666;">Temporarily disable the website for maintenance</p>
+                                    </div>
+                                    <label class="switch" style="position: relative; display: inline-block; width: 50px; height: 26px;">
+                                        <input type="checkbox" style="opacity: 0; width: 0; height: 0;">
+                                        <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 26px;"></span>
+                                    </label>
+                                </div>
+                                <div style="padding: 1rem 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <strong>New User Registration</strong>
+                                        <p style="font-size: 0.9rem; color: #666;">Allow new agents to self-register</p>
+                                    </div>
+                                    <label class="switch" style="position: relative; display: inline-block; width: 50px; height: 26px;">
+                                        <input type="checkbox" style="opacity: 0; width: 0; height: 0;">
+                                        <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 26px;"></span>
+                                    </label>
+                                </div>
+                                <div style="padding: 1rem 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center;">
+                                    <div>
+                                        <strong>Email Notifications</strong>
+                                        <p style="font-size: 0.9rem; color: #666;">Send admin notifications for new listings</p>
+                                    </div>
+                                    <label class="switch" style="position: relative; display: inline-block; width: 50px; height: 26px;">
+                                        <input type="checkbox" checked style="opacity: 0; width: 0; height: 0;">
+                                        <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--green); transition: .4s; border-radius: 26px;"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>Quick Links</h3>
+                            <div class="quick-links" style="margin-top: 1rem;">
+                                <a href="https://purelymail.com/manage/users" target="_blank" class="quick-link">
+                                    <span class="icon">📧</span>
+                                    <span>PurelyMail Admin</span>
+                                </a>
+                                <a href="https://bright.mlsmatrix.com/" target="_blank" class="quick-link">
+                                    <span class="icon">🏠</span>
+                                    <span>Bright MLS</span>
+                                </a>
+                                <a href="https://cal.com/harvestrealtyllc" target="_blank" class="quick-link">
+                                    <span class="icon">📅</span>
+                                    <span>Cal.com Dashboard</span>
+                                </a>
+                                <a href="index.html" target="_blank" class="quick-link">
+                                    <span class="icon">🌐</span>
+                                    <span>View Website</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <h3>Activity Log</h3>
+                            <div style="margin-top: 1rem; max-height: 300px; overflow-y: auto;">
+                                <div style="padding: 0.75rem; background: var(--cream); border-radius: 8px; margin-bottom: 0.5rem;">
+                                    <span style="color: var(--burgundy); font-weight: 500;">Prasad Abraham</span> logged in
+                                    <span style="float: right; color: #666; font-size: 0.85rem;">Just now</span>
+                                </div>
+                                <div style="padding: 0.75rem; background: var(--cream); border-radius: 8px; margin-bottom: 0.5rem;">
+                                    <span style="color: var(--burgundy); font-weight: 500;">System</span> Daily backup completed
+                                    <span style="float: right; color: #666; font-size: 0.85rem;">2 hours ago</span>
+                                </div>
+                                <div style="padding: 0.75rem; background: var(--cream); border-radius: 8px; margin-bottom: 0.5rem;">
+                                    <span style="color: var(--burgundy); font-weight: 500;">Jacob Abraham</span> added new listing
+                                    <span style="float: right; color: #666; font-size: 0.85rem;">Yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: var(--white); border-radius: 20px; padding: 2rem; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--burgundy); font-size: 1.5rem;">Add New User</h3>
+                <button onclick="closeAddUserModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            <form onsubmit="addNewUser(event)">
+                <div class="form-group">
+                    <label for="newUserName">Full Name *</label>
+                    <input type="text" id="newUserName" required placeholder="John Smith">
+                </div>
+                <div class="form-group">
+                    <label for="newUserEmail">Email (firstname@harvestrealty.llc) *</label>
+                    <input type="email" id="newUserEmail" required placeholder="john@harvestrealty.llc">
+                </div>
+                <div class="form-group">
+                    <label for="newUserRole">Role *</label>
+                    <select id="newUserRole" required>
+                        <option value="Sales Agent">Sales Agent</option>
+                        <option value="Broker/Owner">Broker/Owner</option>
+                        <option value="Admin / Media Partner">Admin / Media Partner</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="newUserPhone">Phone Number</label>
+                    <input type="tel" id="newUserPhone" placeholder="215-555-1234">
+                </div>
+                <div class="form-group">
+                    <label for="newUserPassword">Temporary Password *</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="newUserPassword" required placeholder="Generate or enter password">
+                        <button type="button" onclick="generatePassword()" class="btn btn-secondary" style="white-space: nowrap;">Generate</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" id="newUserAdmin">
+                        <span>Grant Admin Privileges</span>
+                    </label>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Add User</button>
+                    <button type="button" onclick="closeAddUserModal()" class="btn btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Agent Database with Passwords (In production, this would be server-side)
+        const agents = {
+            'prasad@harvestrealty.llc': {
+                name: 'Prasad Abraham',
+                role: 'Broker/Owner',
+                isAdmin: true,
+                password: 'Harvest2024!',
+                phone: '215-519-4096',
+                licensePA: 'RB069944',
+                licenseNJ: '',
+                bio: 'Over 15 years of experience in real estate. Founder of Harvest Realty LLC.',
+                specialties: 'Investment Properties, Commercial Real Estate, First-Time Buyers',
+                listings: [
+                    { address: '2456 N 5th St, Philadelphia', price: '$125,000', type: 'Land', status: 'Active' },
+                    { address: '565 E Tabor Rd, Philadelphia', price: '$244,900', type: 'Duplex', status: 'Under Contract' }
+                ]
+            },
+            'jacob@harvestrealty.llc': {
+                name: 'Jacob Abraham',
+                role: 'Sales Agent',
+                isAdmin: false,
+                password: 'Harvest2024!',
+                phone: '215-519-8916',
+                licensePA: 'RS371498',
+                licenseNJ: '',
+                bio: 'Dedicated to helping clients find their perfect home.',
+                specialties: 'First-Time Buyers, Residential Sales',
+                listings: []
+            },
+            'dyson@harvestrealty.llc': {
+                name: 'Dyson Daniel',
+                role: 'Sales Agent',
+                isAdmin: false,
+                password: 'Harvest2024!',
+                phone: '267-290-0963',
+                licensePA: 'RS370036',
+                licenseNJ: '',
+                bio: 'Passionate about real estate and client satisfaction.',
+                specialties: 'Residential Sales, Rentals',
+                listings: []
+            },
+            'abdullah@harvestrealty.llc': {
+                name: 'Abdullah Khan',
+                role: 'Sales Agent',
+                isAdmin: false,
+                password: 'Harvest2024!',
+                phone: '857-226-3031',
+                licensePA: 'RS370017',
+                licenseNJ: '2427729',
+                bio: 'Serving clients in both Pennsylvania and New Jersey.',
+                specialties: 'First-Time Buyers, Multi-Family Properties',
+                listings: []
+            },
+            'thomas@harvestrealty.llc': {
+                name: 'Thomas Thomas',
+                role: 'Sales Agent',
+                isAdmin: false,
+                password: 'Harvest2024!',
+                phone: '215-519-3101',
+                licensePA: 'RS371066',
+                licenseNJ: '',
+                bio: 'Committed to providing excellent service.',
+                specialties: 'Residential Sales, Investment Properties',
+                listings: []
+            },
+            'contact@harvestrealty.llc': {
+                name: 'Chronos Media',
+                role: 'Admin / Media Partner',
+                isAdmin: true,
+                password: 'Chronos2024!',
+                phone: '',
+                licensePA: '',
+                licenseNJ: '',
+                bio: 'Media and technology partner for Harvest Realty LLC.',
+                specialties: 'Website Management, Marketing, Technology',
+                listings: []
+            }
+        };
+
+        let currentUser = null;
+
+        // Login Handler
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value.toLowerCase();
+            const password = document.getElementById('loginPassword').value;
+            
+            if (agents[email] && agents[email].password === password) {
+                currentUser = email;
+                document.getElementById('loginError').classList.remove('show');
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboard').classList.add('active');
+                loadUserData();
+            } else {
+                document.getElementById('loginError').classList.add('show');
+            }
+        }
+
+        // Logout Handler
+        function handleLogout() {
+            currentUser = null;
+            document.getElementById('dashboard').classList.remove('active');
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            // Reset to dashboard home
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('dashboard-home').classList.add('active');
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+            document.querySelector('.sidebar-menu a').classList.add('active');
+        }
+
+        // Load User Data
+        function loadUserData() {
+            const user = agents[currentUser];
+            
+            // Update header
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userRole').textContent = user.role;
+            document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
+            
+            // Show admin menu if admin
+            if (user.isAdmin) {
+                document.getElementById('adminMenuItem').style.display = 'block';
+                loadUsersTable();
+            } else {
+                document.getElementById('adminMenuItem').style.display = 'none';
+            }
+            
+            // Update profile form
+            document.getElementById('profileName').value = user.name;
+            document.getElementById('profileTitle').value = user.role;
+            document.getElementById('profileEmail').value = currentUser;
+            document.getElementById('profilePhone').value = user.phone;
+            document.getElementById('profileLicense').value = user.licensePA;
+            document.getElementById('profileLicenseNJ').value = user.licenseNJ;
+            document.getElementById('profileBio').value = user.bio;
+            document.getElementById('profileSpecialties').value = user.specialties;
+            
+            // Update stats
+            const activeListings = user.listings.filter(l => l.status === 'Active' || l.status === 'Under Contract').length;
+            const soldListings = user.listings.filter(l => l.status === 'Sold').length;
+            document.getElementById('activeListings').textContent = activeListings;
+            document.getElementById('soldListings').textContent = soldListings;
+            
+            // Load listings table
+            loadListingsTable();
+        }
+        
+        // Load Users Table (Admin Only)
+        function loadUsersTable() {
+            const tbody = document.getElementById('usersTable');
+            tbody.innerHTML = Object.keys(agents).map(email => {
+                const user = agents[email];
+                return `
+                    <tr>
+                        <td>${user.name}</td>
+                        <td>${email}</td>
+                        <td>${user.role}</td>
+                        <td>
+                            <span class="status-badge ${user.isAdmin ? 'status-active' : 'status-pending'}">
+                                ${user.isAdmin ? 'Yes' : 'No'}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="action-btn edit" onclick="toggleAdmin('${email}')">${user.isAdmin ? 'Remove Admin' : 'Make Admin'}</button>
+                            ${email !== currentUser ? `<button class="action-btn delete" onclick="deleteUser('${email}')">Delete</button>` : ''}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        // Toggle Admin Status
+        function toggleAdmin(email) {
+            if (email === currentUser) {
+                alert('You cannot change your own admin status.');
+                return;
+            }
+            agents[email].isAdmin = !agents[email].isAdmin;
+            loadUsersTable();
+            showAdminSuccess('Admin status updated successfully!');
+        }
+        
+        // Delete User
+        function deleteUser(email) {
+            if (email === currentUser) {
+                alert('You cannot delete your own account.');
+                return;
+            }
+            if (confirm(`Are you sure you want to delete ${agents[email].name}?`)) {
+                delete agents[email];
+                loadUsersTable();
+                showAdminSuccess('User deleted successfully!');
+            }
+        }
+        
+        // Show Add User Modal
+        function showAddUserModal() {
+            document.getElementById('addUserModal').style.display = 'flex';
+        }
+        
+        // Close Add User Modal
+        function closeAddUserModal() {
+            document.getElementById('addUserModal').style.display = 'none';
+            document.getElementById('newUserName').value = '';
+            document.getElementById('newUserEmail').value = '';
+            document.getElementById('newUserPhone').value = '';
+            document.getElementById('newUserPassword').value = '';
+            document.getElementById('newUserAdmin').checked = false;
+        }
+        
+        // Generate Random Password
+        function generatePassword() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%';
+            let password = '';
+            for (let i = 0; i < 14; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('newUserPassword').value = password;
+        }
+        
+        // Add New User
+        function addNewUser(event) {
+            event.preventDefault();
+            const name = document.getElementById('newUserName').value;
+            const email = document.getElementById('newUserEmail').value.toLowerCase();
+            const role = document.getElementById('newUserRole').value;
+            const phone = document.getElementById('newUserPhone').value;
+            const password = document.getElementById('newUserPassword').value;
+            const isAdmin = document.getElementById('newUserAdmin').checked;
+            
+            if (agents[email]) {
+                alert('A user with this email already exists.');
+                return;
+            }
+            
+            agents[email] = {
+                name: name,
+                role: role,
+                isAdmin: isAdmin,
+                password: password,
+                phone: phone,
+                licensePA: '',
+                licenseNJ: '',
+                bio: '',
+                specialties: '',
+                listings: []
+            };
+            
+            closeAddUserModal();
+            loadUsersTable();
+            showAdminSuccess(`User ${name} created successfully! Send them their login credentials.`);
+        }
+        
+        // Show Admin Success Message
+        function showAdminSuccess(message) {
+            const alert = document.getElementById('userSuccess');
+            alert.textContent = message;
+            alert.classList.add('show');
+            setTimeout(() => alert.classList.remove('show'), 4000);
+        }
+
+        // Load Listings Table
+        function loadListingsTable() {
+            const user = agents[currentUser];
+            const tbody = document.getElementById('listingsTable');
+            
+            if (user.listings.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #666;">No listings yet. Add your first listing!</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = user.listings.map((listing, index) => `
+                <tr>
+                    <td>${listing.address}</td>
+                    <td>${listing.price}</td>
+                    <td>${listing.type}</td>
+                    <td><span class="status-badge status-${listing.status.toLowerCase().replace(' ', '-')}">${listing.status}</span></td>
+                    <td>
+                        <button class="action-btn edit" onclick="editListing(${index})">Edit</button>
+                        <button class="action-btn delete" onclick="deleteListing(${index})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Show Page
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            // Update sidebar active state
+            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
+            event.target.closest('a')?.classList.add('active');
+        }
+
+        // Show Tab
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Save Profile
+        function saveProfile(event) {
+            event.preventDefault();
+            const user = agents[currentUser];
+            
+            user.name = document.getElementById('profileName').value;
+            user.role = document.getElementById('profileTitle').value;
+            user.phone = document.getElementById('profilePhone').value;
+            user.licensePA = document.getElementById('profileLicense').value;
+            user.licenseNJ = document.getElementById('profileLicenseNJ').value;
+            user.bio = document.getElementById('profileBio').value;
+            user.specialties = document.getElementById('profileSpecialties').value;
+            
+            // Update header
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userRole').textContent = user.role;
+            
+            // Show success message
+            const alert = document.getElementById('profileSuccess');
+            alert.classList.add('show');
+            setTimeout(() => alert.classList.remove('show'), 3000);
+        }
+
+        // Add Listing
+        function addListing(event) {
+            event.preventDefault();
+            const user = agents[currentUser];
+            
+            const newListing = {
+                address: document.getElementById('listingAddress').value,
+                price: document.getElementById('listingPrice').value,
+                type: document.getElementById('listingType').value,
+                status: document.getElementById('listingStatus').value,
+                beds: document.getElementById('listingBeds').value,
+                baths: document.getElementById('listingBaths').value,
+                sqft: document.getElementById('listingSqft').value,
+                mls: document.getElementById('listingMLS').value,
+                description: document.getElementById('listingDescription').value,
+                features: document.getElementById('listingFeatures').value
+            };
+            
+            user.listings.push(newListing);
+            
+            // Clear form
+            event.target.reset();
+            
+            // Update stats
+            loadUserData();
+            
+            // Show success message
+            const alert = document.getElementById('listingSuccess');
+            alert.classList.add('show');
+            setTimeout(() => alert.classList.remove('show'), 3000);
+        }
+
+        // Edit Listing
+        function editListing(index) {
+            const user = agents[currentUser];
+            const listing = user.listings[index];
+            
+            // Populate form
+            document.getElementById('listingAddress').value = listing.address;
+            document.getElementById('listingPrice').value = listing.price;
+            document.getElementById('listingType').value = listing.type;
+            document.getElementById('listingStatus').value = listing.status;
+            document.getElementById('listingBeds').value = listing.beds || '';
+            document.getElementById('listingBaths').value = listing.baths || '';
+            document.getElementById('listingSqft').value = listing.sqft || '';
+            document.getElementById('listingMLS').value = listing.mls || '';
+            document.getElementById('listingDescription').value = listing.description || '';
+            document.getElementById('listingFeatures').value = listing.features || '';
+            
+            // Remove old listing
+            user.listings.splice(index, 1);
+            
+            // Show add listing page
+            showPage('add-listing');
+        }
+
+        // Delete Listing
+        function deleteListing(index) {
+            if (confirm('Are you sure you want to delete this listing?')) {
+                const user = agents[currentUser];
+                user.listings.splice(index, 1);
+                loadUserData();
+            }
+        }
+
+        // Change Password
+        function changePassword(event) {
+            event.preventDefault();
+            const current = document.getElementById('currentPassword').value;
+            const newPass = document.getElementById('newPassword').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            
+            const user = agents[currentUser];
+            
+            // Hide all alerts
+            document.getElementById('passwordSuccess').classList.remove('show');
+            document.getElementById('passwordError').classList.remove('show');
+            
+            if (current !== user.password) {
+                document.getElementById('passwordError').textContent = 'Current password is incorrect.';
+                document.getElementById('passwordError').classList.add('show');
+                return;
+            }
+            
+            if (newPass !== confirm) {
+                document.getElementById('passwordError').textContent = 'New passwords do not match.';
+                document.getElementById('passwordError').classList.add('show');
+                return;
+            }
+            
+            if (newPass.length < 8) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 8 characters.';
+                document.getElementById('passwordError').classList.add('show');
+                return;
+            }
+            
+            // Update password
+            user.password = newPass;
+            
+            // Clear form
+            event.target.reset();
+            document.getElementById('passwordStrengthBar').className = 'password-strength-bar';
+            
+            // Show success
+            document.getElementById('passwordSuccess').classList.add('show');
+            setTimeout(() => document.getElementById('passwordSuccess').classList.remove('show'), 3000);
+        }
+
+        // Password Strength Checker
+        function checkPasswordStrength() {
+            const password = document.getElementById('newPassword').value;
+            const bar = document.getElementById('passwordStrengthBar');
+            
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            bar.className = 'password-strength-bar';
+            if (strength <= 2) bar.classList.add('weak');
+            else if (strength <= 4) bar.classList.add('medium');
+            else bar.classList.add('strong');
+        }
+
+        // Forgot Password
+        function showForgotPassword() {
+            alert('Please contact Prasad Abraham at prasad@harvestrealty.llc or call 215-519-4096 to reset your password.');
+        }
+    </script>
+</body>
+</html>
