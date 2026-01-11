@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Onboarding - Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --burgundy-light: #A84040;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--burgundy);
+        }
+        
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--burgundy);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: var(--burgundy-dark);
+            transform: translateX(-5px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 5% 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        /* Cards */
+        .info-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .info-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--burgundy);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .info-card h3 {
+            color: var(--burgundy);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .info-card p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .info-card ul, .info-card ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .info-card li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+        
+        .info-card a {
+            color: var(--burgundy);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .info-card a:hover {
+            color: var(--gold-dark);
+            text-decoration: underline;
+        }
+        
+        .highlight-box {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--burgundy);
+        }
+        
+        .highlight-box.warning {
+            border-left-color: var(--gold);
+            background: #FFF9E6;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+        
+        .highlight-box strong {
+            color: var(--burgundy);
+        }
+        
+        .code-box {
+            background: var(--charcoal);
+            color: #00FF00;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        
+        .code-box p {
+            margin-bottom: 0.25rem;
+            color: #00FF00;
+        }
+        
+        .code-box .label {
+            color: #888;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow);
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gold);
+            color: var(--charcoal);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            margin-left: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+        
+        /* Step Cards with Screenshots */
+        .step-card {
+            background: var(--cream);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .step-card.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .step-number-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+            height: 50px;
+            background: var(--burgundy);
+            color: var(--white);
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            color: var(--burgundy);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-content p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        
+        .step-screenshot {
+            max-width: 200px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .step-screenshot:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Modal for enlarged screenshots */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        
+        /* Contact Card */
+        .contact-card {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .contact-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-card p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-card a {
+            color: var(--gold);
+        }
+        
+        .contact-card a:hover {
+            color: var(--white);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+        
+        footer a {
+            color: var(--cream);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .logo {
+                justify-content: center;
+            }
+            
+            .logo img {
+                height: 45px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .back-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding: 130px 5% 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .info-card {
+                padding: 1.5rem;
+            }
+            
+            .info-card h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+                display: block;
+                text-align: center;
+            }
+            
+            .step-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-card.reverse {
+                flex-direction: column;
+            }
+            
+            .step-screenshot {
+                max-width: 180px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-text p {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </a>
+            <a href="index.html" class="back-btn">← Back to Home</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>👋 Welcome to the Team!</h1>
+        <p>Everything you need to get started at Harvest Realty LLC.</p>
+    </section>
+
+    <main class="main-content">
+        
+        <!-- Email Setup Section -->
+        <div class="info-card">
+            <h2>📧 Email Setup</h2>
+            <p>Your company email is <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e29b8d97908c838f87a28a8390948791969087838e969bcc8e8e81">[email&#160;protected]</a></strong>. Follow the steps below to set up email on your devices.</p>
+            
+            <div class="highlight-box warning">
+                <p>⚠️ <strong>Important:</strong> Please see <strong>Prasad Abraham</strong> for your initial password setup before proceeding.</p>
+            </div>
+            
+            <h3>🌐 Webmail Access (First Time Setup - REQUIRED)</h3>
+            <p>You must complete these steps first to set your name and change your password:</p>
+            <a href="https://purelymail.com/user/login" target="_blank" class="btn-primary" style="color: #ffffff;">Open Webmail →</a>
+        </div>
+        
+        <!-- Webmail First Time Setup Guide -->
+        <div class="info-card">
+            <h2>🖥️ First Time Webmail Login (MUST DO FIRST)</h2>
+            <p>Before setting up email on your phone, you must first login to webmail to add your name and change your password.</p>
+            
+            <div class="highlight-box">
+                <p>💡 <strong>Tip:</strong> You can access your email through Webmail on any device — computer, tablet, or phone — by visiting <a href="https://purelymail.com/user/login" target="_blank">purelymail.com/user/login</a> in any web browser. No app installation required!</p>
+            </div>
+            
+            <p><em>Click any screenshot to enlarge</em></p>
+            
+            <div class="step-card">
+                <div class="step-number-badge">1</div>
+                <div class="step-content">
+                    <h4>Open Your Browser</h4>
+                    <p>Open Chrome, Safari, Firefox, or any web browser of your choice.</p>
+                </div>
+                <img src="photos/webmail-step1.png" alt="Step 1: Open Browser" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">2</div>
+                <div class="step-content">
+                    <h4>Go to Purelymail Login</h4>
+                    <p>Navigate to <a href="https://purelymail.com/user/login" target="_blank"><strong>purelymail.com/user/login</strong></a></p>
+                </div>
+                <img src="photos/webmail-step2.png" alt="Step 2: Go to Purelymail" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">3</div>
+                <div class="step-content">
+                    <h4>Login With Your Credentials</h4>
+                    <p>Enter your email address (<strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e39a8c96918d828e86a38b8291958690979186828f979acd8f8f80">[email&#160;protected]</a></strong>) and the temporary password provided by Prasad Abraham.</p>
+                </div>
+                <img src="photos/webmail-step3.png" alt="Step 3: Login" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">4</div>
+                <div class="step-content">
+                    <h4>Welcome to Your Inbox!</h4>
+                    <p>You're now logged in to your webmail inbox. You'll see the main interface with folders on the left.</p>
+                </div>
+                <img src="photos/webmail-step4.png" alt="Step 4: Inbox" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">5</div>
+                <div class="step-content">
+                    <h4>Add Your Name to the Account</h4>
+                    <p>Click <strong>Settings</strong> on the left sidebar, then <strong>Identities</strong>. Change "Your Name" to your actual name (e.g., "Prasad Abraham"). Click <strong>Save</strong>.</p>
+                </div>
+                <img src="photos/webmail-step5.png" alt="Step 5: Add Name" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">6</div>
+                <div class="step-content">
+                    <h4>Change Your Password</h4>
+                    <p>Click <strong>Password</strong> on the left sidebar to go to the password change page.</p>
+                </div>
+                <img src="photos/webmail-step6.png" alt="Step 6: Password Menu" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">7</div>
+                <div class="step-content">
+                    <h4>Set Your New Password</h4>
+                    <p>Enter your new password twice, then enter your current credentials below and click <strong>Login</strong> to save. Use this new password for all future logins and device setup.</p>
+                </div>
+                <img src="photos/webmail-step7.png" alt="Step 7: Change Password" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="highlight-box">
+                <p>✅ <strong>First-time setup complete!</strong> You can now set up email on your iPhone or use webmail anytime at <a href="https://purelymail.com/user/login" target="_blank">purelymail.com/user/login</a></p>
+            </div>
+            
+            <h3>✉️ Optional: Add Your Email Signature</h3>
+            <p>While in webmail, you can add your professional email signature:</p>
+            <ol>
+                <li>Go to <strong>Settings</strong> → <strong>Identities</strong></li>
+                <li>Click on your email identity (e.g., &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="146d7b61667a757971547c75666271676066717578606d3a787877">[email&#160;protected]</a>&gt;)</li>
+                <li>Scroll down to the <strong>Signature</strong> section</li>
+                <li>Visit our <a href="signature.html" target="_blank"><strong>Email Signature Generator</strong></a> to create your signature</li>
+                <li>Click "Select All" then copy (Ctrl+C / Cmd+C)</li>
+                <li>Paste into the Signature box in webmail</li>
+                <li>Click <strong>Save</strong></li>
+            </ol>
+            
+            <div class="step-card">
+                <div class="step-number-badge">📝</div>
+                <div class="step-content">
+                    <h4>Signature in Webmail Settings</h4>
+                    <p>After pasting, your signature should appear in the Signature box like this. Click <strong>Save</strong> to apply it to all outgoing emails.</p>
+                </div>
+                <img src="photos/webmail-signature.png" alt="Signature in Webmail" class="step-screenshot" style="max-width: 300px;" onclick="openModal(this.src)">
+            </div>
+            
+            <a href="signature.html" target="_blank" class="btn-secondary" style="margin-left: 0; color: #2C2C2C;">✍️ Create Your Signature</a>
+        </div>
+        
+        <!-- Google/Microsoft Account Setup -->
+        <div class="info-card">
+            <h2>☁️ Optional: Create Google or Microsoft Account</h2>
+            <p>For additional features like cloud storage, calendar, and productivity apps, you can create a Google or Microsoft account using your Harvest Realty email.</p>
+            
+            <div class="highlight-box">
+                <p>💡 <strong>Benefits:</strong> Access to Google Drive/OneDrive for file storage, Google Calendar/Outlook Calendar for scheduling, and other productivity tools — all linked to your @harvestrealty.llc email!</p>
+            </div>
+            
+            <h3>🔵 Create a Google Account</h3>
+            <p>Get access to Google Drive, Google Calendar, Google Docs, and more:</p>
+            <ol>
+                <li>Go to <a href="https://accounts.google.com/signup" target="_blank"><strong>accounts.google.com/signup</strong></a></li>
+                <li>Click <strong>"Use my current email address instead"</strong></li>
+                <li>Enter your <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3841574d4a5659555d7850594a4e5d4b4c4a5d59544c411654545b">[email&#160;protected]</a></strong> email</li>
+                <li>Follow the prompts to verify your email and create your account</li>
+                <li>You can now use Google Drive, Calendar, Docs, etc. with your work email!</li>
+            </ol>
+            <a href="https://accounts.google.com/signup" target="_blank" class="btn-primary" style="background: #4285F4; color: #ffffff;">Create Google Account →</a>
+            
+            <h3 style="margin-top: 2rem;">🟦 Create a Microsoft Account</h3>
+            <p>Get access to OneDrive, Outlook Calendar, Microsoft 365 apps, and more:</p>
+            <ol>
+                <li>Go to <a href="https://account.microsoft.com/account" target="_blank"><strong>account.microsoft.com</strong></a></li>
+                <li>Click <strong>"Create a Microsoft account"</strong></li>
+                <li>Choose <strong>"Use an email address you already have"</strong></li>
+                <li>Enter your <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="750c1a00071b141810351d14070310060107101419010c5b191916">[email&#160;protected]</a></strong> email</li>
+                <li>Follow the prompts to verify and complete setup</li>
+            </ol>
+            <a href="https://account.microsoft.com/account" target="_blank" class="btn-primary" style="background: #0078D4; color: #ffffff;">Create Microsoft Account →</a>
+        </div>
+        
+        <!-- Cal.com Personal Calendar Setup -->
+        <div class="info-card">
+            <h2>📅 Set Up Your Personal Appointment Calendar</h2>
+            <p>Each agent can create their own Cal.com account to manage personal appointments and let clients book directly with you.</p>
+            
+            <h3>Create Your Cal.com Account</h3>
+            <ol>
+                <li>Go to <a href="https://cal.com/signup" target="_blank"><strong>cal.com/signup</strong></a></li>
+                <li>Sign up using your <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5821372d2a3639353d1830392a2e3d2b2c2a3d39342c217634343b">[email&#160;protected]</a></strong> email</li>
+                <li>Choose a username (e.g., <strong>cal.com/prasadabraham</strong>)</li>
+                <li>Set up your availability and appointment types</li>
+                <li>Share your personal booking link with clients!</li>
+            </ol>
+            
+            <div class="highlight-box">
+                <p>📱 <strong>Sync with iCal/Google Calendar:</strong> Cal.com can sync with your iPhone Calendar (iCal), Google Calendar, or Outlook Calendar so all your appointments appear in one place. Set this up in Cal.com under <strong>Settings</strong> → <strong>Calendar</strong>.</p>
+            </div>
+            
+            <a href="https://cal.com/signup" target="_blank" class="btn-primary" style="color: #ffffff;">Create Cal.com Account →</a>
+        </div>
+        
+        <!-- iPhone Setup Guide with Screenshots -->
+        <div class="info-card">
+            <h2>📱 iPhone / iPad Setup Guide</h2>
+            <p>After completing the webmail first-time setup above, follow these steps to add your email to your iPhone or iPad.</p>
+            <p><em>Tap any screenshot to enlarge</em></p>
+            
+            <div class="step-card">
+                <div class="step-number-badge">1</div>
+                <div class="step-content">
+                    <h4>Locate the Settings App</h4>
+                    <p>From your home screen, find and tap the <strong>Settings</strong> app (gray gear icon).</p>
+                </div>
+                <img src="photos/step1-settings.jpg" alt="Step 1: Locate Settings App" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">2</div>
+                <div class="step-content">
+                    <h4>Go to Apps</h4>
+                    <p>Scroll down and tap on <strong>Apps</strong>.</p>
+                </div>
+                <img src="photos/step2-apps.jpg" alt="Step 2: Go to Apps" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">3</div>
+                <div class="step-content">
+                    <h4>Open Mail Settings</h4>
+                    <p>Tap on <strong>Mail</strong>, then tap <strong>Mail Accounts</strong>.</p>
+                </div>
+                <img src="photos/step3-mail.jpg" alt="Step 3: Open Mail Settings" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">4</div>
+                <div class="step-content">
+                    <h4>Add New Account</h4>
+                    <p>Tap <strong>Add Account</strong> to add your Harvest Realty email.</p>
+                </div>
+                <img src="photos/step4-add-account.jpg" alt="Step 4: Add Account" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">5</div>
+                <div class="step-content">
+                    <h4>Enter Your Email Address</h4>
+                    <p>Type your full email address: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a53455f58444b474f6a424b585c4f595e584f4b465e5304464649">[email&#160;protected]</a></strong> and tap <strong>Next</strong>.</p>
+                </div>
+                <img src="photos/step5-enter-email.jpg" alt="Step 5: Enter Email Address" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">6</div>
+                <div class="step-content">
+                    <h4>Select "Add Other Account"</h4>
+                    <p>At the bottom of the provider list, tap <strong>Add Other Account...</strong></p>
+                </div>
+                <img src="photos/step6-other-account.jpg" alt="Step 6: Add Other Account" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">7</div>
+                <div class="step-content">
+                    <h4>Enter Server Settings</h4>
+                    <p>Select <strong>IMAP</strong> and enter:</p>
+                    <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                        <li><strong>Incoming (IMAP):</strong> imap.purelymail.com</li>
+                        <li><strong>Outgoing (SMTP):</strong> smtp.purelymail.com</li>
+                        <li><strong>Username:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fc8593898e929d9199bc949d8e8a998f888e999d908885d290909f">[email&#160;protected]</a></li>
+                        <li><strong>Password:</strong> Your email password</li>
+                    </ul>
+                </div>
+                <img src="photos/step7-server-settings.jpg" alt="Step 7: Server Settings" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">8</div>
+                <div class="step-content">
+                    <h4>Save the Account</h4>
+                    <p>Make sure <strong>Mail</strong> is toggled ON, then tap <strong>Save</strong>.</p>
+                </div>
+                <img src="photos/step8-save.jpg" alt="Step 8: Save Account" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">9</div>
+                <div class="step-content">
+                    <h4>Account Added Successfully</h4>
+                    <p>You should now see <strong>Harvestrealty</strong> in your accounts list. Tap on it to verify settings.</p>
+                </div>
+                <img src="photos/step9-account-added.jpg" alt="Step 9: Account Added" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">10</div>
+                <div class="step-content">
+                    <h4>Open Account Settings</h4>
+                    <p>Tap <strong>Account Settings</strong> to verify your configuration.</p>
+                </div>
+                <img src="photos/step10-account-settings.jpg" alt="Step 10: Account Settings" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">11</div>
+                <div class="step-content">
+                    <h4>Check SMTP Settings</h4>
+                    <p>Tap on <strong>SMTP</strong> under Outgoing Mail Server.</p>
+                </div>
+                <img src="photos/step11-smtp.jpg" alt="Step 11: SMTP Settings" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">12</div>
+                <div class="step-content">
+                    <h4>Select Primary Server</h4>
+                    <p>Tap on <strong>smtp.purelymail.com</strong> under Primary Server.</p>
+                </div>
+                <img src="photos/step12-smtp-primary.jpg" alt="Step 12: SMTP Primary Server" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">13</div>
+                <div class="step-content">
+                    <h4>Verify SMTP Port Settings</h4>
+                    <p>Make sure these settings are correct:</p>
+                    <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                        <li><strong>Use SSL:</strong> ON ✓</li>
+                        <li><strong>Server Port:</strong> 587</li>
+                    </ul>
+                    <p>Tap <strong>Done</strong> when finished.</p>
+                </div>
+                <img src="photos/step13-smtp-settings.jpg" alt="Step 13: Verify SMTP Settings" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card reverse">
+                <div class="step-number-badge">14</div>
+                <div class="step-content">
+                    <h4>Go Back to Account Settings</h4>
+                    <p>Navigate back to the main Account Settings screen.</p>
+                </div>
+                <img src="photos/step14-back-settings.jpg" alt="Step 14: Back to Settings" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number-badge">15</div>
+                <div class="step-content">
+                    <h4>Verify Advanced (IMAP) Settings</h4>
+                    <p>Tap <strong>Advanced</strong> and verify:</p>
+                    <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                        <li><strong>Use SSL:</strong> ON ✓</li>
+                        <li><strong>Server Port:</strong> 993</li>
+                    </ul>
+                    <p>Tap <strong>Done</strong> to complete setup!</p>
+                </div>
+                <img src="photos/step15-advanced.jpg" alt="Step 15: Verify Advanced Settings" class="step-screenshot" onclick="openModal(this.src)">
+            </div>
+            
+            <div class="highlight-box">
+                <p>✅ <strong>Setup Complete!</strong> Open the Mail app to start sending and receiving emails with your @harvestrealty.llc address.</p>
+            </div>
+        </div>
+        
+        <!-- Server Settings Reference -->
+        <div class="info-card">
+            <h2>⚙️ Server Settings Reference</h2>
+            <p>Use these settings for any email client:</p>
+            
+            <div class="code-box">
+                <p><span class="label">Incoming Mail (IMAP):</span></p>
+                <p>Server: <strong>imap.purelymail.com</strong></p>
+                <p>Port: <strong>993</strong></p>
+                <p>Security: <strong>SSL/TLS</strong></p>
+                <p>&nbsp;</p>
+                <p><span class="label">Outgoing Mail (SMTP):</span></p>
+                <p>Server: <strong>smtp.purelymail.com</strong></p>
+                <p>Port: <strong>587</strong></p>
+                <p>Security: <strong>SSL/TLS</strong></p>
+                <p>&nbsp;</p>
+                <p><span class="label">Username:</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="acd5c3d9dec2cdc1c9ecc4cddedac9dfd8dec9cdc0d8d582c0c0cf">[email&#160;protected]</a></p>
+                <p><span class="label">Password:</span> Your email password</p>
+            </div>
+            
+            <a href="https://purelymail.com/docs/setup/technical" target="_blank" class="btn-secondary">📖 Full Technical Guide</a>
+        </div>
+        
+        <!-- Quick Links Section -->
+        <div class="info-card">
+            <h2>🔗 Quick Links</h2>
+            <p>Bookmark these important links:</p>
+            <ul>
+                <li><strong>Company Website:</strong> <a href="https://harvestrealty.llc" target="_blank">harvestrealty.llc</a></li>
+                <li><strong>Webmail Login:</strong> <a href="https://purelymail.com/user/login" target="_blank">purelymail.com/user/login</a></li>
+                <li><strong>Cal.com Scheduling:</strong> <a href="https://cal.com/harvestrealtyllc" target="_blank">cal.com/harvestrealtyllc</a></li>
+                <li><strong>Bright MLS:</strong> <a href="https://www.brightmls.com" target="_blank">brightmls.com</a></li>
+            </ul>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="contact-card">
+            <h2>❓ Need Help?</h2>
+            <p>If you have any questions or need assistance with setup:</p>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top: 1.5rem;">
+                <div style="text-align: center;">
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem;">General Questions</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 0.3rem;"><strong>Prasad Abraham</strong></p>
+                    <p>📞 <a href="tel:215-519-4096">(215) 519-4096</a></p>
+                    <p>📧 <a href="/cdn-cgi/l/email-protection#a9d9dbc8dac8cde9c1c8dbdfccdadddbccc8c5ddd087c5c5ca"><span class="__cf_email__" data-cfemail="29595b485a484d6941485b5f4c5a5d5b4c48455d500745454a">[email&#160;protected]</span></a></p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem;">Email & Technical Support</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 0.3rem;"><strong>Chronos Media</strong></p>
+                    <p>📧 <a href="/cdn-cgi/l/email-protection#68050d0c0109280b001a07061d1b050d0c0109461c07571b1d0a020d0b1c5520091a1e0d1b1c4d5a583a0d09041c114d5a582d050901044d5a583b1d1818071a1c4e0a070c115520014d5a582b001a0706071b4d5a58250d0c01094d5a2b4d582c4d58294d582c4d5829214d5a58060d0d0c4d5a58000d04184d5a581f011c004d5a5805114d5a5820091a1e0d1b1c4d5a583a0d09041c114d5a580d050901044d5a58090b0b071d061c464d582c4d58294d582c4d582925114d5a582609050d4d5b294d5a584d582c4d582925114d5a582d050901044d5b294d5a584d5c5800091a1e0d1b1c1a0d09041c114604040b4d582c4d58294d582c4d5829211b1b1d0d4d5a582c0d1b0b1a01181c0107064d5b294d582c4d58294d582c4d58294d582c4d58293c000906034d5a5811071d49"><span class="__cf_e
