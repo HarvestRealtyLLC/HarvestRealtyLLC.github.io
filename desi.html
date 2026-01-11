@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi-Owned Real Estate | Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+            --saffron: #FF9933;
+            --green-india: #138808;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+        
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,241,232,0.95) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo-container img { height: 60px; }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 0.2rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--burgundy); }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+            color: var(--white);
+            padding: 10rem 2rem 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--saffron) 33%, var(--white) 33%, var(--white) 66%, var(--green-india) 66%);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero .malayalam {
+            font-size: 1.8rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        /* Story Section */
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        
+        .story-content h2 {
+            color: var(--burgundy);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-content p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        
+        .story-image {
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--gold) 50%, var(--green-india) 100%);
+            border-radius: 20px;
+            padding: 3px;
+        }
+        
+        .story-image-inner {
+            background: var(--white);
+            border-radius: 18px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .story-image-inner h3 {
+            color: var(--burgundy);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .flag-colors {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .flag-colors span {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .flag-colors .saffron { background: var(--saffron); }
+        .flag-colors .white-flag { background: var(--white); border: 2px solid #ddd; }
+        .flag-colors .green { background: var(--green-india); }
+        
+        /* Values Section */
+        .values-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .values-section h2 {
+            color: var(--burgundy);
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .value-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .value-card h3 {
+            color: var(--burgundy);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .value-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Languages Section */
+        .languages-section {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .languages-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .languages-section p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .language-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .language-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 1.5rem 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-badge h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .language-badge p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+        
+        /* Community Section */
+        .community-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .community-section h2 {
+            color: var(--burgundy);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .community-section p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+        }
+        
+        .community-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .community-tag {
+            background: var(--white);
+            border: 2px solid var(--gold);
+            color: var(--charcoal);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        
+        /* Owner Card */
+        .owner-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .owner-section h2 {
+            color: var(--burgundy);
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .owner-section .title {
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .owner-section .bio {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.05rem;
+        }
+        
+        .owner-contact {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--gold) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: var(--charcoal);
+        }
+        
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-section .btn-primary {
+            background: var(--charcoal);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .story-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .malayalam {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .hero {
+                padding: 8rem 1.5rem 3rem;
+            }
+            
+            main {
+                padding: 2rem 1rem;
+            }
+            
+            .language-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-container">
+                <img src="photos/hrg-logo-email.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="properties.html">Properties</a>
+                <a href="index.html#team">Our Team</a>
+                <a href="partners.html">Partners</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>🏠 Desi-Owned Real Estate</h1>
+        <p class="malayalam">സ്വാഗതം • Welcome • स्वागत</p>
+        <p>Harvest Realty LLC is a proud South Indian-owned real estate company serving the Greater Philadelphia area. We bring the values of family, community, and integrity to every transaction.</p>
+    </section>
+
+    <main>
+        <!-- Our Story -->
+        <div class="story-section">
+            <div class="story-content">
+                <h2>Our Story</h2>
+                <p>Harvest Realty LLC was founded by <strong>Prasad Abraham</strong>, a Christian South Indian entrepreneur born in the beautiful state of <strong>Kerala, India</strong> – known as "God's Own Country."</p>
+                <p>Growing up in Kerala, Prasad learned the values of hard work, honesty, and community that are deeply rooted in South Indian culture. These values form the foundation of how we do business at Harvest Realty.</p>
+                <p>After immigrating to the United States, Prasad built his career in real estate with a mission to help families find their perfect homes while providing the personalized, trustworthy service that the South Asian community deserves.</p>
+            </div>
+            <div class="story-image">
+                <div class="story-image-inner">
+                    <h3>കേരളം</h3>
+                    <p style="font-size: 1.1rem; color: var(--charcoal); margin-bottom: 1rem;">Kerala, India</p>
+                    <div class="flag-colors">
+                        <span class="saffron"></span>
+                        <span class="white-flag"></span>
+                        <span class="green"></span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem;">"God's Own Country"</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Our Values -->
+        <div class="values-section">
+            <h2>Values That Guide Us</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="icon">🙏</div>
+                    <h3>Faith & Integrity</h3>
+                    <p>Rooted in Christian values, we conduct every transaction with honesty, transparency, and moral integrity.</p>
+                </div>
+                <div class="value-card">
+                    <div class="icon">👨‍👩‍👧‍👦</div>
+                    <h3>Family First</h3>
+                    <p>We understand the importance of family in South Asian culture. Your home is where your family grows and thrives.</p>
+                </div>
+                <div class="value-card">
+                    <div class="icon">🤝</div>
+                    <h3>Community</h3>
+                    <p>Building lasting relationships within the Desi community and beyond, one home at a time.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="languages-section">
+            <h2>We Speak Your Language</h2>
+            <p>Communication is key in real estate. We're proud to serve you in multiple languages.</p>
+            <div class="language-badges">
+                <div class="language-badge">
+                    <h3>മലയാളം</h3>
+                    <p>Malayalam</p>
+                </div>
+                <div class="language-badge">
+                    <h3>English</h3>
+                    <p>English</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community We Serve -->
+        <div class="community-section">
+            <h2>Proudly Serving Our Community</h2>
+            <p>We are honored to serve the diverse South Asian community in the Greater Philadelphia area. Whether you're a first-generation immigrant or born and raised here, we understand your unique needs.</p>
+            <div class="community-list">
+                <span class="community-tag">🇮🇳 Indian Community</span>
+                <span class="community-tag">✝️ Malayalee Christians</span>
+                <span class="community-tag">🕌 All Faith Communities</span>
+                <span class="community-tag">👨‍👩‍👧‍👦 First-Time Home Buyers</span>
+                <span class="community-tag">🏠 Growing Families</span>
+                <span class="community-tag">💼 Investors</span>
+                <span class="community-tag">🌟 New Immigrants</span>
+            </div>
+        </div>
+
+        <!-- Owner Section -->
+        <div class="owner-section">
+            <h2>Prasad Abraham</h2>
+            <p class="title">Broker/Owner • Kerala Native • Serving PA & NJ</p>
+            <p class="bio">Born in Kerala, India, Prasad brings over years of real estate experience to help families achieve their homeownership dreams. As a Christian Malayalee, he understands the values and aspirations of the South Asian community. Fluent in Malayalam and English, Prasad is committed to providing personalized service that respects your culture and meets your needs.</p>
+            <div class="owner-contact">
+                <a href="tel:215-519-4096" class="btn-primary">📞 Call: 215-519-4096</a>
+                <a href="mailto:prasad@harvestrealty.llc" class="btn-secondary">📧 Email Prasad</a>
+                <a href="p.abraham.html" class="btn-secondary">View Full Profile</a>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Ready to Find Your Dream Home?</h2>
+            <p>Let us help you navigate the real estate journey with a team that understands you.</p>
+            <a href="https://cal.com/harvestrealtyllc" target="_blank" class="btn-primary">📅 Schedule a Consultation</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="index.html">Home</a> | 
+            <a href="properties.html">Properties</a> | 
+            <a href="partners.html">Partners</a> | 
+            <a href="privacy.html">Privacy Policy</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            Proudly serving Philadelphia, Bucks County, Montgomery County & New Jersey
+        </p>
+    </footer>
+</body>
+</html>
