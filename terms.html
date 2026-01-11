@@ -7,128 +7,370 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
     <style>
-        .legal-content {
-            max-width: 900px;
-            margin: 150px auto 4rem;
-            padding: 3rem;
-            background: var(--white);
-            border-radius: 20px;
-            box-shadow: 0 10px 40px var(--shadow);
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --burgundy-light: #A84040;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
         }
-        .legal-content h1 {
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
             color: var(--burgundy);
+        }
+        
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--burgundy);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: var(--burgundy-dark);
+            transform: translateX(-5px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 5% 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 3rem;
             margin-bottom: 1rem;
         }
-        .legal-content h2 {
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .legal-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .legal-card h2 {
+            font-family: 'Cormorant Garamond', serif;
             color: var(--burgundy);
             font-size: 1.8rem;
             margin-top: 2rem;
             margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--cream-dark);
         }
-        .legal-content p {
+        
+        .legal-card h2:first-of-type {
+            margin-top: 0;
+        }
+        
+        .legal-card p {
             margin-bottom: 1rem;
             line-height: 1.8;
+            color: var(--charcoal);
         }
-        .legal-content ul {
-            margin-bottom: 1rem;
-            margin-left: 2rem;
+        
+        .legal-card ul {
+            margin-bottom: 1.5rem;
+            margin-left: 1.5rem;
         }
-        .legal-content li {
-            margin-bottom: 0.5rem;
+        
+        .legal-card li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
         }
-        .back-link {
-            display: inline-block;
-            margin-top: 2rem;
+        
+        .legal-card strong {
+            color: var(--burgundy);
+        }
+        
+        .legal-card a {
             color: var(--burgundy);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
         }
-        .back-link:hover {
+        
+        .legal-card a:hover {
             color: var(--gold-dark);
+        }
+        
+        .last-updated {
+            display: inline-block;
+            background: var(--cream);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--burgundy);
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-box {
+            background: var(--cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--burgundy);
+        }
+        
+        .contact-box p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .highlight-box p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+        
+        footer a {
+            color: var(--cream);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .logo {
+                justify-content: center;
+            }
+            
+            .logo img {
+                height: 45px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .back-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding: 130px 5% 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .legal-card {
+                padding: 2rem;
+            }
+            
+            .legal-card h2 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+            
+            .logo-text p {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <header id="header">
-        <nav>
-            <div class="logo-container">
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
                 <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
                 <div class="logo-text">
                     <h1>Harvest Realty LLC</h1>
                     <p>PA & NJ Experts</p>
                 </div>
-            </div>
-            <div class="nav-links">
-                <a href="index.html#home">Home</a>
-                <a href="index.html#services">Services</a>
-                <a href="index.html#properties">Properties</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contact">Contact</a>
-            </div>
-        </nav>
+            </a>
+            <a href="index.html" class="back-btn">← Back to Home</a>
+        </div>
     </header>
 
-    <div class="legal-content">
-        <h1>Terms of Use</h1>
-        <p><strong>Last Updated: January 10, 2026</strong></p>
-        
-        <p>Welcome to Harvest Realty LLC. By accessing or using our website and services, you agree to be bound by these Terms of Use. Please read them carefully.</p>
+    <section class="hero">
+        <h1>📜 Terms of Use</h1>
+        <p>Please read these terms carefully before using our website and services.</p>
+    </section>
 
-        <h2>1. Acceptance of Terms</h2>
-        <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these terms, please do not use this website.</p>
+    <main class="main-content">
+        <div class="legal-card">
+            <span class="last-updated">Last Updated: January 10, 2026</span>
+            
+            <p>Welcome to Harvest Realty LLC. By accessing or using our website and services, you agree to be bound by these Terms of Use. Please read them carefully.</p>
 
-        <h2>2. Use of Services</h2>
-        <p>You agree to use our services only for lawful purposes and in accordance with these Terms. You agree not to:</p>
-        <ul>
-            <li>Use the website in any way that violates any applicable federal, state, local, or international law or regulation</li>
-            <li>Engage in any conduct that restricts or inhibits anyone's use or enjoyment of the website</li>
-            <li>Use the website to transmit any advertising or promotional material without our prior written consent</li>
-            <li>Impersonate or attempt to impersonate Harvest Realty LLC, our employees, another user, or any other person or entity</li>
-            <li>Engage in any automated use of the system, such as using scripts to send comments or messages</li>
-        </ul>
+            <h2>1. Acceptance of Terms</h2>
+            <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these terms, please do not use this website.</p>
 
-        <h2>3. Property Listings</h2>
-        <p>All property information is provided for informational purposes only and does not constitute an offer to sell or solicitation to buy any property. Property information is believed to be reliable but should be independently verified. Prices, availability, and specifications are subject to change without notice.</p>
+            <h2>2. Use of Services</h2>
+            <p>You agree to use our services only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+            <ul>
+                <li>Use the website in any way that violates any applicable federal, state, local, or international law or regulation</li>
+                <li>Engage in any conduct that restricts or inhibits anyone's use or enjoyment of the website</li>
+                <li>Use the website to transmit any advertising or promotional material without our prior written consent</li>
+                <li>Impersonate or attempt to impersonate Harvest Realty LLC, our employees, another user, or any other person or entity</li>
+                <li>Engage in any automated use of the system, such as using scripts to send comments or messages</li>
+            </ul>
 
-        <h2>4. Intellectual Property</h2>
-        <p>The content on this website, including but not limited to text, graphics, logos, images, and software, is the property of Harvest Realty LLC or its content suppliers and is protected by United States and international copyright laws.</p>
+            <h2>3. Property Listings</h2>
+            <p>All property information is provided for informational purposes only and does not constitute an offer to sell or solicitation to buy any property. Property information is believed to be reliable but should be independently verified. Prices, availability, and specifications are subject to change without notice.</p>
 
-        <h2>5. User Content</h2>
-        <p>By submitting content through our website (such as contact forms, comments, or reviews), you grant Harvest Realty LLC a non-exclusive, royalty-free, perpetual, and worldwide license to use, reproduce, modify, and distribute such content.</p>
+            <h2>4. Intellectual Property</h2>
+            <p>The content on this website, including but not limited to text, graphics, logos, images, and software, is the property of Harvest Realty LLC or its content suppliers and is protected by United States and international copyright laws.</p>
 
-        <h2>6. Disclaimer of Warranties</h2>
-        <p>This website and all information, content, materials, and services included on or otherwise made available to you through this website are provided on an "as is" and "as available" basis. Harvest Realty LLC makes no representations or warranties of any kind, express or implied, as to the operation of the website or the information, content, materials, or services included on or otherwise made available to you through this website.</p>
+            <h2>5. User Content</h2>
+            <p>By submitting content through our website (such as contact forms, comments, or reviews), you grant Harvest Realty LLC a non-exclusive, royalty-free, perpetual, and worldwide license to use, reproduce, modify, and distribute such content.</p>
 
-        <h2>7. Limitation of Liability</h2>
-        <p>Harvest Realty LLC shall not be liable for any damages of any kind arising from the use of this website, including but not limited to direct, indirect, incidental, punitive, and consequential damages.</p>
+            <h2>6. Disclaimer of Warranties</h2>
+            <p>This website and all information, content, materials, and services included on or otherwise made available to you through this website are provided on an "as is" and "as available" basis. Harvest Realty LLC makes no representations or warranties of any kind, express or implied, as to the operation of the website or the information, content, materials, or services included on or otherwise made available to you through this website.</p>
 
-        <h2>8. Real Estate Transactions</h2>
-        <p>All real estate transactions are subject to separate agreements and contracts. These Terms of Use do not constitute a binding agreement to buy, sell, or lease any property. All transactions must comply with applicable state and federal laws and regulations.</p>
+            <h2>7. Limitation of Liability</h2>
+            <p>Harvest Realty LLC shall not be liable for any damages of any kind arising from the use of this website, including but not limited to direct, indirect, incidental, punitive, and consequential damages.</p>
 
-        <h2>9. Third-Party Links</h2>
-        <p>Our website may contain links to third-party websites or services that are not owned or controlled by Harvest Realty LLC. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.</p>
+            <h2>8. Real Estate Transactions</h2>
+            <p>All real estate transactions are subject to separate agreements and contracts. These Terms of Use do not constitute a binding agreement to buy, sell, or lease any property. All transactions must comply with applicable state and federal laws and regulations.</p>
 
-        <h2>10. Indemnification</h2>
-        <p>You agree to indemnify, defend, and hold harmless Harvest Realty LLC and its officers, directors, employees, agents, and affiliates from and against any claims, liabilities, damages, losses, and expenses arising out of or in any way connected with your access to or use of the website.</p>
+            <h2>9. Third-Party Links</h2>
+            <p>Our website may contain links to third-party websites or services that are not owned or controlled by Harvest Realty LLC. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.</p>
 
-        <h2>11. Governing Law</h2>
-        <p>These Terms shall be governed by and construed in accordance with the laws of the Commonwealth of Pennsylvania, without regard to its conflict of law provisions.</p>
+            <h2>10. Indemnification</h2>
+            <p>You agree to indemnify, defend, and hold harmless Harvest Realty LLC and its officers, directors, employees, agents, and affiliates from and against any claims, liabilities, damages, losses, and expenses arising out of or in any way connected with your access to or use of the website.</p>
 
-        <h2>12. Changes to Terms</h2>
-        <p>We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.</p>
+            <h2>11. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the Commonwealth of Pennsylvania, without regard to its conflict of law provisions.</p>
 
-        <h2>13. Equal Housing Opportunity</h2>
-        <p>Harvest Realty LLC is committed to fair housing practices and equal opportunity in housing. We comply with all federal, state, and local fair housing laws and do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, or gender identity.</p>
+            <h2>12. Changes to Terms</h2>
+            <p>We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.</p>
 
-        <h2>14. Contact Information</h2>
-        <p>If you have any questions about these Terms of Use, please contact us at:</p>
-        <p>
-            <strong>Harvest Realty LLC</strong><br>
-            Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb9b998a988a8f8a898eab888486888a989fc5858e9f">[email&#160;protected]</a><br>
-            Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="84eee5e7ebe6e5e6e1bdbdc4e3e9e5ede8aae7ebe9">[email&#160;protected]</a>
-        </p>
+            <h2>13. Equal Housing Opportunity</h2>
+            <div class="highlight-box">
+                <p>🏠 Harvest Realty LLC is committed to fair housing practices and equal opportunity in housing. We comply with all federal, state, and local fair housing laws and do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, or gender identity.</p>
+            </div>
 
-        <a href="index.html" class="ba
+            <h2>14. Contact Information</h2>
+            <p>If you have any questions about these Terms of Use, please contact us:</p>
+            <div class="contact-box">
+                <p><strong>Harvest Realty LLC</strong></p>
+                <p>📧 Email: <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a></p>
+                <p>📞 Phone: <a href="tel:215-519-4096">(215) 519-4096</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
