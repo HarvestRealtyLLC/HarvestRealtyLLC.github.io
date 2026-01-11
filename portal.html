@@ -1301,13 +1301,21 @@
     </div>
 
     <script>
-        // Agent Database with Passwords (In production, this would be server-side)
+        // SECURITY NOTICE: This is a client-side demo. For production use,
+        // implement proper server-side authentication with encrypted passwords.
+        // Passwords below are base64 encoded (NOT secure encryption, just obfuscation)
+        
+        // Helper functions for basic obfuscation
+        function encode(str) { return btoa(str); }
+        function decode(str) { return atob(str); }
+        
+        // Agent Database with encoded passwords
         const agents = {
             'prasad@harvestrealty.llc': {
                 name: 'Prasad Abraham',
                 role: 'Broker/Owner',
                 isAdmin: true,
-                password: 'Harvest2024!',
+                pw: 'UHJhc2FkQnJva2VyMjAyNiE=', // encoded
                 phone: '215-519-4096',
                 licensePA: 'RB069944',
                 licenseNJ: '',
@@ -1322,7 +1330,7 @@
                 name: 'Jacob Abraham',
                 role: 'Sales Agent',
                 isAdmin: false,
-                password: 'Harvest2024!',
+                pw: 'SmFjb2JTYWxlczIwMjYh',
                 phone: '215-519-8916',
                 licensePA: 'RS371498',
                 licenseNJ: '',
@@ -1334,7 +1342,7 @@
                 name: 'Dyson Daniel',
                 role: 'Sales Agent',
                 isAdmin: false,
-                password: 'Harvest2024!',
+                pw: 'RHlzb25TYWxlczIwMjYh',
                 phone: '267-290-0963',
                 licensePA: 'RS370036',
                 licenseNJ: '',
@@ -1346,7 +1354,7 @@
                 name: 'Abdullah Khan',
                 role: 'Sales Agent',
                 isAdmin: false,
-                password: 'Harvest2024!',
+                pw: 'QWJkdWxsYWhTYWxlczIwMjYh',
                 phone: '857-226-3031',
                 licensePA: 'RS370017',
                 licenseNJ: '2427729',
@@ -1358,7 +1366,7 @@
                 name: 'Thomas Thomas',
                 role: 'Sales Agent',
                 isAdmin: false,
-                password: 'Harvest2024!',
+                pw: 'VGhvbWFzU2FsZXMyMDI2IQ==',
                 phone: '215-519-3101',
                 licensePA: 'RS371066',
                 licenseNJ: '',
@@ -1370,7 +1378,7 @@
                 name: 'Chronos Media',
                 role: 'Admin / Media Partner',
                 isAdmin: true,
-                password: 'Chronos2024!',
+                pw: 'Q2hyb25vc0FkbWluMjAyNiE=',
                 phone: '',
                 licensePA: '',
                 licenseNJ: '',
@@ -1388,8 +1396,11 @@
             const email = document.getElementById('loginEmail').value.toLowerCase();
             const password = document.getElementById('loginPassword').value;
             
-            if (agents[email] && agents[email].password === password) {
+            if (agents[email] && decode(agents[email].pw) === password) {
                 currentUser = email;
+                // Store session
+                sessionStorage.setItem('agentLoggedIn', 'true');
+                sessionStorage.setItem('agentEmail', email);
                 document.getElementById('loginError').classList.remove('show');
                 document.getElementById('loginPage').style.display = 'none';
                 document.getElementById('dashboard').classList.add('active');
@@ -1398,10 +1409,28 @@
                 document.getElementById('loginError').classList.add('show');
             }
         }
+        
+        // Check if already logged in (session persistence)
+        function checkSession() {
+            const loggedIn = sessionStorage.getItem('agentLoggedIn');
+            const email = sessionStorage.getItem('agentEmail');
+            if (loggedIn === 'true' && email && agents[email]) {
+                currentUser = email;
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboard').classList.add('active');
+                loadUserData();
+            }
+        }
+        
+        // Run session check on page load
+        checkSession();
 
         // Logout Handler
         function handleLogout() {
             currentUser = null;
+            // Clear session
+            sessionStorage.removeItem('agentLoggedIn');
+            sessionStorage.removeItem('agentEmail');
             document.getElementById('dashboard').classList.remove('active');
             document.getElementById('loginPage').style.display = 'flex';
             document.getElementById('loginEmail').value = '';
@@ -1542,7 +1571,7 @@
                 name: name,
                 role: role,
                 isAdmin: isAdmin,
-                password: password,
+                pw: encode(password),
                 phone: phone,
                 licensePA: '',
                 licenseNJ: '',
@@ -1708,7 +1737,7 @@
             document.getElementById('passwordSuccess').classList.remove('show');
             document.getElementById('passwordError').classList.remove('show');
             
-            if (current !== user.password) {
+            if (current !== decode(user.pw)) {
                 document.getElementById('passwordError').textContent = 'Current password is incorrect.';
                 document.getElementById('passwordError').classList.add('show');
                 return;
@@ -1726,8 +1755,8 @@
                 return;
             }
             
-            // Update password
-            user.password = newPass;
+            // Update password (encoded)
+            user.pw = encode(newPass);
             
             // Clear form
             event.target.reset();
