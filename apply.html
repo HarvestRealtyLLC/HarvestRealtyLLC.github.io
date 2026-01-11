@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Application - Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --gold: #D4AF37;
+            --cream: #F5F1E8;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero p {
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .info-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--burgundy);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gold);
+        }
+        
+        .info-card h3 {
+            color: var(--burgundy);
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        .info-card p {
+            margin-bottom: 1rem;
+        }
+        
+        .info-card ul, .info-card ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .info-card li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box {
+            background: var(--cream);
+            border-left: 4px solid var(--burgundy);
+            padding: 1rem 1.5rem;
+            border-radius: 0 10px 10px 0;
+            margin: 1.5rem 0;
+        }
+        
+        .highlight-box.warning {
+            background: #FFF9E6;
+            border-left-color: var(--gold);
+        }
+        
+        .form-section {
+            background: var(--cream);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--burgundy);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--burgundy);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        @media (max-width: 600px) {
+            .form-row, .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .contact-card {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .contact-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-card a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        .required {
+            color: #c00;
+        }
+        
+        .section-divider {
+            border: none;
+            border-top: 2px solid var(--cream);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Harvest <span>Realty</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#properties">Properties</a></li>
+                <li><a href="tenants.html">Tenant Portal</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>📋 Rental Application</h1>
+        <p>Complete the application below to apply for one of our available rental properties.</p>
+    </section>
+
+    <main>
+        <div class="info-card">
+            <h2>Before You Apply</h2>
+            <p>Please review the following information before completing your rental application:</p>
+            
+            <div class="highlight-box">
+                <p><strong>📄 Application Fee:</strong> A non-refundable application fee is required for each applicant. This covers the cost of background and credit checks.</p>
+            </div>
+            
+            <h3>What You'll Need</h3>
+            <ul>
+                <li>Valid government-issued photo ID</li>
+                <li>Proof of income (pay stubs, tax returns, or bank statements)</li>
+                <li>Employment information (current and previous)</li>
+                <li>Rental history (current and previous landlord contact info)</li>
+                <li>Social Security Number (for background/credit check)</li>
+                <li>References</li>
+            </ul>
+            
+            <h3>Qualification Requirements</h3>
+            <ul>
+                <li>Monthly income should be at least 3x the monthly rent</li>
+                <li>Good credit history</li>
+                <li>Positive rental history</li>
+                <li>No evictions</li>
+                <li>Verifiable employment or income source</li>
+            </ul>
+        </div>
+
+        <div class="info-card">
+            <h2>Rental Application Form</h2>
+            <p>Please fill out all required fields (<span class="required">*</span>) accurately and completely.</p>
+            
+            <form id="rentalApplication" action="#" method="POST">
+                <!-- Property Information -->
+                <div class="form-section">
+                    <h3>Property Information</h3>
+                    <div class="form-group">
+                        <label for="propertyAddress">Property Address You're Applying For <span class="required">*</span></label>
+                        <input type="text" id="propertyAddress" name="propertyAddress" required placeholder="Enter the property address">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="moveInDate">Desired Move-In Date <span class="required">*</span></label>
+                            <input type="date" id="moveInDate" name="moveInDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leaseTerm">Preferred Lease Term</label>
+                            <select id="leaseTerm" name="leaseTerm">
+                                <option value="12">12 Months</option>
+                                <option value="6">6 Months</option>
+                                <option value="month-to-month">Month-to-Month</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Applicant Information -->
+                <div class="form-section">
+                    <h3>1. Applicant Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name <span class="required">*</span></label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name <span class="required">*</span></label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="(XXX) XXX-XXXX">
+                        </div>
+                    </div>
+                    <div class="form-row-3">
+                        <div class="form-group">
+                            <label for="dob">Date of Birth <span class="required">*</span></label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ssn">Social Security # <span class="required">*</span></label>
+                            <input type="text" id="ssn" name="ssn" required placeholder="XXX-XX-XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="driversLicense">Driver's License #</label>
+                            <input type="text" id="driversLicense" name="driversLicense">
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Current Address -->
+                <div class="form-section">
+                    <h3>2. Current Residence</h3>
+                    <div class="form-group">
+                        <label for="currentAddress">Current Address <span class="required">*</span></label>
+                        <input type="text" id="currentAddress" name="currentAddress" required placeholder="Street Address">
+                    </div>
+                    <div class="form-row-3">
+                        <div class="form-group">
+                            <label for="currentCity">City <span class="required">*</span></label>
+                            <input type="text" id="currentCity" name="currentCity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="currentState">State <span class="required">*</span></label>
+                            <input type="text" id="currentState" name="currentState" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="currentZip">ZIP Code <span class="required">*</span></label>
+                            <input type="text" id="currentZip" name="currentZip" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="currentRent">Monthly Rent/Mortgage <span class="required">*</span></label>
+                            <input type="text" id="currentRent" name="currentRent" required placeholder="$">
+                        </div>
+                        <div class="form-group">
+                            <label for="currentDuration">How Long at This Address? <span class="required">*</span></label>
+                            <input type="text" id="currentDuration" name="currentDuration" required placeholder="e.g., 2 years">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="landlordName">Current Landlord Name</label>
+                            <input type="text" id="landlordName" name="landlordName">
+                        </div>
+                        <div class="form-group">
+                            <label for="landlordPhone">Current Landlord Phone</label>
+                            <input type="tel" id="landlordPhone" name="landlordPhone" placeholder="(XXX) XXX-XXXX">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reasonLeaving">Reason for Leaving</label>
+                        <input type="text" id="reasonLeaving" name="reasonLeaving">
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Employment Information -->
+                <div class="form-section">
+                    <h3>3. Employment Information</h3>
+                    <div class="form-group">
+                        <label for="employer">Current Employer <span class="required">*</span></label>
+                        <input type="text" id="employer" name="employer" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="employerPhone">Employer Phone</label>
+                            <input type="tel" id="employerPhone" name="employerPhone" placeholder="(XXX) XXX-XXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="position">Position/Title <span class="required">*</span></label>
+                            <input type="text" id="position" name="position" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="employmentDuration">How Long Employed? <span class="required">*</span></label>
+                            <input type="text" id="employmentDuration" name="employmentDuration" required placeholder="e.g., 3 years">
+                        </div>
+                        <div class="form-group">
+                            <label for="monthlyIncome">Monthly Gross Income <span class="required">*</span></label>
+                            <input type="text" id="monthlyIncome" name="monthlyIncome" required placeholder="$">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="supervisorName">Supervisor Name</label>
+                        <input type="text" id="supervisorName" name="supervisorName">
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Additional Occupants -->
+                <div class="form-section">
+                    <h3>4. Additional Occupants</h3>
+                    <p style="margin-bottom: 1rem; font-size: 0.9rem;">List all other people who will be living in the unit. Each adult applicant (18+) must submit a separate application.</p>
+                    <div class="form-group">
+                        <label for="additionalOccupants">Names and Ages of Additional Occupants</label>
+                        <textarea id="additionalOccupants" name="additionalOccupants" placeholder="Name - Age - Relationship&#10;Name - Age - Relationship"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="coApplicant">Co-Applicant Name (if applicable)</label>
+                        <input type="text" id="coApplicant" name="coApplicant" placeholder="Co-applicants must submit separate application">
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Pets -->
+                <div class="form-section">
+                    <h3>5. Pets</h3>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="hasPets" name="hasPets">
+                        <label for="hasPets" style="margin-bottom: 0;">I have pets</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="petInfo">If yes, please describe (type, breed, weight, age)</label>
+                        <textarea id="petInfo" name="petInfo" placeholder="Pet 1: Dog, Golden Retriever, 60 lbs, 3 years&#10;Pet 2: Cat, Domestic Shorthair, 10 lbs, 2 years"></textarea>
+                    </div>
+                    <p style="font-size: 0.85rem; color: #666;"><em>Note: Pet approval is subject to property rules. Additional pet deposit/rent may apply. Service/support animals are not considered pets.</em></p>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Vehicles -->
+                <div class="form-section">
+                    <h3>6. Vehicles</h3>
+                    <div class="form-group">
+                        <label for="vehicles">Vehicle Information (Make, Model, Year, License Plate)</label>
+                        <textarea id="vehicles" name="vehicles" placeholder="Vehicle 1: Honda Accord, 2020, PA ABC-1234&#10;Vehicle 2: Toyota Camry, 2018, PA XYZ-5678"></textarea>
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Emergency Contact -->
+                <div class="form-section">
+                    <h3>7. Emergency Contact</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="emergencyName">Contact Name <span class="required">*</span></label>
+                            <input type="text" id="emergencyName" name="emergencyName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emergencyRelation">Relationship <span class="required">*</span></label>
+                            <input type="text" id="emergencyRelation" name="emergencyRelation" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="emergencyPhone">Contact Phone <span class="required">*</span></label>
+                        <input type="tel" id="emergencyPhone" name="emergencyPhone" required placeholder="(XXX) XXX-XXXX">
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Background Questions -->
+                <div class="form-section">
+                    <h3>8. Background Questions</h3>
+                    <p style="margin-bottom: 1rem; font-size: 0.9rem;">Please answer the following questions honestly. Answering "yes" does not automatically disqualify your application.</p>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="evicted" name="evicted">
+                        <label for="evicted" style="margin-bottom: 0;">Have you ever been evicted or asked to leave a rental property?</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="brokenLease" name="brokenLease">
+                        <label for="brokenLease" style="margin-bottom: 0;">Have you ever broken a lease?</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="bankruptcy" name="bankruptcy">
+                        <label for="bankruptcy" style="margin-bottom: 0;">Have you ever filed for bankruptcy?</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="felony" name="felony">
+                        <label for="felony" style="margin-bottom: 0;">Have you ever been convicted of a felony?</label>
+                    </div>
+                    
+                    <div class="form-group" style="margin-top: 1rem;">
+                        <label for="backgroundExplanation">If you answered yes to any of the above, please explain:</label>
+                        <textarea id="backgroundExplanation" name="backgroundExplanation"></textarea>
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- References -->
+                <div class="form-section">
+                    <h3>9. Personal References</h3>
+                    <p style="margin-bottom: 1rem; font-size: 0.9rem;">Please provide two personal references (not relatives).</p>
+                    
+                    <h4 style="margin-bottom: 0.5rem; color: var(--burgundy);">Reference 1</h4>
+                    <div class="form-row-3">
+                        <div class="form-group">
+                            <label for="ref1Name">Name</label>
+                            <input type="text" id="ref1Name" name="ref1Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="ref1Phone">Phone</label>
+                            <input type="tel" id="ref1Phone" name="ref1Phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="ref1Relation">Relationship</label>
+                            <input type="text" id="ref1Relation" name="ref1Relation">
+                        </div>
+                    </div>
+                    
+                    <h4 style="margin-bottom: 0.5rem; color: var(--burgundy);">Reference 2</h4>
+                    <div class="form-row-3">
+                        <div class="form-group">
+                            <label for="ref2Name">Name</label>
+                            <input type="text" id="ref2Name" name="ref2Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="ref2Phone">Phone</label>
+                            <input type="tel" id="ref2Phone" name="ref2Phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="ref2Relation">Relationship</label>
+                            <input type="text" id="ref2Relation" name="ref2Relation">
+                        </div>
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Additional Information -->
+                <div class="form-section">
+                    <h3>10. Additional Information</h3>
+                    <div class="form-group">
+                        <label for="howHeard">How did you hear about this property?</label>
+                        <select id="howHeard" name="howHeard">
+                            <option value="">Select one...</option>
+                            <option value="zillow">Zillow</option>
+                            <option value="trulia">Trulia</option>
+                            <option value="realtor">Realtor.com</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="referral">Referral</option>
+                            <option value="sign">For Rent Sign</option>
+                            <option value="website">Harvest Realty Website</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="additionalComments">Additional Comments or Information</label>
+                        <textarea id="additionalComments" name="additionalComments" placeholder="Anything else you'd like us to know?"></textarea>
+                    </div>
+                </div>
+                
+                <hr class="section-divider">
+                
+                <!-- Authorization -->
+                <div class="form-section">
+                    <h3>Authorization & Agreement</h3>
+                    <div class="highlight-box warning">
+                        <p><strong>Please read carefully before signing:</strong></p>
+                    </div>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">By submitting this application, I authorize Harvest Realty LLC to:</p>
+                    <ul style="font-size: 0.9rem; margin-bottom: 1rem;">
+                        <li>Obtain credit reports and criminal background checks</li>
+                        <li>Verify my employment, income, and rental history</li>
+                        <li>Contact the references and landlords I have provided</li>
+                    </ul>
+                    <p style="font-size: 0.9rem; margin-bottom: 1rem;">I certify that all information provided in this application is true and complete. I understand that providing false information may result in denial of my application or termination of any resulting lease agreement.</p>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <label for="agreeTerms" style="margin-bottom: 0;"><span class="required">*</span> I agree to the above authorization and certify that all information is accurate.</label>
+                    </div>
+                    
+                    <div class="form-row" style="margin-top: 1.5rem;">
+                        <div class="form-group">
+                            <label for="signature">Electronic Signature (Type Full Name) <span class="required">*</span></label>
+                            <input type="text" id="signature" name="signature" required placeholder="Type your full legal name">
+                        </div>
+                        <div class="form-group">
+                            <label for="signatureDate">Date <span class="required">*</span></label>
+                            <input type="date" id="signatureDate" name="signatureDate" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 3rem;">📤 Submit Application</button>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; color: #666;">Application fee payment instructions will be sent after submission.</p>
+                </div>
+            </form>
+        </div>
+
+        <div class="contact-card">
+            <h2>Questions?</h2>
+            <p>If you have questions about the application process, contact us:</p>
+            <p style="margin-top: 1rem;">
+                📞 <a href="tel:215-519-4096">(215) 519-4096</a><br>
+                📧 <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="index.html">Home</a> | <a href="tenants.html">Tenant Portal</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
+    </footer>
+
+    <script>
+        // Set today's date as default for signature date
+        document.getElementById('signatureDate').valueAsDate = new Date();
+        
+        // Form submission handler
+        document.getElementById('rentalApplication').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your application! We will review it and contact you within 1-2 business days.\n\nPlease check your email for application fee payment instructions.');
+            // In production, this would submit to a server or email
+        });
+    </script>
+</body>
+</html>
