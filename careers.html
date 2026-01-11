@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Team | Careers at Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+            --green: #2E7D32;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+        
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,241,232,0.95) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo-container img { height: 60px; }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 0.2rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--burgundy); }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 10rem 2rem 5rem;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* Main */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        /* Why Join Section */
+        .why-join {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        
+        .why-join h2 {
+            color: var(--burgundy);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .why-join > p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .benefit-item {
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .benefit-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .benefit-item h4 {
+            color: var(--burgundy);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-item p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+        
+        /* Culture Section */
+        .culture-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .culture-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .culture-card h3 {
+            color: var(--burgundy);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .culture-card p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .culture-card ul {
+            list-style: none;
+        }
+        
+        .culture-card ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .culture-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        /* Job Listings */
+        .jobs-section {
+            margin-bottom: 4rem;
+        }
+        
+        .jobs-section h2 {
+            color: var(--burgundy);
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .job-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .job-info h3 {
+            color: var(--burgundy);
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .job-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .job-tag {
+            background: var(--cream);
+            color: var(--burgundy);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .job-tag.urgent {
+            background: var(--burgundy);
+            color: var(--white);
+        }
+        
+        .job-tag.new {
+            background: var(--green);
+            color: var(--white);
+        }
+        
+        .job-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .btn-apply {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .btn-details {
+            display: inline-block;
+            background: var(--cream);
+            color: var(--burgundy);
+            padding: 0.875rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .btn-details:hover {
+            background: var(--gold);
+            color: var(--charcoal);
+        }
+        
+        /* Job Details Expandable */
+        .job-details {
+            display: none;
+            grid-column: 1 / -1;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+            margin-top: 1rem;
+        }
+        
+        .job-details.active {
+            display: block;
+        }
+        
+        .job-details h4 {
+            color: var(--burgundy);
+            font-size: 1.2rem;
+            margin: 1rem 0 0.5rem;
+        }
+        
+        .job-details h4:first-child {
+            margin-top: 0;
+        }
+        
+        .job-details ul {
+            margin-left: 1.5rem;
+            color: #555;
+        }
+        
+        .job-details ul li {
+            margin-bottom: 0.4rem;
+        }
+        
+        /* Application Form Section */
+        .apply-section {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: var(--white);
+            margin-bottom: 4rem;
+        }
+        
+        .apply-section h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .apply-section > p {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .apply-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            background: var(--white);
+            color: var(--charcoal);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: 3px solid var(--gold);
+        }
+        
+        .btn-submit {
+            width: 100%;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 40px var(--shadow);
+        }
+        
+        .contact-section h2 {
+            color: var(--burgundy);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-section p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--burgundy);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .contact-method:hover {
+            color: var(--gold-dark);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .culture-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .job-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .job-actions {
+                flex-direction: row;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .hero {
+                padding: 8rem 1.5rem 3rem;
+                margin-top: 70px;
+            }
+            
+            main {
+                padding: 2rem 1rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .job-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-container">
+                <img src="photos/hrg-logo-email.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="properties.html">Properties</a>
+                <a href="services.html">Services</a>
+                <a href="partners.html">Partners</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <span class="hero-badge">🌟 We're Hiring!</span>
+        <h1>Join Our Team</h1>
+        <p>Build your real estate career with Harvest Realty LLC. We're looking for passionate, driven individuals who want to make a difference in people's lives.</p>
+    </section>
+
+    <main>
+        <!-- Why Join -->
+        <div class="why-join">
+            <h2>Why Harvest Realty?</h2>
+            <p>At Harvest Realty LLC, we're more than just a real estate company—we're a family. We believe in nurturing talent, supporting growth, and creating an environment where everyone can thrive.</p>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="icon">💰</div>
+                    <h4>Competitive Splits</h4>
+                    <p>Industry-leading commission structures that reward your hard work</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">📚</div>
+                    <h4>Training & Support</h4>
+                    <p>Comprehensive training programs and mentorship opportunities</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🚀</div>
+                    <h4>Growth Potential</h4>
+                    <p>Clear paths for advancement and leadership roles</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🤝</div>
+                    <h4>Team Culture</h4>
+                    <p>Supportive, faith-based environment where everyone succeeds together</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🖥️</div>
+                    <h4>Technology</h4>
+                    <p>Access to cutting-edge tools and marketing resources</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">📍</div>
+                    <h4>Multi-State</h4>
+                    <p>Licensed in PA & NJ for expanded opportunities</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">⏰</div>
+                    <h4>Flexibility</h4>
+                    <p>Work-life balance with flexible scheduling</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">✝️</div>
+                    <h4>Values-Driven</h4>
+                    <p>Faith-based company with integrity at the core</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Culture -->
+        <div class="culture-section">
+            <div class="culture-card">
+                <h3>🎯 What We're Looking For</h3>
+                <p>We seek individuals who share our values and are committed to excellence in real estate.</p>
+                <ul>
+                    <li>Passion for helping people find their perfect home</li>
+                    <li>Strong communication and interpersonal skills</li>
+                    <li>Self-motivated with entrepreneurial spirit</li>
+                    <li>Integrity and professionalism in all dealings</li>
+                    <li>Willingness to learn and grow</li>
+                    <li>Team player who supports colleagues</li>
+                </ul>
+            </div>
+            <div class="culture-card">
+                <h3>🌱 What We Offer</h3>
+                <p>Join us and receive the support you need to build a successful career.</p>
+                <ul>
+                    <li>One-on-one mentorship from experienced agents</li>
+                    <li>Lead generation and marketing support</li>
+                    <li>Professional development workshops</li>
+                    <li>Administrative and transaction support</li>
+                    <li>Brand recognition and reputation</li>
+                    <li>Collaborative team environment</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Job Listings -->
+        <div class="jobs-section">
+            <h2>Open Positions</h2>
+            
+            <!-- Job 1 -->
+            <div class="job-card">
+                <div class="job-info">
+                    <h3>Real Estate Sales Agent</h3>
+                    <div class="job-meta">
+                        <span>📍 Philadelphia, PA</span>
+                        <span>💼 Full-Time / Part-Time</span>
+                        <span>💵 Commission-Based</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag new">New</span>
+                        <span class="job-tag">PA License Required</span>
+                        <span class="job-tag">Entry Level Welcome</span>
+                    </div>
+                    <div class="job-details" id="job1-details">
+                        <h4>Job Description</h4>
+                        <p>We're looking for motivated real estate sales agents to join our growing team. Whether you're newly licensed or an experienced agent, we have the resources to help you succeed.</p>
+                        <h4>Responsibilities</h4>
+                        <ul>
+                            <li>Assist buyers and sellers in real estate transactions</li>
+                            <li>Generate and follow up on leads</li>
+                            <li>Conduct property showings and open houses</li>
+                            <li>Negotiate offers and guide clients through closing</li>
+                            <li>Build and maintain client relationships</li>
+                        </ul>
+                        <h4>Requirements</h4>
+                        <ul>
+                            <li>Active Pennsylvania Real Estate License (or in process)</li>
+                            <li>Strong communication skills</li>
+                            <li>Self-motivated and goal-oriented</li>
+                            <li>Valid driver's license and reliable transportation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="job-actions">
+                    <a href="#apply" class="btn-apply">Apply Now</a>
+                    <button class="btn-details" onclick="toggleDetails('job1-details')">View Details</button>
+                </div>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="job-card">
+                <div class="job-info">
+                    <h3>Real Estate Sales Agent - New Jersey</h3>
+                    <div class="job-meta">
+                        <span>📍 New Jersey</span>
+                        <span>💼 Full-Time / Part-Time</span>
+                        <span>💵 Commission-Based</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag urgent">Urgently Hiring</span>
+                        <span class="job-tag">NJ License Required</span>
+                    </div>
+                    <div class="job-details" id="job2-details">
+                        <h4>Job Description</h4>
+                        <p>Expand our presence in New Jersey! We're seeking licensed NJ agents to serve clients in Burlington, Camden, and Mercer counties.</p>
+                        <h4>Responsibilities</h4>
+                        <ul>
+                            <li>Represent buyers and sellers in New Jersey markets</li>
+                            <li>Develop local market expertise</li>
+                            <li>Build relationships with local businesses and communities</li>
+                            <li>Collaborate with PA team for cross-state referrals</li>
+                        </ul>
+                        <h4>Requirements</h4>
+                        <ul>
+                            <li>Active New Jersey Real Estate License</li>
+                            <li>Knowledge of NJ real estate market preferred</li>
+                            <li>Excellent networking skills</li>
+                            <li>Professional demeanor and presentation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="job-actions">
+                    <a href="#apply" class="btn-apply">Apply Now</a>
+                    <button class="btn-details" onclick="toggleDetails('job2-details')">View Details</button>
+                </div>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="job-card">
+                <div class="job-info">
+                    <h3>Showing Assistant</h3>
+                    <div class="job-meta">
+                        <span>📍 Philadelphia Metro</span>
+                        <span>💼 Part-Time</span>
+                        <span>💵 Hourly + Bonus</span>
+                    </div>
+                    <div class="job-tags">
+                        <span class="job-tag">No License Required</span>
+                        <span class="job-tag">Flexible Hours</span>
+                    </div>
+                    <div class="job-details" id="job3-details">
+                        <h4>Job Description</h4>
+                        <p>Support our agents by conducting property showings and providing excellent customer service to prospective buyers.</p>
+                        <h4>Responsibilities</h4>
+                        <ul>
+                            <li>Conduct property showings on behalf of agents</li>
+                            <li>Provide property information to potential buyers</li>
+                            <li>Collect feedback and report to listing agents</li>
+                            <li>Assist with open house events</li>
+                        </ul>
+                        <h4>Requirements</h4>
+                        <ul>
+                            <li>Interest in real estate (great entry point!)</li>
+                            <li>Reliable transportation</li>
+                            <li>Flexible availability including evenings/weekends</li>
+                            <li>Professional appearance and communication</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="job-actions">
+                    <a href="#apply" class="btn-apply">Apply Now</a>
+                    <button class="btn-details" onclick="toggleDetails('job3-details')">View Details</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Application Form -->
+        <div class="apply-section" id="apply">
+            <h2>Apply Now</h2>
+            <p>Ready to start your journey with Harvest Realty? Fill out the form below and we'll be in touch!</p>
+            <form class="apply-form" action="mailto:prasad@harvestrealty.llc" method="post" enctype="text/plain">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="position">Position Applying For *</label>
+                    <select id="position" name="position" required>
+                        <option value="">Select a position...</option>
+                        <option value="Sales Agent - PA">Real Estate Sales Agent (PA)</option>
+                        <option value="Sales Agent - NJ">Real Estate Sales Agent (NJ)</option>
+                        <option value="Showing Assistant">Showing Assistant</option>
+                        <option value="Other">Other / General Interest</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="license">Do you have a real estate license?</label>
+                        <select id="license" name="license">
+                            <option value="No">No</option>
+                            <option value="PA License">Yes - Pennsylvania</option>
+                            <option value="NJ License">Yes - New Jersey</option>
+                            <option value="Both">Yes - Both PA & NJ</option>
+                            <option value="In Progress">In Progress</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Years of Experience</label>
+                        <select id="experience" name="experience">
+                            <option value="None">None - New to Real Estate</option>
+                            <option value="Less than 1">Less than 1 year</option>
+                            <option value="1-3">1-3 years</option>
+                            <option value="3-5">3-5 years</option>
+                            <option value="5+">5+ years</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="about">Tell Us About Yourself *</label>
+                    <textarea id="about" name="about" placeholder="Why do you want to join Harvest Realty? What makes you a great fit for our team?" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Submit Application →</button>
+            </form>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact-section">
+            <h2>Questions About Careers?</h2>
+            <p>We'd love to hear from you! Reach out to learn more about opportunities at Harvest Realty.</p>
+            <div class="contact-methods">
+                <a href="mailto:prasad@harvestrealty.llc" class="contact-method">
+                    📧 prasad@harvestrealty.llc
+                </a>
+                <a href="tel:215-519-4096" class="contact-method">
+                    📞 215-519-4096
+                </a>
+                <a href="https://cal.com/harvestrealtyllc" target="_blank" class="contact-method">
+                    📅 Schedule a Call
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="index.html">Home</a> | 
+            <a href="properties.html">Properties</a> | 
+            <a href="services.html">Services</a> | 
+            <a href="church.html">Faith-Based</a> |
+            <a href="partners.html">Partners</a>
+        </p>
+    </footer>
+
+    <script>
+        function toggleDetails(id) {
+            const details = document.getElementById(id);
+            details.classList.toggle('active');
+            
+            // Update button text
+            const btn = details.closest('.job-card').querySelector('.btn-details');
+            btn.textContent = details.classList.contains('active') ? 'Hide Details' : 'View Details';
+        }
+    </script>
+</body>
+</html>
