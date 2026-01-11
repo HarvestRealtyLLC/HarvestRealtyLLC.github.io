@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+        
+        /* Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,241,232,0.95) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo-container img { height: 60px; }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 0.2rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--burgundy); }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+            color: var(--white);
+            padding: 10rem 2rem 5rem;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* Main */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        /* Services Grid */
+        .services-intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .services-intro h2 {
+            color: var(--burgundy);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .services-intro p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            color: var(--burgundy);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .service-card ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .service-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+        
+        /* Featured Service - Full Width */
+        .featured-service {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            color: var(--white);
+            margin-bottom: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .featured-service h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .featured-service p {
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .featured-service .badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .certification-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .certification-box h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+        
+        .certification-box .agent-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .certification-box .cert-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+        
+        /* Property Management Section */
+        .property-management {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            margin-bottom: 4rem;
+        }
+        
+        .property-management h2 {
+            color: var(--burgundy);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .pm-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pm-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .pm-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pm-item h4 {
+            color: var(--burgundy);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .pm-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Areas Served */
+        .areas-served {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .areas-served h2 {
+            color: var(--burgundy);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .areas-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .area-tag {
+            background: var(--white);
+            border: 2px solid var(--burgundy);
+            color: var(--burgundy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .area-tag:hover {
+            background: var(--burgundy);
+            color: var(--white);
+        }
+        
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            color: var(--charcoal);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            background: var(--white);
+            color: var(--burgundy);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-service {
+                grid-template-columns: 1fr;
+            }
+            
+            .pm-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.4rem;
+            }
+            
+            .hero {
+                padding: 8rem 1.5rem 3rem;
+                margin-top: 70px;
+            }
+            
+            main {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo-container">
+                <img src="photos/hrg-logo-email.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="properties.html">Properties</a>
+                <a href="services.html">Services</a>
+                <a href="index.html#team">Our Team</a>
+                <a href="partners.html">Partners</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>🏠 Our Services</h1>
+        <p>Full-service real estate solutions for buyers, sellers, landlords, and tenants across Pennsylvania and New Jersey.</p>
+    </section>
+
+    <main>
+        <div class="services-intro">
+            <h2>What We Offer</h2>
+            <p>At Harvest Realty LLC, we provide comprehensive real estate services tailored to your unique needs. From finding your dream home to managing your investment properties, we're with you every step of the way.</p>
+        </div>
+
+        <!-- Main Services Grid -->
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon">🏡</div>
+                <h3>Buyer Representation</h3>
+                <p>Let us help you find your perfect home. We'll guide you through the entire buying process from search to closing.</p>
+                <ul>
+                    <li>Personalized property search</li>
+                    <li>Market analysis & pricing guidance</li>
+                    <li>Negotiation expertise</li>
+                    <li>Home inspection coordination</li>
+                    <li>Closing assistance</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="icon">💰</div>
+                <h3>Seller Representation</h3>
+                <p>Maximize your home's value with our proven marketing strategies and expert negotiation skills.</p>
+                <ul>
+                    <li>Comparative market analysis</li>
+                    <li>Professional photography</li>
+                    <li>MLS & online marketing</li>
+                    <li>Open house coordination</li>
+                    <li>Offer negotiation & closing</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="icon">🏢</div>
+                <h3>Rental Services</h3>
+                <p>Find excellent rental homes or list your property with us. We handle everything from marketing to tenant screening.</p>
+                <ul>
+                    <li>Rental property search</li>
+                    <li>Tenant screening & background checks</li>
+                    <li>Lease preparation</li>
+                    <li>Move-in/move-out coordination</li>
+                    <li>Rental market analysis</li>
+                </ul>
+            </div>
+            
+            <div class="service-card">
+                <div class="icon">📈</div>
+                <h3>Investment Properties</h3>
+                <p>Build your real estate portfolio with expert guidance on investment opportunities and ROI analysis.</p>
+                <ul>
+                    <li>Investment property identification</li>
+                    <li>Cash flow analysis</li>
+                    <li>Multi-family & duplex expertise</li>
+                    <li>1031 exchange guidance</li>
+                    <li>Portfolio strategy consulting</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Lead Paint Certification Section -->
+        <div class="featured-service">
+            <div>
+                <span class="badge">🛡️ CERTIFIED SERVICE</span>
+                <h3>Lead-Based Paint Services</h3>
+                <p>Buying or selling a home built before 1978? Lead-based paint disclosure and assessment is required by federal law. Our team includes a certified professional to help you navigate these requirements.</p>
+                <p>We provide guidance on lead paint disclosures, connect you with certified inspectors, and ensure compliance with EPA regulations for your peace of mind.</p>
+            </div>
+            <div class="certification-box">
+                <h4>EPA Certified Professional</h4>
+                <p class="agent-name">Jacob Abraham</p>
+                <p>Sales Agent - Pennsylvania</p>
+                <div class="cert-badge">
+                    <span>✓</span>
+                    Lead-Based Paint Certified
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Certified to work with pre-1978 properties requiring lead paint assessment and disclosure.</p>
+            </div>
+        </div>
+
+        <!-- Property Management -->
+        <div class="property-management">
+            <h2>Property Management Services</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto;">For landlords who want hassle-free ownership, we offer comprehensive property management services.</p>
+            
+            <div class="pm-grid">
+                <div class="pm-item">
+                    <div class="icon">👥</div>
+                    <h4>Tenant Placement</h4>
+                    <p>Marketing, showings, screening, and lease signing for qualified tenants.</p>
+                </div>
+                <div class="pm-item">
+                    <div class="icon">💵</div>
+                    <h4>Rent Collection</h4>
+                    <p>Timely rent collection with online payment options for tenants.</p>
+                </div>
+                <div class="pm-item">
+                    <div class="icon">🔧</div>
+                    <h4>Maintenance</h4>
+                    <p>Coordination of repairs and maintenance with trusted contractors.</p>
+                </div>
+                <div class="pm-item">
+                    <div class="icon">📋</div>
+                    <h4>Inspections</h4>
+                    <p>Regular property inspections to protect your investment.</p>
+                </div>
+                <div class="pm-item">
+                    <div class="icon">📊</div>
+                    <h4>Financial Reporting</h4>
+                    <p>Monthly statements and year-end tax documentation.</p>
+                </div>
+                <div class="pm-item">
+                    <div class="icon">⚖️</div>
+                    <h4>Legal Compliance</h4>
+                    <p>Ensuring your property meets all local and state regulations.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Areas Served -->
+        <div class="areas-served">
+            <h2>Areas We Serve</h2>
+            <div class="areas-grid">
+                <span class="area-tag">📍 Philadelphia, PA</span>
+                <span class="area-tag">📍 Bucks County, PA</span>
+                <span class="area-tag">📍 Montgomery County, PA</span>
+                <span class="area-tag">📍 Delaware County, PA</span>
+                <span class="area-tag">📍 Chester County, PA</span>
+                <span class="area-tag">📍 Burlington County, NJ</span>
+                <span class="area-tag">📍 Camden County, NJ</span>
+                <span class="area-tag">📍 Mercer County, NJ</span>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2>Ready to Get Started?</h2>
+            <p>Whether you're buying, selling, renting, or investing, our team is here to help you achieve your real estate goals.</p>
+            <div class="cta-buttons">
+                <a href="https://cal.com/harvestrealtyllc" target="_blank" class="btn-primary">📅 Schedule a Consultation</a>
+                <a href="tel:215-519-4096" class="btn-secondary">📞 Call Us: 215-519-4096</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="index.html">Home</a> | 
+            <a href="properties.html">Properties</a> | 
+            <a href="partners.html">Partners</a> | 
+            <a href="tenants.html">Tenant Portal</a> |
+            <a href="privacy.html">Privacy Policy</a>
+        </p>
+    </footer>
+</body>
+</html>
