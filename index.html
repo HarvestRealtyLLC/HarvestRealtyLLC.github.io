@@ -1024,6 +1024,13 @@
             transform: translateY(0);
         }
         
+        /* Fallback: show content if JS doesn't load */
+        .no-js .fade-in,
+        noscript ~ * .fade-in {
+            opacity: 1;
+            transform: none;
+        }
+        
         /* Mobile Menu */
         .mobile-menu-toggle {
             display: none;
@@ -2349,6 +2356,10 @@
     <script>
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize scroll animations
+            initScrollAnimations();
+            initHeaderScroll();
+            
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
             const navLinks = document.getElementById('navLinks');
             
