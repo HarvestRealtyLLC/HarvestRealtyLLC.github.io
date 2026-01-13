@@ -716,10 +716,19 @@
                 <h1>Agent Portal</h1>
                 <p>Harvest Realty LLC</p>
             </div>
+            
+            <!-- Login Error Message -->
             <div class="login-error" id="loginError">
                 Invalid email or password. Please try again.
             </div>
-            <form class="login-form" onsubmit="handleLogin(event)">
+            
+            <!-- Success Message -->
+            <div class="login-success" id="loginSuccess" style="display: none; background: #E8F5E9; color: #2E7D32; padding: 1rem; border-radius: 10px; margin-bottom: 1rem; text-align: center;">
+                Check your email for the verification code!
+            </div>
+            
+            <!-- Step 1: Email/Password Login -->
+            <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <label for="loginEmail">Email Address</label>
                     <input type="email" id="loginEmail" placeholder="your.email@harvestrealty.llc" required>
@@ -728,9 +737,47 @@
                     <label for="loginPassword">Password</label>
                     <input type="password" id="loginPassword" placeholder="Enter your password" required>
                 </div>
-                <button type="submit" class="login-btn">Sign In</button>
+                <button type="submit" class="login-btn" id="loginBtn">Sign In</button>
             </form>
-            <div class="forgot-password">
+            
+            <!-- Step 2: Email OTP Verification -->
+            <form class="login-form" id="otpForm" style="display: none;" onsubmit="handleOTPVerify(event)">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">📧</div>
+                    <h3 style="color: var(--burgundy); margin-bottom: 0.5rem;">Check Your Email</h3>
+                    <p style="color: #666; font-size: 0.9rem;">We sent a 6-digit code to <strong id="otpEmail"></strong></p>
+                </div>
+                <div class="form-group">
+                    <label for="otpCode">Verification Code</label>
+                    <input type="text" id="otpCode" placeholder="Enter 6-digit code" maxlength="6" pattern="[0-9]{6}" required style="text-align: center; font-size: 1.5rem; letter-spacing: 0.5rem;">
+                </div>
+                <button type="submit" class="login-btn" id="verifyBtn">Verify & Sign In</button>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <a href="#" onclick="resendOTP()" style="color: var(--burgundy); text-decoration: none; font-size: 0.9rem;">Didn't receive code? Resend</a>
+                </div>
+                <div style="text-align: center; margin-top: 0.5rem;">
+                    <a href="#" onclick="backToLogin()" style="color: #666; text-decoration: none; font-size: 0.9rem;">← Back to login</a>
+                </div>
+            </form>
+            
+            <!-- Forgot Password Form -->
+            <form class="login-form" id="forgotForm" style="display: none;" onsubmit="handleForgotPassword(event)">
+                <div style="text-align: center; margin-bottom: 1.5rem;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔑</div>
+                    <h3 style="color: var(--burgundy); margin-bottom: 0.5rem;">Reset Password</h3>
+                    <p style="color: #666; font-size: 0.9rem;">Enter your email to receive a password reset link</p>
+                </div>
+                <div class="form-group">
+                    <label for="forgotEmail">Email Address</label>
+                    <input type="email" id="forgotEmail" placeholder="your.email@harvestrealty.llc" required>
+                </div>
+                <button type="submit" class="login-btn">Send Reset Link</button>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <a href="#" onclick="backToLogin()" style="color: #666; text-decoration: none; font-size: 0.9rem;">← Back to login</a>
+                </div>
+            </form>
+            
+            <div class="forgot-password" id="forgotLink">
                 <a href="#" onclick="showForgotPassword()">Forgot your password?</a>
             </div>
         </div>
@@ -1206,7 +1253,7 @@
                                 <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 1: Login to PurelyMail Admin</h4>
                                 <ol style="margin-left: 1.5rem; color: #555;">
                                     <li style="margin-bottom: 0.5rem;">Go to <a href="https://purelymail.com/manage/login" target="_blank" style="color: var(--burgundy);">https://purelymail.com/manage/login</a></li>
-                                    <li style="margin-bottom: 0.5rem;">Login with admin account: <strong>prasad@harvestrealty.llc</strong></li>
+                                    <li style="margin-bottom: 0.5rem;">Login with admin account: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7101031002101531191003071402050314101d05085f1d1d12">[email&#160;protected]</a></strong></li>
                                     <li style="margin-bottom: 0.5rem;">Enter the admin password</li>
                                 </ol>
                             </div>
@@ -1246,7 +1293,7 @@
                             
                             <div style="background: #E8F5E9; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--green);">
                                 <h4 style="color: var(--green); margin-bottom: 0.5rem;">✅ Quick Reference</h4>
-                                <p style="margin-bottom: 0.5rem;"><strong>Admin Login:</strong> prasad@harvestrealty.llc</p>
+                                <p style="margin-bottom: 0.5rem;"><strong>Admin Login:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3c3c1d2c0d2d7f3dbd2c1c5d6c0c7c1d6d2dfc7ca9ddfdfd0">[email&#160;protected]</a></p>
                                 <p style="margin-bottom: 0.5rem;"><strong>Domain:</strong> harvestrealty.llc</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>PurelyMail Admin:</strong> <a href="https://purelymail.com/manage/users" target="_blank" style="color: var(--green);">purelymail.com/manage/users</a></p>
                                 <p><strong>Webmail:</strong> <a href="https://purelymail.com/webmail" target="_blank" style="color: var(--green);">purelymail.com/webmail</a></p>
@@ -1475,7 +1522,7 @@
                     <input type="text" id="newUserName" required placeholder="John Smith">
                 </div>
                 <div class="form-group">
-                    <label for="newUserEmail">Email (name@harvestrealty.llc) *</label>
+                    <label for="newUserEmail">Email (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fd939c9098bd959c8f8b988e898f989c918984d391919e">[email&#160;protected]</a>) *</label>
                     <input type="email" id="newUserEmail" required placeholder="john@harvestrealty.llc">
                 </div>
                 <div class="form-group">
@@ -1512,7 +1559,7 @@
     </div>
     
     <!-- Supabase JS Client - Load before our script -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script>
         // ============================================
@@ -1541,71 +1588,105 @@
         // Current user session
         let currentUser = null;
         let currentAgent = null;
+        let pendingEmail = null; // For OTP flow
         
         // Pending changes for tracking
         let pendingChanges = [];
         let commitHistory = [];
         
         // ============================================
-        // AUTHENTICATION
+        // AUTHENTICATION WITH SUPABASE AUTH
         // ============================================
         
+        // Check for existing session on page load
+        async function checkSession() {
+            try {
+                const { data: { session }, error } = await db.auth.getSession();
+                
+                if (session && session.user) {
+                    console.log('Existing session found:', session.user.email);
+                    await loginWithSession(session.user);
+                }
+            } catch (err) {
+                console.error('Session check error:', err);
+            }
+        }
+        
+        // Handle initial login (email + password)
         async function handleLogin(event) {
             event.preventDefault();
             
             const email = document.getElementById('loginEmail').value.toLowerCase().trim();
             const password = document.getElementById('loginPassword').value;
+            const loginBtn = document.getElementById('loginBtn');
             
-            console.log('Attempting login for:', email);
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Signing in...';
+            hideMessages();
             
             try {
-                // Query agent from database
-                const { data: agent, error } = await db
+                // First, verify the agent exists in our agents table
+                const { data: agent, error: agentError } = await db
                     .from('agents')
                     .select('*')
                     .eq('email', email)
                     .single();
                 
-                console.log('Query result:', { agent, error });
-                
-                if (error) {
-                    console.error('Database error:', error);
-                    showLoginError('Database error: ' + error.message);
+                if (agentError || !agent) {
+                    showLoginError('No agent account found with this email.');
                     return;
                 }
                 
-                if (!agent) {
-                    showLoginError('User not found.');
-                    return;
-                }
-                
-                // Check password (in production, use proper hashing)
-                console.log('Checking password...');
-                if (agent.password_hash !== password) {
-                    showLoginError('Invalid password.');
-                    return;
-                }
-                
-                // Create session
-                const sessionToken = generateSessionToken();
-                const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
-                
-                const { error: sessionError } = await db.from('sessions').insert({
-                    agent_id: agent.id,
-                    token: sessionToken,
-                    expires_at: expiresAt.toISOString()
+                // Sign in with Supabase Auth
+                const { data, error } = await db.auth.signInWithPassword({
+                    email: email,
+                    password: password
                 });
                 
-                if (sessionError) {
-                    console.error('Session error:', sessionError);
-                    // Continue anyway - session is not critical for login
+                if (error) {
+                    console.error('Auth error:', error);
+                    
+                    // Handle specific errors
+                    if (error.message.includes('Invalid login credentials')) {
+                        showLoginError('Invalid email or password.');
+                    } else if (error.message.includes('Email not confirmed')) {
+                        showLoginError('Please check your email to confirm your account.');
+                    } else {
+                        showLoginError(error.message);
+                    }
+                    return;
                 }
                 
-                // Store session locally
-                sessionStorage.setItem('agentSession', sessionToken);
-                sessionStorage.setItem('agentEmail', email);
+                // Success - user is authenticated
+                console.log('Login successful:', data.user.email);
+                await loginWithSession(data.user);
                 
-                currentUser = email;
+            } catch (err) {
+                console.error('Login error:', err);
+                showLoginError('Connection error. Please try again.');
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In';
+            }
+        }
+        
+        // Complete login after authentication
+        async function loginWithSession(authUser) {
+            try {
+                // Get agent details from our agents table
+                const { data: agent, error } = await db
+                    .from('agents')
+                    .select('*')
+                    .eq('email', authUser.email)
+                    .single();
+                
+                if (error || !agent) {
+                    showLoginError('Agent profile not found. Please contact admin.');
+                    await db.auth.signOut();
+                    return;
+                }
+                
+                currentUser = authUser;
                 currentAgent = agent;
                 
                 // Show dashboard
@@ -1613,39 +1694,89 @@
                 document.getElementById('dashboard').style.display = 'block';
                 
                 await loadUserData();
-                initGitTracking();
                 
                 if (agent.is_admin) {
                     document.getElementById('adminMenuItem').style.display = 'block';
                 }
                 
-                updateCloudStatus('✅ Connected to Supabase', '#2E7D32');
+                updateCloudStatus('✅ Connected & Authenticated', '#2E7D32');
                 
             } catch (err) {
-                console.error('Login error:', err);
-                showLoginError('Connection error. Please try again.');
+                console.error('Session login error:', err);
+                showLoginError('Error loading profile. Please try again.');
             }
         }
         
+        // Handle forgot password
+        async function handleForgotPassword(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('forgotEmail').value.toLowerCase().trim();
+            
+            try {
+                const { error } = await db.auth.resetPasswordForEmail(email, {
+                    redirectTo: window.location.origin + '/portal.html?reset=true'
+                });
+                
+                if (error) {
+                    showLoginError(error.message);
+                    return;
+                }
+                
+                showLoginSuccess('Password reset link sent! Check your email.');
+                
+            } catch (err) {
+                console.error('Reset error:', err);
+                showLoginError('Error sending reset link. Please try again.');
+            }
+        }
+        
+        // Show forgot password form
+        function showForgotPassword() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('otpForm').style.display = 'none';
+            document.getElementById('forgotForm').style.display = 'block';
+            document.getElementById('forgotLink').style.display = 'none';
+            hideMessages();
+        }
+        
+        // Back to login form
+        function backToLogin() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('otpForm').style.display = 'none';
+            document.getElementById('forgotForm').style.display = 'none';
+            document.getElementById('forgotLink').style.display = 'block';
+            hideMessages();
+        }
+        
+        // UI Helpers
         function showLoginError(message) {
             const errorEl = document.getElementById('loginError');
             errorEl.textContent = message;
             errorEl.style.display = 'block';
-            setTimeout(() => errorEl.style.display = 'none', 3000);
+            document.getElementById('loginSuccess').style.display = 'none';
         }
         
-        function generateSessionToken() {
-            return 'sess_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+        function showLoginSuccess(message) {
+            const successEl = document.getElementById('loginSuccess');
+            successEl.textContent = message;
+            successEl.style.display = 'block';
+            document.getElementById('loginError').style.display = 'none';
         }
         
+        function hideMessages() {
+            document.getElementById('loginError').style.display = 'none';
+            document.getElementById('loginSuccess').style.display = 'none';
+        }
+        
+        // Handle logout
         async function handleLogout() {
-            const token = sessionStorage.getItem('agentSession');
-            if (token) {
-                await db.from('sessions').delete().eq('token', token);
+            try {
+                await db.auth.signOut();
+            } catch (err) {
+                console.error('Logout error:', err);
             }
             
-            sessionStorage.removeItem('agentSession');
-            sessionStorage.removeItem('agentEmail');
             currentUser = null;
             currentAgent = null;
             
@@ -2931,15 +3062,4 @@
             alert('For security, backup imports must be done through Supabase dashboard.\n\nGo to: Table Editor → Import Data');
         }
         
-        // Placeholder functions for GitHub (optional)
-        function saveGitHubConfig() { alert('GitHub integration is optional. Supabase handles all data storage.'); }
-        function loadGitHubConfig() {}
-        function testGitHubConnection() { alert('GitHub integration is optional. Supabase handles all data storage.'); }
-        
-        // Initialize on page load
-        document.addEventListener("DOMContentLoaded", function() {
-            checkSession();
-        });
-    </script>
-</body>
-</html>
+        // Placeholder fun
