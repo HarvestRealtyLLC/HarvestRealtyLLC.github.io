@@ -1524,9 +1524,19 @@
         const SUPABASE_URL = 'https://zzjunmkcdpdxhmhiggno.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6anVubWtjZHBkeGhtaGlnZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyNzM1MDIsImV4cCI6MjA4Mzg0OTUwMn0.HYHck2haMWyEQh1sSXGjh9nWqPXmfvXeE60HBTVx-KM';
         
-        // Initialize Supabase client
-        const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        console.log('Supabase initialized:', db);
+        // Initialize Supabase client with error handling
+        let db;
+        try {
+            if (window.supabase) {
+                db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                console.log('Supabase initialized successfully');
+            } else {
+                console.error('Supabase library not loaded');
+                alert('Error: Unable to connect to database. Please refresh the page.');
+            }
+        } catch (err) {
+            console.error('Supabase initialization error:', err);
+        }
         
         // Current user session
         let currentUser = null;
@@ -2924,4 +2934,12 @@
         // Placeholder functions for GitHub (optional)
         function saveGitHubConfig() { alert('GitHub integration is optional. Supabase handles all data storage.'); }
         function loadGitHubConfig() {}
-        function testGitHubConnection() 
+        function testGitHubConnection() { alert('GitHub integration is optional. Supabase handles all data storage.'); }
+        
+        // Initialize on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            checkSession();
+        });
+    </script>
+</body>
+</html>
