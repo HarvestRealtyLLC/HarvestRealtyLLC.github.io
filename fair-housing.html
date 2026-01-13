@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fair Housing Statement - Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --gold: #D4AF37;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+        
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,241,232,0.95) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px var(--shadow);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+        
+        .logo-container img { height: 60px; width: auto; }
+        
+        .logo-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 0.2rem;
+        }
+        
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--burgundy); }
+        
+        .tenant-link {
+            background: var(--cream-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            color: var(--burgundy) !important;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            cursor: pointer;
+        }
+        
+        @media (max-width: 900px) {
+            nav { padding: 1rem; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 20px var(--shadow);
+            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-toggle { display: block; }
+            .logo-container img { height: 45px; }
+            .logo-text h1 { font-size: 1.4rem; }
+        }
+        
+        .hero {
+            padding: 10rem 5% 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+            color: var(--white);
+        }
+        
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+        
+        .fair-housing-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .equal-housing-logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .equal-housing-logo .logo-box {
+            background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+            color: white;
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .equal-housing-logo .logo-box img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        
+        .equal-housing-logo .logo-box h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: white !important;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-top: 0;
+        }
+        
+        .fair-housing-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--burgundy);
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--cream-dark);
+        }
+        
+        .fair-housing-card h2:first-of-type { margin-top: 0; }
+        
+        .fair-housing-card p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .fair-housing-card ul {
+            margin-bottom: 1.5rem;
+            margin-left: 1.5rem;
+        }
+        
+        .fair-housing-card li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+        
+        .fair-housing-card strong { color: var(--burgundy); }
+        
+        .fair-housing-card a {
+            color: #1565C0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .fair-housing-card a:hover { text-decoration: underline; }
+        
+        .protected-classes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .protected-class {
+            background: var(--cream);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid #1565C0;
+        }
+        
+        .protected-class span {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .complaint-box {
+            background: #E3F2FD;
+            border: 2px solid #1565C0;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+        
+        .complaint-box h3 {
+            color: #1565C0;
+            margin-bottom: 1rem;
+        }
+        
+        .complaint-box p {
+            color: #1565C0;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .contact-card h4 {
+            color: #1565C0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-card p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .highlight-box p {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+        
+        .highlight-box strong {
+            color: var(--white) !important;
+        }
+        
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+        
+        footer a { color: var(--cream); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .logo { justify-content: center; }
+            .hero h1 { font-size: 2rem; }
+            .fair-housing-card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <div class="logo-container">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                ☰
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
+                <a href="properties.html">Properties</a>
+                <a href="index.html#team">Our Team</a>
+                <a href="partners.html">Partners</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="tenants.html" class="tenant-link">Are you a Tenant?</a>
+                <a href="portal.html" style="background: var(--charcoal); color: var(--white); padding: 0.5rem 1rem; border-radius: 5px;">🔐 Agent Login</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <img src="photos/equal-housing-logo.png" alt="Equal Housing Opportunity" style="width: 80px; margin-bottom: 1rem;">
+        <h1>Fair Housing Statement</h1>
+        <p>Harvest Realty LLC is committed to equal housing opportunity for all. We believe everyone deserves access to housing without discrimination.</p>
+    </section>
+
+    <main class="main-content">
+        <div class="fair-housing-card">
+            <div class="equal-housing-logo">
+                <div class="logo-box">
+                    <img src="photos/equal-housing-logo.png" alt="Equal Housing Opportunity">
+                    <h2>EQUAL HOUSING<br>OPPORTUNITY</h2>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>We Do Business in Accordance With the Federal Fair Housing Law</strong><br>
+                It is illegal to discriminate against any person because of race, color, religion, sex, handicap, familial status, or national origin.</p>
+            </div>
+
+            <h2>Our Commitment</h2>
+            <p>Harvest Realty LLC fully supports the principles of the Fair Housing Act and all applicable federal, state, and local fair housing laws. We are committed to ensuring that all people enjoy equal access to housing opportunities.</p>
+            
+            <p>We pledge to:</p>
+            <ul>
+                <li>Provide equal professional service to all clients and customers regardless of their protected status</li>
+                <li>Never refuse to show, sell, rent, or negotiate for real estate based on any protected characteristic</li>
+                <li>Never represent that housing is not available when it is available</li>
+                <li>Never engage in "blockbusting," "steering," or other discriminatory practices</li>
+                <li>Make reasonable accommodations for persons with disabilities</li>
+                <li>Treat every person with dignity and respect</li>
+            </ul>
+
+            <h2>Protected Classes</h2>
+            <p>Under federal, Pennsylvania, and New Jersey fair housing laws, the following classes are protected from housing discrimination:</p>
+            
+            <div class="protected-classes">
+                <div class="protected-class">
+                    <span>👥</span>
+                    <strong>Race & Color</strong>
+                </div>
+                <div class="protected-class">
+                    <span>🌍</span>
+                    <strong>National Origin</strong>
+                </div>
+                <div class="protected-class">
+                    <span>⛪</span>
+                    <strong>Religion</strong>
+                </div>
+                <div class="protected-class">
+                    <span>♀️♂️</span>
+                    <strong>Sex</strong>
+                </div>
+                <div class="protected-class">
+                    <span>👨‍👩‍👧‍👦</span>
+                    <strong>Familial Status</strong>
+                </div>
+                <div class="protected-class">
+                    <span>♿</span>
+                    <strong>Disability</strong>
+                </div>
+                <div class="protected-class">
+                    <span>🏳️‍🌈</span>
+                    <strong>Sexual Orientation*</strong>
+                </div>
+                <div class="protected-class">
+                    <span>⚧️</span>
+                    <strong>Gender Identity*</strong>
+                </div>
+                <div class="protected-class">
+                    <span>💍</span>
+                    <strong>Marital Status*</strong>
+                </div>
+                <div class="protected-class">
+                    <span>📅</span>
+                    <strong>Age*</strong>
+                </div>
+                <div class="protected-class">
+                    <span>💵</span>
+                    <strong>Source of Income*</strong>
+                </div>
+                <div class="protected-class">
+                    <span>🎖️</span>
+                    <strong>Military Status*</strong>
+                </div>
+            </div>
+            <p style="font-size: 0.85rem; color: #666;">*Protected under Pennsylvania and/or New Jersey state law</p>
+
+            <h2>What is Prohibited</h2>
+            <p>Under fair housing laws, the following actions are illegal when based on a protected characteristic:</p>
+            <ul>
+                <li>Refusing to rent or sell housing</li>
+                <li>Refusing to negotiate for housing</li>
+                <li>Making housing unavailable or denying that housing is available</li>
+                <li>Setting different terms, conditions, or privileges for sale or rental</li>
+                <li>Providing different housing services or facilities</li>
+                <li>Falsely denying that housing is available for inspection, sale, or rental</li>
+                <li>Persuading owners to sell or rent (blockbusting)</li>
+                <li>Denying access to or membership in any MLS or real estate service</li>
+                <li>Refusing to make reasonable accommodations for persons with disabilities</li>
+                <li>Harassment or intimidation</li>
+            </ul>
+
+            <h2>Reasonable Accommodations</h2>
+            <p>Persons with disabilities may request reasonable accommodations in rules, policies, practices, or services when such accommodations are necessary to afford them equal opportunity to use and enjoy a dwelling. This includes:</p>
+            <ul>
+                <li>Service animals and emotional support animals</li>
+                <li>Reserved parking spaces</li>
+                <li>Accessible unit features</li>
+                <li>Modified policies or procedures</li>
+                <li>Effective communication aids</li>
+            </ul>
+
+            <h2>Filing a Complaint</h2>
+            <div class="complaint-box">
+                <h3>📋 If You Believe Your Rights Have Been Violated</h3>
+                <p>If you believe you have experienced housing discrimination, you have the right to file a complaint. You may file a complaint with any of the following agencies:</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h4>🇺🇸 HUD Fair Housing</h4>
+                        <p><strong>Phone:</strong> 1-800-669-9777</p>
+                        <p><strong>TTY:</strong> 1-800-927-9275</p>
+                        <p><strong>Online:</strong> <a href="https://www.hud.gov/fairhousing" target="_blank">hud.gov/fairhousing</a></p>
+                        <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#385e59514a50574d4b51565f78504d5c165f574e"><span class="__cf_email__" data-cfemail="c6a0a7afb4aea9b3b5afa8a186aeb3a2e8a1a9b0">[email&#160;protected]</span></a></p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>🏛️ Pennsylvania Human Relations Commission</h4>
+                        <p><strong>Phone:</strong> (717) 787-4410</p>
+                        <p><strong>Online:</strong> <a href="https://www.phrc.pa.gov" target="_blank">phrc.pa.gov</a></p>
+                        <p>Handles discrimination complaints in Pennsylvania</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>🏛️ PA Real Estate Commission</h4>
+                        <p><strong>Phone:</strong> (717) 783-3658</p>
+                        <p><strong>Online:</strong> <a href="https://www.pals.pa.gov" target="_blank">pals.pa.gov</a></p>
+                        <p>For complaints against real estate licensees</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>🏛️ NJ Division on Civil Rights</h4>
+                        <p><strong>Phone:</strong> (973) 648-2700</p>
+                        <p><strong>Online:</strong> <a href="https://www.njoag.gov/about/divisions-and-offices/division-on-civil-rights-home/" target="_blank">njoag.gov</a></p>
+                        <p>Handles discrimination complaints in New Jersey</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <h4>🏛️ NJ Real Estate Commission</h4>
+                        <p><strong>Phone:</strong> (609) 292-8280</p>
+                        <p><strong>Online:</strong> <a href="https://www.njconsumeraffairs.gov/rec" target="_blank">njconsumeraffairs.gov/rec</a></p>
+                        <p>For complaints against real estate licensees</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Commission Disclosure</h2>
+            <p style="background: #FFF3E0; padding: 1rem; border-radius: 10px; border-left: 4px solid #FF9800;">
+                <strong>⚠️ Important Notice:</strong> Real estate broker commissions are NOT set by law and are fully negotiable. The commission rate and terms are determined through negotiation between the broker and the client. All commission arrangements must be disclosed in writing in the Brokerage Services Agreement.
+            </p>
+
+            <h2>Contact Us</h2>
+            <p>If you have questions about our fair housing policies or need assistance, please contact us:</p>
+            <div style="background: var(--cream); padding: 1.5rem; border-radius: 15px; margin-top: 1rem; border-left: 4px solid var(--burgundy);">
+                <p><strong>Harvest Realty LLC</strong></p>
+                <p>📍 2481 Napfle Ave, Philadelphia, PA 19152</p>
+                <p>📧 Email: <a href="mailto:contact@harvestrealty.llc" style="color: var(--burgundy);">contact@harvestrealty.llc</a></p>
+                <p>📞 Phone: <a href="tel:267-900-8011" style="color: var(--burgundy);">267-900-8011</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">Licensed in PA & NJ | Equal Housing Opportunity <img src="photos/equal-housing-logo.png" alt="Equal Housing Opportunity" style="height: 30px; vertical-align: middle;"></p>
+    </footer>
+
+    <script>
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+            this.textContent = document.getElementById('navLinks').classList.contains('active') ? '✕' : '☰';
+        });
+    </script>
+</body>
+</html>
