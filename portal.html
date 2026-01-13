@@ -877,14 +877,27 @@
                     <p class="page-subtitle" id="listingsPageSubtitle">Manage your property listings.</p>
                     
                     <div class="card">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
                             <h3 style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;" id="listingsCardTitle">Properties</h3>
-                            <button class="btn btn-primary" onclick="showPage('add-listing')">+ Add New Listing</button>
+                            <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                                <select id="listingSortSelect" onchange="sortListingsTable()" style="padding: 0.5rem; border-radius: 5px; border: 1px solid #ddd;">
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="price-high">Price: High to Low</option>
+                                    <option value="price-low">Price: Low to High</option>
+                                    <option value="address">Address A-Z</option>
+                                    <option value="status">By Status</option>
+                                    <option value="type">By Type</option>
+                                </select>
+                                <button class="btn" id="bulkDeleteBtn" onclick="bulkDeleteListings()" style="background: #C62828; color: white; display: none;">🗑️ Delete Selected (<span id="selectedCount">0</span>)</button>
+                                <button class="btn btn-primary" onclick="showPage('add-listing')">+ Add New Listing</button>
+                            </div>
                         </div>
                         <div class="table-container">
                             <table>
                                 <thead>
                                     <tr>
+                                        <th style="width: 40px;"><input type="checkbox" id="selectAllListings" onchange="toggleSelectAll()" title="Select All"></th>
                                         <th style="width: 70px;">Photo</th>
                                         <th>Address</th>
                                         <th>Price</th>
@@ -1193,7 +1206,7 @@
                                 <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 1: Login to PurelyMail Admin</h4>
                                 <ol style="margin-left: 1.5rem; color: #555;">
                                     <li style="margin-bottom: 0.5rem;">Go to <a href="https://purelymail.com/manage/login" target="_blank" style="color: var(--burgundy);">https://purelymail.com/manage/login</a></li>
-                                    <li style="margin-bottom: 0.5rem;">Login with admin account: <strong>prasad@harvestrealty.llc</strong></li>
+                                    <li style="margin-bottom: 0.5rem;">Login with admin account: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="82f2f0e3f1e3e6c2eae3f0f4e7f1f6f0e7e3eef6fbaceeeee1">[email&#160;protected]</a></strong></li>
                                     <li style="margin-bottom: 0.5rem;">Enter the admin password</li>
                                 </ol>
                             </div>
@@ -1224,7 +1237,7 @@
                                 <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 4: Send Credentials to Agent</h4>
                                 <ol style="margin-left: 1.5rem; color: #555;">
                                     <li style="margin-bottom: 0.5rem;">Send the new agent their login credentials:</li>
-                                    <li style="margin-bottom: 0.5rem;"><strong>Email:</strong> prasad@harvestrealty.llc</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4f3f3d2e3c2e2b0f272e3d392a3c3b3d2a2e233b366123232c">[email&#160;protected]</a></li>
                                     <li style="margin-bottom: 0.5rem;"><strong>Password:</strong> (the generated password)</li>
                                     <li style="margin-bottom: 0.5rem;"><strong>Webmail:</strong> <a href="https://purelymail.com/webmail" target="_blank" style="color: var(--burgundy);">https://purelymail.com/webmail</a></li>
                                     <li style="margin-bottom: 0.5rem;">Direct them to the <a href="onboarding.html" target="_blank" style="color: var(--burgundy);">Onboarding Page</a> for full setup instructions</li>
@@ -1233,7 +1246,7 @@
                             
                             <div style="background: #E8F5E9; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--green);">
                                 <h4 style="color: var(--green); margin-bottom: 0.5rem;">✅ Quick Reference</h4>
-                                <p style="margin-bottom: 0.5rem;"><strong>Admin Login:</strong> prasad@harvestrealty.llc</p>
+                                <p style="margin-bottom: 0.5rem;"><strong>Admin Login:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6c1c1e0d1f0d082c040d1e1a091f181e090d0018154200000f">[email&#160;protected]</a></p>
                                 <p style="margin-bottom: 0.5rem;"><strong>Domain:</strong> harvestrealty.llc</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>PurelyMail Admin:</strong> <a href="https://purelymail.com/manage/users" target="_blank" style="color: var(--green);">purelymail.com/manage/users</a></p>
                                 <p><strong>Webmail:</strong> <a href="https://purelymail.com/webmail" target="_blank" style="color: var(--green);">purelymail.com/webmail</a></p>
@@ -1462,7 +1475,7 @@
                     <input type="text" id="newUserName" required placeholder="John Smith">
                 </div>
                 <div class="form-group">
-                    <label for="newUserEmail">Email (prasad@harvestrealty.llc) *</label>
+                    <label for="newUserEmail">Email (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0d7d7f6c7e6c694d656c7f7b687e797f686c6179742361616e">[email&#160;protected]</a>) *</label>
                     <input type="email" id="newUserEmail" required placeholder="john@harvestrealty.llc">
                 </div>
                 <div class="form-group">
@@ -1499,7 +1512,7 @@
     </div>
     
     <!-- Supabase JS Client - Load before our script -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script>
         // ============================================
@@ -1752,22 +1765,36 @@
             }
         }
         
+        // Selected listings for bulk delete
+        let selectedListings = new Set();
+        
         function loadListingsTable() {
             const tbody = document.getElementById('listingsTable');
-            const listings = currentAgent.listings || [];
+            let listings = [...(currentAgent.listings || [])];
             const isAdmin = currentAgent.is_admin;
             
+            // Reset selections
+            selectedListings.clear();
+            updateBulkDeleteButton();
+            const selectAllCb = document.getElementById('selectAllListings');
+            if (selectAllCb) selectAllCb.checked = false;
+            
             if (listings.length === 0) {
-                const colspan = isAdmin ? 7 : 6;
+                const colspan = isAdmin ? 8 : 7;
                 tbody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center; color: #666;">No listings yet. Add your first listing!</td></tr>`;
                 return;
             }
+            
+            // Apply sorting
+            const sortBy = document.getElementById('listingSortSelect')?.value || 'newest';
+            listings = sortListings(listings, sortBy);
             
             // Update table header for admin view
             const tableHead = document.querySelector('#my-listings table thead tr');
             if (tableHead && isAdmin && !tableHead.innerHTML.includes('Agent')) {
                 tableHead.innerHTML = `
-                    <th>Photo</th>
+                    <th style="width: 40px;"><input type="checkbox" id="selectAllListings" onchange="toggleSelectAll()" title="Select All"></th>
+                    <th style="width: 70px;">Photo</th>
                     <th>Address</th>
                     <th>Price</th>
                     <th>Type</th>
@@ -1783,6 +1810,7 @@
                 
                 return `
                 <tr>
+                    <td><input type="checkbox" class="listing-checkbox" data-id="${listing.id}" onchange="toggleListingSelection('${listing.id}')"></td>
                     <td>
                         ${listing.photo_url 
                             ? `<img src="${listing.photo_url}" style="width: 60px; height: 45px; object-fit: cover; border-radius: 4px;">` 
@@ -1800,6 +1828,137 @@
                     </td>
                 </tr>
             `}).join('');
+        }
+        
+        // Sort listings based on selected option
+        function sortListings(listings, sortBy) {
+            const parsePrice = (price) => {
+                if (!price) return 0;
+                return parseInt(String(price).replace(/[$,\/mo]/g, '')) || 0;
+            };
+            
+            const statusOrder = { 'Active': 1, 'Under Contract': 2, 'For Rent': 3, 'Sold': 4, 'Rented': 5 };
+            
+            return listings.sort((a, b) => {
+                switch (sortBy) {
+                    case 'oldest':
+                        return new Date(a.created_at) - new Date(b.created_at);
+                    case 'price-high':
+                        return parsePrice(b.price) - parsePrice(a.price);
+                    case 'price-low':
+                        return parsePrice(a.price) - parsePrice(b.price);
+                    case 'address':
+                        return (a.address || '').localeCompare(b.address || '');
+                    case 'status':
+                        return (statusOrder[a.status] || 99) - (statusOrder[b.status] || 99);
+                    case 'type':
+                        return (a.property_type || '').localeCompare(b.property_type || '');
+                    case 'newest':
+                    default:
+                        return new Date(b.created_at) - new Date(a.created_at);
+                }
+            });
+        }
+        
+        // Sort table when dropdown changes
+        function sortListingsTable() {
+            loadListingsTable();
+        }
+        
+        // Toggle individual listing selection
+        function toggleListingSelection(listingId) {
+            if (selectedListings.has(listingId)) {
+                selectedListings.delete(listingId);
+            } else {
+                selectedListings.add(listingId);
+            }
+            updateBulkDeleteButton();
+            
+            // Update select all checkbox
+            const allCheckboxes = document.querySelectorAll('.listing-checkbox');
+            const selectAllCheckbox = document.getElementById('selectAllListings');
+            if (selectAllCheckbox) {
+                selectAllCheckbox.checked = selectedListings.size === allCheckboxes.length && allCheckboxes.length > 0;
+            }
+        }
+        
+        // Toggle select all
+        function toggleSelectAll() {
+            const selectAllCheckbox = document.getElementById('selectAllListings');
+            const allCheckboxes = document.querySelectorAll('.listing-checkbox');
+            
+            selectedListings.clear();
+            
+            allCheckboxes.forEach(cb => {
+                cb.checked = selectAllCheckbox.checked;
+                if (selectAllCheckbox.checked) {
+                    selectedListings.add(cb.dataset.id);
+                }
+            });
+            
+            updateBulkDeleteButton();
+        }
+        
+        // Update bulk delete button visibility and count
+        function updateBulkDeleteButton() {
+            const btn = document.getElementById('bulkDeleteBtn');
+            const countSpan = document.getElementById('selectedCount');
+            
+            if (btn && countSpan) {
+                if (selectedListings.size > 0) {
+                    btn.style.display = 'inline-block';
+                    countSpan.textContent = selectedListings.size;
+                } else {
+                    btn.style.display = 'none';
+                }
+            }
+        }
+        
+        // Bulk delete selected listings
+        async function bulkDeleteListings() {
+            if (selectedListings.size === 0) return;
+            
+            const count = selectedListings.size;
+            if (!confirm(`Are you sure you want to delete ${count} listing${count > 1 ? 's' : ''}? This cannot be undone.`)) {
+                return;
+            }
+            
+            try {
+                const idsToDelete = Array.from(selectedListings);
+                
+                const { error } = await db
+                    .from('listings')
+                    .delete()
+                    .in('id', idsToDelete);
+                
+                if (error) {
+                    alert('Error deleting listings: ' + error.message);
+                    return;
+                }
+                
+                // Remove deleted listings from local array
+                currentAgent.listings = currentAgent.listings.filter(l => !selectedListings.has(l.id));
+                
+                // Clear selections and reload table
+                selectedListings.clear();
+                loadListingsTable();
+                
+                // Update dashboard counts
+                const activeCount = currentAgent.listings.filter(l => l.status === 'Active' || l.status === 'Under Contract' || l.status === 'For Rent').length;
+                const soldCount = currentAgent.listings.filter(l => l.status === 'Sold' || l.status === 'Rented').length;
+                document.getElementById('activeListings').textContent = activeCount;
+                document.getElementById('soldListings').textContent = soldCount;
+                
+                if (currentAgent.is_admin) {
+                    document.getElementById('listingsCardTitle').textContent = `All Properties (${currentAgent.listings.length})`;
+                }
+                
+                alert(`✅ Successfully deleted ${count} listing${count > 1 ? 's' : ''}`);
+                
+            } catch (err) {
+                console.error('Bulk delete error:', err);
+                alert('Error deleting listings');
+            }
         }
         
         // Download property page for a specific listing
@@ -2765,19 +2924,4 @@
         // Placeholder functions for GitHub (optional)
         function saveGitHubConfig() { alert('GitHub integration is optional. Supabase handles all data storage.'); }
         function loadGitHubConfig() {}
-        function testGitHubConnection() { alert('GitHub integration is optional.'); }
-        function saveCloudConfig() { alert('Cloud is pre-configured with Supabase!'); }
-        function loadCloudConfig() {}
-        function createNewBin() { alert('Using Supabase - no bin needed!'); }
-        
-        // ============================================
-        // INITIALIZATION
-        // ============================================
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            checkSession();
-            updateCloudStatus('🔄 Connecting to Supabase...', '#666');
-        });
-    </script>
-</body>
-</html>
+        function testGitHubConnection() 
