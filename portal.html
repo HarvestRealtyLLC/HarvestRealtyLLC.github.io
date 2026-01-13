@@ -873,12 +873,12 @@
 
                 <!-- My Listings -->
                 <div class="page" id="my-listings">
-                    <h1 class="page-title">My Listings</h1>
-                    <p class="page-subtitle">Manage your property listings.</p>
+                    <h1 class="page-title" id="listingsPageTitle">My Listings</h1>
+                    <p class="page-subtitle" id="listingsPageSubtitle">Manage your property listings.</p>
                     
                     <div class="card">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                            <h3 style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">Properties</h3>
+                            <h3 style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;" id="listingsCardTitle">Properties</h3>
                             <button class="btn btn-primary" onclick="showPage('add-listing')">+ Add New Listing</button>
                         </div>
                         <div class="table-container">
@@ -1193,7 +1193,7 @@
                                 <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 1: Login to PurelyMail Admin</h4>
                                 <ol style="margin-left: 1.5rem; color: #555;">
                                     <li style="margin-bottom: 0.5rem;">Go to <a href="https://purelymail.com/manage/login" target="_blank" style="color: var(--burgundy);">https://purelymail.com/manage/login</a></li>
-                                    <li style="margin-bottom: 0.5rem;">Login with admin account: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aecdc1c0dacfcddaeec6cfdcd8cbdddadccbcfc2dad780c2c2cd">[email&#160;protected]</a></strong></li>
+                                    <li style="margin-bottom: 0.5rem;">Login with admin account: <strong>prasad@harvestrealty.llc</strong></li>
                                     <li style="margin-bottom: 0.5rem;">Enter the admin password</li>
                                 </ol>
                             </div>
@@ -1224,7 +1224,7 @@
                                 <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 4: Send Credentials to Agent</h4>
                                 <ol style="margin-left: 1.5rem; color: #555;">
                                     <li style="margin-bottom: 0.5rem;">Send the new agent their login credentials:</li>
-                                    <li style="margin-bottom: 0.5rem;"><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="41222e2f3520223501292033372432353324202d35386f2d2d22">[email&#160;protected]</a></li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Email:</strong> prasad@harvestrealty.llc</li>
                                     <li style="margin-bottom: 0.5rem;"><strong>Password:</strong> (the generated password)</li>
                                     <li style="margin-bottom: 0.5rem;"><strong>Webmail:</strong> <a href="https://purelymail.com/webmail" target="_blank" style="color: var(--burgundy);">https://purelymail.com/webmail</a></li>
                                     <li style="margin-bottom: 0.5rem;">Direct them to the <a href="onboarding.html" target="_blank" style="color: var(--burgundy);">Onboarding Page</a> for full setup instructions</li>
@@ -1233,7 +1233,7 @@
                             
                             <div style="background: #E8F5E9; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--green);">
                                 <h4 style="color: var(--green); margin-bottom: 0.5rem;">✅ Quick Reference</h4>
-                                <p style="margin-bottom: 0.5rem;"><strong>Admin Login:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7615191802171502361e1704001305020413171a020f581a1a15">[email&#160;protected]</a></p>
+                                <p style="margin-bottom: 0.5rem;"><strong>Admin Login:</strong> prasad@harvestrealty.llc</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>Domain:</strong> harvestrealty.llc</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>PurelyMail Admin:</strong> <a href="https://purelymail.com/manage/users" target="_blank" style="color: var(--green);">purelymail.com/manage/users</a></p>
                                 <p><strong>Webmail:</strong> <a href="https://purelymail.com/webmail" target="_blank" style="color: var(--green);">purelymail.com/webmail</a></p>
@@ -1462,7 +1462,7 @@
                     <input type="text" id="newUserName" required placeholder="John Smith">
                 </div>
                 <div class="form-group">
-                    <label for="newUserEmail">Email (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aac9c5c4decbc9deeac2cbd8dccfd9ded8cfcbc6ded384c6c6c9">[email&#160;protected]</a>) *</label>
+                    <label for="newUserEmail">Email (prasad@harvestrealty.llc) *</label>
                     <input type="email" id="newUserEmail" required placeholder="john@harvestrealty.llc">
                 </div>
                 <div class="form-group">
@@ -1689,19 +1689,50 @@
             document.getElementById('userRole').textContent = currentAgent.role;
             document.getElementById('welcomeName').textContent = currentAgent.name.split(' ')[0];
             
-            // Load listings
-            const { data: listings, error } = await db
-                .from('listings')
-                .select('*')
-                .eq('agent_id', currentAgent.id);
+            // Load listings - ADMINS see ALL listings, agents see only their own
+            let listingsQuery;
+            if (currentAgent.is_admin) {
+                // Admin sees all listings with agent info
+                listingsQuery = await db
+                    .from('listings')
+                    .select('*, agents(name, email)')
+                    .order('created_at', { ascending: false });
+            } else {
+                // Regular agent sees only their listings
+                listingsQuery = await db
+                    .from('listings')
+                    .select('*')
+                    .eq('agent_id', currentAgent.id)
+                    .order('created_at', { ascending: false });
+            }
+            
+            const { data: listings, error } = listingsQuery;
             
             if (!error && listings) {
                 currentAgent.listings = listings;
                 
-                const activeCount = listings.filter(l => l.status === 'Active' || l.status === 'For Rent').length;
+                // For admins, count all listings; for agents, count their own
+                const activeCount = listings.filter(l => l.status === 'Active' || l.status === 'Under Contract' || l.status === 'For Rent').length;
                 const soldCount = listings.filter(l => l.status === 'Sold' || l.status === 'Rented').length;
                 document.getElementById('activeListings').textContent = activeCount;
                 document.getElementById('soldListings').textContent = soldCount;
+                
+                // Update dashboard labels and page titles for admin
+                if (currentAgent.is_admin) {
+                    const activeLabel = document.querySelector('#activeListings').closest('.stat-card')?.querySelector('p');
+                    const soldLabel = document.querySelector('#soldListings').closest('.stat-card')?.querySelector('p');
+                    if (activeLabel) activeLabel.textContent = 'Total Active';
+                    if (soldLabel) soldLabel.textContent = 'Total Sold';
+                    
+                    // Update listings page title
+                    document.getElementById('listingsPageTitle').textContent = 'All Listings';
+                    document.getElementById('listingsPageSubtitle').textContent = 'Manage all property listings across all agents.';
+                    document.getElementById('listingsCardTitle').textContent = `All Properties (${listings.length})`;
+                    
+                    // Update sidebar menu text
+                    const menuItem = document.querySelector('a[onclick="showPage(\'my-listings\')"]');
+                    if (menuItem) menuItem.innerHTML = '<span class="icon">🏡</span> All Listings';
+                }
             }
             
             // Load profile form
@@ -1724,13 +1755,33 @@
         function loadListingsTable() {
             const tbody = document.getElementById('listingsTable');
             const listings = currentAgent.listings || [];
+            const isAdmin = currentAgent.is_admin;
             
             if (listings.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #666;">No listings yet. Add your first listing!</td></tr>';
+                const colspan = isAdmin ? 7 : 6;
+                tbody.innerHTML = `<tr><td colspan="${colspan}" style="text-align: center; color: #666;">No listings yet. Add your first listing!</td></tr>`;
                 return;
             }
             
-            tbody.innerHTML = listings.map((listing, index) => `
+            // Update table header for admin view
+            const tableHead = document.querySelector('#my-listings table thead tr');
+            if (tableHead && isAdmin && !tableHead.innerHTML.includes('Agent')) {
+                tableHead.innerHTML = `
+                    <th>Photo</th>
+                    <th>Address</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>Agent</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                `;
+            }
+            
+            tbody.innerHTML = listings.map((listing, index) => {
+                const agentName = listing.agents?.name || 'Unknown';
+                const agentCell = isAdmin ? `<td style="font-size: 0.85rem;">${agentName}</td>` : '';
+                
+                return `
                 <tr>
                     <td>
                         ${listing.photo_url 
@@ -1740,13 +1791,75 @@
                     <td>${listing.address}</td>
                     <td>${listing.price}</td>
                     <td>${listing.property_type || ''}</td>
+                    ${agentCell}
                     <td><span class="status-badge status-${(listing.status || '').toLowerCase().replace(' ', '-')}">${listing.status}</span></td>
                     <td>
                         <button class="action-btn edit" onclick="editListing('${listing.id}')">Edit</button>
+                        <button class="action-btn" onclick="downloadListingPage('${listing.id}')" style="background: #2196F3; color: white;">📄 Page</button>
                         <button class="action-btn delete" onclick="deleteListing('${listing.id}')">Delete</button>
                     </td>
                 </tr>
-            `).join('');
+            `}).join('');
+        }
+        
+        // Download property page for a specific listing
+        function downloadListingPage(listingId) {
+            const listing = currentAgent.listings.find(l => l.id === listingId);
+            if (!listing) {
+                alert('Listing not found');
+                return;
+            }
+            
+            const listingData = {
+                address: listing.address,
+                price: listing.price,
+                property_type: listing.property_type,
+                status: listing.status,
+                beds: listing.beds,
+                baths: listing.baths,
+                sqft: listing.sqft,
+                mls_number: listing.mls_number,
+                description: listing.description,
+                features: listing.features,
+                photo_url: listing.photo_url
+            };
+            
+            const propertyPageHTML = generatePropertyPageHTML(listingData);
+            const fileName = generatePropertyFileName(listing.address);
+            downloadPropertyPage(propertyPageHTML, fileName);
+            
+            // Also show the code snippet to add to properties.html
+            const codeSnippet = generatePropertiesArrayEntry(listingData);
+            
+            const copyToClipboard = confirm(`✅ Property page "${fileName}" downloaded!\n\nWould you like to copy the JavaScript code to add this listing to properties.html?`);
+            if (copyToClipboard) {
+                navigator.clipboard.writeText(codeSnippet).then(() => {
+                    alert('✅ Code copied to clipboard!\n\nPaste this into the "properties" array in properties.html and index.html');
+                }).catch(() => {
+                    // Fallback - show in prompt
+                    prompt('Copy this code to add to properties.html:', codeSnippet);
+                });
+            }
+        }
+        
+        // Generate the JavaScript object for properties array
+        function generatePropertiesArrayEntry(listing) {
+            const fileName = generatePropertyFileName(listing.address);
+            const photoFileName = listing.photo_url ? listing.photo_url.split('/').pop() : 'placeholder.jpg';
+            
+            return `{
+    title: "${listing.address.split(',')[0]}",
+    price: "${listing.price}",
+    priceNum: ${parseInt(listing.price.replace(/[^0-9]/g, '')) || 0},
+    location: "${listing.address}",
+    mls: "${listing.mls_number || ''}",
+    beds: ${listing.beds || 'null'},
+    baths: ${listing.baths || 'null'},
+    type: "${listing.property_type || 'Residential'}",
+    status: "${listing.status}",
+    image: "photos/${photoFileName}",
+    url: "property/${fileName}"
+},`;
         }
         
         async function loadUsersTable() {
@@ -1929,6 +2042,16 @@
                 return;
             }
             
+            // Generate property detail page HTML
+            const propertyPageHTML = generatePropertyPageHTML(listingData);
+            const fileName = generatePropertyFileName(listingData.address);
+            
+            // Offer download of the generated HTML file
+            downloadPropertyPage(propertyPageHTML, fileName);
+            
+            // Show instructions
+            alert(`✅ Listing saved to database!\n\n📄 Property page "${fileName}" has been downloaded.\n\nTo complete the setup:\n1. Upload the HTML file to your website's "property" folder\n2. Add the listing to properties.html\n\nThe listing data is already saved in Supabase.`);
+            
             // Clear form and reset edit mode
             editingListingId = null;
             event.target.reset();
@@ -1947,6 +2070,220 @@
             
             // Go back to listings page
             showPage('my-listings');
+        }
+        
+        // Generate a URL-friendly filename from address
+        function generatePropertyFileName(address) {
+            return address
+                .toLowerCase()
+                .replace(/[,\.]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/[^a-z0-9-]/g, '')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '') + '.html';
+        }
+        
+        // Generate property detail page HTML
+        function generatePropertyPageHTML(listing) {
+            const statusClass = listing.status === 'Active' ? 'status-active' : 
+                               listing.status === 'Under Contract' ? 'status-pending' : 'status-sold';
+            
+            const featuresHTML = listing.beds && listing.baths ? 
+                `<div class="feature">🛏️ ${listing.beds} Beds</div>
+                 <div class="feature">🚿 ${listing.baths} Baths</div>
+                 ${listing.sqft ? `<div class="feature">📐 ${listing.sqft} sqft</div>` : ''}` :
+                `<div class="feature">📋 ${listing.property_type || 'Property'}</div>`;
+            
+            const addressForZillow = encodeURIComponent(listing.address.replace(/,/g, '').replace(/\s+/g, '-'));
+            const photoPath = listing.photo_url || '../photos/placeholder.jpg';
+            
+            return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${listing.address} - ${listing.property_type || 'Property'} | Harvest Realty LLC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8B2E2E;
+            --burgundy-dark: #6B1E1E;
+            --gold: #D4AF37;
+            --gold-dark: #B8941F;
+            --cream: #F5F1E8;
+            --cream-dark: #E8E0D0;
+            --charcoal: #2C2C2C;
+            --white: #FFFFFF;
+            --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--charcoal); line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
+        
+        header {
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,241,232,0.95) 100%);
+            backdrop-filter: blur(10px); box-shadow: 0 2px 20px var(--shadow);
+        }
+        nav { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1rem 3rem; }
+        .logo-container { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+        .logo-container img { height: 60px; }
+        .logo-text h1 { font-size: 1.8rem; color: var(--burgundy); margin-bottom: 0.2rem; }
+        .logo-text p { font-size: 0.85rem; color: var(--gold-dark); letter-spacing: 2px; text-transform: uppercase; font-weight: 500; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--charcoal); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--burgundy); }
+        
+        main { max-width: 1200px; margin: 0 auto; padding: 120px 2rem 3rem; }
+        
+        .property-hero { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2rem; margin-bottom: 2rem; }
+        .property-image-main { width: 100%; height: 450px; object-fit: cover; border-radius: 20px; box-shadow: 0 10px 40px var(--shadow); }
+        
+        .property-summary { background: var(--white); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 40px var(--shadow); }
+        .property-status { display: inline-block; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+        .status-active { background: rgba(76, 175, 80, 0.9); color: var(--white); }
+        .status-pending { background: rgba(255, 193, 7, 0.9); color: var(--charcoal); }
+        .status-sold { background: rgba(139, 46, 46, 0.9); color: var(--white); }
+        
+        .property-price { font-size: 2.5rem; color: var(--burgundy); font-weight: 700; font-family: 'Cormorant Garamond', serif; margin-bottom: 0.5rem; }
+        .property-address { font-size: 1.2rem; color: var(--charcoal); margin-bottom: 1rem; }
+        .property-mls { font-size: 0.9rem; color: #888; margin-bottom: 1.5rem; }
+        
+        .property-features { display: flex; gap: 1.5rem; flex-wrap: wrap; padding: 1rem 0; border-top: 2px solid var(--cream); border-bottom: 2px solid var(--cream); margin-bottom: 1.5rem; }
+        .feature { display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; }
+        
+        .btn-primary { display: block; width: 100%; padding: 1rem; background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%); color: var(--white); text-align: center; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s; margin-bottom: 1rem; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px var(--shadow); }
+        .btn-secondary { display: block; width: 100%; padding: 1rem; background: var(--gold); color: var(--charcoal); text-align: center; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s; }
+        .btn-secondary:hover { transform: translateY(-3px); }
+        
+        .property-details { background: var(--white); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 40px var(--shadow); margin-bottom: 2rem; }
+        .property-details h2 { color: var(--burgundy); margin-bottom: 1rem; font-size: 1.8rem; }
+        .property-details p { margin-bottom: 1rem; }
+        
+        .agent-card { background: var(--white); border-radius: 20px; padding: 2rem; box-shadow: 0 10px 40px var(--shadow); text-align: center; }
+        .agent-card h3 { color: var(--burgundy); margin-bottom: 0.5rem; }
+        .agent-card p { color: #666; margin-bottom: 1rem; }
+        .agent-contact a { display: block; color: var(--charcoal); text-decoration: none; margin: 0.5rem 0; }
+        .agent-contact a:hover { color: var(--burgundy); }
+        
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--burgundy); text-decoration: none; font-weight: 600; margin-bottom: 1.5rem; }
+        .back-link:hover { color: var(--burgundy-dark); }
+        
+        .external-links { display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; }
+        .external-links a { display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .external-links img { width: 100%; height: 100%; object-fit: cover; }
+        
+        footer { background: var(--charcoal); color: var(--white); text-align: center; padding: 2rem; margin-top: 3rem; }
+        footer a { color: var(--gold); text-decoration: none; }
+        
+        @media (max-width: 900px) {
+            .property-hero { grid-template-columns: 1fr; }
+            .property-image-main { height: 300px; }
+            nav { padding: 1rem; }
+            .nav-links { display: none; }
+            .logo-container img { height: 45px; }
+            .logo-text h1 { font-size: 1.4rem; }
+            main { padding: 100px 1rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html" class="logo-container">
+                <img src="../hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <div class="logo-text">
+                    <h1>Harvest Realty LLC</h1>
+                    <p>PA & NJ Experts</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="../properties.html">Properties</a>
+                <a href="../index.html#team">Our Team</a>
+                <a href="../partners.html">Partners</a>
+                <a href="../index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <a href="../properties.html" class="back-link">← Back to All Properties</a>
+        
+        <div class="property-hero">
+            <img src="${photoPath}" alt="${listing.address}" class="property-image-main">
+            
+            <div class="property-summary">
+                <span class="property-status ${statusClass}">${listing.status}</span>
+                <div class="property-price">${listing.price}</div>
+                <div class="property-address">📍 ${listing.address}</div>
+                <div class="property-mls">MLS# ${listing.mls_number || 'Pending'}</div>
+                
+                <div class="property-features">
+                    ${featuresHTML}
+                </div>
+                
+                <a href="https://cal.com/harvestrealtyllc/propertyshowing" target="_blank" class="btn-primary">📅 Schedule a Showing</a>
+                <a href="tel:215-519-4096" class="btn-secondary">📞 Call Agent</a>
+                
+                <div class="external-links">
+                    <a href="https://www.zillow.com/homes/${addressForZillow}_rb/" target="_blank" title="View on Zillow">
+                        <img src="../photos/zillow-logo.png" alt="Zillow">
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="property-details">
+            <h2>Property Description</h2>
+            <p>${listing.description || `Beautiful ${listing.property_type || 'property'} located at ${listing.address}. Contact us today to learn more about this listing!`}</p>
+            ${listing.features ? `<p><strong>Features:</strong> ${listing.features}</p>` : ''}
+            
+            <h2 style="margin-top: 2rem;">Property Details</h2>
+            <ul style="margin-left: 1.5rem;">
+                <li>Property Type: ${listing.property_type || 'Residential'}</li>
+                <li>Status: ${listing.status}</li>
+                ${listing.mls_number ? `<li>MLS#: ${listing.mls_number}</li>` : ''}
+                ${listing.beds ? `<li>Bedrooms: ${listing.beds}</li>` : ''}
+                ${listing.baths ? `<li>Bathrooms: ${listing.baths}</li>` : ''}
+                ${listing.sqft ? `<li>Square Feet: ${listing.sqft}</li>` : ''}
+            </ul>
+        </div>
+        
+        <div class="agent-card">
+            <h3>Listed By</h3>
+            <p>${currentAgent?.name || 'Harvest Realty Agent'}</p>
+            <p style="font-size: 0.9rem; color: var(--burgundy);">${currentAgent?.role || 'Sales Agent'}</p>
+            <div class="agent-contact">
+                <a href="tel:${currentAgent?.phone || '215-519-4096'}">📞 ${currentAgent?.phone || '215-519-4096'}</a>
+                <a href="mailto:${currentUser || 'contact@harvestrealty.llc'}">📧 ${currentUser || 'contact@harvestrealty.llc'}</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; ${new Date().getFullYear()} Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="../index.html">harvestrealty.llc</a></p>
+    </footer>
+</body>
+</html>`;
+        }
+        
+        // Download the generated property page
+        function downloadPropertyPage(html, fileName) {
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
         
         // Track editing state

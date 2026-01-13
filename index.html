@@ -1783,233 +1783,96 @@
     </div>
 
     <script>
-        // Real property data from MLS with actual listing photos
-        const properties = [
-            // Active Listings
-            {
-                title: "Land on N 5th St",
-                price: "$125,000",
-                location: "2456 N 5th St, Philadelphia, PA",
-                mls: "PAPH2527048",
-                beds: null,
-                baths: null,
-                type: "Land",
-                status: "Active",
-                image: "photos/2456-n-5th-st.jpg",
-                url: "property/2456-n-5th-st.html"
-            },
-            // Under Contract
-            {
-                title: "Duplex on E Tabor Rd",
-                price: "$244,900",
-                location: "565 E Tabor Rd, Philadelphia, PA",
-                mls: "PAPH2514428",
-                beds: null,
-                baths: null,
-                type: "Duplex",
-                status: "Under Contract",
-                image: "photos/565-e-tabor-rd.jpg",
-                url: "property/565-e-tabor-rd.html"
-            },
-            {
-                title: "Home on Whitaker Ave",
-                price: "$259,900",
-                location: "7524 Whitaker Ave, Philadelphia, PA",
-                mls: "PAPH2518910",
-                beds: 3,
-                baths: 1,
-                type: "Residential",
-                status: "Under Contract",
-                image: "photos/7524-whitaker-ave.jpg",
-                url: "property/7524-whitaker-ave.html"
-            },
-            // Recently Sold
-            {
-                title: "Duplex on Foster St",
-                price: "$256,000",
-                location: "515 Foster St, Philadelphia, PA",
-                mls: "PAPH2315284",
-                beds: null,
-                baths: null,
-                type: "Duplex",
-                status: "Sold",
-                image: "photos/515-foster-st.jpg",
-                url: "property/515-foster-st.html"
-            },
-            {
-                title: "Home on Frontenac St",
-                price: "$310,000",
-                location: "8604 Frontenac St, Philadelphia, PA",
-                mls: "PAPH2348768",
-                beds: 3,
-                baths: 2,
-                type: "Residential",
-                status: "Sold",
-                image: "photos/8604-frontenac-st.jpg",
-                url: "property/8604-frontenac-st.html"
-            },
-            {
-                title: "Home on Lindsay St",
-                price: "$317,500",
-                location: "11011 Lindsay St, Philadelphia, PA",
-                mls: "PAPH2306862",
-                beds: 4,
-                baths: 1,
-                type: "Residential",
-                status: "Sold",
-                image: "photos/11011-lindsay-st.jpg",
-                url: "property/11011-lindsay-st.html"
-            },
-            {
-                title: "Home on Hendrix St",
-                price: "$325,000",
-                location: "664 Hendrix St, Philadelphia, PA",
-                mls: "PAPH2381180",
-                beds: 3,
-                baths: 1,
-                type: "Residential",
-                status: "Sold",
-                image: "photos/664-hendrix-st.jpg",
-                url: "property/664-hendrix-st.html"
-            },
-            {
-                title: "Duplex on Langdon St",
-                price: "$462,500",
-                location: "8016 Langdon St, Philadelphia, PA",
-                mls: "PAPH2362214",
-                beds: null,
-                baths: null,
-                type: "Duplex",
-                status: "Sold",
-                image: "photos/8016-langdon-st.jpg",
-                url: "property/8016-langdon-st.html"
-            },
-            {
-                title: "Home on Lockart Rd",
-                price: "$514,000",
-                location: "11991 Lockart Rd, Philadelphia, PA",
-                mls: "PAPH2375898",
-                beds: 4,
-                baths: 2,
-                type: "Residential",
-                status: "Sold",
-                image: "photos/11991-lockart-rd.jpg",
-                url: "property/11991-lockart-rd.html"
-            },
-            {
-                title: "Home on Kismet Rd",
-                price: "$569,000",
-                location: "586 Kismet Rd, Philadelphia, PA",
-                mls: "PAPH2465970",
-                beds: 5,
-                baths: 3,
-                type: "Residential",
-                status: "Sold",
-                image: "photos/586-kismet-rd.jpg",
-                url: "property/586-kismet-rd.html"
-            },
-            {
-                title: "Home on Myrtle Ave",
-                price: "$605,000",
-                location: "315 Myrtle Ave, Morton, PA",
-                mls: "PADE2069112",
-                beds: 4,
-                baths: 3,
-                type: "Residential",
-                status: "Sold",
-                image: "photos/315-myrtle-ave.jpg",
-                url: "property/315-myrtle-ave.html"
-            },
-            // Rentals
-            {
-                title: "Office on Napfle St",
-                price: "$895/mo",
-                location: "2485 Napfle St, Philadelphia, PA",
-                mls: "PAPH2520522",
-                beds: null,
-                baths: null,
-                type: "Office",
-                status: "Sold",
-                image: "photos/2485-napfle-st.jpg",
-                url: "property/2485-napfle-st.html"
-            },
-            {
-                title: "Home on Densmore Rd",
-                price: "$2,300/mo",
-                location: "419 Densmore Rd, Philadelphia, PA",
-                mls: "PAPH2533022",
-                beds: 3,
-                baths: 2,
-                type: "Rental",
-                status: "Sold",
-                image: "photos/419-densmore-rd.jpg",
-                url: "property/419-densmore-rd.html"
-            },
-            {
-                title: "Home on Bustleton Ave",
-                price: "$3,000/mo",
-                location: "11059 Bustleton Ave, Philadelphia, PA",
-                mls: "PAPH2534602",
-                beds: 3,
-                baths: 3,
-                type: "Rental",
-                status: "Sold",
-                image: "photos/11059-bustleton-ave.jpg",
-                url: "property/11059-bustleton-ave.html"
-            }
-        ];
+        // Supabase Configuration
+        const SUPABASE_URL = 'https://zzjunmkcdpdxhmhiggno.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6anVubWtjZHBkeGhtaGlnZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyNzM1MDIsImV4cCI6MjA4Mzg0OTUwMn0.HYHck2haMWyEQh1sSXGjh9nWqPXmfvXeE60HBTVx-KM';
 
-        // Load properties
-        function loadProperties() {
+        // Load properties from Supabase using REST API
+        async function loadProperties() {
             const grid = document.getElementById('propertiesGrid');
             if (!grid) return;
             
-            grid.innerHTML = '';
+            // Show loading state
+            grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #666;">Loading properties...</div>';
             
-            properties.forEach(property => {
-                const card = document.createElement('div');
-                card.className = 'property-card';
+            try {
+                const response = await fetch(
+                    `${SUPABASE_URL}/rest/v1/listings?select=*&order=created_at.desc&limit=6`,
+                    {
+                        headers: {
+                            'apikey': SUPABASE_ANON_KEY,
+                            'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
                 
-                // Status badge HTML
-                let statusBadge = '';
-                if (property.status === 'Active') {
-                    statusBadge = '<span class="property-status status-active">Active</span>';
-                } else if (property.status === 'Under Contract') {
-                    statusBadge = '<span class="property-status status-pending">Under Contract</span>';
-                } else if (property.status === 'Sold') {
-                    statusBadge = '<span class="property-status status-sold">Sold</span>';
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                // Features HTML (only show if beds/baths exist)
-                let featuresHTML = '';
-                if (property.beds || property.baths) {
-                    featuresHTML = `
-                        <div class="property-features">
-                            ${property.beds ? `<span>🛏️ ${property.beds} Beds</span>` : ''}
-                            ${property.baths ? `<span>🚿 ${property.baths} Baths</span>` : ''}
-                        </div>
-                    `;
-                } else if (property.type) {
-                    featuresHTML = `
-                        <div class="property-features">
-                            <span>📋 ${property.type}</span>
-                        </div>
-                    `;
+                const properties = await response.json();
+                
+                if (!properties || properties.length === 0) {
+                    grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #666;">No properties available. Check back soon!</div>';
+                    return;
                 }
                 
-                card.innerHTML = `
-                    ${statusBadge}
-                    <img src="${property.image}" alt="${property.title}" class="property-image" loading="lazy">
-                    <div class="property-info">
-                        <div class="property-price">${property.price}</div>
-                        <h3 class="property-title">${property.title}</h3>
-                        <div class="property-location">📍 ${property.location}</div>
-                        ${featuresHTML}
-                    </div>
-                `;
-                card.onclick = () => window.location.href = property.url;
-                grid.appendChild(card);
-            });
+                grid.innerHTML = '';
+                
+                properties.forEach(property => {
+                    const card = document.createElement('div');
+                    card.className = 'property-card';
+                    
+                    // Status badge HTML
+                    let statusBadge = '';
+                    if (property.status === 'Active') {
+                        statusBadge = '<span class="property-status status-active">Active</span>';
+                    } else if (property.status === 'Under Contract') {
+                        statusBadge = '<span class="property-status status-pending">Under Contract</span>';
+                    } else if (property.status === 'Sold') {
+                        statusBadge = '<span class="property-status status-sold">Sold</span>';
+                    }
+                    
+                    // Features HTML
+                    let featuresHTML = '';
+                    if (property.beds || property.baths) {
+                        featuresHTML = `
+                            <div class="property-features">
+                                ${property.beds ? `<span>🛏️ ${property.beds} Beds</span>` : ''}
+                                ${property.baths ? `<span>🚿 ${property.baths} Baths</span>` : ''}
+                            </div>
+                        `;
+                    } else if (property.property_type) {
+                        featuresHTML = `
+                            <div class="property-features">
+                                <span>📋 ${property.property_type}</span>
+                            </div>
+                        `;
+                    }
+                    
+                    const photoUrl = property.photo_url || 'photos/placeholder.jpg';
+                    const title = property.address ? property.address.split(',')[0] : 'Property';
+                    const priceDisplay = property.price || 'Contact for Price';
+                    
+                    card.innerHTML = `
+                        ${statusBadge}
+                        <img src="${photoUrl}" alt="${property.address}" class="property-image" loading="lazy" onerror="this.src='photos/placeholder.jpg'">
+                        <div class="property-info">
+                            <div class="property-price">${priceDisplay}</div>
+                            <h3 class="property-title">${title}</h3>
+                            <div class="property-location">📍 ${property.address || 'Location TBD'}</div>
+                            ${featuresHTML}
+                        </div>
+                    `;
+                    card.onclick = () => window.location.href = `property.html?id=${property.id}`;
+                    grid.appendChild(card);
+                });
+                
+            } catch (err) {
+                console.error('Error:', err);
+                grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #666;">Unable to load properties.</div>';
+            }
         }
 
         // Open property detail modal
@@ -2307,7 +2170,7 @@
             initScrollAnimations();
             initHeaderScroll();
             
-            // Load properties on page load
+            // Load properties from Supabase
             loadProperties();
             
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
