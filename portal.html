@@ -1529,6 +1529,8 @@
             const email = document.getElementById('loginEmail').value.toLowerCase().trim();
             const password = document.getElementById('loginPassword').value;
             
+            console.log('Attempting login for:', email);
+            
             try {
                 // Query agent from database
                 const { data: agent, error } = await supabase
@@ -1537,14 +1539,23 @@
                     .eq('email', email)
                     .single();
                 
-                if (error || !agent) {
-                    showLoginError('Invalid email or password.');
+                console.log('Query result:', { agent, error });
+                
+                if (error) {
+                    console.error('Database error:', error);
+                    showLoginError('Database error: ' + error.message);
+                    return;
+                }
+                
+                if (!agent) {
+                    showLoginError('User not found.');
                     return;
                 }
                 
                 // Check password (in production, use proper hashing)
+                console.log('Checking password...');
                 if (agent.password_hash !== password) {
-                    showLoginError('Invalid email or password.');
+                    showLoginError('Invalid password.');
                     return;
                 }
                 
@@ -1552,11 +1563,16 @@
                 const sessionToken = generateSessionToken();
                 const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
                 
-                await supabase.from('sessions').insert({
+                const { error: sessionError } = await supabase.from('sessions').insert({
                     agent_id: agent.id,
                     token: sessionToken,
                     expires_at: expiresAt.toISOString()
                 });
+                
+                if (sessionError) {
+                    console.error('Session error:', sessionError);
+                    // Continue anyway - session is not critical for login
+                }
                 
                 // Store session locally
                 sessionStorage.setItem('agentSession', sessionToken);
