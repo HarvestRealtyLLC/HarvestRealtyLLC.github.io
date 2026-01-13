@@ -7,8 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Supabase JS Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
             --burgundy: #8B2E2E;
@@ -1499,6 +1497,10 @@
             </form>
         </div>
     </div>
+    
+    <!-- Supabase JS Client - Load before our script -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
     <script>
         // ============================================
         // HARVEST REALTY AGENT PORTAL
@@ -1510,7 +1512,24 @@
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6anVubWtjZHBkeGhtaGlnZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyNzM1MDIsImV4cCI6MjA4Mzg0OTUwMn0.HYHck2haMWyEQh1sSXGjh9nWqPXmfvXeE60HBTVx-KM';
         
         // Initialize Supabase client
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        let supabase = null;
+        let supabaseReady = false;
+        
+        function initSupabase() {
+            if (window.supabase && window.supabase.createClient) {
+                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                supabaseReady = true;
+                console.log('Supabase initialized successfully');
+                return true;
+            }
+            console.error('Supabase library not loaded');
+            return false;
+        }
+        
+        // Try to init immediately, or wait for load
+        if (!initSupabase()) {
+            window.addEventListener('load', initSupabase);
+        }
         
         // Current user session
         let currentUser = null;
@@ -1526,6 +1545,15 @@
         
         async function handleLogin(event) {
             event.preventDefault();
+            
+            // Check if Supabase is ready
+            if (!supabase) {
+                if (!initSupabase()) {
+                    alert('Error: Database connection not ready. Please refresh the page.');
+                    return;
+                }
+            }
+            
             const email = document.getElementById('loginEmail').value.toLowerCase().trim();
             const password = document.getElementById('loginPassword').value;
             
