@@ -875,12 +875,27 @@
                 <!-- My Profile -->
                 <div class="page" id="my-profile">
                     <h1 class="page-title">My Profile</h1>
-                    <p class="page-subtitle">Update your agent profile information that appears on the website.</p>
+                    <p class="page-subtitle">Update your agent profile information that appears on your public agent page.</p>
                     
-                    <div class="alert alert-success" id="profileSuccess">Profile updated successfully!</div>
+                    <div class="alert alert-success" id="profileSuccess" style="display: none;">Profile updated successfully! Changes will appear on your agent page.</div>
+                    <div class="alert alert-error" id="profileError" style="display: none;">Error saving profile. Please try again.</div>
                     
                     <div class="card">
-                        <h3>Profile Information</h3>
+                        <h3>👤 Profile Photo</h3>
+                        <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                            <div id="profilePhotoPreview" style="width: 120px; height: 120px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--burgundy); border: 3px solid var(--gold); overflow: hidden;">
+                                <span id="profileInitials">?</span>
+                            </div>
+                            <div style="flex: 1; min-width: 250px;">
+                                <label for="profilePhotoUrl" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Photo URL</label>
+                                <input type="text" id="profilePhotoUrl" placeholder="photos/your-name.png or https://..." style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;">
+                                <small style="color: #666; display: block; margin-top: 0.5rem;">Enter the URL to your profile photo. Upload your photo to the photos folder first.</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📋 Basic Information</h3>
                         <form onsubmit="saveProfile(event)">
                             <div class="form-grid">
                                 <div class="form-group">
@@ -888,36 +903,61 @@
                                     <input type="text" id="profileName" value="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="profileTitle">Title</label>
-                                    <input type="text" id="profileTitle" value="">
+                                    <label for="profileTitle">Title / Role</label>
+                                    <input type="text" id="profileTitle" value="" placeholder="Sales Agent">
                                 </div>
                                 <div class="form-group">
                                     <label for="profileEmail">Email</label>
-                                    <input type="email" id="profileEmail" value="" readonly>
+                                    <input type="email" id="profileEmail" value="" readonly style="background: #f5f5f5;">
                                 </div>
                                 <div class="form-group">
                                     <label for="profilePhone">Phone Number</label>
-                                    <input type="tel" id="profilePhone" value="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="profileLicense">License Number (PA)</label>
-                                    <input type="text" id="profileLicense" value="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="profileLicenseNJ">License Number (NJ)</label>
-                                    <input type="text" id="profileLicenseNJ" value="">
-                                </div>
-                                <div class="form-group full-width">
-                                    <label for="profileBio">Biography</label>
-                                    <textarea id="profileBio" rows="5" placeholder="Tell clients about yourself..."></textarea>
-                                </div>
-                                <div class="form-group full-width">
-                                    <label for="profileSpecialties">Specialties (comma-separated)</label>
-                                    <input type="text" id="profileSpecialties" placeholder="First-Time Buyers, Investment Properties, Luxury Homes">
+                                    <input type="tel" id="profilePhone" value="" placeholder="215-555-1234">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Save Profile</button>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📜 Licenses</h3>
+                        <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="profileLicense">Pennsylvania License #</label>
+                                    <input type="text" id="profileLicense" value="" placeholder="RS-123456">
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileLicenseNJ">New Jersey License #</label>
+                                    <input type="text" id="profileLicenseNJ" value="" placeholder="1234567">
+                                </div>
+                            </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>✍️ About Me</h3>
+                            <div class="form-group">
+                                <label for="profileBio">Biography</label>
+                                <textarea id="profileBio" rows="6" placeholder="Tell clients about yourself, your experience, and what makes you a great agent..."></textarea>
+                                <small style="color: #666;">This appears on your public agent page. Use two line breaks to create paragraphs.</small>
+                            </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🏷️ Specialties</h3>
+                            <div class="form-group">
+                                <label for="profileSpecialties">Areas of Expertise (comma-separated)</label>
+                                <input type="text" id="profileSpecialties" placeholder="First-Time Buyers, Investment Properties, Luxury Homes, Philadelphia Area">
+                                <small style="color: #666;">These appear as tags on your agent page.</small>
+                            </div>
+                            
+                            <div style="margin-top: 1.5rem;">
+                                <button type="submit" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1rem;">💾 Save Profile</button>
+                            </div>
                         </form>
+                    </div>
+                    
+                    <div class="card" style="background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);">
+                        <h3>🔗 Your Public Agent Page</h3>
+                        <p>Your profile is visible to the public at:</p>
+                        <a id="agentPageLink" href="#" target="_blank" style="display: inline-block; margin-top: 0.5rem; padding: 0.75rem 1.5rem; background: var(--burgundy); color: white; border-radius: 8px; text-decoration: none;">View My Agent Page →</a>
                     </div>
                 </div>
 
@@ -1901,6 +1941,25 @@
             document.getElementById('profileLicenseNJ').value = currentAgent.license_nj || '';
             document.getElementById('profileBio').value = currentAgent.bio || '';
             document.getElementById('profileSpecialties').value = currentAgent.specialties || '';
+            document.getElementById('profilePhotoUrl').value = currentAgent.photo_url || '';
+            
+            // Update photo preview
+            updateProfilePhotoPreview();
+            
+            // Set agent page link
+            const agentPageMap = {
+                'prasad@harvestrealty.llc': 'p.abraham.html',
+                'jacob@harvestrealty.llc': 'j.abraham.html',
+                'dyson@harvestrealty.llc': 'd.daniel.html',
+                'abdullah@harvestrealty.llc': 'a.khan.html',
+                'thomas@harvestrealty.llc': 't.thomas.html'
+            };
+            const agentPageLink = document.getElementById('agentPageLink');
+            const pageName = agentPageMap[currentAgent.email] || '#';
+            if (agentPageLink) {
+                agentPageLink.href = pageName;
+                agentPageLink.textContent = `View My Agent Page (${pageName}) →`;
+            }
             
             loadListingsTable();
             
@@ -2224,8 +2283,13 @@
                 license_pa: document.getElementById('profileLicense').value,
                 license_nj: document.getElementById('profileLicenseNJ').value,
                 bio: document.getElementById('profileBio').value,
-                specialties: document.getElementById('profileSpecialties').value
+                specialties: document.getElementById('profileSpecialties').value,
+                photo_url: document.getElementById('profilePhotoUrl').value
             };
+            
+            // Hide messages
+            document.getElementById('profileSuccess').style.display = 'none';
+            document.getElementById('profileError').style.display = 'none';
             
             const { error } = await db
                 .from('agents')
@@ -2233,7 +2297,8 @@
                 .eq('id', currentAgent.id);
             
             if (error) {
-                alert('Error saving profile: ' + error.message);
+                document.getElementById('profileError').style.display = 'block';
+                document.getElementById('profileError').textContent = 'Error saving profile: ' + error.message;
                 return;
             }
             
@@ -2242,13 +2307,33 @@
             document.getElementById('userName').textContent = updates.name;
             document.getElementById('userRole').textContent = updates.role;
             
+            // Update photo preview
+            updateProfilePhotoPreview();
+            
             // Track change
             addPendingChange('profile', `Updated profile`, currentAgent.name);
             
-            const alert_el = document.getElementById('profileSuccess');
-            alert_el.classList.add('show');
-            setTimeout(() => alert_el.classList.remove('show'), 3000);
+            // Show success message
+            document.getElementById('profileSuccess').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('profileSuccess').style.display = 'none';
+            }, 5000);
         }
+        
+        function updateProfilePhotoPreview() {
+            const photoUrl = document.getElementById('profilePhotoUrl').value;
+            const preview = document.getElementById('profilePhotoPreview');
+            const initials = document.getElementById('profileInitials');
+            
+            if (photoUrl) {
+                preview.innerHTML = `<img src="${photoUrl}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.outerHTML='<span id=\\'profileInitials\\'>${currentAgent?.name?.split(' ').map(n=>n[0]).join('') || '?'}</span>'">`;
+            } else if (currentAgent?.name) {
+                initials.textContent = currentAgent.name.split(' ').map(n => n[0]).join('');
+            }
+        }
+        
+        // Update preview when photo URL changes
+        document.getElementById('profilePhotoUrl')?.addEventListener('input', updateProfilePhotoPreview);
         
         // ============================================
         // LISTING MANAGEMENT
