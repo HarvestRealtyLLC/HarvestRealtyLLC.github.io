@@ -30,6 +30,7 @@
             --charcoal: #2C2C2C;
             --white: #FFFFFF;
             --shadow: rgba(139, 46, 46, 0.15);
+            --banner-height: 0px;
         }
         
         * {
@@ -1371,46 +1372,11 @@
     </style>
 </head>
 <body>
-    <!-- Agent Portal Banner (shows when agent is logged in) -->
-    <div id="agentBanner" style="display: none; position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%); color: white; padding: 0.5rem 1rem; z-index: 9999; text-align: center; font-size: 0.9rem;">
-        <span>👤 Logged in as <strong id="agentBannerName">Agent</strong></span>
-        <a href="portal.html" style="color: #D4AF37; margin-left: 1rem; text-decoration: none; font-weight: 600;">Go to Portal →</a>
-        <button onclick="agentLogout()" style="background: #8B2E2E; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 20px; margin-left: 1rem; cursor: pointer; font-size: 0.85rem;">Logout</button>
-    </div>
-    
-    <script>
-        // Check if agent is logged in and show banner
-        (function() {
-            const loggedIn = sessionStorage.getItem('agentLoggedIn');
-            const email = sessionStorage.getItem('agentEmail');
-            if (loggedIn === 'true' && email) {
-                document.getElementById('agentBanner').style.display = 'block';
-                const names = {
-                    'prasad@harvestrealty.llc': 'Prasad Abraham',
-                    'jacob@harvestrealty.llc': 'Jacob Abraham',
-                    'dyson@harvestrealty.llc': 'Dyson Daniel',
-                    'abdullah@harvestrealty.llc': 'Abdullah Khan',
-                    'thomas@harvestrealty.llc': 'Thomas Thomas',
-                    'contact@harvestrealty.llc': 'Chronos Media'
-                };
-                document.getElementById('agentBannerName').textContent = names[email] || email;
-                document.body.style.paddingTop = '40px';
-            }
-        })();
-        
-        function agentLogout() {
-            sessionStorage.removeItem('agentLoggedIn');
-            sessionStorage.removeItem('agentEmail');
-            document.getElementById('agentBanner').style.display = 'none';
-            document.body.style.paddingTop = '0';
-        }
-    </script>
-
     <!-- Header & Navigation -->
     <header id="header">
         <nav>
             <div class="logo-container">
-                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo" onerror="this.style.display='none'">
                 <div class="logo-text">
                     <h1>Harvest Realty LLC</h1>
                     <p>PA & NJ Experts</p>
@@ -1584,7 +1550,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#a9d9dbc8dac8cde9c1c8dbdfccdadddbccc8c5ddd087c5c5ca"><span class="__cf_email__" data-cfemail="b7c7c5d6c4d6d3f7dfd6c5c1d2c4c3c5d2d6dbc3ce99dbdbd4">[email&#160;protected]</span></a>
+                        <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1602,7 +1568,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#650f04060a07250d04171300161117000409111c4b090906"><span class="__cf_email__" data-cfemail="107a71737f7250787162667563646275717c64693e7c7c73">[email&#160;protected]</span></a>
+                        <a href="mailto:jacob@harvestrealty.llc">jacob@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1620,7 +1586,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#5e3a272d31301e363f2c283b2d2a2c3b3f322a277032323d"><span class="__cf_email__" data-cfemail="22465b514d4c624a4350544751565047434e565b0c4e4e41">[email&#160;protected]</span></a>
+                        <a href="mailto:dyson@harvestrealty.llc">dyson@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1638,7 +1604,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#35545751405959545d755d54474350464147505459414c1b595956"><span class="__cf_email__" data-cfemail="c2a3a0a6b7aeaea3aa82aaa3b0b4a7b1b6b0a7a3aeb6bbecaeaea1">[email&#160;protected]</span></a>
+                        <a href="mailto:abdullah@harvestrealty.llc">abdullah@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1656,7 +1622,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#6b1f0304060a182b030a191d0e181f190e0a071f1245070708"><span class="__cf_email__" data-cfemail="4135292e2c203201292033372432353324202d35386f2d2d22">[email&#160;protected]</span></a>
+                        <a href="mailto:thomas@harvestrealty.llc">thomas@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1746,11 +1712,11 @@
                     <h3>Get In Touch</h3>
                     <p>Reach out to us directly</p>
                     
-                    <a href="/cdn-cgi/l/email-protection#ec8f8382988d8f98ac848d9e9a899f989e898d809895c280808f" class="contact-card-button">
+                    <a href="mailto:contact@harvestrealty.llc" class="contact-card-button">
                         <span class="contact-card-icon">📧</span>
                         <div class="contact-card-text">
                             <strong>Email Us</strong>
-                            <span><span class="__cf_email__" data-cfemail="8fece0e1fbeeecfbcfe7eefdf9eafcfbfdeaeee3fbf6a1e3e3ec">[email&#160;protected]</span></span>
+                            <span>contact@harvestrealty.llc</span>
                         </div>
                     </a>
                     
@@ -1895,7 +1861,7 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Real property data from MLS with actual listing photos
         const properties = [
             // Active Listings
