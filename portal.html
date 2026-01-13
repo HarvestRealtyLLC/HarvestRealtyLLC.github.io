@@ -1857,6 +1857,12 @@
             let photoUrl = null;
             const photoInput = document.getElementById('listingPhoto');
             
+            // Keep existing photo if editing and no new photo selected
+            if (editingListingId) {
+                const existingListing = currentAgent.listings.find(l => l.id === editingListingId);
+                if (existingListing) photoUrl = existingListing.photo_url;
+            }
+            
             // Upload photo if provided
             if (photoInput.files && photoInput.files[0]) {
                 const file = photoInput.files[0];
@@ -1876,7 +1882,7 @@
                 }
             }
             
-            const newListing = {
+            const listingData = {
                 agent_id: currentAgent.id,
                 address: document.getElementById('listingAddress').value,
                 price: document.getElementById('listingPrice').value,
@@ -1891,23 +1897,46 @@
                 photo_url: photoUrl
             };
             
-            const { data, error } = await db
-                .from('listings')
-                .insert(newListing)
-                .select()
-                .single();
+            let error;
+            
+            if (editingListingId) {
+                // Update existing listing
+                const result = await db
+                    .from('listings')
+                    .update(listingData)
+                    .eq('id', editingListingId);
+                error = result.error;
+                
+                if (!error) {
+                    addPendingChange('listing', `Updated listing: ${listingData.address}`, currentAgent.name);
+                }
+            } else {
+                // Insert new listing
+                const result = await db
+                    .from('listings')
+                    .insert(listingData)
+                    .select()
+                    .single();
+                error = result.error;
+                
+                if (!error) {
+                    addPendingChange('listing', `Added listing: ${listingData.address} (${listingData.price})`, currentAgent.name);
+                }
+            }
             
             if (error) {
-                alert('Error adding listing: ' + error.message);
+                alert('Error saving listing: ' + error.message);
                 return;
             }
             
-            // Track change
-            addPendingChange('listing', `Added listing: ${newListing.address} (${newListing.price})`, currentAgent.name);
-            
-            // Clear form
+            // Clear form and reset edit mode
+            editingListingId = null;
             event.target.reset();
             document.getElementById('listingPhotoPreview').innerHTML = '<span style="color: #999; font-size: 0.8rem; text-align: center;">Photo<br>Preview</span>';
+            
+            // Reset button text
+            const submitBtn = document.querySelector('#add-listing form button[type="submit"]');
+            if (submitBtn) submitBtn.textContent = '➕ Add Listing';
             
             // Reload data
             await loadUserData();
@@ -1915,12 +1944,22 @@
             const alert_el = document.getElementById('listingSuccess');
             alert_el.classList.add('show');
             setTimeout(() => alert_el.classList.remove('show'), 3000);
+            
+            // Go back to listings page
+            showPage('my-listings');
         }
+        
+        // Track editing state
+        let editingListingId = null;
         
         async function editListing(listingId) {
             const listing = currentAgent.listings.find(l => l.id === listingId);
             if (!listing) return;
             
+            // Store the listing ID we're editing
+            editingListingId = listingId;
+            
+            // Populate the form
             document.getElementById('listingAddress').value = listing.address || '';
             document.getElementById('listingPrice').value = listing.price || '';
             document.getElementById('listingType').value = listing.property_type || '';
@@ -1936,11 +1975,19 @@
                 document.getElementById('listingPhotoPreview').innerHTML = `<img src="${listing.photo_url}" style="width: 100%; height: 100%; object-fit: cover;">`;
             }
             
-            // Delete old listing, user will re-add
-            await db.from('listings').delete().eq('id', listingId);
-            await loadUserData();
+            // Update button text to show we're editing
+            const submitBtn = document.querySelector('#add-listing form button[type="submit"]');
+            if (submitBtn) submitBtn.textContent = '💾 Update Listing';
             
             showPage('add-listing');
+        }
+        
+        function cancelEdit() {
+            editingListingId = null;
+            document.querySelector('#add-listing form').reset();
+            document.getElementById('listingPhotoPreview').innerHTML = '<span style="color: #999; font-size: 0.8rem; text-align: center;">Photo<br>Preview</span>';
+            const submitBtn = document.querySelector('#add-listing form button[type="submit"]');
+            if (submitBtn) submitBtn.textContent = '➕ Add Listing';
         }
         
         async function deleteListing(listingId) {

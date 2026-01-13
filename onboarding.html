@@ -472,9 +472,86 @@
                 display: none;
             }
         }
+    
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px var(--shadow);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+            
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+        }
+
     </style>
 </head>
 <body>
+    <!-- Portal Access Protection -->
+    <script>
+        (function() {
+            const hasPortalAccess = sessionStorage.getItem('agentSession') || sessionStorage.getItem('agentLoggedIn');
+            if (!hasPortalAccess) {
+                document.body.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Montserrat', sans-serif; background: #F5F1E8; padding: 2rem; text-align: center;">
+                        <img src="hrg-logo.png" alt="Harvest Realty" style="width: 150px; margin-bottom: 2rem;">
+                        <h1 style="color: #8B2E2E; margin-bottom: 1rem;">🔒 Agent Access Required</h1>
+                        <p style="color: #666; margin-bottom: 2rem; max-width: 400px;">This page is only accessible to Harvest Realty team members. Please log in through the Agent Portal first.</p>
+                        <a href="portal.html" style="background: #8B2E2E; color: white; padding: 1rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">Go to Agent Portal</a>
+                    </div>
+                `;
+                throw new Error('Access denied - Portal login required');
+            }
+        })();
+    </script>
+    
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">
@@ -498,7 +575,7 @@
         <!-- Email Setup Section -->
         <div class="info-card">
             <h2>📧 Email Setup</h2>
-            <p>Your company email is <strong>yourname@harvestrealty.llc</strong>. Follow the steps below to set up email on your devices.</p>
+            <p>Your company email is <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5734383923363423173f3625213224232532363b232e793b3b34">[email&#160;protected]</a></strong>. Follow the steps below to set up email on your devices.</p>
             
             <div class="highlight-box warning">
                 <p>⚠️ <strong>Important:</strong> Please see <strong>Prasad Abraham</strong> for your initial password setup before proceeding.</p>
@@ -542,7 +619,7 @@
                 <div class="step-number-badge">3</div>
                 <div class="step-content">
                     <h4>Login With Your Credentials</h4>
-                    <p>Enter your email address (<strong>yourname@harvestrealty.llc</strong>) and the temporary password provided by Prasad Abraham.</p>
+                    <p>Enter your email address (<strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8dbd7d6ccd9dbccf8d0d9caceddcbcccaddd9d4ccc196d4d4db">[email&#160;protected]</a></strong>) and the temporary password provided by Prasad Abraham.</p>
                 </div>
                 <img src="photos/webmail-step3.png" alt="Step 3: Login" class="step-screenshot" onclick="openModal(this.src)">
             </div>
@@ -591,7 +668,7 @@
             <p>While in webmail, you can add your professional email signature:</p>
             <ol>
                 <li>Go to <strong>Settings</strong> → <strong>Identities</strong></li>
-                <li>Click on your email identity (e.g., &lt;yourname@harvestrealty.llc&gt;)</li>
+                <li>Click on your email identity (e.g., &lt;<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5b3834352f3a382f1b333a292d3e282f293e3a372f2275373738">[email&#160;protected]</a>&gt;)</li>
                 <li>Scroll down to the <strong>Signature</strong> section</li>
                 <li><strong>⚠️ IMPORTANT:</strong> Click the <strong>Photo Icon</strong> (🖼️) in the signature toolbar to switch to white background mode - you can only paste the signature properly when the background is white!</li>
                 <li>Visit our <a href="signature.html" target="_blank"><strong>Email Signature Generator</strong></a> to create your signature</li>
@@ -648,7 +725,7 @@
             <ol>
                 <li>Go to <a href="https://accounts.google.com/signup" target="_blank"><strong>accounts.google.com/signup</strong></a></li>
                 <li>Click <strong>"Use my current email address instead"</strong></li>
-                <li>Enter your <strong>yourname@harvestrealty.llc</strong> email</li>
+                <li>Enter your <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f3c30312b3e3c2b1f373e2d293a2c2b2d3a3e332b267133333c">[email&#160;protected]</a></strong> email</li>
                 <li>Follow the prompts to verify your email and create your account</li>
                 <li>You can now use Google Drive, Calendar, Docs, etc. with your work email!</li>
             </ol>
@@ -660,7 +737,7 @@
                 <li>Go to <a href="https://account.microsoft.com/account" target="_blank"><strong>account.microsoft.com</strong></a></li>
                 <li>Click <strong>"Create a Microsoft account"</strong></li>
                 <li>Choose <strong>"Use an email address you already have"</strong></li>
-                <li>Enter your <strong>yourname@harvestrealty.llc</strong> email</li>
+                <li>Enter your <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="20434f4e5441435460484152564553545245414c54590e4c4c43">[email&#160;protected]</a></strong> email</li>
                 <li>Follow the prompts to verify and complete setup</li>
             </ol>
             <a href="https://account.microsoft.com/account" target="_blank" class="btn-primary" style="background: #0078D4; color: #ffffff;">Create Microsoft Account →</a>
@@ -674,7 +751,7 @@
             <h3>Create Your Cal.com Account</h3>
             <ol>
                 <li>Go to <a href="https://cal.com/signup" target="_blank"><strong>cal.com/signup</strong></a></li>
-                <li>Sign up using your <strong>yourname@harvestrealty.llc</strong> email</li>
+                <li>Sign up using your <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5635393822373522163e3724203325222433373a222f783a3a35">[email&#160;protected]</a></strong> email</li>
                 <li>Choose a username (e.g., <strong>cal.com/prasadabraham</strong>)</li>
                 <li>Set up your availability and appointment types</li>
                 <li>Share your personal booking link with clients!</li>
@@ -733,7 +810,7 @@
                 <div class="step-number-badge">5</div>
                 <div class="step-content">
                     <h4>Enter Your Email Address</h4>
-                    <p>Type your full email address: <strong>yourname@harvestrealty.llc</strong> and tap <strong>Next</strong>.</p>
+                    <p>Type your full email address: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="35565a5b41545641755d54474350464147505459414c1b595956">[email&#160;protected]</a></strong> and tap <strong>Next</strong>.</p>
                 </div>
                 <img src="photos/step5-enter-email.jpg" alt="Step 5: Enter Email Address" class="step-screenshot" onclick="openModal(this.src)">
             </div>
@@ -755,7 +832,7 @@
                     <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
                         <li><strong>Incoming (IMAP):</strong> imap.purelymail.com</li>
                         <li><strong>Outgoing (SMTP):</strong> smtp.purelymail.com</li>
-                        <li><strong>Username:</strong> yourname@harvestrealty.llc</li>
+                        <li><strong>Username:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="690a06071d080a1d2901081b1f0c1a1d1b0c08051d104705050a">[email&#160;protected]</a></li>
                         <li><strong>Password:</strong> Your email password</li>
                     </ul>
                 </div>
@@ -865,62 +942,8 @@
                 <p>Port: <strong>587</strong></p>
                 <p>Security: <strong>SSL/TLS</strong></p>
                 <p>&nbsp;</p>
-                <p><span class="label">Username:</span> yourname@harvestrealty.llc</p>
+                <p><span class="label">Username:</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c2a1adacb6a3a1b682aaa3b0b4a7b1b6b0a7a3aeb6bbecaeaea1">[email&#160;protected]</a></p>
                 <p><span class="label">Password:</span> Your email password</p>
             </div>
             
-            <a href="https://purelymail.com/docs/setup/technical" target="_blank" class="btn-secondary">📖 Full Technical Guide</a>
-        </div>
-        
-        <!-- Quick Links Section -->
-        <div class="info-card">
-            <h2>🔗 Quick Links</h2>
-            <p>Bookmark these important links:</p>
-            <ul>
-                <li><strong>Company Website:</strong> <a href="https://harvestrealty.llc" target="_blank">harvestrealty.llc</a></li>
-                <li><strong>Webmail Login:</strong> <a href="https://purelymail.com/user/login" target="_blank">purelymail.com/user/login</a></li>
-                <li><strong>Cal.com Scheduling:</strong> <a href="https://cal.com/harvestrealtyllc" target="_blank">cal.com/harvestrealtyllc</a></li>
-                <li><strong>Bright MLS:</strong> <a href="https://www.brightmls.com" target="_blank">brightmls.com</a></li>
-            </ul>
-        </div>
-        
-        <!-- Contact Section -->
-        <div class="contact-card">
-            <h2>❓ Need Help?</h2>
-            <p>If you have any questions or need assistance with setup, contact:</p>
-            <p style="font-size: 1.3rem; margin-bottom: 0.5rem;"><strong>Prasad Abraham</strong></p>
-            <p>📞 <a href="tel:215-519-4096">(215) 519-4096</a></p>
-            <p>📧 <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a></p>
-        </div>
-        
-    </main>
-
-    <!-- Image Modal -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="modal-close">&times;</span>
-        <img id="modalImage" src="" alt="Enlarged screenshot">
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
-    </footer>
-
-    <script>
-        function openModal(src) {
-            document.getElementById('modalImage').src = src;
-            document.getElementById('imageModal').style.display = 'flex';
-        }
-        
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-        }
-        
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-    </script>
-</body>
-</html>
+            <a href="https://purelymail.com/docs/setup/technical" target="_blank" class="btn-sec
