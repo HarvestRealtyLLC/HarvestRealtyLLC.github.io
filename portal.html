@@ -1606,11 +1606,12 @@
         
         // Cloud configuration - API KEY (obfuscated)
         // This is basic obfuscation, NOT encryption. For true security, use a backend server.
-        const _k = ['JDJhJDEwJG8wZnd6SHFGUDU', 'xVmVFWExYYjhNTC5XVUhma', 'TNGY2pXcndGVmQ3eHBNbHl', '6MmFiZU5MQUhGcQ=='];
+        const _k = 'JDJhJDEwJG8wZnd6SHFGUDUxVmVFWExYYjhNTC5XVUhmaTNGaldyd0ZWZDd4cE1seXoyYWJlTkxBSEZx';
         function _dk() { 
             try { 
-                return atob(_k.join('')); 
+                return atob(_k); 
             } catch(e) { 
+                console.error('Key decode error:', e);
                 return null; 
             } 
         }
