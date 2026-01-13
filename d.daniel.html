@@ -103,24 +103,28 @@
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <nav>
-            <a href="index.html" class="logo-container">
-                <img src="photos/hrg-logo-email.png" alt="Harvest Realty LLC Logo">
+            <div class="logo-container">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
                 <div class="logo-text">
                     <h1>Harvest Realty LLC</h1>
                     <p>PA & NJ Experts</p>
                 </div>
-            </a>
-                        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                 ☰
             </button>
             <div class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
                 <a href="properties.html">Properties</a>
                 <a href="index.html#team">Our Team</a>
                 <a href="partners.html">Partners</a>
+                <a href="index.html#about">About</a>
                 <a href="index.html#contact">Contact</a>
+                <a href="tenants.html" class="tenant-link">Are you a Tenant?</a>
+                <a href="portal.html" style="background: var(--charcoal); color: var(--white); padding: 0.5rem 1rem; border-radius: 5px;">🔐 Agent Login</a>
             </div>
         </nav>
     </header>
@@ -180,8 +184,11 @@
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p
+        <footer style="background: #2C2C2C; color: white; padding: 2rem 5%; text-align: center;">
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="index.html" style="color: #F5F1E8;">Home</a> | <a href="privacy.html" style="color: #F5F1E8;">Privacy Policy</a> | <a href="terms.html" style="color: #F5F1E8;">Terms of Use</a> | <a href="fair-housing.html" style="color: #F5F1E8;">Fair Housing</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Licensed in PA & NJ | Equal Housing Opportunity 🏠</p>
+    </footer></p
     <script>
         // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
@@ -194,16 +201,4 @@
                     this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
                 });
                 
-                // Close menu when clicking a link
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        navLinks.classList.remove('active');
-                        mobileMenuToggle.textContent = '☰';
-                    });
-                });
-            }
-        });
-    </script>
-
-</body>
-</html>
+                // 
