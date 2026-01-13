@@ -3062,4 +3062,16 @@
             alert('For security, backup imports must be done through Supabase dashboard.\n\nGo to: Table Editor → Import Data');
         }
         
-        // Placeholder fun
+        // Placeholder functions for GitHub (optional)
+        function saveGitHubConfig() { alert('GitHub integration is optional. Supabase handles all data storage.'); }
+        function loadGitHubConfig() {}
+        function testGitHubConnection() { alert('GitHub integration is optional. Supabase handles all data storage.'); }
+        function initGitTracking() {}
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSession();
+        });
+    </script>
+</body>
+</html>
