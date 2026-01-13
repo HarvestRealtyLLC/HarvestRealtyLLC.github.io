@@ -1537,7 +1537,7 @@
             
             try {
                 // Query agent from database
-                const { data: agent, error } = await supabase
+                const { data: agent, error } = await db
                     .from('agents')
                     .select('*')
                     .eq('email', email)
@@ -1640,7 +1640,7 @@
             
             try {
                 // Verify session is valid
-                const { data: session, error } = await supabase
+                const { data: session, error } = await db
                     .from('sessions')
                     .select('*, agents(*)')
                     .eq('token', token)
@@ -1690,7 +1690,7 @@
             document.getElementById('welcomeName').textContent = currentAgent.name.split(' ')[0];
             
             // Load listings
-            const { data: listings, error } = await supabase
+            const { data: listings, error } = await db
                 .from('listings')
                 .select('*')
                 .eq('agent_id', currentAgent.id);
@@ -1750,7 +1750,7 @@
         }
         
         async function loadUsersTable() {
-            const { data: agents, error } = await supabase
+            const { data: agents, error } = await db
                 .from('agents')
                 .select('*')
                 .order('name');
@@ -1811,7 +1811,7 @@
                 specialties: document.getElementById('profileSpecialties').value
             };
             
-            const { error } = await supabase
+            const { error } = await db
                 .from('agents')
                 .update(updates)
                 .eq('id', currentAgent.id);
@@ -1862,7 +1862,7 @@
                 const file = photoInput.files[0];
                 const fileName = `${currentAgent.id}/${Date.now()}_${file.name}`;
                 
-                const { data: uploadData, error: uploadError } = await supabase
+                const { data: uploadData, error: uploadError } = await db
                     .storage
                     .from('listing-photos')
                     .upload(fileName, file);
@@ -1891,7 +1891,7 @@
                 photo_url: photoUrl
             };
             
-            const { data, error } = await supabase
+            const { data, error } = await db
                 .from('listings')
                 .insert(newListing)
                 .select()
@@ -1948,7 +1948,7 @@
             
             const listing = currentAgent.listings.find(l => l.id === listingId);
             
-            const { error } = await supabase
+            const { error } = await db
                 .from('listings')
                 .delete()
                 .eq('id', listingId);
@@ -1994,7 +1994,7 @@
                 return;
             }
             
-            const { error } = await supabase
+            const { error } = await db
                 .from('agents')
                 .update({ password_hash: newPass })
                 .eq('id', currentAgent.id);
@@ -2013,7 +2013,7 @@
         }
         
         async function resetPassword(agentId) {
-            const { data: agent } = await supabase
+            const { data: agent } = await db
                 .from('agents')
                 .select('name, email')
                 .eq('id', agentId)
@@ -2022,7 +2022,7 @@
             const newPassword = prompt(`Enter new password for ${agent?.name}:`, generateRandomPassword());
             if (!newPassword) return;
             
-            const { error } = await supabase
+            const { error } = await db
                 .from('agents')
                 .update({ password_hash: newPassword })
                 .eq('id', agentId);
@@ -2067,7 +2067,7 @@
             const email = document.getElementById('newUserEmail').value.toLowerCase().trim();
             
             // Check if exists
-            const { data: existing } = await supabase
+            const { data: existing } = await db
                 .from('agents')
                 .select('id')
                 .eq('email', email)
@@ -2087,7 +2087,7 @@
                 phone: document.getElementById('newUserPhone').value
             };
             
-            const { error } = await supabase
+            const { error } = await db
                 .from('agents')
                 .insert(newUser);
             
@@ -2107,7 +2107,7 @@
         }
         
         async function editUser(agentId) {
-            const { data: agent } = await supabase
+            const { data: agent } = await db
                 .from('agents')
                 .select('*')
                 .eq('id', agentId)
@@ -2120,7 +2120,7 @@
             
             const makeAdmin = confirm(`Grant admin privileges to ${agent.name}?`);
             
-            const { error } = await supabase
+            const { error } = await db
                 .from('agents')
                 .update({ role: newRole, is_admin: makeAdmin })
                 .eq('id', agentId);
@@ -2135,7 +2135,7 @@
         }
         
         async function deleteUser(agentId) {
-            const { data: agent } = await supabase
+            const { data: agent } = await db
                 .from('agents')
                 .select('name, email')
                 .eq('id', agentId)
@@ -2143,7 +2143,7 @@
             
             if (!confirm(`Are you sure you want to delete ${agent?.name}?\n\nThis cannot be undone.`)) return;
             
-            const { error } = await supabase
+            const { error } = await db
                 .from('agents')
                 .delete()
                 .eq('id', agentId);
@@ -2229,7 +2229,7 @@
                 files_changed: ['database']
             };
             
-            const { error } = await supabase
+            const { error } = await db
                 .from('commits')
                 .insert(commit);
             
@@ -2248,7 +2248,7 @@
         }
         
         async function loadCommitHistory() {
-            const { data, error } = await supabase
+            const { data, error } = await db
                 .from('commits')
                 .select('*')
                 .order('created_at', { ascending: false })
@@ -2303,7 +2303,7 @@
             updateCloudStatus('⏳ Testing...', '#E65100');
             
             try {
-                const { data, error } = await supabase
+                const { data, error } = await db
                     .from('agents')
                     .select('count')
                     .limit(1);
