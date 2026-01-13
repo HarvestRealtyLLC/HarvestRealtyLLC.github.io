@@ -270,9 +270,8 @@
         .hero {
             background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
             color: var(--white);
-            padding: 8rem 2rem 4rem;
+            padding: 10rem 2rem 4rem;
             text-align: center;
-            margin-top: 80px;
         }
         
         .hero h1 {
@@ -655,13 +654,13 @@
 
     <header id="header">
         <nav>
-            <a href="index.html" class="logo-container">
+            <div class="logo-container">
                 <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
                 <div class="logo-text">
                     <h1>Harvest Realty LLC</h1>
                     <p>PA & NJ Experts</p>
                 </div>
-            </a>
+            </div>
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                 ☰
             </button>
@@ -674,8 +673,7 @@
                 <a href="index.html#about">About</a>
                 <a href="index.html#contact">Contact</a>
                 <a href="tenants.html" class="tenant-link">Are you a Tenant?</a>
-                <a href="portal.html" class="agent-login-link">🔐 Agent Login</a>
-                <a href="index.html#contact" class="cta-button">Schedule Consultation</a>
+                <a href="portal.html" style="background: var(--charcoal); color: var(--white); padding: 0.5rem 1rem; border-radius: 5px;">🔐 Agent Login</a>
             </div>
         </nav>
     </header>
@@ -714,7 +712,7 @@
                         </div>
                         <div class="partner-contact-item">
                             <span>📧</span>
-                            <a href="mailto:contact@harvestrealty.llc">contact@harvestrealty.llc</a>
+                            <a href="mailto:jzachariah@lcgloans.com">jzachariah@lcgloans.com</a>
                         </div>
                         <div class="partner-contact-item">
                             <span>🌐</span>
@@ -728,7 +726,7 @@
                     
                     <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
                         <a href="tel:267-334-6885" class="btn-primary">📞 Call Johnson</a>
-                        <a href="mailto:contact@harvestrealty.llc" class="btn-secondary">📧 Email</a>
+                        <a href="mailto:jzachariah@lcgloans.com" class="btn-secondary">📧 Email</a>
                         <a href="https://lcgloans.com/jzachariah/" target="_blank" class="btn-secondary">🔗 Learn More</a>
                         <img src="photos/equal-housing-logo.png" alt="Equal Housing Opportunity" style="height: 50px; width: auto; margin-left: auto;">
                     </div>
@@ -756,7 +754,7 @@
                     <div class="partner-contact">
                         <div class="partner-contact-item">
                             <span>📧</span>
-                            <a href="mailto:contact@harvestrealty.llc">contact@harvestrealty.llc</a>
+                            <a href="mailto:contact@chronusmedia.to">contact@chronusmedia.to</a>
                         </div>
                         <div class="partner-contact-item">
                             <span>🌐</span>
@@ -765,7 +763,7 @@
                     </div>
                     
                     <div>
-                        <a href="mailto:contact@harvestrealty.llc" class="btn-primary">📧 Contact Chronos</a>
+                        <a href="mailto:contact@chronusmedia.to" class="btn-primary">📧 Contact Chronos</a>
                         <a href="https://chronosmedia.to/" target="_blank" class="btn-secondary">🔗 Learn More</a>
                     </div>
                 </div>
@@ -829,16 +827,4 @@
                     this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
                 });
                 
-                // Close menu when clicking a link
-                navLinks.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', function() {
-                        navLinks.classList.remove('active');
-                        mobileMenuToggle.textContent = '☰';
-                    });
-                });
-            }
-        });
-    </script>
-
-</body>
-</html>
+             
