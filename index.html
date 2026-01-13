@@ -2079,8 +2079,14 @@
 
         // Open property detail modal
         function openPropertyModal(property) {
+            console.log('Opening modal for:', property);
             const addressForSearch = encodeURIComponent(property.location);
             const modalContent = document.getElementById('property-modal-content');
+            
+            if (!modalContent) {
+                console.error('Modal content element not found!');
+                return;
+            }
             
             let featuresText = '';
             if (property.beds && property.baths) {
@@ -2116,10 +2122,15 @@
 
         // Modal functions
         function openModal(modalId) {
+            console.log('openModal called with:', modalId);
             const modal = document.getElementById(modalId);
+            console.log('Modal element:', modal);
             if (modal) {
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
+                console.log('Modal displayed');
+            } else {
+                console.error('Modal not found:', modalId);
             }
         }
 

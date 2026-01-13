@@ -686,40 +686,7 @@
     </style>
 </head>
 <body>
-    <!-- Agent Portal Banner -->
-    <div id="agentBanner" style="display: none; position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #2C2C2C 0%, #1a1a1a 100%); color: white; padding: 0.5rem 1rem; z-index: 9999; text-align: center; font-size: 0.9rem;">
-        <span>👤 Logged in as <strong id="agentBannerName">Agent</strong></span>
-        <a href="portal.html" style="color: #D4AF37; margin-left: 1rem; text-decoration: none; font-weight: 600;">Go to Portal →</a>
-        <button onclick="agentLogout()" style="background: #8B2E2E; color: white; border: none; padding: 0.3rem 0.8rem; border-radius: 20px; margin-left: 1rem; cursor: pointer; font-size: 0.85rem;">Logout</button>
-    </div>
-    
     <script>
-        // Check if agent is logged in
-        (function() {
-            const loggedIn = sessionStorage.getItem('agentLoggedIn');
-            const email = sessionStorage.getItem('agentEmail');
-            if (loggedIn === 'true' && email) {
-                document.getElementById('agentBanner').style.display = 'block';
-                const names = {
-                    'prasad@harvestrealty.llc': 'Prasad Abraham',
-                    'jacob@harvestrealty.llc': 'Jacob Abraham',
-                    'dyson@harvestrealty.llc': 'Dyson Daniel',
-                    'abdullah@harvestrealty.llc': 'Abdullah Khan',
-                    'thomas@harvestrealty.llc': 'Thomas Thomas',
-                    'contact@harvestrealty.llc': 'Chronos Media'
-                };
-                document.getElementById('agentBannerName').textContent = names[email] || email;
-                document.body.style.paddingTop = '40px';
-            }
-        })();
-        
-        function agentLogout() {
-            sessionStorage.removeItem('agentLoggedIn');
-            sessionStorage.removeItem('agentEmail');
-            document.getElementById('agentBanner').style.display = 'none';
-            document.body.style.paddingTop = '0';
-        }
-        
         // Page transition for links
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('a').forEach(link => {
@@ -741,7 +708,7 @@
     <header id="header">
         <nav>
             <a href="index.html" class="logo-container">
-                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo" onerror="this.style.display='none'">
                 <div class="logo-text">
                     <h1>Harvest Realty LLC</h1>
                     <p>PA & NJ Experts</p>
