@@ -1512,24 +1512,8 @@
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6anVubWtjZHBkeGhtaGlnZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyNzM1MDIsImV4cCI6MjA4Mzg0OTUwMn0.HYHck2haMWyEQh1sSXGjh9nWqPXmfvXeE60HBTVx-KM';
         
         // Initialize Supabase client
-        let supabase = null;
-        let supabaseReady = false;
-        
-        function initSupabase() {
-            if (window.supabase && window.supabase.createClient) {
-                supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                supabaseReady = true;
-                console.log('Supabase initialized successfully');
-                return true;
-            }
-            console.error('Supabase library not loaded');
-            return false;
-        }
-        
-        // Try to init immediately, or wait for load
-        if (!initSupabase()) {
-            window.addEventListener('load', initSupabase);
-        }
+        const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log('Supabase initialized:', db);
         
         // Current user session
         let currentUser = null;
@@ -1545,14 +1529,6 @@
         
         async function handleLogin(event) {
             event.preventDefault();
-            
-            // Check if Supabase is ready
-            if (!supabase) {
-                if (!initSupabase()) {
-                    alert('Error: Database connection not ready. Please refresh the page.');
-                    return;
-                }
-            }
             
             const email = document.getElementById('loginEmail').value.toLowerCase().trim();
             const password = document.getElementById('loginPassword').value;
@@ -1591,7 +1567,7 @@
                 const sessionToken = generateSessionToken();
                 const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
                 
-                const { error: sessionError } = await supabase.from('sessions').insert({
+                const { error: sessionError } = await db.from('sessions').insert({
                     agent_id: agent.id,
                     token: sessionToken,
                     expires_at: expiresAt.toISOString()
@@ -1642,7 +1618,7 @@
         async function handleLogout() {
             const token = sessionStorage.getItem('agentSession');
             if (token) {
-                await supabase.from('sessions').delete().eq('token', token);
+                await db.from('sessions').delete().eq('token', token);
             }
             
             sessionStorage.removeItem('agentSession');
@@ -1892,7 +1868,7 @@
                     .upload(fileName, file);
                 
                 if (!uploadError) {
-                    const { data: urlData } = supabase
+                    const { data: urlData } = db
                         .storage
                         .from('listing-photos')
                         .getPublicUrl(fileName);
@@ -1961,7 +1937,7 @@
             }
             
             // Delete old listing, user will re-add
-            await supabase.from('listings').delete().eq('id', listingId);
+            await db.from('listings').delete().eq('id', listingId);
             await loadUserData();
             
             showPage('add-listing');
@@ -2375,9 +2351,9 @@
         // ============================================
         
         async function exportBackup() {
-            const { data: agents } = await supabase.from('agents').select('*');
-            const { data: listings } = await supabase.from('listings').select('*');
-            const { data: commits } = await supabase.from('commits').select('*');
+            const { data: agents } = await db.from('agents').select('*');
+            const { data: listings } = await db.from('listings').select('*');
+            const { data: commits } = await db.from('commits').select('*');
             
             const backupData = {
                 exportDate: new Date().toISOString(),
