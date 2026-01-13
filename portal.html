@@ -885,6 +885,7 @@
                             <table>
                                 <thead>
                                     <tr>
+                                        <th style="width: 70px;">Photo</th>
                                         <th>Address</th>
                                         <th>Price</th>
                                         <th>Type</th>
@@ -957,6 +958,18 @@
                                 <div class="form-group">
                                     <label for="listingMLS">MLS Number</label>
                                     <input type="text" id="listingMLS" placeholder="PAPH1234567">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="listingPhoto">Listing Photo</label>
+                                    <div style="display: flex; gap: 1rem; align-items: start;">
+                                        <div style="flex: 1;">
+                                            <input type="file" id="listingPhoto" accept="image/*" onchange="previewListingPhoto(this)" style="padding: 0.5rem;">
+                                            <small style="display: block; color: #666; margin-top: 0.25rem;">Upload a main photo for this listing (JPG, PNG, WebP)</small>
+                                        </div>
+                                        <div id="listingPhotoPreview" style="width: 120px; height: 90px; border: 2px dashed #ddd; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #f9f9f9;">
+                                            <span style="color: #999; font-size: 0.8rem; text-align: center;">Photo<br>Preview</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group full-width">
                                     <label for="listingDescription">Description</label>
@@ -1180,7 +1193,7 @@
                                 <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 1: Login to PurelyMail Admin</h4>
                                 <ol style="margin-left: 1.5rem; color: #555;">
                                     <li style="margin-bottom: 0.5rem;">Go to <a href="https://purelymail.com/manage/login" target="_blank" style="color: var(--burgundy);">https://purelymail.com/manage/login</a></li>
-                                    <li style="margin-bottom: 0.5rem;">Login with admin account: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dc94bdaeaab9afa88eb9bdb0a8a590909f9caca9aeb9b0a5b1bdb5b0f2bfb3b1">[email&#160;protected]</a></strong></li>
+                                    <li style="margin-bottom: 0.5rem;">Login with admin account: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aecdc1c0dacfcddaeec6cfdcd8cbdddadccbcfc2dad780c2c2cd">[email&#160;protected]</a></strong></li>
                                     <li style="margin-bottom: 0.5rem;">Enter the admin password</li>
                                 </ol>
                             </div>
@@ -1211,7 +1224,7 @@
                                 <h4 style="color: var(--burgundy); margin-bottom: 1rem;">Step 4: Send Credentials to Agent</h4>
                                 <ol style="margin-left: 1.5rem; color: #555;">
                                     <li style="margin-bottom: 0.5rem;">Send the new agent their login credentials:</li>
-                                    <li style="margin-bottom: 0.5rem;"><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="187e716a6b6c7679757d5870796a6e7d6b6c6a7d79746c613674747b">[email&#160;protected]</a></li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="41222e2f3520223501292033372432353324202d35386f2d2d22">[email&#160;protected]</a></li>
                                     <li style="margin-bottom: 0.5rem;"><strong>Password:</strong> (the generated password)</li>
                                     <li style="margin-bottom: 0.5rem;"><strong>Webmail:</strong> <a href="https://purelymail.com/webmail" target="_blank" style="color: var(--burgundy);">https://purelymail.com/webmail</a></li>
                                     <li style="margin-bottom: 0.5rem;">Direct them to the <a href="onboarding.html" target="_blank" style="color: var(--burgundy);">Onboarding Page</a> for full setup instructions</li>
@@ -1220,7 +1233,7 @@
                             
                             <div style="background: #E8F5E9; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--green);">
                                 <h4 style="color: var(--green); margin-bottom: 0.5rem;">✅ Quick Reference</h4>
-                                <p style="margin-bottom: 0.5rem;"><strong>Admin Login:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a321b080c1f090e281f1b160e033636393a0a0f081f1603171b131654191517">[email&#160;protected]</a></p>
+                                <p style="margin-bottom: 0.5rem;"><strong>Admin Login:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7615191802171502361e1704001305020413171a020f581a1a15">[email&#160;protected]</a></p>
                                 <p style="margin-bottom: 0.5rem;"><strong>Domain:</strong> harvestrealty.llc</p>
                                 <p style="margin-bottom: 0.5rem;"><strong>PurelyMail Admin:</strong> <a href="https://purelymail.com/manage/users" target="_blank" style="color: var(--green);">purelymail.com/manage/users</a></p>
                                 <p><strong>Webmail:</strong> <a href="https://purelymail.com/webmail" target="_blank" style="color: var(--green);">purelymail.com/webmail</a></p>
@@ -1313,6 +1326,20 @@
                     <h1 class="page-title">📝 Change Log</h1>
                     <p class="page-subtitle">Track all updates made to the website through the portal.</p>
                     
+                    <!-- Cloud Sync Status -->
+                    <div class="card" style="margin-bottom: 1.5rem; background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                            <div>
+                                <h3 style="color: #1565C0; margin-bottom: 0.25rem;">☁️ Cloud Sync Status</h3>
+                                <p id="cloudStatus" style="font-size: 0.9rem; color: #333;">Checking connection...</p>
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                                <button class="btn btn-secondary" onclick="syncFromCloud()" style="font-size: 0.85rem;">↓ Pull</button>
+                                <button class="btn btn-primary" onclick="syncToCloud()" style="font-size: 0.85rem;">↑ Push</button>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="card" style="margin-bottom: 1.5rem;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                             <h3 style="color: var(--burgundy);">Pending Changes</h3>
@@ -1337,8 +1364,55 @@
                         <p style="font-size: 0.9rem; color: #333;">
                             When you make changes in the portal (update profile, add listings, change settings), 
                             those changes are tracked here. Click "Commit & Push Changes" to save your updates 
-                            to the website repository. Each commit creates a version history that can be reviewed.
+                            to the website repository. All changes can be synced to the cloud for backup and collaboration.
                         </p>
+                    </div>
+                    
+                    <!-- Cloud Sync Configuration -->
+                    <div class="card" style="margin-top: 1.5rem;" id="cloudSyncCard">
+                        <h3 style="color: #1565C0; margin-bottom: 1rem;">☁️ Cloud Sync (Auto-Configured)</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+                            Cloud storage is pre-configured. All changes sync automatically across devices!
+                        </p>
+                        
+                        <div style="background: #E8F5E9; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <strong style="color: #2E7D32;">✅ API Key Pre-Configured</strong>
+                            <p style="margin: 0.5rem 0 0 0; color: #555; font-size: 0.9rem;">
+                                The portal will automatically create cloud storage on first use. All agent data, passwords, and listings sync automatically.
+                            </p>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="jsonbinApiKey">JSONBin API Key <span style="color: #2E7D32;">(Pre-configured ✓)</span></label>
+                            <input type="password" id="jsonbinApiKey" placeholder="$2a$10$..." readonly style="background: #f5f5f5;">
+                        </div>
+                        <div class="form-group">
+                            <label for="jsonbinBinId">Bin ID <span style="font-size: 0.8rem; color: #666;">(auto-created on first sync)</span></label>
+                            <input type="text" id="jsonbinBinId" placeholder="Will be created automatically" readonly style="background: #f5f5f5;">
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                            <button class="btn btn-primary" onclick="testCloudConnection()">🔗 Test Connection</button>
+                            <button class="btn btn-secondary" onclick="createNewBin(false)">🆕 Create New Bin</button>
+                            <button class="btn btn-secondary" onclick="syncFromCloud()">↓ Pull from Cloud</button>
+                            <button class="btn btn-secondary" onclick="syncToCloud()">↑ Push to Cloud</button>
+                        </div>
+                        <div id="cloudConfigStatus" style="margin-top: 1rem;"></div>
+                    </div>
+                    
+                    <!-- Export/Import Backup -->
+                    <div class="card" style="margin-top: 1.5rem;">
+                        <h3 style="color: var(--burgundy); margin-bottom: 1rem;">📦 Manual Backup</h3>
+                        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1rem;">
+                            Export your data as a file or import from a previous backup.
+                        </p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="exportBackup()">⬇️ Export Backup</button>
+                            <label class="btn btn-secondary" style="cursor: pointer;">
+                                ⬆️ Import Backup
+                                <input type="file" accept=".json" onchange="importBackup(this)" style="display: none;">
+                            </label>
+                        </div>
                     </div>
                     
                     <!-- GitHub Configuration (Admin Only) -->
@@ -1388,7 +1462,7 @@
                     <input type="text" id="newUserName" required placeholder="John Smith">
                 </div>
                 <div class="form-group">
-                    <label for="newUserEmail">Email (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9cfaf5eeefe8f2fdf1f9dcf4fdeeeaf9efe8eef9fdf0e8e5b2f0f0ff">[email&#160;protected]</a>) *</label>
+                    <label for="newUserEmail">Email (<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="aac9c5c4decbc9deeac2cbd8dccfd9ded8cfcbc6ded384c6c6c9">[email&#160;protected]</a>) *</label>
                     <input type="email" id="newUserEmail" required placeholder="john@harvestrealty.llc">
                 </div>
                 <div class="form-group">
@@ -1424,22 +1498,28 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // SECURITY NOTICE: This is a client-side demo. For production use,
-        // implement proper server-side authentication with encrypted passwords.
-        // Passwords below are base64 encoded (NOT secure encryption, just obfuscation)
+    <script>
+        // ============================================
+        // CLOUD-SYNCED AGENT PORTAL
+        // ============================================
+        // Uses JSONBin.io (free) to store:
+        // - Agent accounts & passwords
+        // - All listings with photos
+        // - Profile information
+        // - Commit history & changes
+        // ============================================
         
         // Helper functions for basic obfuscation
         function encode(str) { return btoa(str); }
         function decode(str) { return atob(str); }
         
-        // Agent Database with encoded passwords
-        const agents = {
+        // Default agent database (used if cloud not configured)
+        const defaultAgents = {
             'prasad@harvestrealty.llc': {
                 name: 'Prasad Abraham',
                 role: 'Broker/Owner',
                 isAdmin: true,
-                pw: 'UHJhc2FkQnJva2VyMjAyNiE=', // encoded
+                pw: 'UHJhc2FkQnJva2VyMjAyNiE=',
                 phone: '215-519-4096',
                 licensePA: 'RB069944',
                 licenseNJ: '',
@@ -1503,244 +1583,320 @@
                 role: 'Admin / Media Partner',
                 isAdmin: true,
                 pw: 'Q2hyb25vc0FkbWluMjAyNiE=',
-                phone: '',
+                phone: '215-000-0000',
                 licensePA: '',
                 licenseNJ: '',
-                bio: 'Media and technology partner for Harvest Realty LLC.',
-                specialties: 'Website Management, Marketing, Technology',
+                bio: 'Website development and media partner.',
+                specialties: 'Web Development, Marketing, Media',
                 listings: []
             }
         };
-
+        
+        // Live agents database (synced with cloud)
+        let agents = JSON.parse(localStorage.getItem('hrg_agents') || 'null') || JSON.parse(JSON.stringify(defaultAgents));
+        
+        // Current user session
         let currentUser = null;
-
-        // Login Handler
+        
+        // Pending changes for git tracking
+        let pendingChanges = JSON.parse(localStorage.getItem('hrg_pending_changes') || '[]');
+        
+        // Commit history
+        let commitHistory = JSON.parse(localStorage.getItem('hrg_commit_history') || '[]');
+        
+        // Cloud configuration - API KEY (obfuscated)
+        // This is basic obfuscation, NOT encryption. For true security, use a backend server.
+        const _k = ['JDJhJDEwJG8wZnd6SHFGUDU', 'xVmVFWExYYjhNTC5XVUhma', 'TNGY2pXcndGVmQ3eHBNbHl', '6MmFiZU5MQUhGcQ=='];
+        function _dk() { 
+            try { 
+                return atob(_k.join('')); 
+            } catch(e) { 
+                return null; 
+            } 
+        }
+        const JSONBIN_API_KEY = _dk();
+        let cloudConfig = JSON.parse(localStorage.getItem('hrg_cloud_config') || 'null') || { apiKey: JSONBIN_API_KEY, binId: null };
+        
+        // Always ensure API key is set
+        if (!cloudConfig.apiKey) {
+            cloudConfig.apiKey = JSONBIN_API_KEY;
+        }
+        
+        // ============================================
+        // CLOUD SYNC FUNCTIONS
+        // ============================================
+        
+        // Check if cloud is configured
+        function isCloudConfigured() {
+            return cloudConfig && cloudConfig.apiKey && cloudConfig.binId;
+        }
+        
+        // Auto-initialize cloud on first load
+        async function autoInitCloud() {
+            if (!cloudConfig.binId) {
+                console.log('No bin ID found, creating new cloud storage...');
+                await createNewBin(true); // silent mode
+            }
+        }
+        
+        // Save all data to cloud
+        async function saveToCloud(showAlert = false) {
+            if (!isCloudConfigured()) {
+                // Try to auto-create bin
+                await autoInitCloud();
+                if (!isCloudConfigured()) {
+                    if (showAlert) alert('Cloud sync not configured. Data saved locally only.');
+                    return false;
+                }
+            }
+            
+            try {
+                const cloudData = {
+                    lastSync: new Date().toISOString(),
+                    agents: agents,
+                    pendingChanges: pendingChanges,
+                    commitHistory: commitHistory,
+                    version: '2.0'
+                };
+                
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${cloudConfig.binId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': cloudConfig.apiKey
+                    },
+                    body: JSON.stringify(cloudData)
+                });
+                
+                if (response.ok) {
+                    updateCloudStatusUI('✅ Synced ' + new Date().toLocaleTimeString(), '#2E7D32');
+                    return true;
+                } else {
+                    throw new Error('Sync failed');
+                }
+            } catch (error) {
+                console.error('Cloud save error:', error);
+                updateCloudStatusUI('❌ Sync failed', '#C62828');
+                return false;
+            }
+        }
+        
+        // Load all data from cloud
+        async function loadFromCloud(showAlert = false) {
+            if (!isCloudConfigured()) {
+                if (showAlert) alert('Cloud sync not configured.');
+                return false;
+            }
+            
+            try {
+                updateCloudStatusUI('⏳ Loading...', '#E65100');
+                
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${cloudConfig.binId}/latest`, {
+                    headers: {
+                        'X-Master-Key': cloudConfig.apiKey
+                    }
+                });
+                
+                if (!response.ok) throw new Error('Failed to fetch');
+                
+                const result = await response.json();
+                const cloudData = result.record;
+                
+                // Update local data
+                if (cloudData.agents) {
+                    agents = cloudData.agents;
+                    localStorage.setItem('hrg_agents', JSON.stringify(agents));
+                }
+                if (cloudData.pendingChanges) {
+                    pendingChanges = cloudData.pendingChanges;
+                    localStorage.setItem('hrg_pending_changes', JSON.stringify(pendingChanges));
+                }
+                if (cloudData.commitHistory) {
+                    commitHistory = cloudData.commitHistory;
+                    localStorage.setItem('hrg_commit_history', JSON.stringify(commitHistory));
+                }
+                
+                updateCloudStatusUI('✅ Loaded from cloud', '#2E7D32');
+                
+                // Refresh UI if logged in
+                if (currentUser) {
+                    loadUserData();
+                }
+                updatePendingChangesUI();
+                updateCommitHistoryUI();
+                
+                if (showAlert) alert('✅ Data loaded from cloud successfully!');
+                return true;
+            } catch (error) {
+                console.error('Cloud load error:', error);
+                updateCloudStatusUI('❌ Load failed', '#C62828');
+                return false;
+            }
+        }
+        
+        // Update cloud status UI
+        function updateCloudStatusUI(message, color) {
+            const statusEl = document.getElementById('cloudStatus');
+            if (statusEl) {
+                statusEl.innerHTML = `<strong>${message}</strong>`;
+                statusEl.style.color = color;
+            }
+        }
+        
+        // Auto-save to local storage and optionally cloud
+        function saveData(syncToCloud = true) {
+            localStorage.setItem('hrg_agents', JSON.stringify(agents));
+            localStorage.setItem('hrg_pending_changes', JSON.stringify(pendingChanges));
+            localStorage.setItem('hrg_commit_history', JSON.stringify(commitHistory));
+            
+            if (syncToCloud && isCloudConfigured()) {
+                saveToCloud();
+            }
+        }
+        
+        // ============================================
+        // AUTHENTICATION
+        // ============================================
+        
         function handleLogin(event) {
             event.preventDefault();
-            const email = document.getElementById('loginEmail').value.toLowerCase();
+            const email = document.getElementById('loginEmail').value.toLowerCase().trim();
             const password = document.getElementById('loginPassword').value;
             
-            if (agents[email] && decode(agents[email].pw) === password) {
+            // First try to load from cloud if configured
+            if (isCloudConfigured()) {
+                loadFromCloud().then(() => {
+                    attemptLogin(email, password);
+                }).catch(() => {
+                    attemptLogin(email, password);
+                });
+            } else {
+                attemptLogin(email, password);
+            }
+        }
+        
+        function attemptLogin(email, password) {
+            const agent = agents[email];
+            
+            if (agent && decode(agent.pw) === password) {
                 currentUser = email;
-                // Store session
                 sessionStorage.setItem('agentLoggedIn', 'true');
                 sessionStorage.setItem('agentEmail', email);
-                document.getElementById('loginError').classList.remove('show');
+                
                 document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('dashboard').classList.add('active');
+                document.getElementById('dashboard').style.display = 'block';
+                
                 loadUserData();
+                initGitTracking();
+                
+                // Show admin menu if admin
+                if (agent.isAdmin) {
+                    document.getElementById('adminMenuItem').style.display = 'block';
+                }
             } else {
-                document.getElementById('loginError').classList.add('show');
+                document.getElementById('loginError').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('loginError').style.display = 'none';
+                }, 3000);
             }
         }
         
-        // Check if already logged in (session persistence)
-        function checkSession() {
-            const loggedIn = sessionStorage.getItem('agentLoggedIn');
-            const email = sessionStorage.getItem('agentEmail');
-            if (loggedIn === 'true' && email && agents[email]) {
-                currentUser = email;
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('dashboard').classList.add('active');
-                loadUserData();
-            }
-        }
-        
-        // Run session check on page load
-        checkSession();
-
-        // Logout Handler
         function handleLogout() {
+            // Save before logout
+            saveData(true);
+            
             currentUser = null;
-            // Clear session
             sessionStorage.removeItem('agentLoggedIn');
             sessionStorage.removeItem('agentEmail');
-            document.getElementById('dashboard').classList.remove('active');
+            
+            document.getElementById('dashboard').style.display = 'none';
             document.getElementById('loginPage').style.display = 'flex';
             document.getElementById('loginEmail').value = '';
             document.getElementById('loginPassword').value = '';
-            // Reset to dashboard home
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById('dashboard-home').classList.add('active');
-            document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
-            document.querySelector('.sidebar-menu a').classList.add('active');
         }
-
-        // Load User Data
+        
+        function showForgotPassword() {
+            alert('Please contact your administrator to reset your password.\n\nEmail: contact@harvestrealty.llc');
+        }
+        
+        // Check session on page load
+        function checkSession() {
+            const loggedIn = sessionStorage.getItem('agentLoggedIn');
+            const email = sessionStorage.getItem('agentEmail');
+            
+            if (loggedIn === 'true' && email && agents[email]) {
+                currentUser = email;
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                
+                loadUserData();
+                initGitTracking();
+                
+                if (agents[email].isAdmin) {
+                    document.getElementById('adminMenuItem').style.display = 'block';
+                }
+                
+                // Load from cloud on session restore
+                if (isCloudConfigured()) {
+                    loadFromCloud();
+                }
+            }
+        }
+        
+        // ============================================
+        // USER DATA & PROFILE
+        // ============================================
+        
         function loadUserData() {
             const user = agents[currentUser];
+            if (!user) return;
             
             // Update header
             document.getElementById('userName').textContent = user.name;
             document.getElementById('userRole').textContent = user.role;
             document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
             
-            // Show admin menu if admin
-            if (user.isAdmin) {
-                document.getElementById('adminMenuItem').style.display = 'block';
-                loadUsersTable();
-            } else {
-                document.getElementById('adminMenuItem').style.display = 'none';
-            }
+            // Update stats
+            const activeCount = user.listings.filter(l => l.status === 'Active' || l.status === 'For Rent').length;
+            const soldCount = user.listings.filter(l => l.status === 'Sold' || l.status === 'Rented').length;
+            document.getElementById('activeListings').textContent = activeCount;
+            document.getElementById('soldListings').textContent = soldCount;
             
-            // Update profile form
+            // Load profile form
             document.getElementById('profileName').value = user.name;
             document.getElementById('profileTitle').value = user.role;
             document.getElementById('profileEmail').value = currentUser;
-            document.getElementById('profilePhone').value = user.phone;
-            document.getElementById('profileLicense').value = user.licensePA;
-            document.getElementById('profileLicenseNJ').value = user.licenseNJ;
-            document.getElementById('profileBio').value = user.bio;
-            document.getElementById('profileSpecialties').value = user.specialties;
-            
-            // Update stats
-            const activeListings = user.listings.filter(l => l.status === 'Active' || l.status === 'Under Contract').length;
-            const soldListings = user.listings.filter(l => l.status === 'Sold').length;
-            document.getElementById('activeListings').textContent = activeListings;
-            document.getElementById('soldListings').textContent = soldListings;
+            document.getElementById('profilePhone').value = user.phone || '';
+            document.getElementById('profileLicense').value = user.licensePA || '';
+            document.getElementById('profileLicenseNJ').value = user.licenseNJ || '';
+            document.getElementById('profileBio').value = user.bio || '';
+            document.getElementById('profileSpecialties').value = user.specialties || '';
             
             // Load listings table
             loadListingsTable();
-        }
-        
-        // Load Users Table (Admin Only)
-        function loadUsersTable() {
-            const tbody = document.getElementById('usersTable');
-            tbody.innerHTML = Object.keys(agents).map(email => {
-                const user = agents[email];
-                return `
-                    <tr>
-                        <td>${user.name}</td>
-                        <td>${email}</td>
-                        <td>${user.role}</td>
-                        <td>
-                            <span class="status-badge ${user.isAdmin ? 'status-active' : 'status-pending'}">
-                                ${user.isAdmin ? 'Yes' : 'No'}
-                            </span>
-                        </td>
-                        <td>
-                            <button class="action-btn edit" onclick="toggleAdmin('${email}')">${user.isAdmin ? 'Remove Admin' : 'Make Admin'}</button>
-                            ${email !== currentUser ? `<button class="action-btn delete" onclick="deleteUser('${email}')">Delete</button>` : ''}
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
-        
-        // Toggle Admin Status
-        function toggleAdmin(email) {
-            if (email === currentUser) {
-                alert('You cannot change your own admin status.');
-                return;
-            }
-            agents[email].isAdmin = !agents[email].isAdmin;
-            loadUsersTable();
             
-            // Track change for git commit
-            addPendingChange('admin', `${agents[email].isAdmin ? 'Granted' : 'Removed'} admin privileges for ${agents[email].name}`, agents[currentUser].name);
-            
-            showAdminSuccess('Admin status updated successfully!');
-        }
-        
-        // Delete User
-        function deleteUser(email) {
-            if (email === currentUser) {
-                alert('You cannot delete your own account.');
-                return;
-            }
-            const userName = agents[email].name;
-            if (confirm(`Are you sure you want to delete ${userName}?`)) {
-                delete agents[email];
+            // Load admin users table
+            if (user.isAdmin) {
                 loadUsersTable();
-                
-                // Track change for git commit
-                addPendingChange('user', `Deleted user: ${userName}`, agents[currentUser].name);
-                
-                showAdminSuccess('User deleted successfully!');
             }
         }
         
-        // Show Add User Modal
-        function showAddUserModal() {
-            document.getElementById('addUserModal').style.display = 'flex';
-        }
-        
-        // Close Add User Modal
-        function closeAddUserModal() {
-            document.getElementById('addUserModal').style.display = 'none';
-            document.getElementById('newUserName').value = '';
-            document.getElementById('newUserEmail').value = '';
-            document.getElementById('newUserPhone').value = '';
-            document.getElementById('newUserPassword').value = '';
-            document.getElementById('newUserAdmin').checked = false;
-        }
-        
-        // Generate Random Password
-        function generatePassword() {
-            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$%';
-            let password = '';
-            for (let i = 0; i < 14; i++) {
-                password += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            document.getElementById('newUserPassword').value = password;
-        }
-        
-        // Add New User
-        function addNewUser(event) {
-            event.preventDefault();
-            const name = document.getElementById('newUserName').value;
-            const email = document.getElementById('newUserEmail').value.toLowerCase();
-            const role = document.getElementById('newUserRole').value;
-            const phone = document.getElementById('newUserPhone').value;
-            const password = document.getElementById('newUserPassword').value;
-            const isAdmin = document.getElementById('newUserAdmin').checked;
-            
-            if (agents[email]) {
-                alert('A user with this email already exists.');
-                return;
-            }
-            
-            agents[email] = {
-                name: name,
-                role: role,
-                isAdmin: isAdmin,
-                pw: encode(password),
-                phone: phone,
-                licensePA: '',
-                licenseNJ: '',
-                bio: '',
-                specialties: '',
-                listings: []
-            };
-            
-            // Track change for git commit
-            addPendingChange('user', `Added new user: ${name} (${role})`, agents[currentUser].name);
-            
-            closeAddUserModal();
-            loadUsersTable();
-            showAdminSuccess(`User ${name} created successfully! Send them their login credentials.`);
-        }
-        
-        // Show Admin Success Message
-        function showAdminSuccess(message) {
-            const alert = document.getElementById('userSuccess');
-            alert.textContent = message;
-            alert.classList.add('show');
-            setTimeout(() => alert.classList.remove('show'), 4000);
-        }
-
-        // Load Listings Table
         function loadListingsTable() {
             const user = agents[currentUser];
             const tbody = document.getElementById('listingsTable');
             
             if (user.listings.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #666;">No listings yet. Add your first listing!</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #666;">No listings yet. Add your first listing!</td></tr>';
                 return;
             }
             
             tbody.innerHTML = user.listings.map((listing, index) => `
                 <tr>
+                    <td>
+                        ${listing.photo 
+                            ? `<img src="${listing.photo}" style="width: 60px; height: 45px; object-fit: cover; border-radius: 4px;">` 
+                            : '<span style="display: inline-block; width: 60px; height: 45px; background: #eee; border-radius: 4px; line-height: 45px; text-align: center; font-size: 0.7rem; color: #999;">No Photo</span>'}
+                    </td>
                     <td>${listing.address}</td>
                     <td>${listing.price}</td>
                     <td>${listing.type}</td>
@@ -1752,32 +1908,50 @@
                 </tr>
             `).join('');
         }
-
-        // Show Page
+        
+        function loadUsersTable() {
+            const tbody = document.getElementById('usersTable');
+            tbody.innerHTML = Object.entries(agents).map(([email, user]) => `
+                <tr>
+                    <td>${user.name}</td>
+                    <td>${email}</td>
+                    <td>${user.role}</td>
+                    <td>${user.isAdmin ? '✅' : '❌'}</td>
+                    <td>
+                        <button class="action-btn edit" onclick="editUser('${email}')">Edit</button>
+                        <button class="action-btn" onclick="resetPassword('${email}')" style="background: #FF9800; color: white;">Reset PW</button>
+                        ${email !== currentUser ? `<button class="action-btn delete" onclick="deleteUser('${email}')">Delete</button>` : ''}
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        // ============================================
+        // PAGE NAVIGATION
+        // ============================================
+        
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            // Show selected page
             document.getElementById(pageId).classList.add('active');
-            // Update sidebar active state
             document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active'));
             event.target.closest('a')?.classList.add('active');
         }
-
-        // Show Tab
+        
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             event.target.classList.add('active');
         }
-
-        // Save Profile
+        
+        // ============================================
+        // PROFILE MANAGEMENT
+        // ============================================
+        
         function saveProfile(event) {
             event.preventDefault();
             const user = agents[currentUser];
             
-            // Track changes for git commit
             const changes = [];
             if (user.name !== document.getElementById('profileName').value) changes.push('name');
             if (user.role !== document.getElementById('profileTitle').value) changes.push('title');
@@ -1795,62 +1969,96 @@
             user.bio = document.getElementById('profileBio').value;
             user.specialties = document.getElementById('profileSpecialties').value;
             
-            // Update header
             document.getElementById('userName').textContent = user.name;
             document.getElementById('userRole').textContent = user.role;
             
-            // Add to pending changes
             if (changes.length > 0) {
                 addPendingChange('profile', `Updated profile: ${changes.join(', ')}`, user.name);
             }
             
-            // Show success message
+            // Save to cloud
+            saveData(true);
+            
             const alert = document.getElementById('profileSuccess');
             alert.classList.add('show');
             setTimeout(() => alert.classList.remove('show'), 3000);
         }
-
-        // Add Listing
+        
+        // ============================================
+        // LISTING MANAGEMENT
+        // ============================================
+        
+        function previewListingPhoto(input) {
+            const preview = document.getElementById('listingPhotoPreview');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.innerHTML = '<span style="color: #999; font-size: 0.8rem; text-align: center;">Photo<br>Preview</span>';
+            }
+        }
+        
         function addListing(event) {
             event.preventDefault();
             const user = agents[currentUser];
             
-            const newListing = {
-                address: document.getElementById('listingAddress').value,
-                price: document.getElementById('listingPrice').value,
-                type: document.getElementById('listingType').value,
-                status: document.getElementById('listingStatus').value,
-                beds: document.getElementById('listingBeds').value,
-                baths: document.getElementById('listingBaths').value,
-                sqft: document.getElementById('listingSqft').value,
-                mls: document.getElementById('listingMLS').value,
-                description: document.getElementById('listingDescription').value,
-                features: document.getElementById('listingFeatures').value
-            };
+            const photoInput = document.getElementById('listingPhoto');
             
-            user.listings.push(newListing);
+            if (photoInput.files && photoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    completeListing(e.target.result, photoInput.files[0].name);
+                };
+                reader.readAsDataURL(photoInput.files[0]);
+            } else {
+                completeListing(null, '');
+            }
             
-            // Track change for git commit
-            addPendingChange('listing', `Added new listing: ${newListing.address} (${newListing.price})`, user.name);
-            
-            // Clear form
-            event.target.reset();
-            
-            // Update stats
-            loadUserData();
-            
-            // Show success message
-            const alert = document.getElementById('listingSuccess');
-            alert.classList.add('show');
-            setTimeout(() => alert.classList.remove('show'), 3000);
+            function completeListing(photo, fileName) {
+                const newListing = {
+                    id: Date.now(),
+                    address: document.getElementById('listingAddress').value,
+                    price: document.getElementById('listingPrice').value,
+                    type: document.getElementById('listingType').value,
+                    status: document.getElementById('listingStatus').value,
+                    beds: document.getElementById('listingBeds').value,
+                    baths: document.getElementById('listingBaths').value,
+                    sqft: document.getElementById('listingSqft').value,
+                    mls: document.getElementById('listingMLS').value,
+                    description: document.getElementById('listingDescription').value,
+                    features: document.getElementById('listingFeatures').value,
+                    photo: photo,
+                    photoName: fileName,
+                    addedDate: new Date().toISOString(),
+                    addedBy: currentUser
+                };
+                
+                user.listings.push(newListing);
+                
+                const photoInfo = photo ? ' with photo' : '';
+                addPendingChange('listing', `Added new listing: ${newListing.address} (${newListing.price})${photoInfo}`, user.name);
+                
+                // Save to cloud
+                saveData(true);
+                
+                event.target.reset();
+                document.getElementById('listingPhotoPreview').innerHTML = '<span style="color: #999; font-size: 0.8rem; text-align: center;">Photo<br>Preview</span>';
+                
+                loadUserData();
+                
+                const alert = document.getElementById('listingSuccess');
+                alert.classList.add('show');
+                setTimeout(() => alert.classList.remove('show'), 3000);
+            }
         }
-
-        // Edit Listing
+        
         function editListing(index) {
             const user = agents[currentUser];
             const listing = user.listings[index];
             
-            // Populate form
             document.getElementById('listingAddress').value = listing.address;
             document.getElementById('listingPrice').value = listing.price;
             document.getElementById('listingType').value = listing.type;
@@ -1862,32 +2070,41 @@
             document.getElementById('listingDescription').value = listing.description || '';
             document.getElementById('listingFeatures').value = listing.features || '';
             
-            // Remove old listing
-            user.listings.splice(index, 1);
+            if (listing.photo) {
+                document.getElementById('listingPhotoPreview').innerHTML = `<img src="${listing.photo}" style="width: 100%; height: 100%; object-fit: cover;">`;
+            }
             
-            // Show add listing page
+            user.listings.splice(index, 1);
+            saveData(false); // Don't sync yet, user is editing
+            
             showPage('add-listing');
         }
-
-        // Delete Listing
+        
         function deleteListing(index) {
             if (confirm('Are you sure you want to delete this listing?')) {
                 const user = agents[currentUser];
+                const listing = user.listings[index];
+                
+                addPendingChange('listing', `Deleted listing: ${listing.address}`, user.name);
+                
                 user.listings.splice(index, 1);
+                saveData(true);
                 loadUserData();
             }
         }
-
-        // Change Password
+        
+        // ============================================
+        // PASSWORD MANAGEMENT
+        // ============================================
+        
         function changePassword(event) {
             event.preventDefault();
             const current = document.getElementById('currentPassword').value;
             const newPass = document.getElementById('newPassword').value;
-            const confirm = document.getElementById('confirmPassword').value;
+            const confirmPass = document.getElementById('confirmPassword').value;
             
             const user = agents[currentUser];
             
-            // Hide all alerts
             document.getElementById('passwordSuccess').classList.remove('show');
             document.getElementById('passwordError').classList.remove('show');
             
@@ -1897,7 +2114,7 @@
                 return;
             }
             
-            if (newPass !== confirm) {
+            if (newPass !== confirmPass) {
                 document.getElementById('passwordError').textContent = 'New passwords do not match.';
                 document.getElementById('passwordError').classList.add('show');
                 return;
@@ -1909,55 +2126,116 @@
                 return;
             }
             
-            // Update password (encoded)
             user.pw = encode(newPass);
+            addPendingChange('settings', 'Changed password', user.name);
+            saveData(true);
             
-            // Track change for git commit
-            addPendingChange('settings', `Changed password`, user.name);
-            
-            // Clear form
-            event.target.reset();
-            document.getElementById('passwordStrengthBar').className = 'password-strength-bar';
-            
-            // Show success
             document.getElementById('passwordSuccess').classList.add('show');
-            setTimeout(() => document.getElementById('passwordSuccess').classList.remove('show'), 3000);
+            event.target.reset();
         }
-
-        // Password Strength Checker
-        function checkPasswordStrength() {
-            const password = document.getElementById('newPassword').value;
-            const bar = document.getElementById('passwordStrengthBar');
-            
-            let strength = 0;
-            if (password.length >= 8) strength++;
-            if (/[A-Z]/.test(password)) strength++;
-            if (/[a-z]/.test(password)) strength++;
-            if (/[0-9]/.test(password)) strength++;
-            if (/[^A-Za-z0-9]/.test(password)) strength++;
-            
-            bar.className = 'password-strength-bar';
-            if (strength <= 2) bar.classList.add('weak');
-            else if (strength <= 3) bar.classList.add('medium');
-            else bar.classList.add('strong');
+        
+        function resetPassword(email) {
+            const newPassword = prompt(`Enter new password for ${agents[email].name}:`, generateRandomPassword());
+            if (newPassword) {
+                agents[email].pw = encode(newPassword);
+                addPendingChange('admin', `Reset password for ${agents[email].name}`, agents[currentUser].name);
+                saveData(true);
+                alert(`✅ Password reset!\n\nEmail: ${email}\nNew Password: ${newPassword}\n\nPlease share this securely with the user.`);
+            }
         }
-
+        
+        function generateRandomPassword() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789!@#$';
+            let password = '';
+            for (let i = 0; i < 12; i++) {
+                password += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return password;
+        }
+        
+        function generatePassword() {
+            document.getElementById('newUserPassword').value = generateRandomPassword();
+        }
+        
         // ============================================
-        // GIT COMMIT TRACKING SYSTEM
+        // USER MANAGEMENT (Admin)
         // ============================================
         
-        // Pending changes array
-        let pendingChanges = JSON.parse(localStorage.getItem('hrg_pending_changes') || '[]');
+        function showAddUserModal() {
+            document.getElementById('addUserModal').style.display = 'flex';
+        }
         
-        // Commit history
-        let commitHistory = JSON.parse(localStorage.getItem('hrg_commit_history') || '[]');
+        function closeAddUserModal() {
+            document.getElementById('addUserModal').style.display = 'none';
+        }
         
-        // Generate commit hash
+        function addNewUser(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('newUserEmail').value.toLowerCase().trim();
+            
+            if (agents[email]) {
+                alert('A user with this email already exists.');
+                return;
+            }
+            
+            const newUser = {
+                name: document.getElementById('newUserName').value,
+                role: document.getElementById('newUserRole').value,
+                isAdmin: document.getElementById('newUserAdmin').checked,
+                pw: encode(document.getElementById('newUserPassword').value),
+                phone: document.getElementById('newUserPhone').value,
+                licensePA: '',
+                licenseNJ: '',
+                bio: '',
+                specialties: '',
+                listings: []
+            };
+            
+            agents[email] = newUser;
+            addPendingChange('admin', `Added new user: ${newUser.name} (${email})`, agents[currentUser].name);
+            saveData(true);
+            
+            loadUsersTable();
+            closeAddUserModal();
+            event.target.reset();
+            
+            document.getElementById('userSuccess').classList.add('show');
+            setTimeout(() => document.getElementById('userSuccess').classList.remove('show'), 3000);
+        }
+        
+        function editUser(email) {
+            const user = agents[email];
+            const newRole = prompt(`Edit role for ${user.name}:`, user.role);
+            if (newRole !== null) {
+                user.role = newRole;
+                const makeAdmin = confirm(`Grant admin privileges to ${user.name}?`);
+                user.isAdmin = makeAdmin;
+                
+                addPendingChange('admin', `Updated user: ${user.name}`, agents[currentUser].name);
+                saveData(true);
+                loadUsersTable();
+            }
+        }
+        
+        function deleteUser(email) {
+            if (confirm(`Are you sure you want to delete ${agents[email].name}?\n\nThis cannot be undone.`)) {
+                const userName = agents[email].name;
+                delete agents[email];
+                addPendingChange('admin', `Deleted user: ${userName} (${email})`, agents[currentUser].name);
+                saveData(true);
+                loadUsersTable();
+            }
+        }
+        
+        // ============================================
+        // GIT TRACKING
+        // ============================================
+        
         function generateCommitHash() {
             return Math.random().toString(36).substring(2, 9) + Date.now().toString(36).substring(-4);
         }
         
-        // Add pending change
         function addPendingChange(type, description, author) {
             const change = {
                 id: Date.now(),
@@ -1973,19 +2251,17 @@
             updatePendingChangesUI();
         }
         
-        // Get affected files based on change type
         function getAffectedFiles(type) {
             const fileMap = {
-                'profile': ['p.abraham.html', 'j.abraham.html', 'd.daniel.html', 'a.khan.html', 't.thomas.html'],
-                'listing': ['properties.html', 'index.html'],
-                'settings': ['portal.html'],
-                'admin': ['portal.html'],
-                'user': ['portal.html']
+                'profile': ['agent-profiles.json'],
+                'listing': ['listings.json', 'properties.html'],
+                'settings': ['portal-config.json'],
+                'admin': ['users.json'],
+                'user': ['users.json']
             };
-            return fileMap[type] || ['portal.html'];
+            return fileMap[type] || ['portal-data.json'];
         }
         
-        // Update pending changes UI
         function updatePendingChangesUI() {
             const container = document.getElementById('pendingChanges');
             const commitBtn = document.getElementById('commitBtn');
@@ -2008,9 +2284,6 @@
                                 <div style="font-size: 0.8rem; color: #666; margin-top: 0.25rem;">
                                     by ${change.author} • ${new Date(change.timestamp).toLocaleString()}
                                 </div>
-                                <div style="font-size: 0.75rem; color: #888; margin-top: 0.25rem;">
-                                    Files: ${change.files.join(', ')}
-                                </div>
                             </div>
                             <button onclick="removePendingChange(${index})" style="background: none; border: none; color: #999; cursor: pointer; font-size: 1.2rem;">&times;</button>
                         </div>
@@ -2019,14 +2292,12 @@
             }
         }
         
-        // Remove pending change
         function removePendingChange(index) {
             pendingChanges.splice(index, 1);
             localStorage.setItem('hrg_pending_changes', JSON.stringify(pendingChanges));
             updatePendingChangesUI();
         }
         
-        // Commit changes (simulates git commit)
         function commitChanges() {
             if (pendingChanges.length === 0) {
                 alert('No changes to commit.');
@@ -2037,7 +2308,6 @@
             
             if (!commitMessage) return;
             
-            // Create commit object
             const commit = {
                 hash: generateCommitHash(),
                 message: commitMessage,
@@ -2048,67 +2318,303 @@
                 filesChanged: [...new Set(pendingChanges.flatMap(c => c.files))]
             };
             
-            // Add to history
             commitHistory.unshift(commit);
-            localStorage.setItem('hrg_commit_history', JSON.stringify(commitHistory));
-            
-            // Clear pending changes
             pendingChanges = [];
-            localStorage.setItem('hrg_pending_changes', JSON.stringify(pendingChanges));
             
-            // Update UI
+            saveData(true);
+            
             updatePendingChangesUI();
             updateCommitHistoryUI();
             
-            // Show success with git command
-            alert(`✅ Changes committed successfully!\n\nCommit: ${commit.hash}\nMessage: ${commitMessage}\n\nGit command executed:\ngit add .\ngit commit -m "${commitMessage}"\ngit push origin main`);
+            alert(`✅ Changes committed and synced!\n\nCommit: ${commit.hash}\nMessage: ${commitMessage}`);
         }
         
-        // Update commit history UI
         function updateCommitHistoryUI() {
             const container = document.getElementById('commitHistory');
-            
             if (!container) return;
             
             if (commitHistory.length === 0) {
                 container.innerHTML = '<p style="color: #666; text-align: center; padding: 2rem;">No commits yet</p>';
             } else {
-                container.innerHTML = commitHistory.map(commit => `
-                    <div style="padding: 1rem; background: var(--cream); border-radius: 8px; margin-bottom: 0.75rem; border-left: 4px solid ${commit.pushedToGitHub ? 'var(--green)' : '#FF9800'};">
+                container.innerHTML = commitHistory.slice(0, 50).map(commit => `
+                    <div style="padding: 1rem; background: var(--cream); border-radius: 8px; margin-bottom: 0.75rem; border-left: 4px solid var(--green);">
                         <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
-                            <div>
-                                <code style="background: ${commit.pushedToGitHub ? '#E8F5E9' : '#FFF3E0'}; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; color: ${commit.pushedToGitHub ? 'var(--green)' : '#E65100'};">${commit.pushedToGitHub && commit.githubCommitSha ? commit.githubCommitSha.substring(0, 7) : commit.hash}</code>
-                                ${commit.pushedToGitHub ? '<span style="background: #E8F5E9; color: var(--green); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.7rem; margin-left: 0.5rem;">✓ GitHub</span>' : '<span style="background: #FFF3E0; color: #E65100; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.7rem; margin-left: 0.5rem;">Local Only</span>'}
-                            </div>
+                            <code style="background: #E8F5E9; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; color: var(--green);">${commit.hash}</code>
                             <span style="font-size: 0.8rem; color: #666;">${new Date(commit.timestamp).toLocaleString()}</span>
                         </div>
                         <div style="font-weight: 600; color: var(--charcoal); margin-bottom: 0.5rem;">${commit.message}</div>
                         <div style="font-size: 0.85rem; color: #666;">
-                            <span style="color: var(--burgundy);">${commit.author}</span> &lt;${commit.email}&gt;
+                            <span style="color: var(--burgundy);">${commit.author}</span>
                         </div>
                         <div style="font-size: 0.75rem; color: #888; margin-top: 0.5rem;">
-                            ${commit.changes.length} change(s) • Files: ${commit.filesChanged.join(', ')}
+                            ${commit.changes.length} change(s)
                         </div>
                     </div>
                 `).join('');
             }
         }
         
-        // Initialize git tracking on page load
         function initGitTracking() {
             updatePendingChangesUI();
             updateCommitHistoryUI();
-            loadGitHubConfig();
+            loadCloudConfig();
+            
+            // Auto-initialize cloud if not set up
+            if (!cloudConfig.binId) {
+                autoInitCloud();
+            }
         }
         
         // ============================================
-        // GITHUB API INTEGRATION
+        // CLOUD CONFIG UI
         // ============================================
         
-        // GitHub configuration
+        function saveCloudConfig() {
+            cloudConfig = {
+                apiKey: document.getElementById('jsonbinApiKey').value.trim() || JSONBIN_API_KEY,
+                binId: document.getElementById('jsonbinBinId').value.trim()
+            };
+            
+            localStorage.setItem('hrg_cloud_config', JSON.stringify(cloudConfig));
+            
+            document.getElementById('cloudConfigStatus').innerHTML = `
+                <div style="background: #E8F5E9; color: #2E7D32; padding: 0.75rem; border-radius: 8px;">
+                    ✅ Configuration saved!
+                </div>
+            `;
+            updateCloudStatus();
+        }
+        
+        function loadCloudConfig() {
+            // Always ensure API key is set from hardcoded value
+            if (!cloudConfig) {
+                cloudConfig = { apiKey: JSONBIN_API_KEY, binId: null };
+            }
+            if (!cloudConfig.apiKey) {
+                cloudConfig.apiKey = JSONBIN_API_KEY;
+            }
+            
+            const apiKeyField = document.getElementById('jsonbinApiKey');
+            const binIdField = document.getElementById('jsonbinBinId');
+            
+            if (apiKeyField) apiKeyField.value = cloudConfig.apiKey || JSONBIN_API_KEY;
+            if (binIdField) binIdField.value = cloudConfig.binId || '';
+            
+            updateCloudStatus();
+        }
+        
+        function updateCloudStatus() {
+            const statusEl = document.getElementById('cloudStatus');
+            if (!statusEl) return;
+            
+            if (isCloudConfigured()) {
+                statusEl.innerHTML = '✅ <strong>Connected</strong> - All data syncs automatically';
+                statusEl.style.color = '#2E7D32';
+            } else if (cloudConfig && cloudConfig.apiKey) {
+                statusEl.innerHTML = '⏳ <strong>Initializing...</strong> - Setting up cloud storage';
+                statusEl.style.color = '#E65100';
+            } else {
+                statusEl.innerHTML = '❌ <strong>Not configured</strong> - Contact admin';
+                statusEl.style.color = '#C62828';
+            }
+        }
+        
+        async function createNewBin(silent = false) {
+            if (!cloudConfig || !cloudConfig.apiKey) {
+                cloudConfig = { apiKey: JSONBIN_API_KEY, binId: null };
+            }
+            
+            if (!silent) {
+                const statusEl = document.getElementById('cloudConfigStatus');
+                if (statusEl) {
+                    statusEl.innerHTML = `
+                        <div style="background: #FFF3E0; color: #E65100; padding: 0.75rem; border-radius: 8px;">
+                            ⏳ Creating new bin and uploading current data...
+                        </div>
+                    `;
+                }
+            }
+            
+            try {
+                const initialData = {
+                    created: new Date().toISOString(),
+                    portalName: 'Harvest Realty Portal',
+                    agents: agents,
+                    pendingChanges: pendingChanges,
+                    commitHistory: commitHistory,
+                    version: '2.0'
+                };
+                
+                const response = await fetch('https://api.jsonbin.io/v3/b', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': cloudConfig.apiKey,
+                        'X-Bin-Name': 'hrg-portal-data-' + Date.now()
+                    },
+                    body: JSON.stringify(initialData)
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    cloudConfig.binId = result.metadata.id;
+                    localStorage.setItem('hrg_cloud_config', JSON.stringify(cloudConfig));
+                    
+                    const binIdField = document.getElementById('jsonbinBinId');
+                    if (binIdField) binIdField.value = cloudConfig.binId;
+                    
+                    if (!silent) {
+                        const statusEl = document.getElementById('cloudConfigStatus');
+                        if (statusEl) {
+                            statusEl.innerHTML = `
+                                <div style="background: #E8F5E9; color: #2E7D32; padding: 0.75rem; border-radius: 8px;">
+                                    ✅ Cloud storage created! All data uploaded.<br>
+                                    <small>Bin ID: <code>${cloudConfig.binId}</code></small>
+                                </div>
+                            `;
+                        }
+                    }
+                    updateCloudStatus();
+                    console.log('Cloud storage created:', cloudConfig.binId);
+                    return true;
+                } else {
+                    const error = await response.json();
+                    throw new Error(error.message || 'Failed to create bin');
+                }
+            } catch (error) {
+                console.error('Create bin error:', error);
+                if (!silent) {
+                    const statusEl = document.getElementById('cloudConfigStatus');
+                    if (statusEl) {
+                        statusEl.innerHTML = `
+                            <div style="background: #FFEBEE; color: #C62828; padding: 0.75rem; border-radius: 8px;">
+                                ❌ Error: ${error.message}
+                            </div>
+                        `;
+                    }
+                }
+                return false;
+            }
+        }
+        
+        async function testCloudConnection() {
+            if (!isCloudConfigured()) {
+                // Try to auto-create
+                const created = await createNewBin(true);
+                if (!created) {
+                    alert('Could not connect to cloud. Please check your internet connection.');
+                    return;
+                }
+            }
+            
+            document.getElementById('cloudConfigStatus').innerHTML = `
+                <div style="background: #FFF3E0; color: #E65100; padding: 0.75rem; border-radius: 8px;">
+                    ⏳ Testing connection...
+                </div>
+            `;
+            
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${cloudConfig.binId}/latest`, {
+                    headers: { 'X-Master-Key': cloudConfig.apiKey }
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    const agentCount = result.record.agents ? Object.keys(result.record.agents).length : 0;
+                    document.getElementById('cloudConfigStatus').innerHTML = `
+                        <div style="background: #E8F5E9; color: #2E7D32; padding: 0.75rem; border-radius: 8px;">
+                            ✅ Connected successfully!<br>
+                            <small>Last updated: ${new Date(result.metadata.modifiedAt).toLocaleString()}<br>
+                            Agents in cloud: ${agentCount}</small>
+                        </div>
+                    `;
+                } else {
+                    throw new Error('Could not access bin');
+                }
+            } catch (error) {
+                document.getElementById('cloudConfigStatus').innerHTML = `
+                    <div style="background: #FFEBEE; color: #C62828; padding: 0.75rem; border-radius: 8px;">
+                        ❌ Connection failed: ${error.message}
+                    </div>
+                `;
+            }
+        }
+        
+        async function syncToCloud() {
+            await saveToCloud(true);
+        }
+        
+        async function syncFromCloud() {
+            await loadFromCloud(true);
+        }
+        
+        // ============================================
+        // BACKUP FUNCTIONS
+        // ============================================
+        
+        function exportBackup() {
+            const backupData = {
+                exportDate: new Date().toISOString(),
+                agents: agents,
+                pendingChanges: pendingChanges,
+                commitHistory: commitHistory,
+                version: '2.0'
+            };
+            
+            const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `hrg-portal-backup-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function importBackup(input) {
+            if (!input.files || !input.files[0]) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const backupData = JSON.parse(e.target.result);
+                    
+                    if (confirm(`Import backup from ${new Date(backupData.exportDate).toLocaleString()}?\n\nThis will REPLACE all current data.`)) {
+                        if (backupData.agents) {
+                            agents = backupData.agents;
+                        }
+                        if (backupData.pendingChanges) {
+                            pendingChanges = backupData.pendingChanges;
+                        }
+                        if (backupData.commitHistory) {
+                            commitHistory = backupData.commitHistory;
+                        }
+                        
+                        saveData(true);
+                        
+                        if (currentUser) {
+                            loadUserData();
+                        }
+                        updatePendingChangesUI();
+                        updateCommitHistoryUI();
+                        
+                        alert('✅ Backup imported and synced!');
+                    }
+                } catch (error) {
+                    alert('❌ Invalid backup file: ' + error.message);
+                }
+            };
+            reader.readAsText(input.files[0]);
+            input.value = '';
+        }
+        
+        // ============================================
+        // GITHUB CONFIG (Optional)
+        // ============================================
+        
         let githubConfig = JSON.parse(localStorage.getItem('hrg_github_config') || 'null');
         
-        // Save GitHub configuration
         function saveGitHubConfig() {
             githubConfig = {
                 owner: document.getElementById('githubOwner').value.trim(),
@@ -2121,22 +2627,25 @@
             
             document.getElementById('githubStatus').innerHTML = `
                 <div style="background: #E8F5E9; color: #2E7D32; padding: 0.75rem; border-radius: 8px;">
-                    ✅ Configuration saved! Click "Test Connection" to verify.
+                    ✅ Configuration saved!
                 </div>
             `;
         }
         
-        // Load GitHub configuration
         function loadGitHubConfig() {
             if (githubConfig) {
-                document.getElementById('githubOwner').value = githubConfig.owner || '';
-                document.getElementById('githubRepo').value = githubConfig.repo || '';
-                document.getElementById('githubToken').value = githubConfig.token || '';
-                document.getElementById('githubBranch').value = githubConfig.branch || 'main';
+                const ownerField = document.getElementById('githubOwner');
+                const repoField = document.getElementById('githubRepo');
+                const tokenField = document.getElementById('githubToken');
+                const branchField = document.getElementById('githubBranch');
+                
+                if (ownerField) ownerField.value = githubConfig.owner || '';
+                if (repoField) repoField.value = githubConfig.repo || '';
+                if (tokenField) tokenField.value = githubConfig.token || '';
+                if (branchField) branchField.value = githubConfig.branch || 'main';
             }
         }
         
-        // Test GitHub connection
         async function testGitHubConnection() {
             if (!githubConfig || !githubConfig.token) {
                 document.getElementById('githubStatus').innerHTML = `
@@ -2149,7 +2658,7 @@
             
             document.getElementById('githubStatus').innerHTML = `
                 <div style="background: #FFF3E0; color: #E65100; padding: 0.75rem; border-radius: 8px;">
-                    🔄 Testing connection...
+                    ⏳ Testing connection...
                 </div>
             `;
             
@@ -2165,156 +2674,35 @@
                     const repo = await response.json();
                     document.getElementById('githubStatus').innerHTML = `
                         <div style="background: #E8F5E9; color: #2E7D32; padding: 0.75rem; border-radius: 8px;">
-                            ✅ Connected to <strong>${repo.full_name}</strong><br>
-                            <small>Default branch: ${repo.default_branch} | Private: ${repo.private ? 'Yes' : 'No'}</small>
+                            ✅ Connected to <strong>${repo.full_name}</strong>
                         </div>
                     `;
                 } else {
                     const error = await response.json();
                     document.getElementById('githubStatus').innerHTML = `
                         <div style="background: #FFEBEE; color: #C62828; padding: 0.75rem; border-radius: 8px;">
-                            ❌ Connection failed: ${error.message}
+                            ❌ ${error.message}
                         </div>
                     `;
                 }
             } catch (error) {
                 document.getElementById('githubStatus').innerHTML = `
                     <div style="background: #FFEBEE; color: #C62828; padding: 0.75rem; border-radius: 8px;">
-                        ❌ Error: ${error.message}
+                        ❌ ${error.message}
                     </div>
                 `;
             }
         }
         
-        // Get file SHA from GitHub (needed for updates)
-        async function getFileSha(path) {
-            try {
-                const response = await fetch(`https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${path}?ref=${githubConfig.branch}`, {
-                    headers: {
-                        'Authorization': `token ${githubConfig.token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    return data.sha;
-                }
-                return null;
-            } catch {
-                return null;
-            }
-        }
+        // ============================================
+        // INITIALIZATION
+        // ============================================
         
-        // Commit file to GitHub
-        async function commitFileToGitHub(path, content, message) {
-            const sha = await getFileSha(path);
-            
-            const body = {
-                message: message,
-                content: btoa(unescape(encodeURIComponent(content))), // Proper UTF-8 to base64
-                branch: githubConfig.branch
-            };
-            
-            if (sha) {
-                body.sha = sha; // Required for updating existing file
-            }
-            
-            const response = await fetch(`https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${path}`, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `token ${githubConfig.token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            });
-            
-            if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.message);
-            }
-            
-            return await response.json();
-        }
-        
-        // Enhanced commit function with GitHub integration
-        async function commitChanges() {
-            if (pendingChanges.length === 0) {
-                alert('No changes to commit.');
-                return;
-            }
-            
-            const commitMessage = prompt('Enter commit message:', `Portal updates by ${agents[currentUser]?.name || 'Agent'}`);
-            
-            if (!commitMessage) return;
-            
-            // Create local commit object
-            const commit = {
-                hash: generateCommitHash(),
-                message: commitMessage,
-                author: agents[currentUser]?.name || 'Unknown',
-                email: currentUser,
-                timestamp: new Date().toISOString(),
-                changes: [...pendingChanges],
-                filesChanged: [...new Set(pendingChanges.flatMap(c => c.files))],
-                pushedToGitHub: false
-            };
-            
-            // Try to push to GitHub if configured
-            if (githubConfig && githubConfig.token) {
-                try {
-                    // Create a simple changelog entry
-                    const changelogContent = generateChangelogContent(commit);
-                    
-                    // Commit changelog to GitHub
-                    const result = await commitFileToGitHub(
-                        `portal-changes/${commit.hash}.json`,
-                        JSON.stringify(commit, null, 2),
-                        commitMessage
-                    );
-                    
-                    commit.pushedToGitHub = true;
-                    commit.githubCommitSha = result.commit.sha;
-                    
-                    alert(`✅ Changes committed and pushed to GitHub!\n\nCommit: ${result.commit.sha.substring(0, 7)}\nMessage: ${commitMessage}\n\nView at: ${result.commit.html_url}`);
-                } catch (error) {
-                    alert(`⚠️ Local commit saved, but GitHub push failed:\n${error.message}\n\nChanges are saved locally and can be pushed later.`);
-                }
-            } else {
-                alert(`✅ Changes committed locally!\n\nCommit: ${commit.hash}\nMessage: ${commitMessage}\n\n⚠️ GitHub not configured. Go to Change Log → GitHub Configuration to enable automatic pushes.`);
-            }
-            
-            // Add to history
-            commitHistory.unshift(commit);
-            localStorage.setItem('hrg_commit_history', JSON.stringify(commitHistory));
-            
-            // Clear pending changes
-            pendingChanges = [];
-            localStorage.setItem('hrg_pending_changes', JSON.stringify(pendingChanges));
-            
-            // Update UI
-            updatePendingChangesUI();
-            updateCommitHistoryUI();
-        }
-        
-        // Generate changelog content
-        function generateChangelogContent(commit) {
-            return {
-                hash: commit.hash,
-                timestamp: commit.timestamp,
-                author: commit.author,
-                message: commit.message,
-                changes: commit.changes.map(c => ({
-                    type: c.type,
-                    description: c.description,
-                    files: c.files
-                }))
-            };
-        }
-        
-        // Run on page load
-        document.addEventListener('DOMContentLoaded', initGitTracking);
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSession();
+            loadCloudConfig();
+            loadGitHubConfig();
+        });
     </script>
 </body>
 </html>
