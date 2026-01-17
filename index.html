@@ -14,9 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Cal.com widget -->
-    <link href="https://cal.com/embed.css" rel="stylesheet">
-    <script src="https://cal.com/embed.js" type="text/javascript" async></script>
+    <!-- Cal.com - Using direct links instead of embed -->
     
     <style>
         :root {
@@ -1510,7 +1508,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#4e3e3c2f3d2f2a0e262f3c382b3d3a3c2b2f223a376022222d"><span class="__cf_email__" data-cfemail="1161637062707551797063677462656374707d65683f7d7d72">[email&#160;protected]</span></a>
+                        <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1528,7 +1526,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#600a01030f0220080112160513141205010c14194e0c0c03"><span class="__cf_email__" data-cfemail="5f353e3c303d1f373e2d293a2c2b2d3a3e332b267133333c">[email&#160;protected]</span></a>
+                        <a href="mailto:jacob@harvestrealty.llc">jacob@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1546,7 +1544,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#15716c667a7b557d74676370666167707479616c3b797976"><span class="__cf_email__" data-cfemail="781c010b17163810190a0e1d0b0c0a1d19140c015614141b">[email&#160;protected]</span></a>
+                        <a href="mailto:dyson@harvestrealty.llc">dyson@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1564,7 +1562,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#cfaeadabbaa3a3aea78fa7aebdb9aabcbbbdaaaea3bbb6e1a3a3ac"><span class="__cf_email__" data-cfemail="40212224352c2c212800282132362533343225212c34396e2c2c23">[email&#160;protected]</span></a>
+                        <a href="mailto:abdullah@harvestrealty.llc">abdullah@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1582,7 +1580,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#44302c2b292537042c25363221373036212528303d6a282827"><span class="__cf_email__" data-cfemail="4135292e2c203201292033372432353324202d35386f2d2d22">[email&#160;protected]</span></a>
+                        <a href="mailto:thomas@harvestrealty.llc">thomas@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1672,13 +1670,7 @@
                     <h3>Get In Touch</h3>
                     <p>Reach out to us directly</p>
                     
-                    <a href="/cdn-cgi/l/email-protection#52313d3c26333126123a3320243721262037333e262b7c3e3e31" class="contact-card-button">
-                        <span class="contact-card-icon">📧</span>
-                        <div class="contact-card-text">
-                            <strong>Email Us</strong>
-                            <span><span class="__cf_email__" data-cfemail="1675797862777562567e7764607365626473777a626f387a7a75">[email&#160;protected]</span></span>
-                        </div>
-                    </a>
+                    <a href="mailto:contact@harvestrealty.llc" class="contact-card-button">contact@harvestrealty.llc</a>
                     
                     <a href="sms:2155194096" class="contact-card-button">
                         <span class="contact-card-icon">💬</span>
@@ -1826,7 +1818,7 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Supabase Configuration
         const SUPABASE_URL = 'https://zzjunmkcdpdxhmhiggno.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6anVubWtjZHBkeGhtaGlnZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyNzM1MDIsImV4cCI6MjA4Mzg0OTUwMn0.HYHck2haMWyEQh1sSXGjh9nWqPXmfvXeE60HBTVx-KM';
@@ -1914,8 +1906,8 @@
                 });
                 
             } catch (err) {
-                console.error('Error:', err);
-                grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #666;">Unable to load properties.</div>';
+                console.log('Properties loading from database - check connection');
+                grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #666;">View all our properties on the <a href="properties.html" style="color: var(--burgundy);">Properties page</a></div>';
             }
         }
 
@@ -2213,7 +2205,13 @@
             // Initialize scroll animations
             initScrollAnimations();
             initHeaderScroll();
-            loadProperties();
+            
+            // Load properties with error handling
+            try {
+                loadProperties();
+            } catch (e) {
+                console.log('Properties will load from database when available');
+            }
             
             // Mobile menu toggle
             const mobileMenuToggle = document.getElementById('mobileMenuToggle');
