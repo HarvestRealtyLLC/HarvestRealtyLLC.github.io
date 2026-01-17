@@ -2235,4 +2235,31 @@
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isInters
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.agent-card, .service-card, .stat-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        function initHeaderScroll() {
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+        
+        // Initialize
+        initScrollAnimations();
+        initHeaderScroll();
+    </script>
+</body>
+</html>
