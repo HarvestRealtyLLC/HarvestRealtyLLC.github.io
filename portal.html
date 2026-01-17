@@ -1667,20 +1667,33 @@
             loginBtn.textContent = 'Signing in...';
             hideMessages();
             
+            console.log('Attempting login for:', email);
+            
             try {
                 // First, verify the agent exists in our agents table
+                console.log('Checking agents table...');
                 const { data: agent, error: agentError } = await db
                     .from('agents')
                     .select('*')
                     .eq('email', email)
                     .single();
                 
-                if (agentError || !agent) {
+                if (agentError) {
+                    console.error('Agent lookup error:', agentError);
                     showLoginError('No agent account found with this email.');
                     return;
                 }
                 
+                if (!agent) {
+                    console.error('No agent found for email:', email);
+                    showLoginError('No agent account found with this email.');
+                    return;
+                }
+                
+                console.log('Agent found:', agent.name);
+                
                 // Sign in with Supabase Auth
+                console.log('Attempting Supabase Auth...');
                 const { data, error } = await db.auth.signInWithPassword({
                     email: email,
                     password: password
