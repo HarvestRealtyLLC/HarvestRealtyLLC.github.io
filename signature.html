@@ -220,7 +220,7 @@
     <!-- Portal Access Protection -->
     <script>
         (function() {
-            const hasPortalAccess = sessionStorage.getItem('agentSession') || sessionStorage.getItem('agentLoggedIn');
+            const hasPortalAccess = localStorage.getItem('agentSession') || localStorage.getItem('agentLoggedIn');
             if (!hasPortalAccess) {
                 document.body.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Montserrat', sans-serif; background: #F5F1E8; padding: 2rem; text-align: center;">
