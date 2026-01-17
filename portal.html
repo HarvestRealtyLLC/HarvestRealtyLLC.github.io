@@ -1847,51 +1847,6 @@
             document.getElementById('loginPassword').value = '';
         }
         
-        async function checkSession() {
-            const token = sessionStorage.getItem('agentSession');
-            const email = sessionStorage.getItem('agentEmail');
-            
-            if (!token || !email) return;
-            
-            try {
-                // Verify session is valid
-                const { data: session, error } = await db
-                    .from('sessions')
-                    .select('*, agents(*)')
-                    .eq('token', token)
-                    .gt('expires_at', new Date().toISOString())
-                    .single();
-                
-                if (error || !session) {
-                    sessionStorage.removeItem('agentSession');
-                    sessionStorage.removeItem('agentEmail');
-                    return;
-                }
-                
-                currentUser = email;
-                currentAgent = session.agents;
-                
-                document.getElementById('loginPage').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
-                
-                await loadUserData();
-                initGitTracking();
-                
-                if (currentAgent.is_admin) {
-                    document.getElementById('adminMenuItem').style.display = 'block';
-                }
-                
-                updateCloudStatus('✅ Connected to Supabase', '#2E7D32');
-                
-            } catch (err) {
-                console.error('Session check error:', err);
-            }
-        }
-        
-        function showForgotPassword() {
-            alert('Please contact your administrator to reset your password.\n\nEmail: contact@harvestrealty.llc');
-        }
-        
         // ============================================
         // USER DATA & PROFILE
         // ============================================
@@ -3214,4 +3169,17 @@
                 agents: agents,
                 listings: listings,
                 commits: commits,
-        
+                version: '3.0-supabase'
+            };
+            
+            const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `harvest-realty-backup-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
