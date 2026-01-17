@@ -1508,7 +1508,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a>
+                        <a href="/cdn-cgi/l/email-protection#42323023312326022a2330342731363027232e363b6c2e2e21"><span class="__cf_email__" data-cfemail="7e0e0c1f0d1f1a3e161f0c081b0d0a0c1b1f120a075012121d">[email&#160;protected]</span></a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1526,7 +1526,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="mailto:jacob@harvestrealty.llc">jacob@harvestrealty.llc</a>
+                        <a href="/cdn-cgi/l/email-protection#d3b9b2b0bcb193bbb2a1a5b6a0a7a1b6b2bfa7aafdbfbfb0"><span class="__cf_email__" data-cfemail="c5afa4a6aaa785ada4b7b3a0b6b1b7a0a4a9b1bceba9a9a6">[email&#160;protected]</span></a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1544,7 +1544,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="mailto:dyson@harvestrealty.llc">dyson@harvestrealty.llc</a>
+                        <a href="/cdn-cgi/l/email-protection#e2869b918d8ca28a8390948791969087838e969bcc8e8e81"><span class="__cf_email__" data-cfemail="6f0b161c00012f070e1d190a1c1b1d0a0e031b164103030c">[email&#160;protected]</span></a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1562,7 +1562,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="mailto:abdullah@harvestrealty.llc">abdullah@harvestrealty.llc</a>
+                        <a href="/cdn-cgi/l/email-protection#cfaeadabbaa3a3aea78fa7aebdb9aabcbbbdaaaea3bbb6e1a3a3ac"><span class="__cf_email__" data-cfemail="43222127362f2f222b032b2231352630373126222f373a6d2f2f20">[email&#160;protected]</span></a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1580,7 +1580,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="mailto:thomas@harvestrealty.llc">thomas@harvestrealty.llc</a>
+                        <a href="/cdn-cgi/l/email-protection#7c081413111d0f3c141d0e0a190f080e191d1008055210101f"><span class="__cf_email__" data-cfemail="2c584443414d5f6c444d5e5a495f585e494d4058550240404f">[email&#160;protected]</span></a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1670,7 +1670,7 @@
                     <h3>Get In Touch</h3>
                     <p>Reach out to us directly</p>
                     
-                    <a href="mailto:contact@harvestrealty.llc" class="contact-card-button">contact@harvestrealty.llc</a>
+                    <a href="/cdn-cgi/l/email-protection#fe9d91908a9f9d8abe969f8c889b8d8a8c9b9f928a87d092929d" class="contact-card-button"><span class="__cf_email__" data-cfemail="8fece0e1fbeeecfbcfe7eefdf9eafcfbfdeaeee3fbf6a1e3e3ec">[email&#160;protected]</span></a>
                     
                     <a href="sms:2155194096" class="contact-card-button">
                         <span class="contact-card-icon">💬</span>
@@ -1818,7 +1818,7 @@
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Supabase Configuration
         const SUPABASE_URL = 'https://zzjunmkcdpdxhmhiggno.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6anVubWtjZHBkeGhtaGlnZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyNzM1MDIsImV4cCI6MjA4Mzg0OTUwMn0.HYHck2haMWyEQh1sSXGjh9nWqPXmfvXeE60HBTVx-KM';
@@ -1832,8 +1832,9 @@
             grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #666;">Loading properties...</div>';
             
             try {
-                const response = await fetch(
-                    `${SUPABASE_URL}/rest/v1/listings?select=*&order=created_at.desc&limit=6`,
+                // First try to get featured properties
+                let response = await fetch(
+                    `${SUPABASE_URL}/rest/v1/listings?select=*&is_featured=eq.true&order=created_at.desc&limit=6`,
                     {
                         headers: {
                             'apikey': SUPABASE_ANON_KEY,
@@ -1847,7 +1848,27 @@
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 
-                const properties = await response.json();
+                let properties = await response.json();
+                
+                // If no featured properties, fallback to most recent
+                if (!properties || properties.length === 0) {
+                    response = await fetch(
+                        `${SUPABASE_URL}/rest/v1/listings?select=*&order=created_at.desc&limit=6`,
+                        {
+                            headers: {
+                                'apikey': SUPABASE_ANON_KEY,
+                                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                                'Content-Type': 'application/json'
+                            }
+                        }
+                    );
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    properties = await response.json();
+                }
                 
                 if (!properties || properties.length === 0) {
                     grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: #666;">No properties available. Check back soon!</div>';
@@ -2231,33 +2252,4 @@
                 rootMargin: '0px 0px -50px 0px'
             };
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                    }
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.agent-card, .service-card, .stat-card').forEach(el => {
-                observer.observe(el);
-            });
-        }
-        
-        function initHeaderScroll() {
-            const header = document.getElementById('header');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-        }
-        
-        // Initialize
-        initScrollAnimations();
-        initHeaderScroll();
-    </script>
-</body>
-</html>
+ 

@@ -2008,6 +2008,7 @@
                     <th>Type</th>
                     <th>Agent</th>
                     <th>Status</th>
+                    <th style="width: 80px;">Featured</th>
                     <th>Actions</th>
                 `;
             }
@@ -2015,6 +2016,21 @@
             tbody.innerHTML = listings.map((listing, index) => {
                 const agentName = listing.agents?.name || 'Unknown';
                 const agentCell = isAdmin ? `<td style="font-size: 0.85rem;">${agentName}</td>` : '';
+                const featuredCell = isAdmin ? `
+                    <td style="text-align: center;">
+                        <button onclick="toggleFeatured('${listing.id}', ${!listing.is_featured})" 
+                                style="background: ${listing.is_featured ? '#FFD700' : '#e0e0e0'}; 
+                                       border: none; 
+                                       padding: 0.3rem 0.6rem; 
+                                       border-radius: 20px; 
+                                       cursor: pointer;
+                                       font-size: 0.85rem;
+                                       transition: all 0.2s;"
+                                title="${listing.is_featured ? 'Remove from featured' : 'Add to featured'}">
+                            ${listing.is_featured ? '⭐ Yes' : '☆ No'}
+                        </button>
+                    </td>
+                ` : '';
                 
                 return `
                 <tr>
@@ -2029,6 +2045,7 @@
                     <td>${listing.property_type || ''}</td>
                     ${agentCell}
                     <td><span class="status-badge status-${(listing.status || '').toLowerCase().replace(' ', '-')}">${listing.status}</span></td>
+                    ${featuredCell}
                     <td>
                         <button class="action-btn edit" onclick="editListing('${listing.id}')">Edit</button>
                         <button class="action-btn" onclick="downloadListingPage('${listing.id}')" style="background: #2196F3; color: white;">📄 Page</button>
@@ -2071,6 +2088,49 @@
         // Sort table when dropdown changes
         function sortListingsTable() {
             loadListingsTable();
+        }
+        
+        // Toggle featured status (admin only)
+        async function toggleFeatured(listingId, newStatus) {
+            if (!currentAgent.is_admin) {
+                alert('Only admins can change featured status');
+                return;
+            }
+            
+            // Count current featured listings
+            const currentFeatured = currentAgent.listings.filter(l => l.is_featured).length;
+            
+            // Check if trying to add more than 6
+            if (newStatus && currentFeatured >= 6) {
+                alert('Maximum 6 featured properties allowed. Please remove one first.');
+                return;
+            }
+            
+            try {
+                const { error } = await db
+                    .from('listings')
+                    .update({ is_featured: newStatus })
+                    .eq('id', listingId);
+                
+                if (error) throw error;
+                
+                // Update local data
+                const listing = currentAgent.listings.find(l => l.id === listingId);
+                if (listing) {
+                    listing.is_featured = newStatus;
+                }
+                
+                // Reload table to show updated status
+                loadListingsTable();
+                
+                // Show feedback
+                const featuredCount = currentAgent.listings.filter(l => l.is_featured).length;
+                console.log(`Featured properties: ${featuredCount}/6`);
+                
+            } catch (err) {
+                console.error('Error updating featured status:', err);
+                alert('Error updating featured status. Please try again.');
+            }
         }
         
         // Toggle individual listing selection
