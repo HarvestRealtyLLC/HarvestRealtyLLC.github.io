@@ -21,11 +21,7 @@
             --shadow: rgba(139, 46, 46, 0.15);
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Montserrat', sans-serif;
@@ -34,7 +30,6 @@
             line-height: 1.6;
         }
         
-        /* Header */
         header {
             background: var(--white);
             padding: 1rem 5%;
@@ -60,9 +55,7 @@
             text-decoration: none;
         }
         
-        .logo img {
-            height: 50px;
-        }
+        .logo img { height: 50px; }
         
         .logo-text h1 {
             font-family: 'Cormorant Garamond', serif;
@@ -94,7 +87,6 @@
             transform: translateX(-5px);
         }
         
-        /* Hero Section */
         .hero {
             padding: 150px 5% 60px;
             text-align: center;
@@ -115,7 +107,6 @@
             margin: 0 auto;
         }
         
-        /* Main Content */
         .main-content {
             max-width: 900px;
             margin: 0 auto;
@@ -139,8 +130,13 @@
             border-bottom: 2px solid var(--cream-dark);
         }
         
-        .legal-card h2:first-of-type {
-            margin-top: 0;
+        .legal-card h2:first-of-type { margin-top: 0; }
+        
+        .legal-card h3 {
+            color: var(--burgundy);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
         }
         
         .legal-card p {
@@ -159,9 +155,7 @@
             line-height: 1.7;
         }
         
-        .legal-card strong {
-            color: var(--burgundy);
-        }
+        .legal-card strong { color: var(--burgundy); }
         
         .legal-card a {
             color: var(--burgundy);
@@ -169,9 +163,7 @@
             font-weight: 500;
         }
         
-        .legal-card a:hover {
-            color: var(--gold-dark);
-        }
+        .legal-card a:hover { color: var(--gold-dark); }
         
         .last-updated {
             display: inline-block;
@@ -191,24 +183,69 @@
             border-left: 4px solid var(--burgundy);
         }
         
-        .contact-box p {
-            margin-bottom: 0.5rem;
-        }
+        .contact-box p { margin-bottom: 0.5rem; }
         
         .highlight-box {
             background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
             color: var(--white);
             padding: 1.5rem;
             border-radius: 15px;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
         }
         
-        .highlight-box p {
+        .highlight-box p, .highlight-box li {
             color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-box ul {
+            margin-left: 1.5rem;
             margin-bottom: 0;
         }
         
-        /* Footer */
+        .warning-box {
+            background: #FFF3E0;
+            border: 2px solid #FF9800;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+        
+        .warning-box p {
+            color: #E65100;
+            margin-bottom: 0;
+        }
+        
+        .info-box {
+            background: #E3F2FD;
+            border: 2px solid #2196F3;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+        
+        .info-box p {
+            color: #1565C0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .info-box p:last-child { margin-bottom: 0; }
+        
+        .success-box {
+            background: #E8F5E9;
+            border: 2px solid #4CAF50;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+        
+        .success-box p {
+            color: #2E7D32;
+            margin-bottom: 0.5rem;
+        }
+        
+        .success-box p:last-child { margin-bottom: 0; }
+        
         footer {
             background: var(--charcoal);
             color: var(--white);
@@ -221,68 +258,18 @@
             text-decoration: none;
         }
         
-        footer a:hover {
-            text-decoration: underline;
-        }
+        footer a:hover { text-decoration: underline; }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
             }
-            
-            .logo {
-                justify-content: center;
-            }
-            
-            .logo img {
-                height: 45px;
-            }
-            
-            .logo-text h1 {
-                font-size: 1.4rem;
-            }
-            
-            .logo-text p {
-                font-size: 0.7rem;
-            }
-            
-            .back-btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
-            }
-            
-            .hero {
-                padding: 130px 5% 60px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .legal-card {
-                padding: 2rem;
-            }
-            
-            .legal-card h2 {
-                font-size: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .logo-text h1 {
-                font-size: 1.2rem;
-            }
-            
-            .logo-text p {
-                display: none;
-            }
+            .logo { justify-content: center; }
+            .hero h1 { font-size: 2rem; }
+            .legal-card { padding: 2rem; }
+            .legal-card h2 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -307,70 +294,184 @@
 
     <main class="main-content">
         <div class="legal-card">
-            <span class="last-updated">Last Updated: January 10, 2026</span>
+            <span class="last-updated">Last Updated: January 11, 2026</span>
             
             <p>Welcome to Harvest Realty LLC. By accessing or using our website and services, you agree to be bound by these Terms of Use. Please read them carefully.</p>
 
             <h2>1. Acceptance of Terms</h2>
             <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these terms, please do not use this website.</p>
 
-            <h2>2. Use of Services</h2>
-            <p>You agree to use our services only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+            <h2>2. Equal Housing Opportunity Statement</h2>
+            <div class="highlight-box">
+                <p><strong>🏠 EQUAL HOUSING OPPORTUNITY</strong></p>
+                <p>Harvest Realty LLC is committed to compliance with all federal, state, and local fair housing laws. We do not discriminate against any person because of:</p>
+                <ul>
+                    <li>Race, color, or national origin</li>
+                    <li>Religion or creed</li>
+                    <li>Sex, sexual orientation, or gender identity</li>
+                    <li>Familial status (including children under 18 or pregnancy)</li>
+                    <li>Disability or handicap</li>
+                    <li>Age</li>
+                    <li>Marital status</li>
+                    <li>Source of income (where applicable by law)</li>
+                    <li>Any other protected class under federal, Pennsylvania, or New Jersey law</li>
+                </ul>
+            </div>
+            <p>We support and are committed to the letter and spirit of the Fair Housing Act, the Pennsylvania Human Relations Act, and the New Jersey Law Against Discrimination. All real estate advertised on this website is subject to the Federal Fair Housing Act, which makes it illegal to advertise any preference, limitation, or discrimination.</p>
+
+            <h2>3. Fair Housing Act Compliance</h2>
+            <p>In accordance with the Fair Housing Act (42 U.S.C. § 3601 et seq.), we will:</p>
             <ul>
-                <li>Use the website in any way that violates any applicable federal, state, local, or international law or regulation</li>
-                <li>Engage in any conduct that restricts or inhibits anyone's use or enjoyment of the website</li>
-                <li>Use the website to transmit any advertising or promotional material without our prior written consent</li>
-                <li>Impersonate or attempt to impersonate Harvest Realty LLC, our employees, another user, or any other person or entity</li>
-                <li>Engage in any automated use of the system, such as using scripts to send comments or messages</li>
+                <li>Provide equal professional service to all clients regardless of protected status</li>
+                <li>Never refuse to show, sell, rent, or negotiate for real estate based on protected characteristics</li>
+                <li>Never represent that a property is not available when it is available</li>
+                <li>Never engage in "blockbusting" or "steering" practices</li>
+                <li>Never discriminate in the terms, conditions, or privileges of sale or rental</li>
+                <li>Make reasonable accommodations for persons with disabilities</li>
             </ul>
 
-            <h2>3. Property Listings</h2>
-            <p>All property information is provided for informational purposes only and does not constitute an offer to sell or solicitation to buy any property. Property information is believed to be reliable but should be independently verified. Prices, availability, and specifications are subject to change without notice.</p>
+            <h2>4. Pennsylvania Real Estate Compliance</h2>
+            <div class="info-box">
+                <p><strong>🏛️ Pennsylvania Licensing:</strong></p>
+                <p>Harvest Realty LLC operates under the authority of the Pennsylvania Real Estate Commission pursuant to the Real Estate Licensing and Registration Act (63 P.S. § 455.101 et seq.).</p>
+            </div>
+            
+            <h3>Agency Disclosure</h3>
+            <p>In Pennsylvania, real estate licensees are required to provide consumers with a disclosure summary explaining the different types of agency relationships. Before we provide substantive services, we will explain:</p>
+            <ul>
+                <li>Whether we represent the seller, buyer, landlord, or tenant</li>
+                <li>Whether we are acting as a dual agent or transaction licensee</li>
+                <li>The duties and obligations of each type of representation</li>
+            </ul>
+            
+            <h3>Seller's Property Disclosure</h3>
+            <p>Pennsylvania law (68 Pa.C.S. §§ 7301-7314) requires sellers of residential real property to disclose known material defects. We will ensure all required disclosures are provided in accordance with the Real Estate Seller Disclosure Law.</p>
 
-            <h2>4. Intellectual Property</h2>
-            <p>The content on this website, including but not limited to text, graphics, logos, images, and software, is the property of Harvest Realty LLC or its content suppliers and is protected by United States and international copyright laws.</p>
+            <h3>Act 52 of 2024 - Wholesaling Regulations</h3>
+            <p>Effective January 8, 2025, Pennsylvania requires that persons engaging in wholesale real estate transactions must be licensed real estate brokers and must provide specific disclosures to consumers. All wholesale transactions conducted through Harvest Realty LLC comply with Act 52 requirements.</p>
 
-            <h2>5. User Content</h2>
-            <p>By submitting content through our website (such as contact forms, comments, or reviews), you grant Harvest Realty LLC a non-exclusive, royalty-free, perpetual, and worldwide license to use, reproduce, modify, and distribute such content.</p>
-
-            <h2>6. Disclaimer of Warranties</h2>
-            <p>This website and all information, content, materials, and services included on or otherwise made available to you through this website are provided on an "as is" and "as available" basis. Harvest Realty LLC makes no representations or warranties of any kind, express or implied, as to the operation of the website or the information, content, materials, or services included on or otherwise made available to you through this website.</p>
-
-            <h2>7. Limitation of Liability</h2>
-            <p>Harvest Realty LLC shall not be liable for any damages of any kind arising from the use of this website, including but not limited to direct, indirect, incidental, punitive, and consequential damages.</p>
-
-            <h2>8. Real Estate Transactions</h2>
-            <p>All real estate transactions are subject to separate agreements and contracts. These Terms of Use do not constitute a binding agreement to buy, sell, or lease any property. All transactions must comply with applicable state and federal laws and regulations.</p>
-
-            <h2>9. Third-Party Links</h2>
-            <p>Our website may contain links to third-party websites or services that are not owned or controlled by Harvest Realty LLC. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.</p>
-
-            <h2>10. Indemnification</h2>
-            <p>You agree to indemnify, defend, and hold harmless Harvest Realty LLC and its officers, directors, employees, agents, and affiliates from and against any claims, liabilities, damages, losses, and expenses arising out of or in any way connected with your access to or use of the website.</p>
-
-            <h2>11. Governing Law</h2>
-            <p>These Terms shall be governed by and construed in accordance with the laws of the Commonwealth of Pennsylvania, without regard to its conflict of law provisions.</p>
-
-            <h2>12. Changes to Terms</h2>
-            <p>We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.</p>
-
-            <h2>13. Equal Housing Opportunity</h2>
-            <div class="highlight-box">
-                <p>🏠 Harvest Realty LLC is committed to fair housing practices and equal opportunity in housing. We comply with all federal, state, and local fair housing laws and do not discriminate on the basis of race, color, religion, sex, handicap, familial status, national origin, sexual orientation, or gender identity.</p>
+            <h2>5. New Jersey Real Estate Compliance</h2>
+            <div class="info-box">
+                <p><strong>🏛️ New Jersey Licensing:</strong></p>
+                <p>Harvest Realty LLC operates under the authority of the New Jersey Real Estate Commission pursuant to N.J.S.A. 45:15-1 et seq.</p>
             </div>
 
-            <h2>14. Contact Information</h2>
+            <h3>Consumer Protection Enhancement Act (CPEA)</h3>
+            <p>Effective August 1, 2024, New Jersey's CPEA requires:</p>
+            <ul>
+                <li><strong>Brokerage Services Agreements:</strong> Written agreements before providing brokerage services</li>
+                <li><strong>Property Condition Disclosure:</strong> All sellers must complete the Seller's Property Condition Disclosure Statement</li>
+                <li><strong>Commission Disclosure:</strong> Broker commissions are fully negotiable and not set by law</li>
+                <li><strong>Designated Agency:</strong> When applicable, disclosure of designated agency relationships</li>
+            </ul>
+
+            <h3>Flood Risk Disclosure (Effective March 20, 2024)</h3>
+            <p>New Jersey requires disclosure of flood risk information including:</p>
+            <ul>
+                <li>FEMA Special Flood Hazard Area (100-year floodplain) designation</li>
+                <li>Moderate Risk Flood Hazard Area (500-year floodplain) location</li>
+                <li>Flood insurance requirements and claim history</li>
+                <li>Property flood damage history</li>
+            </ul>
+
+            <h3>Consumer Information Statement</h3>
+            <p>We provide the New Jersey Consumer Information Statement to all buyers and sellers explaining the roles and responsibilities of real estate licensees.</p>
+
+            <h2>6. Commission Disclosure</h2>
+            <div class="warning-box">
+                <p><strong>⚠️ Important Notice:</strong> Real estate broker commissions are NOT set by law and are fully negotiable. The commission rate is determined through negotiation between the broker and the client.</p>
+            </div>
+
+            <h2>7. Property Listings & Information</h2>
+            <p>All property information on this website is provided for informational purposes only and is subject to change without notice. Property information:</p>
+            <ul>
+                <li>Does not constitute an offer to sell or solicitation to buy</li>
+                <li>Should be independently verified by buyers</li>
+                <li>Is believed to be accurate but not guaranteed</li>
+                <li>May be obtained from Multiple Listing Services (MLS) and third parties</li>
+            </ul>
+
+            <h2>8. Lead-Based Paint Disclosure</h2>
+            <p>For residential properties built before 1978, federal law (42 U.S.C. § 4852d) requires:</p>
+            <ul>
+                <li>Disclosure of known lead-based paint and hazards</li>
+                <li>Provision of the EPA pamphlet "Protect Your Family From Lead in Your Home"</li>
+                <li>A 10-day opportunity for buyers to conduct lead paint inspections</li>
+                <li>Inclusion of specific lead warning language in contracts</li>
+            </ul>
+
+            <h2>9. Use of Services</h2>
+            <p>You agree to use our services only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+            <ul>
+                <li>Use the website in any way that violates any applicable law or regulation</li>
+                <li>Engage in any conduct that restricts or inhibits anyone's use of the website</li>
+                <li>Use the website to transmit any unauthorized advertising or promotional material</li>
+                <li>Impersonate or attempt to impersonate Harvest Realty LLC or any other person</li>
+                <li>Engage in any automated use of the system without authorization</li>
+            </ul>
+
+            <h2>10. Intellectual Property</h2>
+            <p>The content on this website, including but not limited to text, graphics, logos, images, and software, is the property of Harvest Realty LLC or its content suppliers and is protected by United States and international copyright laws.</p>
+
+            <h2>11. Disclaimer of Warranties</h2>
+            <p>This website and all information, content, materials, and services are provided on an "as is" and "as available" basis. Harvest Realty LLC makes no representations or warranties of any kind, express or implied, as to the operation of the website or the accuracy of information provided.</p>
+
+            <h2>12. Limitation of Liability</h2>
+            <p>Harvest Realty LLC shall not be liable for any damages of any kind arising from the use of this website, including but not limited to direct, indirect, incidental, punitive, and consequential damages.</p>
+
+            <h2>13. Real Estate Transactions</h2>
+            <p>All real estate transactions are subject to separate written agreements and contracts. These Terms of Use do not constitute a binding agreement to buy, sell, or lease any property. All transactions must comply with applicable Pennsylvania and New Jersey state and federal laws.</p>
+
+            <h2>14. Third-Party Links</h2>
+            <p>Our website may contain links to third-party websites that are not owned or controlled by Harvest Realty LLC. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party websites.</p>
+
+            <h2>15. Indemnification</h2>
+            <p>You agree to indemnify, defend, and hold harmless Harvest Realty LLC and its officers, directors, employees, agents, and affiliates from and against any claims, liabilities, damages, losses, and expenses arising out of your use of the website.</p>
+
+            <h2>16. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the Commonwealth of Pennsylvania and the State of New Jersey, as applicable to the transaction in question, without regard to conflict of law provisions.</p>
+
+            <h2>17. Dispute Resolution</h2>
+            <p>Any disputes arising from real estate transactions may be subject to resolution through:</p>
+            <ul>
+                <li>Mediation through the appropriate local REALTOR® association</li>
+                <li>Filing complaints with the Pennsylvania Real Estate Commission or New Jersey Real Estate Commission</li>
+                <li>Civil litigation in the appropriate court of jurisdiction</li>
+            </ul>
+
+            <h2>18. Changes to Terms</h2>
+            <p>We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect.</p>
+
+            <h2>19. Filing Complaints</h2>
+            <div class="success-box">
+                <p><strong>📋 How to File a Complaint:</strong></p>
+                <p><strong>Pennsylvania Real Estate Commission:</strong><br>
+                Online: <a href="https://www.pals.pa.gov" target="_blank" style="color: #2E7D32;">pals.pa.gov</a><br>
+                Phone: (717) 783-3658</p>
+                <p><strong>New Jersey Real Estate Commission:</strong><br>
+                Online: <a href="https://www.njconsumeraffairs.gov/rec" target="_blank" style="color: #2E7D32;">njconsumeraffairs.gov/rec</a><br>
+                Phone: (609) 292-8280</p>
+                <p><strong>HUD Fair Housing:</strong><br>
+                Online: <a href="https://www.hud.gov/fairhousing" target="_blank" style="color: #2E7D32;">hud.gov/fairhousing</a><br>
+                Hotline: 1-800-669-9777</p>
+            </div>
+
+            <h2>20. Contact Information</h2>
             <p>If you have any questions about these Terms of Use, please contact us:</p>
             <div class="contact-box">
                 <p><strong>Harvest Realty LLC</strong></p>
-                <p>📧 Email: <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a></p>
-                <p>📞 Phone: <a href="tel:215-519-4096">(215) 519-4096</a></p>
+                <p>📍 2481 Napfle Ave, Philadelphia, PA 19152</p>
+                <p>📧 Email: <a href="mailto:contact@harvestrealty.llc">contact@harvestrealty.llc</a></p>
+                <p>📞 Phone: <a href="tel:267-900-8011">267-900-8011</a></p>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a></p>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | <a href="fair-housing.html">Fair Housing</a></p>
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
+            Designed & Built by <a href="https://chronosmedia.to" target="_blank" style="color: #D4AF37; text-decoration: none; font-weight: 500;">Chronos Media LLC</a> ⏳
+        </p>
     </footer>
 </body>
 </html>

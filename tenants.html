@@ -356,6 +356,65 @@
                 display: none;
             }
         }
+    
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px var(--shadow);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+            
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -399,21 +458,21 @@
                 <div class="icon">🔧</div>
                 <h3>Maintenance Request</h3>
                 <p>Submit a maintenance request and our team will address it promptly.</p>
-                <a href="mailto:prasad@harvestrealty.llc?subject=Maintenance Request&body=MAINTENANCE REQUEST FORM%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0ABest Contact Number: %0D%0A%0D%0APreferred Contact Time: %0D%0A%0D%0A------ ISSUE DETAILS ------%0D%0A%0D%0ALocation of Issue (e.g., kitchen, bathroom, bedroom): %0D%0A%0D%0ADescription of Problem:%0D%0A%0D%0A%0D%0AHow long has this been an issue?: %0D%0A%0D%0AIs this an emergency? (Yes/No): %0D%0A%0D%0APermission to enter if not home? (Yes/No): %0D%0A%0D%0AAdditional Notes:%0D%0A%0D%0A">Submit Request →</a>
+                <a href="/cdn-cgi/l/email-protection#f89b97968c999b8cb890998a8e9d8b8c8a9d99948c81d694949b">Submit Request →</a>
             </div>
             
             <div class="resource-card">
                 <div class="icon">📄</div>
                 <h3>Request Documents</h3>
                 <p>Request copies of your lease agreement, move-in checklist, or other documents.</p>
-                <a href="mailto:prasad@harvestrealty.llc?subject=Document Request&body=DOCUMENT REQUEST FORM%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0AContact Email: %0D%0A%0D%0AContact Phone: %0D%0A%0D%0A------ DOCUMENTS REQUESTED ------%0D%0A(Please mark X next to documents needed)%0D%0A%0D%0A[ ] Copy of Lease Agreement%0D%0A[ ] Move-In Checklist%0D%0A[ ] Move-In Inspection Report%0D%0A[ ] Rent Payment History%0D%0A[ ] Proof of Residency Letter%0D%0A[ ] Other (please specify below)%0D%0A%0D%0AOther Documents Needed:%0D%0A%0D%0A%0D%0AReason for Request (optional):%0D%0A%0D%0A%0D%0APreferred Delivery Method:%0D%0A[ ] Email%0D%0A[ ] Mail to property address%0D%0A[ ] Mail to different address (specify below)%0D%0A%0D%0AAlternate Mailing Address (if applicable):%0D%0A%0D%0A">Request Documents →</a>
+                <a href="/cdn-cgi/l/email-protection#482b27263c292b3c0820293a3e2d3b3c3a2d29243c316624242b">Request Documents →</a>
             </div>
             
             <div class="resource-card">
                 <div class="icon">📋</div>
                 <h3>Renew Your Lease</h3>
                 <p>Interested in renewing your lease? Let us know and we'll send you renewal options.</p>
-                <a href="mailto:prasad@harvestrealty.llc?subject=Lease Renewal Inquiry&body=LEASE RENEWAL INQUIRY%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0ACurrent Lease End Date: %0D%0A%0D%0AContact Email: %0D%0A%0D%0AContact Phone: %0D%0A%0D%0A------ RENEWAL PREFERENCES ------%0D%0A%0D%0ADesired Lease Term:%0D%0A[ ] 12 months%0D%0A[ ] 6 months%0D%0A[ ] Month-to-month%0D%0A[ ] Other (specify): %0D%0A%0D%0AAre there any concerns or issues with the property we should address?%0D%0A%0D%0A%0D%0AWould you like to discuss rent terms? (Yes/No): %0D%0A%0D%0AAdditional Comments or Requests:%0D%0A%0D%0A%0D%0ABest time to contact you:%0D%0A">Inquire Now →</a>
+                <a href="/cdn-cgi/l/email-protection#7c1f1312081d1f083c141d0e0a190f080e191d1008055210101f">Inquire Now →</a>
             </div>
             
             <div class="resource-card">
@@ -426,50 +485,25 @@
             <div class="resource-card">
                 <div class="icon">❓</div>
                 <h3>General Inquiry</h3>
-                <p>Have a question? We're here to help with any concerns or inquiries you may have.</p>
-                <a href="mailto:prasad@harvestrealty.llc?subject=Tenant Inquiry&body=GENERAL INQUIRY%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0AContact Email: %0D%0A%0D%0AContact Phone: %0D%0A%0D%0ABest Time to Contact: %0D%0A%0D%0A------ YOUR INQUIRY ------%0D%0A%0D%0APlease describe your question or concern:%0D%0A%0D%0A%0D%0A%0D%0A%0D%0AIs this urgent? (Yes/No): %0D%0A%0D%0APreferred method of response:%0D%0A[ ] Email%0D%0A[ ] Phone Call%0D%0A[ ] Text Message%0D%0A">Contact Us →</a>
+                <p>Have a question? Contact our property management team for assistance.</p>
+                <a href="mailto:contact@harvestrealty.llc">Contact Us →</a>
             </div>
         </div>
-
-        <!-- FAQ Section -->
-        <section class="faq-section">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            
-            <div class="faq-item">
-                <h4>When is rent due?</h4>
-                <p>Rent due day is listed in the lease agreement. A grace period may apply as specified in your lease.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h4>How do I report an emergency maintenance issue?</h4>
-                <p>For emergencies (flooding, no heat, gas leak), call us immediately at <strong>215-519-4096</strong>. For non-emergencies, submit a maintenance request online.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h4>Can I have pets in my rental?</h4>
-                <p>Pet policies vary by property. Please refer to your lease agreement or contact us for specific pet policy information.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h4>How much notice do I need to give before moving out?</h4>
-                <p>Typically, 30-60 days written notice is required. Please refer to your lease agreement for specific terms.</p>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact-section">
-            <h2>Need More Help?</h2>
-            <p>Our property management team is here to assist you with any questions or concerns.</p>
-            <div class="contact-buttons">
-                <a href="tel:215-519-4096" class="contact-btn primary">📞 Call 215-519-4096</a>
-                <a href="mailto:prasad@harvestrealty.llc" class="contact-btn secondary">📧 Email Us</a>
-                <a href="https://cal.com/harvestrealtyllc/tenant" target="_blank" class="contact-btn secondary">📅 Schedule a Call</a>
-            </div>
-        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="index.html">Back to Home</a></p>
+    <footer style="background: #2C2C2C; color: white; padding: 2rem 5%; text-align: center;">
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="index.html" style="color: #F5F1E8;">Home</a> | <a href="privacy.html" style="color: #F5F1E8;">Privacy Policy</a> | <a href="terms.html" style="color: #F5F1E8;">Terms of Use</a> | <a href="fair-housing.html" style="color: #F5F1E8;">Fair Housing</a></p>
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
+            Designed & Built by <a href="https://chronosmedia.to" target="_blank" style="color: #D4AF37; text-decoration: none; font-weight: 500;">Chronos Media LLC</a> ⏳
+        </p>
     </footer>
+
+    <script>
+        document.getElementById('mobileMenuToggle')?.addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+            this.textContent = document.getElementById('navLinks').classList.contains('active') ? '✕' : '☰';
+        });
+    </script>
 </body>
 </html>

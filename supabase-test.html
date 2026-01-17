@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Connection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; max-width: 800px; margin: 0 auto; }
+        .result { padding: 1rem; margin: 1rem 0; border-radius: 8px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 4px; }
+        button { padding: 1rem 2rem; font-size: 1rem; cursor: pointer; margin: 0.5rem; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Supabase Connection Test</h1>
+    
+    <div class="result info">
+        <strong>Supabase Project:</strong> zzjunmkcdpdxhmhiggno
+    </div>
+    
+    <button onclick="testConnection()">Test REST API Connection</button>
+    <button onclick="testWithClient()">Test with Supabase Client</button>
+    
+    <div id="results"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://zzjunmkcdpdxhmhiggno.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6anVubWtjZHBkeGhtaGlnZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyNzM1MDIsImV4cCI6MjA4Mzg0OTUwMn0.HYHck2haMWyEQh1sSXGjh9nWqPXmfvXeE60HBTVx-KM';
+        
+        const resultsDiv = document.getElementById('results');
+        
+        function addResult(message, type = 'info') {
+            resultsDiv.innerHTML += `<div class="result ${type}">${message}</div>`;
+        }
+        
+        async function testConnection() {
+            resultsDiv.innerHTML = '<h2>Testing REST API...</h2>';
+            
+            // Test 1: Basic connectivity
+            addResult('📡 Testing basic connectivity to Supabase...');
+            
+            try {
+                const url = `${SUPABASE_URL}/rest/v1/listings?select=*&limit=5`;
+                addResult(`<strong>URL:</strong> ${url}`);
+                
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'return=representation'
+                    }
+                });
+                
+                addResult(`<strong>Response Status:</strong> ${response.status} ${response.statusText}`);
+                addResult(`<strong>Response Headers:</strong><pre>${JSON.stringify(Object.fromEntries(response.headers), null, 2)}</pre>`);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult(`✅ <strong>Success!</strong> Retrieved ${data.length} listings`, 'success');
+                    addResult(`<pre>${JSON.stringify(data, null, 2)}</pre>`);
+                } else {
+                    const errorText = await response.text();
+                    addResult(`❌ <strong>Error:</strong> ${errorText}`, 'error');
+                }
+                
+            } catch (err) {
+                addResult(`❌ <strong>Fetch Error:</strong> ${err.message}`, 'error');
+                addResult(`<strong>Error Details:</strong><pre>${err.stack}</pre>`, 'error');
+                
+                // Additional diagnostics
+                addResult('<h3>Diagnostics:</h3>');
+                addResult(`<strong>Current Origin:</strong> ${window.location.origin}`);
+                addResult(`<strong>Protocol:</strong> ${window.location.protocol}`);
+                
+                if (window.location.protocol === 'file:') {
+                    addResult('⚠️ <strong>Warning:</strong> You are running from a local file (file://). CORS will block requests. Please use a local web server.', 'error');
+                    addResult('💡 <strong>Solution:</strong> Run a local server using one of these methods:<br>• Python: <code>python -m http.server 8000</code><br>• Node: <code>npx serve</code><br>• VS Code: Use "Live Server" extension', 'info');
+                }
+            }
+        }
+        
+        async function testWithClient() {
+            resultsDiv.innerHTML = '<h2>Testing with Supabase Client...</h2>';
+            
+            try {
+                addResult('📡 Initializing Supabase client...');
+                const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                addResult('✅ Client initialized', 'success');
+                
+                addResult('📡 Fetching listings...');
+                const { data, error } = await supabase
+                    .from('listings')
+                    .select('*')
+                    .limit(5);
+                
+                if (error) {
+                    addResult(`❌ <strong>Supabase Error:</strong> ${JSON.stringify(error)}`, 'error');
+                } else {
+                    addResult(`✅ <strong>Success!</strong> Retrieved ${data.length} listings`, 'success');
+                    addResult(`<pre>${JSON.stringify(data, null, 2)}</pre>`);
+                }
+                
+            } catch (err) {
+                addResult(`❌ <strong>Error:</strong> ${err.message}`, 'error');
+            }
+        }
+        
+        // Auto-run on page load
+        window.onload = function() {
+            addResult(`<strong>Current URL:</strong> ${window.location.href}`);
+            if (window.location.protocol === 'file:') {
+                addResult('⚠️ <strong>Running from local file!</strong> This will cause CORS errors. Use a local web server instead.', 'error');
+            }
+        };
+    </script>
+</body>
+</html>

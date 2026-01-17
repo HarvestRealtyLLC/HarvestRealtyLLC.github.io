@@ -312,13 +312,73 @@
             border-top: 2px solid var(--cream);
             margin: 2rem 0;
         }
+    
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px var(--shadow);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+            
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+        }
+
     </style>
 </head>
 <body>
     <header>
         <nav>
             <a href="index.html" class="logo">Harvest <span>Realty</span></a>
-            <ul class="nav-links">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#properties">Properties</a></li>
                 <li><a href="tenants.html">Tenant Portal</a></li>
@@ -719,26 +779,41 @@
             <p>If you have questions about the application process, contact us:</p>
             <p style="margin-top: 1rem;">
                 📞 <a href="tel:215-519-4096">(215) 519-4096</a><br>
-                📧 <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a>
+                📧 <a href="/cdn-cgi/l/email-protection#d8bbb7b6acb9bbac98b0b9aaaebdabacaabdb9b4aca1f6b4b4bb"><span class="__cf_email__" data-cfemail="781b17160c191b0c3810190a0e1d0b0c0a1d19140c015614141b">[email&#160;protected]</span></a>
             </p>
         </div>
     </main>
 
-    <footer>
+        <footer>
         <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;"><a href="index.html">Home</a> | <a href="tenants.html">Tenant Portal</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
+        <p style="margin-top: 0.5rem;"><a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="fair-housing.html">Fair Housing</a></p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Licensed in PA & NJ | Equal Housing Opportunity 🏠</p>
+    
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
+                Designed & Built by <a href="https://chronosmedia.to" target="_blank" style="color: #D4AF37; text-decoration: none; font-weight: 500;">Chronos Media LLC</a> ⏳
+            </p>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Set today's date as default for signature date
         document.getElementById('signatureDate').valueAsDate = new Date();
         
         // Form submission handler
         document.getElementById('rentalApplication').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your application! We will review it and contact you within 1-2 business days.\n\nPlease check your email for application fee payment instructions.');
-            // In production, this would submit to a server or email
-        });
-    </script>
-</body>
-</html>
+            alert('Thank you for your app
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (mobileMenuToggle && navLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                });
+                
+                // Close menu when clicking a link
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEven

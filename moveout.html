@@ -371,6 +371,65 @@
                 display: none;
             }
         }
+    
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 4px 20px var(--shadow);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.5rem 0;
+                text-align: center;
+            }
+            
+            nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+            
+            .logo-container img {
+                height: 45px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -507,17 +566,23 @@
         <div class="notice-section">
             <h3>📝 Submit Your Move-Out Notice</h3>
             <p>Ready to submit your official move-out notice? Click the button below to send us your notice via email.</p>
-            <a href="mailto:prasad@harvestrealty.llc?subject=Move-Out Notice&body=MOVE-OUT NOTICE%0D%0A%0D%0ATenant Name: %0D%0A%0D%0AProperty Address: %0D%0A%0D%0AUnit Number (if applicable): %0D%0A%0D%0ALease End Date: %0D%0A%0D%0AIntended Move-Out Date: %0D%0A%0D%0AReason for Moving (optional): %0D%0A%0D%0AForwarding Address for Security Deposit:%0D%0AStreet: %0D%0ACity: %0D%0AState: %0D%0AZip: %0D%0A%0D%0APreferred Contact Number: %0D%0A%0D%0APreferred Date/Time for Final Walkthrough: %0D%0A%0D%0AAdditional Notes: %0D%0A%0D%0A%0D%0AI understand that I am responsible for leaving the property in clean condition and returning all keys and access devices. I acknowledge that my security deposit will be returned within 30 days of move-out, minus any deductions for damages or unpaid rent.%0D%0A%0D%0ATenant Signature: _________________________%0D%0ADate: _____________" class="submit-btn">📧 Submit Move-Out Notice</a>
-            
-            <div class="info-box">
-                <h4>📞 Questions?</h4>
-                <p>If you have any questions about the move-out process, contact us at <strong>215-519-4096</strong> or email <strong>prasad@harvestrealty.llc</strong></p>
-            </div>
+            <a href="mailto:contact@harvestrealty.llc?subject=Move-Out%20Notice" class="btn-primary" style="display: inline-block; margin-top: 1rem;">📧 Submit Move-Out Notice</a>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="tenants.html">Tenant Portal</a> | <a href="index.html">Home</a></p>
+    <footer style="background: #2C2C2C; color: white; padding: 2rem 5%; text-align: center; margin-top: 3rem;">
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="index.html" style="color: #F5F1E8;">Home</a> | <a href="privacy.html" style="color: #F5F1E8;">Privacy Policy</a> | <a href="terms.html" style="color: #F5F1E8;">Terms of Use</a> | <a href="fair-housing.html" style="color: #F5F1E8;">Fair Housing</a></p>
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
+            Designed & Built by <a href="https://chronosmedia.to" target="_blank" style="color: #D4AF37; text-decoration: none; font-weight: 500;">Chronos Media LLC</a> ⏳
+        </p>
     </footer>
+
+    <script>
+        document.getElementById('mobileMenuToggle')?.addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+            this.textContent = document.getElementById('navLinks').classList.contains('active') ? '✕' : '☰';
+        });
+    </script>
 </body>
 </html>

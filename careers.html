@@ -849,7 +849,7 @@
             
             <div class="form-message error" id="errorMessage">
                 <h3>❌ Submission Error</h3>
-                <p>There was a problem submitting your application. Please try again or contact us directly at <a href="mailto:jobs@harvestrealty.llc">📧 jobs@harvestrealty.llc</a></p>
+                <p>There was a problem submitting your application. Please try again or contact us directly at <a href="/cdn-cgi/l/email-protection#95fffaf7e6d5fdf4e7e3f0e6e1e7f0f4f9e1ecbbf9f9f6">📧 <span class="__cf_email__" data-cfemail="214b4e435261494053574452555344404d55580f4d4d42">[email&#160;protected]</span></a></p>
             </div>
             
             <form class="apply-form" id="applicationForm" action="https://formspree.io/f/mnjjqgzd" method="POST" enctype="multipart/form-data">
@@ -956,8 +956,8 @@
             <h2>Questions About Careers?</h2>
             <p>We'd love to hear from you! Reach out to learn more about opportunities at Harvest Realty.</p>
             <div class="contact-methods">
-                <a href="mailto:jobs@harvestrealty.llc" class="contact-method">
-                    📧 jobs@harvestrealty.llc
+                <a href="/cdn-cgi/l/email-protection#03696c6170436b6271756670777166626f777a2d6f6f60" class="contact-method">
+                    📧 <span class="__cf_email__" data-cfemail="4c26232e3f0c242d3e3a293f383e292d2038356220202f">[email&#160;protected]</span>
                 </a>
                 <a href="tel:215-519-4096" class="contact-method">
                     📞 215-519-4096
@@ -976,9 +976,13 @@
             <a href="privacy.html">Privacy Policy</a> | 
             <a href="terms.html">Terms of Use</a>
         </p>
+    
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
+                Designed & Built by <a href="https://chronosmedia.to" target="_blank" style="color: #D4AF37; text-decoration: none; font-weight: 500;">Chronos Media LLC</a> ⏳
+            </p>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Toggle job details
         function toggleDetails(jobId) {
             const details = document.getElementById(jobId);
@@ -1142,13 +1146,4 @@
                     this.classList.add('error');
                     if (errorMsg) errorMsg.classList.add('visible');
                 } else {
-                    this.classList.remove('error');
-                    if (errorMsg) errorMsg.classList.remove('visible');
-                }
-            });
-            
-            input.addEventListener('input', function() {
-                this.classList.remove('error');
-                const errorMsg = this.parentElement.querySelector('.error-message');
-                if (errorMsg) errorMsg.classList.remove('visible');
-           
+                    this.classList.remove('error')

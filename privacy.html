@@ -21,11 +21,7 @@
             --shadow: rgba(139, 46, 46, 0.15);
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Montserrat', sans-serif;
@@ -34,7 +30,6 @@
             line-height: 1.6;
         }
         
-        /* Header */
         header {
             background: var(--white);
             padding: 1rem 5%;
@@ -60,9 +55,7 @@
             text-decoration: none;
         }
         
-        .logo img {
-            height: 50px;
-        }
+        .logo img { height: 50px; }
         
         .logo-text h1 {
             font-family: 'Cormorant Garamond', serif;
@@ -94,7 +87,6 @@
             transform: translateX(-5px);
         }
         
-        /* Hero Section */
         .hero {
             padding: 150px 5% 60px;
             text-align: center;
@@ -115,7 +107,6 @@
             margin: 0 auto;
         }
         
-        /* Main Content */
         .main-content {
             max-width: 900px;
             margin: 0 auto;
@@ -139,8 +130,13 @@
             border-bottom: 2px solid var(--cream-dark);
         }
         
-        .legal-card h2:first-of-type {
-            margin-top: 0;
+        .legal-card h2:first-of-type { margin-top: 0; }
+        
+        .legal-card h3 {
+            color: var(--burgundy);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
         }
         
         .legal-card p {
@@ -159,9 +155,7 @@
             line-height: 1.7;
         }
         
-        .legal-card strong {
-            color: var(--burgundy);
-        }
+        .legal-card strong { color: var(--burgundy); }
         
         .legal-card a {
             color: var(--burgundy);
@@ -169,9 +163,7 @@
             font-weight: 500;
         }
         
-        .legal-card a:hover {
-            color: var(--gold-dark);
-        }
+        .legal-card a:hover { color: var(--gold-dark); }
         
         .last-updated {
             display: inline-block;
@@ -191,11 +183,49 @@
             border-left: 4px solid var(--burgundy);
         }
         
-        .contact-box p {
+        .contact-box p { margin-bottom: 0.5rem; }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+        
+        .highlight-box p {
+            color: var(--white);
+            margin-bottom: 0;
+        }
+        
+        .warning-box {
+            background: #FFF3E0;
+            border: 2px solid #FF9800;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+        
+        .warning-box p {
+            color: #E65100;
+            margin-bottom: 0;
+        }
+        
+        .info-box {
+            background: #E3F2FD;
+            border: 2px solid #2196F3;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+        
+        .info-box p {
+            color: #1565C0;
             margin-bottom: 0.5rem;
         }
         
-        /* Footer */
+        .info-box p:last-child { margin-bottom: 0; }
+        
         footer {
             background: var(--charcoal);
             color: var(--white);
@@ -208,68 +238,18 @@
             text-decoration: none;
         }
         
-        footer a:hover {
-            text-decoration: underline;
-        }
+        footer a:hover { text-decoration: underline; }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
             }
-            
-            .logo {
-                justify-content: center;
-            }
-            
-            .logo img {
-                height: 45px;
-            }
-            
-            .logo-text h1 {
-                font-size: 1.4rem;
-            }
-            
-            .logo-text p {
-                font-size: 0.7rem;
-            }
-            
-            .back-btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
-            }
-            
-            .hero {
-                padding: 130px 5% 60px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .legal-card {
-                padding: 2rem;
-            }
-            
-            .legal-card h2 {
-                font-size: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .logo-text h1 {
-                font-size: 1.2rem;
-            }
-            
-            .logo-text p {
-                display: none;
-            }
+            .logo { justify-content: center; }
+            .hero h1 { font-size: 2rem; }
+            .legal-card { padding: 2rem; }
+            .legal-card h2 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -294,77 +274,143 @@
 
     <main class="main-content">
         <div class="legal-card">
-            <span class="last-updated">Last Updated: January 10, 2026</span>
+            <span class="last-updated">Last Updated: January 11, 2026</span>
             
-            <p>Harvest Realty LLC ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.</p>
+            <p>Harvest Realty LLC ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our real estate services in Pennsylvania and New Jersey.</p>
 
-            <h2>Information We Collect</h2>
+            <h2>1. Information We Collect</h2>
             <p>We may collect information about you in a variety of ways, including:</p>
+            
+            <h3>Personal Information</h3>
             <ul>
-                <li><strong>Personal Data:</strong> Name, email address, phone number, mailing address, and other contact information you provide when filling out forms on our website.</li>
-                <li><strong>Property Information:</strong> Details about properties you're interested in buying, selling, or renting.</li>
-                <li><strong>Financial Information:</strong> Information related to your ability to purchase or rent property, though we do not directly collect sensitive financial data.</li>
-                <li><strong>Usage Data:</strong> Information about how you use our website, including your IP address, browser type, pages visited, and time spent on pages.</li>
+                <li><strong>Contact Information:</strong> Name, email address, phone number, mailing address</li>
+                <li><strong>Property Information:</strong> Details about properties you're interested in buying, selling, or renting</li>
+                <li><strong>Transaction Information:</strong> Information related to real estate transactions, including purchase agreements, rental applications, and lease documents</li>
+                <li><strong>Financial Information:</strong> Income verification and credit information (collected through third-party services for rental applications)</li>
+                <li><strong>Identification:</strong> Government-issued ID for identity verification in transactions</li>
+            </ul>
+            
+            <h3>Automatically Collected Information</h3>
+            <ul>
+                <li><strong>Usage Data:</strong> IP address, browser type, pages visited, time spent on pages</li>
+                <li><strong>Device Information:</strong> Device type, operating system, unique device identifiers</li>
+                <li><strong>Location Data:</strong> General geographic location based on IP address</li>
             </ul>
 
-            <h2>How We Use Your Information</h2>
+            <h2>2. How We Use Your Information</h2>
             <p>We use the information we collect to:</p>
             <ul>
-                <li>Provide real estate services and respond to your inquiries</li>
-                <li>Process transactions and send confirmations</li>
-                <li>Send you property listings, market updates, and promotional materials (with your consent)</li>
-                <li>Improve our website and services</li>
-                <li>Comply with legal obligations</li>
+                <li>Provide real estate brokerage services in Pennsylvania and New Jersey</li>
+                <li>Process rental applications and tenant screenings</li>
+                <li>Facilitate real estate transactions and closings</li>
+                <li>Send property listings, market updates, and promotional materials (with your consent)</li>
+                <li>Respond to your inquiries and provide customer support</li>
+                <li>Comply with Pennsylvania Real Estate Commission and New Jersey Real Estate Commission regulations</li>
+                <li>Comply with legal obligations under PA and NJ real estate laws</li>
                 <li>Protect against fraud and unauthorized transactions</li>
+                <li>Improve our website and services</li>
             </ul>
 
-            <h2>Disclosure of Your Information</h2>
+            <h2>3. Pennsylvania & New Jersey Real Estate Disclosures</h2>
+            
+            <div class="info-box">
+                <p><strong>📋 Required Disclosures:</strong></p>
+                <p>Under Pennsylvania and New Jersey law, we are required to maintain certain records and make specific disclosures in real estate transactions. This includes Seller's Property Disclosure Statements, Consumer Information Statements, and agency relationship disclosures.</p>
+            </div>
+            
+            <h3>Pennsylvania Requirements (PA Real Estate Licensing and Registration Act)</h3>
+            <ul>
+                <li>We maintain records of all real estate transactions for at least 3 years as required by 49 Pa. Code § 35.286</li>
+                <li>Seller disclosure information is retained in accordance with the Real Estate Seller Disclosure Law (68 Pa.C.S. §§ 7301-7314)</li>
+                <li>Agency relationship records are maintained per Commission requirements</li>
+                <li>Compliance with Act 52 of 2024 (wholesaling regulations) effective January 2025</li>
+            </ul>
+            
+            <h3>New Jersey Requirements (NJ Real Estate Consumer Protection Enhancement Act)</h3>
+            <ul>
+                <li>We comply with the Consumer Protection Enhancement Act (CPEA) effective August 1, 2024</li>
+                <li>Property Condition Disclosure Statements are maintained as required by law</li>
+                <li>Flood risk disclosures are provided in compliance with NJ Flood Disclosure Law (effective March 20, 2024)</li>
+                <li>Brokerage Services Agreements are retained as required</li>
+            </ul>
+
+            <h2>4. Disclosure of Your Information</h2>
             <p>We may share your information with:</p>
             <ul>
-                <li><strong>Service Providers:</strong> Third-party vendors who assist us in operating our website and providing our services</li>
-                <li><strong>Business Partners:</strong> Other real estate professionals, lenders, inspectors, and related service providers</li>
-                <li><strong>Legal Authorities:</strong> When required by law or to protect our rights</li>
-                <li><strong>Business Transfers:</strong> In connection with any merger, sale of company assets, or acquisition</li>
+                <li><strong>Other Parties in Transactions:</strong> Buyers, sellers, landlords, tenants, and their representatives as necessary to complete real estate transactions</li>
+                <li><strong>Service Providers:</strong> Title companies, mortgage lenders, home inspectors, appraisers, and other professionals involved in real estate transactions</li>
+                <li><strong>Multiple Listing Services (MLS):</strong> Property information may be shared through MLS systems</li>
+                <li><strong>Regulatory Authorities:</strong> Pennsylvania Real Estate Commission, New Jersey Real Estate Commission, and other regulatory bodies as required</li>
+                <li><strong>Legal Authorities:</strong> When required by law, court order, or to protect our rights</li>
+                <li><strong>Business Partners:</strong> With your consent, to provide related services</li>
             </ul>
 
-            <h2>Data Security</h2>
-            <p>We implement appropriate technical and organizational security measures to protect your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+            <h2>5. Lead-Based Paint Disclosure</h2>
+            <div class="warning-box">
+                <p><strong>⚠️ Federal Requirement:</strong> For homes built before 1978, we are required by the Residential Lead-Based Paint Hazard Reduction Act of 1992 to provide buyers and renters with the EPA pamphlet and all known lead paint information.</p>
+            </div>
+            <ul>
+                <li>The EPA pamphlet "Protect Your Family From Lead in Your Home"</li>
+                <li>Any known information concerning lead-based paint or lead-based paint hazards</li>
+                <li>A Lead Warning Statement in all sales and rental contracts</li>
+                <li>A 10-day opportunity for buyers to conduct a lead-based paint inspection</li>
+            </ul>
 
-            <h2>Your Rights</h2>
-            <p>Depending on your location, you may have certain rights regarding your personal information, including:</p>
+            <h2>6. Data Security</h2>
+            <p>We implement appropriate technical and organizational security measures to protect your personal information, including:</p>
+            <ul>
+                <li>Secure, encrypted connections for all data transmissions</li>
+                <li>Password-protected access to client information</li>
+                <li>Regular security assessments and updates</li>
+                <li>Employee training on data protection practices</li>
+            </ul>
+            <p>However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.</p>
+
+            <h2>7. Your Rights</h2>
+            <p>You have the following rights regarding your personal information:</p>
             <ul>
                 <li>The right to access your personal data</li>
                 <li>The right to rectify inaccurate data</li>
-                <li>The right to erase your data</li>
-                <li>The right to restrict processing</li>
-                <li>The right to data portability</li>
-                <li>The right to object to processing</li>
+                <li>The right to request deletion of your data (subject to legal retention requirements)</li>
+                <li>The right to opt-out of marketing communications</li>
+                <li>The right to request copies of transaction records</li>
             </ul>
+            <p>Note: Certain information must be retained to comply with PA and NJ real estate regulations even after your request for deletion.</p>
 
-            <h2>Cookies and Tracking Technologies</h2>
+            <h2>8. Cookies and Tracking Technologies</h2>
             <p>We use cookies and similar tracking technologies to enhance your experience on our website. You can control cookies through your browser settings.</p>
 
-            <h2>Third-Party Links</h2>
-            <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of these external sites.</p>
+            <h2>9. Third-Party Links</h2>
+            <p>Our website may contain links to third-party websites, including MLS systems, lender websites, and partner services. We are not responsible for the privacy practices of these external sites.</p>
 
-            <h2>Children's Privacy</h2>
+            <h2>10. Children's Privacy</h2>
             <p>Our services are not directed to individuals under the age of 18, and we do not knowingly collect personal information from children.</p>
 
-            <h2>Changes to This Privacy Policy</h2>
-            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+            <h2>11. Changes to This Privacy Policy</h2>
+            <p>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable laws. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
 
-            <h2>Contact Us</h2>
-            <p>If you have questions or concerns about this Privacy Policy, please contact us:</p>
+            <h2>12. Contact Us</h2>
+            <p>If you have questions or concerns about this Privacy Policy or wish to exercise your rights, please contact us:</p>
             <div class="contact-box">
                 <p><strong>Harvest Realty LLC</strong></p>
-                <p>📧 Email: <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a></p>
-                <p>📞 Phone: <a href="tel:215-519-4096">(215) 519-4096</a></p>
+                <p>📍 2481 Napfle Ave, Philadelphia, PA 19152</p>
+                <p>📧 Email: <a href="/cdn-cgi/l/email-protection#187b77766c797b6c5870796a6e7d6b6c6a7d79746c613674747b"><span class="__cf_email__" data-cfemail="7f1c10110b1e1c0b3f171e0d091a0c0b0d1a1e130b065113131c">[email&#160;protected]</span></a></p>
+                <p>📞 Phone: <a href="tel:267-900-8011">267-900-8011</a></p>
+            </div>
+            
+            <div class="info-box" style="margin-top: 2rem;">
+                <p><strong>🏛️ Regulatory Contacts:</strong></p>
+                <p><strong>Pennsylvania Real Estate Commission:</strong> <a href="https://www.dos.pa.gov/ProfessionalLicensing/BoardsCommissions/RealEstateCommission" target="_blank" style="color: #1565C0;">dos.pa.gov</a></p>
+                <p><strong>New Jersey Real Estate Commission:</strong> <a href="https://www.njconsumeraffairs.gov/rec" target="_blank" style="color: #1565C0;">njconsumeraffairs.gov/rec</a></p>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="index.html">Home</a> | <a href="terms.html">Terms of Use</a></p>
+        <p>&copy; 2026 Harvest Realty LLC. All rights reserved. | <a href="terms.html">Terms of Use</a> | <a href="fair-housing.html">Fair Housing</a></p>
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
+            Designed & Built by <a href="https://chronosmedia.to" target="_blank" style="color: #D4AF37; text-decoration: none; font-weight: 500;">Chronos Media LLC</a> ⏳
+        </p>
     </footer>
 </body>
 </html>
