@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
-    <meta name="description" content="Harvest Realty LLC - Premier real estate services in Pennsylvania and New Jersey. Specializing in Philadelphia, Bucks, and Montgomery Counties.">
+    <meta name="description" content="Harvest Realty Group LLC - Premier real estate services in Pennsylvania and New Jersey. Specializing in Philadelphia, Bucks, and Montgomery Counties.">
     <meta name="keywords" content="real estate, Pennsylvania, New Jersey, Philadelphia, Bucks County, Montgomery County, homes for sale, property rentals, house buying">
-    <title>Harvest Realty LLC - Premier Real Estate in PA & NJ</title>
+    <title>Harvest Realty Group LLC - Premier Real Estate in PA & NJ</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +28,35 @@
             --charcoal: #2C2C2C;
             --white: #FFFFFF;
             --shadow: rgba(139, 46, 46, 0.15);
+        }
+        
+        /* Image fallback - hide broken images and show background color */
+        img {
+            background-color: var(--cream-dark);
+        }
+        
+        img[src=""],
+        img:not([src]),
+        img.error {
+            visibility: hidden;
+            height: 0;
+            width: 0;
+            display: none;
+        }
+        
+        /* Banner fallback when images fail */
+        .hero {
+            background-color: var(--burgundy);
+        }
+        
+        .hero.no-image {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+        }
+        
+        /* Noscript styles */
+        noscript .hero {
+            background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%);
+            min-height: 60vh;
         }
         
         * {
@@ -1338,9 +1367,9 @@
     <header id="header">
         <nav>
             <div class="logo-container">
-                <img src="hrg-logo.png" alt="Harvest Realty LLC Logo">
+                <img src="hrg-logo.png" alt="Harvest Realty Group LLC Logo">
                 <div class="logo-text">
-                    <h1>Harvest Realty LLC</h1>
+                    <h1>Harvest Realty Group LLC</h1>
                     <p>PA & NJ Experts</p>
                 </div>
             </div>
@@ -1508,7 +1537,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#42323023312326022a2330342731363027232e363b6c2e2e21"><span class="__cf_email__" data-cfemail="7e0e0c1f0d1f1a3e161f0c081b0d0a0c1b1f120a075012121d">[email&#160;protected]</span></a>
+                        <a href="mailto:prasad@harvestrealty.llc">prasad@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1526,7 +1555,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#d3b9b2b0bcb193bbb2a1a5b6a0a7a1b6b2bfa7aafdbfbfb0"><span class="__cf_email__" data-cfemail="c5afa4a6aaa785ada4b7b3a0b6b1b7a0a4a9b1bceba9a9a6">[email&#160;protected]</span></a>
+                        <a href="mailto:jacob@harvestrealty.llc">jacob@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1544,7 +1573,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#e2869b918d8ca28a8390948791969087838e969bcc8e8e81"><span class="__cf_email__" data-cfemail="6f0b161c00012f070e1d190a1c1b1d0a0e031b164103030c">[email&#160;protected]</span></a>
+                        <a href="mailto:dyson@harvestrealty.llc">dyson@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1562,7 +1591,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#cfaeadabbaa3a3aea78fa7aebdb9aabcbbbdaaaea3bbb6e1a3a3ac"><span class="__cf_email__" data-cfemail="43222127362f2f222b032b2231352630373126222f373a6d2f2f20">[email&#160;protected]</span></a>
+                        <a href="mailto:abdullah@harvestrealty.llc">abdullah@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1580,7 +1609,7 @@
                     </div>
                     <div class="agent-contact-item">
                         <span>📧</span>
-                        <a href="/cdn-cgi/l/email-protection#7c081413111d0f3c141d0e0a190f080e191d1008055210101f"><span class="__cf_email__" data-cfemail="2c584443414d5f6c444d5e5a495f585e494d4058550240404f">[email&#160;protected]</span></a>
+                        <a href="mailto:thomas@harvestrealty.llc">thomas@harvestrealty.llc</a>
                     </div>
                     <div class="agent-contact-item">
                         <span>📍</span>
@@ -1595,8 +1624,8 @@
     <section class="about fade-in" id="about">
         <div class="about-content">
             <div class="about-text">
-                <h2>About Harvest Realty LLC</h2>
-                <p>For over a decade, Harvest Realty LLC has been the trusted name in real estate across Pennsylvania and New Jersey. Our commitment to excellence and faith-based service has helped thousands of families find their dream homes.</p>
+                <h2>About Harvest Realty Group LLC</h2>
+                <p>For over a decade, Harvest Realty Group LLC has been the trusted name in real estate across Pennsylvania and New Jersey. Our commitment to excellence and faith-based service has helped thousands of families find their dream homes.</p>
                 <p>We combine local market expertise with innovative technology to provide unparalleled service to our clients. Whether you're buying, selling, or renting, our experienced team is dedicated to making your real estate journey smooth and successful.</p>
                 <div class="about-address">
                     <strong>📍 Office Location</strong>
@@ -1670,7 +1699,13 @@
                     <h3>Get In Touch</h3>
                     <p>Reach out to us directly</p>
                     
-                    <a href="/cdn-cgi/l/email-protection#fe9d91908a9f9d8abe969f8c889b8d8a8c9b9f928a87d092929d" class="contact-card-button"><span class="__cf_email__" data-cfemail="8fece0e1fbeeecfbcfe7eefdf9eafcfbfdeaeee3fbf6a1e3e3ec">[email&#160;protected]</span></a>
+                    <a href="mailto:contact@harvestrealty.llc" class="contact-card-button">
+                        <span class="contact-card-icon">📧</span>
+                        <div class="contact-card-text">
+                            <strong>Email Us</strong>
+                            <span>contact@harvestrealty.llc</span>
+                        </div>
+                    </a>
                     
                     <a href="sms:2155194096" class="contact-card-button">
                         <span class="contact-card-icon">💬</span>
@@ -1706,7 +1741,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Harvest Realty LLC</h4>
+                <h4>Harvest Realty Group LLC</h4>
                 <p>Your trusted partner in finding the perfect property. Serving Pennsylvania and New Jersey with excellence.</p>
                 <p style="margin-top: 1rem;">
                     <strong>Main Office:</strong> 267-900-8011<br>
@@ -1762,12 +1797,12 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
+            <p>&copy; 2026 Harvest Realty Group LLC. All rights reserved.</p>
             <p style="margin-top: 0.5rem;"><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="fair-housing.html">Fair Housing</a></p>
             <p style="margin-top: 0.5rem; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">Licensed in PA & NJ | Equal Housing Opportunity <img src="photos/equal-housing-logo.png" alt="Equal Housing Opportunity" style="height: 30px; vertical-align: middle;"></p>
             <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
                 <span style="display: inline-flex; align-items: center; gap: 0.4rem;">
-                    Designed & Built by <a href="https://chronosmedia.to" target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 500;">Chronos Media LLC</a> ⏳
+                    <a href="https://chronosmedia.to" target="_blank" style="color: var(--gold); text-decoration: none; font-weight: 500;">Chronos Media</a> ⏳
                 </span>
             </p>
         </div>
@@ -1818,7 +1853,7 @@
         </div>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Supabase Configuration
         const SUPABASE_URL = 'https://zzjunmkcdpdxhmhiggno.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6anVubWtjZHBkeGhtaGlnZ25vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyNzM1MDIsImV4cCI6MjA4Mzg0OTUwMn0.HYHck2haMWyEQh1sSXGjh9nWqPXmfvXeE60HBTVx-KM';
@@ -2252,4 +2287,63 @@
                 rootMargin: '0px 0px -50px 0px'
             };
             
- 
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.agent-card, .service-card, .stat-card').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        function initHeaderScroll() {
+            const header = document.getElementById('header');
+            if (!header) return;
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+        
+        // Image error handling - hide broken images
+        function handleImageError(img) {
+            img.classList.add('error');
+            img.style.display = 'none';
+            // If it's a hero background, add fallback class
+            if (img.closest('.hero')) {
+                img.closest('.hero').classList.add('no-image');
+            }
+        }
+        
+        // Add error handlers to all images
+        document.querySelectorAll('img').forEach(img => {
+            img.onerror = function() { handleImageError(this); };
+            // Check if already broken
+            if (img.complete && img.naturalHeight === 0) {
+                handleImageError(img);
+            }
+        });
+        
+        // Initialize
+        initScrollAnimations();
+        initHeaderScroll();
+    </script>
+    
+    <!-- Fallback for users with JS disabled -->
+    <noscript>
+        <style>
+            .fade-in { opacity: 1 !important; transform: none !important; }
+            .hero { background: linear-gradient(135deg, #8B2E2E 0%, #6B1E1E 100%) !important; }
+            #propertiesGrid { display: none; }
+            .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, #8B2E2E 0%, #6B1E1E 100%); z-index: -1; }
+        </style>
+    </noscript>
+</body>
+</html>
