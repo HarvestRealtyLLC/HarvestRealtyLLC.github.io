@@ -440,39 +440,25 @@
         <h2 class="section-title">How Can We Help You?</h2>
         
         <div class="resource-grid">
-            <div class="resource-card" style="background: linear-gradient(135deg, var(--burgundy) 0%, var(--burgundy-dark) 100%); color: var(--white);">
-                <div class="icon">📋</div>
-                <h3 style="color: var(--white);">Apply for a Rental</h3>
-                <p style="color: var(--cream);">New tenant? Complete our online rental application to apply for one of our properties.</p>
-                <a href="apply.html" style="background: var(--gold); color: var(--charcoal);">Apply Now →</a>
-            </div>
-            
-            <div class="resource-card">
-                <div class="icon">💳</div>
-                <h3>Pay Rent Online</h3>
-                <p>Convenient and secure online rent payment. Pay with Venmo or Zelle.</p>
-                <a href="pay.html">Pay Now →</a>
-            </div>
-            
             <div class="resource-card">
                 <div class="icon">🔧</div>
                 <h3>Maintenance Request</h3>
                 <p>Submit a maintenance request and our team will address it promptly.</p>
-                <a href="/cdn-cgi/l/email-protection#f89b97968c999b8cb890998a8e9d8b8c8a9d99948c81d694949b">Submit Request →</a>
+                <a href="mailto:contact@harvestrealty.llc?subject=Maintenance%20Request">Submit Request →</a>
             </div>
             
             <div class="resource-card">
                 <div class="icon">📄</div>
                 <h3>Request Documents</h3>
                 <p>Request copies of your lease agreement, move-in checklist, or other documents.</p>
-                <a href="/cdn-cgi/l/email-protection#482b27263c292b3c0820293a3e2d3b3c3a2d29243c316624242b">Request Documents →</a>
+                <a href="mailto:contact@harvestrealty.llc?subject=Document%20Request">Request Documents →</a>
             </div>
             
             <div class="resource-card">
                 <div class="icon">📋</div>
                 <h3>Renew Your Lease</h3>
                 <p>Interested in renewing your lease? Let us know and we'll send you renewal options.</p>
-                <a href="/cdn-cgi/l/email-protection#7c1f1312081d1f083c141d0e0a190f080e191d1008055210101f">Inquire Now →</a>
+                <a href="mailto:contact@harvestrealty.llc?subject=Lease%20Renewal%20Inquiry">Inquire Now →</a>
             </div>
             
             <div class="resource-card">
@@ -486,19 +472,24 @@
                 <div class="icon">❓</div>
                 <h3>General Inquiry</h3>
                 <p>Have a question? Contact our property management team for assistance.</p>
-                <a href="/cdn-cgi/l/email-protection#34575b5a40555740745c55464251474046515558404d1a585857">Contact Us →</a>
+                <a href="mailto:contact@harvestrealty.llc">Contact Us →</a>
             </div>
         </div>
     </main>
 
     <footer style="background: #2C2C2C; color: white; padding: 2rem 5%; text-align: center;">
-        <p>&copy; 2026 Harvest Realty LLC. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;"><a href="index.html" style="color: #F5F1E8;">Home</a> | <a href="privacy.html" style="color: #F5F1E8;">Privacy Policy</a> | <a href="terms.html" style="color: #F5F1E8;">Terms of Use</a> | <a href="fair-housing.html" style="color: #F5F1E8;">Fair Housing</a></p>
+        <p>&copy; 2026 Harvest Realty Group LLC. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;"><a href="/" style="color: #F5F1E8;">Home</a> | <a href="privacy.html" style="color: #F5F1E8;">Privacy Policy</a> | <a href="terms.html" style="color: #F5F1E8;">Terms of Use</a> | <a href="fair-housing.html" style="color: #F5F1E8;">Fair Housing</a></p>
         <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">
-            Designed & Built by <a href="https://chronosmedia.to" target="_blank" style="color: #D4AF37; text-decoration: none; font-weight: 500;">Chronos Media LLC</a> ⏳
+            <a href="https://chronosmedia.to" target="_blank" style="color: #D4AF37; text-decoration: none; font-weight: 500;">Chronos Media</a> ⏳
         </p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         document.getElementById('mobileMenuToggle')?.addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active')
+            document.getElementById('navLinks').classList.toggle('active');
+            this.textContent = document.getElementById('navLinks').classList.contains('active') ? '✕' : '☰';
+        });
+    </script>
+</body>
+</html>
